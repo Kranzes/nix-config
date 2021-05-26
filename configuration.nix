@@ -31,9 +31,9 @@ in
     hostName = "desktop";
     bridges.br0.interfaces = [ "enp6s0" ];
     networkmanager = {
-      enable = false;
+      enable = true;
     };
-    useDHCP = true;
+    useDHCP = false;
     interfaces = {
       enp6s0.useDHCP = true;
       br0.useDHCP = true;
