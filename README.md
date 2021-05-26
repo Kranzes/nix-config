@@ -1,0 +1,2 @@
+# nix-config
+NixOS Configuration
