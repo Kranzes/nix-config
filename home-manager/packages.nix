@@ -9,6 +9,9 @@
     cinnamon.nemo
     virt-manager
     keepassxc
+    anki
+    translate-shell
+    firefox-bin
     youtube-dl
     gotop
     p7zip
@@ -32,7 +35,10 @@
     thunderbird
     openrgb
     jellyfin-media-player
-    (pkgs.callPackage ../custom-packages/freezer/default.nix { })
+    nixops
+    xorg.xprop
+    xorg.xev
+#    (pkgs.callPackage ../custom-packages/freezer/default.nix { })
   ];
 
 

@@ -69,13 +69,6 @@
       # focus the last node/desktop
       "super + {grave,Tab}" = "bspc {node,desktop} -f last";
 
-      # focus the older or newer node in the focus history
-      "super + {o,i}" = ''
-        bspc wm -h off; \
-        bspc node {older,newer} -f; \
-        bspc wm -h on";
-      '';
-
       # focus or send to the given desktop
       "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,10}'";
 
@@ -99,19 +92,11 @@
       # move/resize
       #
 
-      # Expand/contract a window by moving one of its side outward/inward
-      "super + alt + {h,j,k,l}" = ''
-        STEP=20; SELECTION={1,2,3,4}; \
-        bspc node -z $(echo 'left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0' | cut -d',' -f$SELECTION) || \
-        bspc node -z $(echo 'right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0' | cut -d',' -f$SELECTION)
-      '';
-
       # move a floating window
       "super + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
 
       # Rotate tree
       "super + shift + {d,a}" = "bspc node @/ -C {forward,backward}";
-
 
       #### MULTIMEDIA KEYS ####
 
@@ -140,6 +125,13 @@
       "Print" = "maim | xclip -selection clipboard -t image/png && notify-send 'maim' 'Screenshot captured'";
 
     };
+    extraConfig = ''
+      # Expand/contract a window by moving one of its side outward/inward
+      super + alt + {h,j,k,l}
+          STEP=20; SELECTION={1,2,3,4}; \
+          bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
+          bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
+    '';  
   };
 
 }

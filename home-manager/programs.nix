@@ -3,11 +3,15 @@
 {
 
   programs = {
-    firefox.enable = true;
     mpv.enable = true;
     feh.enable = true;
     htop.enable = true;
     fzf.enable = true;
+
+    texlive = {
+      enable = true;
+      extraPackages = tpkgs: { inherit (tpkgs) scheme-full; };
+    };
 
     zathura = {
       enable = true;

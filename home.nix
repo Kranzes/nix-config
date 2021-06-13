@@ -10,6 +10,7 @@
           ./home-manager/packages.nix
           ./home-manager/programs.nix
           ./home-manager/services.nix
+          ./home-manager/editors.nix
           ./home-manager/music.nix
           ./home-manager/terminal.nix
           ./home-manager/ssh-gpg.nix
@@ -22,7 +23,7 @@
           ./home-manager/polybar.nix
           ./home-manager/screen-lock.nix
           ./home-manager/shell.nix
-          ./home-manager/gtk.nix
+          ./home-manager/gtk-qt.nix
           ./home-manager/games.nix
         ];
       };

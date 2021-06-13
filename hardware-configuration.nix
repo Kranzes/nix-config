@@ -29,13 +29,13 @@
 
   fileSystems."/home/4TB-HDD" =
     {
-      device = "/dev/disk/by-uuid/bc419609-d636-459c-a5cd-9f392d95fcfb";
+      device = "/dev/disk/by-uuid/7c126a7c-e8fd-4268-9cb8-4dba40a1aece";
       fsType = "ext4";
     };
 
   fileSystems."/home/1TB-HDD" =
     {
-      device = "/dev/disk/by-uuid/254c1681-14db-4a0d-a510-648e268df69e";
+      device = "/dev/disk/by-uuid/28bb79bc-ffb5-4e2b-8a1b-7cde40eeec9e";
       fsType = "ext4";
     };
 
@@ -46,12 +46,12 @@
       options = [ "bind" ];
     };
 
-  fileSystems."/mnt/nextcloud/Photos" =
-    {
-      device = "/home/4TB-HDD/Photos";
-      fsType = "none";
-      options = [ "bind" ];
-    };
+#  fileSystems."/mnt/nextcloud/Photos" =
+#    {
+#      device = "/home/4TB-HDD/Photos";
+#      fsType = "none";
+#      options = [ "bind" ];
+#    };
 
   swapDevices = [{ device = "/swapfile"; size = 16384; }];
 

@@ -43,6 +43,7 @@
       nixe = "sudo nvim /etc/nixos/configuration.nix";
       rm = "rm -I";
       ytdl = "youtube-dl";
+      weather = "curl wttr.in/Rehovot";
       ssh = "TERM=xterm-256color ssh";
 
     };
@@ -60,6 +61,8 @@
     enableZshIntegration = true;
     extraConfig =
       ''
+        # Copyright (C) 2017-present Arctic Ice Studio <development@arcticicestudio.com>
+        # Copyright (C) 2017-present Sven Greb <development@svengreb.de>
 
         # Project:    Nord dircolors
         # Version:    0.2.0

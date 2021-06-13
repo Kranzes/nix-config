@@ -1,12 +1,14 @@
 # configuration.nix
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 let
-  unstableTarball =
-    fetchTarball
-      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+  home-manager = builtins.fetchGit {
+    url = "https://github.com/nix-community/home-manager";
+    ref = "master";
+  };
 in
+
 {
   imports = [
     # Include the results of the hardware scan.
@@ -14,13 +16,13 @@ in
     ./xorg.nix
     ./home.nix
     ./ssh.nix
-    ./nvim.nix
-   # ./server-stuff.nix
-    (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz}/nixos")
+#    ./server-stuff.nix
+    (import "${home-manager}/nixos")
   ];
   # Use the systemd-boot
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = [ "ntfs" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -30,6 +32,7 @@ in
   networking = {
     hostName = "desktop";
     bridges.br0.interfaces = [ "enp6s0" ];
+    nameservers = [ "192.168.1.110" ];
     networkmanager = {
       enable = true;
     };
@@ -52,21 +55,15 @@ in
   nix.trustedUsers = [ "kranzes" ];
 
 
-  # enable unstable and unfree software
   nixpkgs.config = {
     allowUnfree = true;
-    allowBroken = true;
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
-    };
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
 
 
   environment.systemPackages = with pkgs; [
+    neovim
     wget
     git
     tree
@@ -80,9 +77,16 @@ in
     font-awesome
     corefonts
     vistafonts
+    noto-fonts-cjk
+    noto-fonts-emoji
     culmus
   ];
 
+  # Chinese input using ibus
+  i18n.inputMethod = {
+    enabled = "fcitx";
+    fcitx.engines = with pkgs.fcitx-engines; [ libpinyin ];
+  };
 
 
   # List services that you want to enable:
@@ -129,6 +133,21 @@ in
   programs.bash.shellAliases = { nixe = "sudo nvim /etc/nixos/configuration.nix"; };
   programs.command-not-found.enable = false;
   programs.dconf.enable = true;
+  programs.gamemode = {
+    enable = true;
+    settings = {
+      gpu = {
+        apply_gpu_optimisations = "accept-responsibility";
+	gpu_device = 0;
+	nv_powermizer_mode = 1;
+	ioprio = 0;
+      };
+      custom = {
+        start = "''${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+        end = "''${pkgs.libnotify}/bin/notify-send 'GameMode stopped'";
+      };
+    };
+  };
   programs.zsh = {
     enable = true;
     enableGlobalCompInit = false;
