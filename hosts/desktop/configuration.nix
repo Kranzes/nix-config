@@ -2,13 +2,6 @@
 
 { config, pkgs, ... }:
 
-let
-  home-manager = builtins.fetchGit {
-    url = "https://github.com/nix-community/home-manager";
-    ref = "master";
-  };
-in
-
 {
   imports = [
     # Include the results of the hardware scan.
@@ -16,12 +9,11 @@ in
     ./xorg.nix
     ./home.nix
     ./ssh.nix
-#    ./server-stuff.nix
-    (import "${home-manager}/nixos")
+    ./server-stuff.nix
   ];
   # Use the systemd-boot
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_5_12;
     supportedFilesystems = [ "ntfs" ];
     loader = {
       systemd-boot.enable = true;
@@ -32,7 +24,6 @@ in
   networking = {
     hostName = "desktop";
     bridges.br0.interfaces = [ "enp6s0" ];
-    nameservers = [ "192.168.1.110" ];
     networkmanager = {
       enable = true;
     };
@@ -52,7 +43,11 @@ in
   # Set your time zone.
   time.timeZone = "Asia/Jerusalem";
 
-  nix.trustedUsers = [ "kranzes" ];
+  nix = {
+    package = pkgs.nixUnstable;
+    trustedUsers = [ "kranzes" ];
+    extraOptions = "experimental-features = nix-command flakes";
+  };
 
 
   nixpkgs.config = {
@@ -82,19 +77,13 @@ in
     culmus
   ];
 
-  # Chinese input using ibus
-  i18n.inputMethod = {
-    enabled = "fcitx";
-    fcitx.engines = with pkgs.fcitx-engines; [ libpinyin ];
-  };
-
-
   # List services that you want to enable:
   services = {
     gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
     ratbagd.enable = true;
     upower.enable = true;
+    udev.packages = [ pkgs.via ];
   };
 
 
@@ -105,6 +94,8 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
   };
+  hardware.pulseaudio.enable = false;
+  sound.enable = false;
 
   # enable OpenGL
   hardware.opengl = {
@@ -114,11 +105,18 @@ in
   };
 
   # virtualization related stuff
-  virtualisation.libvirtd = {
-    enable = true;
-    onBoot = "ignore";
-    qemuOvmf = true;
-    qemuRunAsRoot = true;
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      onBoot = "ignore";
+      qemuOvmf = true;
+      qemuRunAsRoot = true;
+    };
+    podman = {
+      enable = true;
+      enableNvidia = true;
+      dockerCompat = true;
+    };
   };
 
   users.users.kranzes = {
@@ -130,17 +128,17 @@ in
 
   programs.fuse.userAllowOther = true;
   programs.adb.enable = true;
-  programs.bash.shellAliases = { nixe = "sudo nvim /etc/nixos/configuration.nix"; };
   programs.command-not-found.enable = false;
   programs.dconf.enable = true;
+  programs.steam.enable = true;
   programs.gamemode = {
     enable = true;
     settings = {
       gpu = {
         apply_gpu_optimisations = "accept-responsibility";
-	gpu_device = 0;
-	nv_powermizer_mode = 1;
-	ioprio = 0;
+        gpu_device = 0;
+        nv_powermizer_mode = 1;
+        ioprio = 0;
       };
       custom = {
         start = "''${pkgs.libnotify}/bin/notify-send 'GameMode started'";
@@ -151,9 +149,7 @@ in
   programs.zsh = {
     enable = true;
     enableGlobalCompInit = false;
-    promptInit = "RPROMPT=";
   };
-
 
   # security related stuff
   security = {
@@ -162,6 +158,7 @@ in
 
   # remove bloatware (NixOS HTML file)
   documentation.nixos.enable = false;
+
 
   system.stateVersion = "20.09";
 

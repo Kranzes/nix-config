@@ -20,25 +20,31 @@
     xclip
     maim
     calc
+    mpv
+    feh
+    htop
     ranger
     ueberzug
     pulsemixer
     tree
+    fzf
     filezilla
     gnome3.gnome-disk-utility
     nextcloud-client
     lm_sensors
-    libreoffice-fresh
+    libreoffice
     ffmpegthumbnailer
     ffmpeg
     piper
     thunderbird
     openrgb
     jellyfin-media-player
-    nixops
-    xorg.xprop
-    xorg.xev
-#    (pkgs.callPackage ../custom-packages/freezer/default.nix { })
+    hunspellDicts.en-us
+    hunspellDicts.he-il
+    vial
+    ookla-speedtest
+    (pkgs.callPackage ../custom-packages/freezer { })
+    (pkgs.callPackage ../custom-packages/bspswallow { })
   ];
 
 

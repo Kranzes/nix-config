@@ -6,7 +6,7 @@
     enable = true;
     package = pkgs.mpd;
     dataDir = "/home/kranzes/.config/mpd";
-    musicDirectory = "/home/4TB-HDD/Media/Music";
+    musicDirectory = "/home/kranzes/Music";
     network = {
       listenAddress = "any";
       port = 6600;
@@ -15,8 +15,20 @@
       audio_output {
         type    "pulse"
         name    "Pulseaudio"
+        server "127.0.0.1"
       }
+  
       auto_update "yes"
+  
+      input {
+        enabled    "no"
+        plugin     "qobuz"
+      }
+  
+      input {
+        enabled      "no"
+        plugin       "tidal"
+      }
     '';
   };
 
@@ -26,8 +38,8 @@
       After = [ "mpd.service" ];
     };
     Service = {
-      ExecStart = "${pkgs.yams}/bin/yams -N";
-      Environment = "NON_INTERACTIVE=1";
+      ExecStart="${pkgs.yams}/bin/yams -N";
+      Environmentn="NON_INTERACTIVE=1";
     };
     Install = {
       WantedBy = [ "default.target" ];
@@ -40,6 +52,8 @@
     settings = {
       ncmpcpp_directory = "/home/kranzes/.config/ncmpcpp";
       lyrics_directory = "/home/kranzes/.cache/lyrics";
+      mpd_host = "localhost";
+      mpd_port = "6600";
       progressbar_look = "▄▄";
       media_library_primary_tag = "album_artist";
       follow_now_playing_lyrics = "yes";
@@ -52,55 +66,7 @@
     mpc_cli
     cantata
     cava
-    spek
   ];
-
-  programs.beets = {
-    enable = true;
-    package = (pkgs.beets.override {
-      enableExtraFiles = true;
-      enableMpd = true; });
-    settings = {
-      plugins = [ "permissions" "extrafiles" "mpdupdate" ];
-      directory = "/home/4TB-HDD/Media/Music";
-      library = "~/.local/share/musiclibrary.db";
-      import = {
-        copy = true;
-        write = false;
-        autotag = false;
-      };
-      paths = {
-        default = "%upper{%left{$albumartist,1}}/$albumartist/$album/$track. $title";
-      };
-      permissions = {
-        file = 755;
-        dir = 755;
-      };
-      extrafiles = {
-        patterns = {
-          all = [ "*.*" ];
-        };
-      };
-      mpd = {
-        host = "localhost";
-        port = 6600;
-      };
-    };
-  };
-
-       
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

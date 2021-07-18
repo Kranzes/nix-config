@@ -46,18 +46,20 @@
       options = [ "bind" ];
     };
 
-#  fileSystems."/mnt/nextcloud/Photos" =
-#    {
-#      device = "/home/4TB-HDD/Photos";
-#      fsType = "none";
-#      options = [ "bind" ];
-#    };
+  #  fileSystems."/mnt/nextcloud/Photos" =
+  #    {
+  #      device = "/home/4TB-HDD/Photos";
+  #      fsType = "none";
+  #      options = [ "bind" ];
+  #    };
 
   swapDevices = [{ device = "/swapfile"; size = 16384; }];
 
   hardware = {
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
+    logitech.wireless.enable = true;
+    logitech.wireless.enableGraphical = true;
   };
 
 }

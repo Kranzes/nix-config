@@ -1,0 +1,88 @@
+{
+  "nodes": {
+    "home-manager-2105": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-2105"
+        ]
+      },
+      "locked": {
+        "lastModified": 1624228557,
+        "narHash": "sha256-wwOqe73BsrXfRv1PhyXQFNC8iTET50KvE/HitdkRgxs=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "35a24648d155843a4d162de98c17b1afd5db51e4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-21.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager-unstable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1626356862,
+        "narHash": "sha256-4ONLWH4UygF4pI0XBej8+2OMUrdb8HsUUFsiRDFmjrk=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "c476cc61b2dd8c7f868b213b7757b565bdf2bb7d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "master",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs-2105": {
+      "locked": {
+        "lastModified": 1626489334,
+        "narHash": "sha256-WcQDF/JB3yWfO7E37M6rlUCKkqcMwG2UiWz+2Vsib9Y=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b2f87e0043aaf3f0f05cc983bd6aa80a616b8352",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-21.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1626464457,
+        "narHash": "sha256-u2PCh/+8vQSLwf0mPpKHKQ8hAPB3l4uNZR3r0TdK2Lg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c6c4a3d45ab200f17805d2d86a1ff1cc7ca2b186",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager-2105": "home-manager-2105",
+        "home-manager-unstable": "home-manager-unstable",
+        "nixpkgs-2105": "nixpkgs-2105",
+        "nixpkgs-unstable": "nixpkgs-unstable"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

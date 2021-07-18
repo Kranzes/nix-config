@@ -7,6 +7,12 @@
     options = [ "grp:lalt_lshift_toggle" ];
   };
 
+  # Chinese input using fcitx5
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [ fcitx5-chinese-addons ];
+  };
+
   services.sxhkd = {
     enable = true;
     keybindings = {
@@ -131,7 +137,7 @@
           STEP=20; SELECTION={1,2,3,4}; \
           bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
           bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
-    '';  
+    '';
   };
 
 }

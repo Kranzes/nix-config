@@ -13,7 +13,7 @@
       vim-nix
       colorizer
       latex-live-preview
-    ];  
+    ];
 
     extraConfig = ''
       colorscheme nord
@@ -35,7 +35,7 @@
       noremap <Left> <NOP>
       noremap <Right> <NOP>
     '';
-  };  
+  };
 
   home.sessionVariables = { EDITOR = "nvim"; };
 

@@ -9,6 +9,7 @@
         monitor = 0;
         follow = "mouse";
         geometry = "350x20-12+50";
+        max_icon_size = 32;
         indicate_hidden = false;
         shrink = false;
         separator_height = 2;
