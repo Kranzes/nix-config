@@ -25,7 +25,6 @@
           ./home-manager/shell.nix
           ./home-manager/gtk-qt.nix
           ./home-manager/games.nix
-          ./home-manager/espanso.nix
         ];
       };
     };

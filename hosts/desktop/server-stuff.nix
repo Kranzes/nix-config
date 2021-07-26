@@ -4,7 +4,6 @@
   imports = [
     ./server-stuff/nginx.nix
     ./server-stuff/acme.nix
-    ./server-stuff/smart.nix
     ./server-stuff/nextcloud.nix
     ./server-stuff/wireguard.nix
     ./server-stuff/jitsi.nix

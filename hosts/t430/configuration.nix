@@ -6,9 +6,10 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./xorg.nix
     ./home.nix
     ./ssh.nix
-    ];
+  ];
 
   # Use the systemd-boot
   boot = {
@@ -16,11 +17,6 @@
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-    };
-    plymouth = {
-      enable = false;
-      theme = "connect";
-      themePackages = [(pkgs.callPackage ./pkgs/adi1090x-plymouth { } )];
     };
   };
 
@@ -31,7 +27,7 @@
     interfaces = {
       wlp3s0.useDHCP = true;
       enp0s25.useDHCP = true;
-    };  
+    };
     firewall = {
       checkReversePath = false;
       allowedUDPPorts = [ 6600 ];
@@ -41,9 +37,6 @@
 
   # Set your time zone.
   time.timeZone = "Asia/Jerusalem";
-
-  # enable automatic upgrades
-  system.autoUpgrade.enable = true;
 
   # enable  unfree software
   nixpkgs.config.allowUnfree = true;
@@ -58,30 +51,29 @@
 
 
   environment.systemPackages = with pkgs; [
-    (import ./vim.nix)
+    neovim
     wget
     git
     tree
   ];
 
-    # fonts
+  # fonts
   fonts.fonts = with pkgs; [
     jetbrains-mono
-    roboto 
+    roboto
     font-awesome
     corefonts
     vistafonts
     culmus
   ];
 
- 
+
   # List services that you want to enable:
   services = {
     gnome.gnome-keyring.enable = true;
     upower.enable = true;
     thinkfan.enable = true;
     gvfs.enable = true;
-    ratbagd.enable = true;
     autorandr.enable = true;
     tlp.enable = true;
     tlp.settings = {
@@ -98,40 +90,13 @@
     };
   };
 
-
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
+  services.pipewire = {
     enable = true;
-    package = pkgs.pulseaudioFull;
-    extraConfig = "
-    load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1
-    load-module module-udev-detect tsched=0";
+    pulse.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
   };
-
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    libinput = {
-      enable = true;
-      mouse.accelProfile = "flat";
-      mouse.accelSpeed = "0";
-      mouse.middleEmulation = false;
-      touchpad.accelProfile = "flat";
-      touchpad.accelSpeed = "0";
-      touchpad.middleEmulation = false;
-    };
-    layout = "us,il";
-    xkbOptions = "grp:lalt_lshift_toggle";
-    windowManager.bspwm.enable = true;
-    desktopManager.xterm.enable = false;
-    videoDrivers = [ "intel" ];
-    deviceSection = ''
-      Option "DRI" "2"
-      Option "TearFree" "true"
-    '';
- };
 
   # enable OpenGL
   hardware.opengl = {
@@ -141,35 +106,27 @@
   };
 
   users.users.kranzes = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" "video" "audio" "adbusers" ];
-     shell = pkgs.zsh;
-     uid = 1000;
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "adbusers" ];
+    shell = pkgs.zsh;
+    uid = 1000;
   };
+
   programs.light.enable = true;
   programs.adb.enable = true;
-  programs.bash.shellAliases = { nixe="sudo nvim /etc/nixos/configuration.nix"; };
   programs.command-not-found.enable = false;
   programs.dconf.enable = true;
   programs.zsh = {
     enable = true;
     enableGlobalCompInit = false;
-    promptInit = "RPROMPT=";
   };
 
-  security = {
-    pam.services.lightdm.enableGnomeKeyring = true;
-  };
- 
-  # set environment variables
-  environment.variables = { EDITOR = "nvim"; VISUAL = "nvim"; TERMINAL = "alacritty"; };
+
+  # Unlock keyring on lightdm login.
+  security.pam.services.lightdm.enableGnomeKeyring = true;
 
   # remove bloatware (NixOS HTML file)
   documentation.nixos.enable = false;
-  
-  system.stateVersion = "20.09";
 
-  hardware.enableAllFirmware = true;
-  hardware.enableRedistributableFirmware = true;
-  hardware.usbWwan.enable = true;
+  system.stateVersion = "20.09";
 }

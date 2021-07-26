@@ -23,7 +23,7 @@
 
   outputs = { nixpkgs-unstable, nixpkgs-2105, home-manager-unstable, home-manager-2105, ... }@inputs:
 
-  {
-    nixosConfigurations = import ./hosts inputs;
-  };
+    {
+      nixosConfigurations = import ./hosts inputs;
+    };
 }

@@ -3,56 +3,47 @@
 {
 
   home.packages = with pkgs; [
-    sxhkd
-    rofi
-    firefox
-    discord
-    element-desktop
     cinnamon.nemo
     virt-manager
-    xorg.xrandr
     keepassxc
+    anki
     acpi
-    upower
+    translate-shell
+    discord
     youtube-dl
     gotop
-    htop
     p7zip
-    xorg.xrdb
     tdesktop
     killall
     xclip
     maim
-    mpv
     calc
-    dunst
-    libnotify
+    mpv
+    feh
+    htop
     ranger
-    ueberzug
     pulsemixer
-    xorg.xcursorthemes
-    jitsi-meet-electron
-    nextcloud-client
+    tree
+    fzf
     filezilla
     gnome3.gnome-disk-utility
+    nextcloud-client
     lm_sensors
-    xdg_utils
-    xorg.xprop
-    xorg.xwininfo
-    xdotool
-    psmisc
-    networkmanager-openvpn
+    libreoffice
     ffmpegthumbnailer
-    xdo
-    jq
-    ffmpeg-full
-    feh
-    networkmanagerapplet
+    ffmpeg
     piper
-    libreoffice-fresh
-    zathura
-    thunderbird
+    thunderbird-bin
+    firefox-bin
+    jellyfin-media-player
+    hunspellDicts.en-us
+    hunspellDicts.he-il
+    ookla-speedtest
+    (pkgs.callPackage ../custom-packages/bspswallow { })
   ];
+
+
+
 
 }
 

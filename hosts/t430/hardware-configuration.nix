@@ -6,7 +6,6 @@
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
-      ./modules/thinkpad-dock
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "sd_mod" "sdhci_pci" ];
@@ -16,28 +15,26 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/69a29725-3c32-42e9-9cb9-438fb8026de1";
+    {
+      device = "/dev/disk/by-uuid/69a29725-3c32-42e9-9cb9-438fb8026de1";
       fsType = "xfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/4E14-246A";
+    {
+      device = "/dev/disk/by-uuid/4E14-246A";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/de4c7929-ed56-4d50-a86e-3ec060dba4d5"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/de4c7929-ed56-4d50-a86e-3ec060dba4d5"; }];
 
-    hardware = {
-      trackpoint = {
-        enable = true;
-        emulateWheel = true;
-      };
-#      thinkpad-dock = {
-#        enable = true;
-#        dockEvent = "${pkgs.networkmanager}/bin/nmcli radio wifi off";
-#        undockEvent = "${pkgs.networkmanager}/bin/nmcli radio wifi on";
-#      };
+  hardware = {
+    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
+    trackpoint = {
+      enable = true;
+      emulateWheel = true;
     };
+  };
 }

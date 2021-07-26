@@ -11,7 +11,6 @@
     keepassxc
     anki
     translate-shell
-    firefox-bin
     youtube-dl
     gotop
     p7zip
@@ -24,7 +23,6 @@
     feh
     htop
     ranger
-    ueberzug
     pulsemixer
     tree
     fzf
@@ -36,9 +34,9 @@
     ffmpegthumbnailer
     ffmpeg
     piper
-    thunderbird
+    thunderbird-bin
+    firefox-bin
     openrgb
-    jellyfin-media-player
     hunspellDicts.en-us
     hunspellDicts.he-il
     vial

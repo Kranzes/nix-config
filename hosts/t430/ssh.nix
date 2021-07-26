@@ -1,8 +1,6 @@
-
 { config, pkgs, ... }:
 
 {
-
   services.openssh = {
     enable = true;
     forwardX11 = true;
@@ -10,6 +8,5 @@
     challengeResponseAuthentication = false;
     permitRootLogin = "no";
   };
-
 }
 

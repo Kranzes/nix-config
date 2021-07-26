@@ -15,5 +15,5 @@ let
 in
 {
   desktop = mkSystem "desktop" "unstable";
-  t430 = mkSystem "t430" "2105";
+  t430 = mkSystem "t430" "unstable";
 }
