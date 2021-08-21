@@ -5,6 +5,12 @@
   programs.ssh = {
     enable = true;
     hashKnownHosts = true;
+    matchBlocks = {
+      "github.com" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/id_git";
+      };
+    };
   };
 
   programs.gpg.enable = true;

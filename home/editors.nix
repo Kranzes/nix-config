@@ -12,13 +12,13 @@
       lightline-vim
       vim-nix
       colorizer
-      latex-live-preview
+      lexima-vim
+      nvim-lspconfig
     ];
-
+    extraPackages = [ pkgs.rnix-lsp ];
     extraConfig = ''
       colorscheme nord
       let g:lightline = { "colorscheme": "nord" }
-      let g:livepreview_previewer = 'zathura'
       let g:netrw_liststyle = 3
       set clipboard+=unnamedplus
       syntax enable
@@ -26,16 +26,22 @@
       syntax on
       set hidden
       set noshowmode
-      
+      set number
       set mouse=a
-  
+
       noremap <Up> <NOP>
       noremap <Down> <NOP>
       noremap <Left> <NOP>
       noremap <Right> <NOP>
+
+      lua << EOF
+      require'lspconfig'.rnix.setup{}
+      EOF
+
+      autocmd BufWritePre *.nix lua vim.lsp.buf.formatting_sync(nil, nil)
     '';
   };
 
-  home.sessionVariables = { EDITOR = "nvim"; };
+  home.sessionVariables.EDITOR = "nvim";
 
 }

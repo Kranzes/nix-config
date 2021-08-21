@@ -1,8 +1,21 @@
 { config, pkgs, ... }:
 
 {
-
   programs = {
+    newsboat = {
+      enable = true;
+      autoReload = true;
+      extraConfig = ''
+        include ${pkgs.newsboat}/share/doc/newsboat/contrib/colorschemes/nord
+      '';
+      urls = [
+        {
+          title = "Repology feed for personal@ilanjoselevich.com";
+          url = "https://repology.org/maintainer/personal%40ilanjoselevich.com/feed-for-repo/nix_unstable/atom";
+        }
+      ];
+    };
+
     zathura = {
       enable = true;
       options = {
@@ -50,7 +63,5 @@
         highlight-active-color = "#5e81ac";
       };
     };
-
   };
-
 }

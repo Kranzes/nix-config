@@ -4,7 +4,6 @@
   services.mpd = {
     enable = true;
     dataDir = "/home/kranzes/.config/mpd";
-    musicDirectory = "/home/kranzes/Music";
     network = {
       listenAddress = "any";
       port = 6600;
@@ -12,7 +11,7 @@
     extraConfig = ''     
       audio_output {
         type    "pulse"
-        name    "Pulseaudio"
+        name    "pulseaudio"
       }
       auto_update "yes"
     '';

@@ -4,11 +4,11 @@
 
   home.packages = with pkgs; [
     wget
-    discord
     liquidctl
     cinnamon.nemo
     virt-manager
     keepassxc
+    discord
     anki
     translate-shell
     youtube-dl
@@ -36,13 +36,14 @@
     piper
     thunderbird-bin
     firefox-bin
-    openrgb
     hunspellDicts.en-us
     hunspellDicts.he-il
     vial
     ookla-speedtest
-    (pkgs.callPackage ../custom-packages/freezer { })
-    (pkgs.callPackage ../custom-packages/bspswallow { })
+    nixpkgs-fmt
+    nixpkgs-review
+    nix-update
+    acpi
   ];
 
 
