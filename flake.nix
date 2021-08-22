@@ -5,30 +5,21 @@
     # nixpkgs-unstable
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # nixpkgs-2105
-    nixpkgs-2105.url = "github:NixOS/nixpkgs/nixos-21.05";
-
-    # flake-utils-plus
-    flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus/staging";
-
     # home-manager-unstable
     home-manager-unstable = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    # home-manager-2105
-    home-manager-2105 = {
-      url = "github:nix-community/home-manager/release-21.05";
-      inputs.nixpkgs.follows = "nixpkgs-2105";
-    };
+    # flake-utils-plus
+    flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus/staging";
 
     # rnix-lsp
     rnix-lsp.url = "github:nix-community/rnix-lsp";
   };
 
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-2105, flake-utils, home-manager-unstable, home-manager-2105, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, home-manager-unstable, flake-utils, ... }@inputs:
 
     flake-utils.lib.mkFlake {
       inherit self inputs;
