@@ -43,15 +43,8 @@
     {
       device = "/home/4TB-HDD/Media/Music";
       fsType = "none";
-      options = [ "bind" ];
+      options = [ "bind" "ro" ];
     };
-
-  #  fileSystems."/mnt/nextcloud/Photos" =
-  #    {
-  #      device = "/home/4TB-HDD/Photos";
-  #      fsType = "none";
-  #      options = [ "bind" ];
-  #    };
 
   swapDevices = [{ device = "/swapfile"; size = 16384; }];
 

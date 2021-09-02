@@ -20,7 +20,7 @@
   };
 
   networking = {
-    hostName = "t430";
+    hostName = "pan";
     networkmanager.enable = true;
     useDHCP = false;
     interfaces = {

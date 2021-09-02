@@ -17,11 +17,10 @@
     '';
     shellAliases = {
       history = "history 1";
-      nixe = "sudo vim /etc/nixos/hosts/desktop/configuration.nix";
       rm = "rm -I";
       mv = "mv -i";
       ls = "ls --group-directories-first --color=auto";
-      ytdl = "youtube-dl";
+      ytdl = "yt-dlp";
       weather = "curl wttr.in/Rehovot";
       ssh = "TERM=xterm-256color ssh";
     };

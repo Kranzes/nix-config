@@ -21,11 +21,9 @@
   };
 
   networking = {
-    hostName = "desktop";
+    hostName = "pongo";
     bridges.br0.interfaces = [ "enp6s0" ];
-    networkmanager = {
-      enable = true;
-    };
+    networkmanager.enable = true;
     useDHCP = false;
     interfaces = {
       enp6s0.useDHCP = true;

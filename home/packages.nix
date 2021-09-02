@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
 
@@ -8,10 +8,9 @@
     cinnamon.nemo
     virt-manager
     keepassxc
-    discord
     anki
     translate-shell
-    youtube-dl
+    yt-dlp
     gotop
     p7zip
     tdesktop
@@ -35,6 +34,7 @@
     ffmpeg
     piper
     thunderbird-bin
+    discord
     firefox-bin
     hunspellDicts.en-us
     hunspellDicts.he-il
