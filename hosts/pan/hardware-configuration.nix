@@ -32,6 +32,7 @@
   hardware = {
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
+    cpu.intel.updateMicrocode = true;
     trackpoint = {
       enable = true;
       emulateWheel = true;

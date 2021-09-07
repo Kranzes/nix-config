@@ -12,7 +12,7 @@
     };
 
     # flake-utils-plus
-    flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus/staging";
+    flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
     # rnix-lsp
     rnix-lsp.url = "github:nix-community/rnix-lsp";
@@ -35,8 +35,13 @@
           inputs.home-manager.nixosModule
           ./home
           ./modules
-          { nix.generateRegistryFromInputs = true; }
-          { nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; }
+          {
+            nix = {
+              generateRegistryFromInputs = true;
+              generateNixPathFromInputs = true;
+              linkInputs = true;
+            };
+          }
         ];
       };
 

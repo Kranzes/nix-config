@@ -51,6 +51,7 @@
   hardware = {
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
+    cpu.amd.updateMicrocode = true;
     logitech.wireless.enable = true;
     logitech.wireless.enableGraphical = true;
   };
