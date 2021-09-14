@@ -2,28 +2,62 @@
   description = "My NixOS configuration";
 
   inputs = {
-    # nixpkgs-unstable
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # nixpkgs-2105
-    nixpkgs-2105.url = "github:NixOS/nixpkgs/nixos-21.05";
-
-    # home-manager-unstable
-    home-manager-unstable = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # home-manager
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # home-manager-2105
-    home-manager-2105 = {
-      url = "github:nix-community/home-manager/release-21.05";
-      inputs.nixpkgs.follows = "nixpkgs-2105";
-    };
+    # flake-utils-plus
+    flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+
+    # rnix-lsp
+    rnix-lsp.url = "github:nix-community/rnix-lsp";
   };
 
-  outputs = { nixpkgs-unstable, nixpkgs-2105, home-manager-unstable, home-manager-2105, ... }@inputs:
 
-    {
-      nixosConfigurations = import ./hosts inputs;
+  outputs = { self, nixpkgs, home-manager, flake-utils, ... }@inputs:
+
+    flake-utils.lib.mkFlake {
+      inherit self inputs;
+
+      sharedOverlays = [
+        self.overlay
+      ];
+
+      channelsConfig.allowUnfree = true;
+
+      hostDefaults = {
+        modules = [
+          inputs.home-manager.nixosModule
+          ./home
+          ./modules
+          {
+            nix = {
+              generateRegistryFromInputs = true;
+              generateNixPathFromInputs = true;
+              linkInputs = true;
+            };
+          }
+        ];
+      };
+
+      hosts = {
+        pongo.modules = [
+          ./hosts/pongo
+          ./hosts/pongo/home
+        ];
+
+        pan.modules = [
+          ./hosts/pan
+          ./hosts/pan/home
+        ];
+      };
+
+      overlay = import ./overlays { inherit inputs; };
     };
+
 }
