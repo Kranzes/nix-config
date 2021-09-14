@@ -30,8 +30,16 @@
       br0.useDHCP = true;
     };
     firewall = {
-      allowedUDPPorts = [ 6600 443 80 8096 8888 3000 19999 4443 10000 9091 ];
-      allowedTCPPorts = [ 6600 443 80 8096 8888 3000 19999 4443 10000 9091 ];
+      allowedUDPPorts = [
+        80 # HTTP
+        443 # HTTPS 
+        6600 # MPD 
+      ];
+      allowedTCPPorts = [
+        80 # HTTP
+        443 # HTTPS 
+        6600 # MPD 
+      ];
     };
   };
 

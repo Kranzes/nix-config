@@ -24,6 +24,7 @@
           ./screen-lock.nix
           ./shell.nix
           ./gtk-qt.nix
+          ./devel.nix
         ];
       };
     };
