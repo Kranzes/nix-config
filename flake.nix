@@ -58,6 +58,11 @@
       };
 
       overlay = import ./overlays { inherit inputs; };
-    };
 
+      outputsBuilder = channels: with channels.nixpkgs;{
+        devShell = mkShell {
+          buildInputs = [ nixpkgs-fmt lefthook ];
+        };
+      };
+    };
 }
