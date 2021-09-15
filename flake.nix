@@ -35,13 +35,6 @@
           inputs.home-manager.nixosModule
           ./home
           ./modules
-          {
-            nix = {
-              generateRegistryFromInputs = true;
-              generateNixPathFromInputs = true;
-              linkInputs = true;
-            };
-          }
         ];
       };
 

@@ -35,14 +35,7 @@
   # Set your time zone.
   time.timeZone = "Asia/Jerusalem";
 
-  # enable  unfree software
-  nixpkgs.config.allowUnfree = true;
-
-  nix = {
-    package = pkgs.nixUnstable;
-    trustedUsers = [ "kranzes" ];
-    extraOptions = "experimental-features = nix-command flakes";
-  };
+  nix.trustedUsers = [ "kranzes" ];
 
   environment.pathsToLink = [ "/share/zsh" ];
 

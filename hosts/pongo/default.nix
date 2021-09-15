@@ -47,18 +47,17 @@
   time.timeZone = "Asia/Jerusalem";
 
   nix = {
-    package = pkgs.nixUnstable;
     trustedUsers = [ "kranzes" ];
-    extraOptions = "experimental-features = nix-command flakes";
+    binaryCaches = [
+      "https://robotnix.cachix.org"
+    ];
+    binaryCachePublicKeys = [
+      "robotnix.cachix.org-1:+y88eX6KTvkJyernp1knbpttlaLTboVp4vq/b24BIv0="
+    ];
   };
 
-
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
 
   environment.pathsToLink = [ "/share/zsh" ];
-
 
   environment.systemPackages = with pkgs; [
     neovim
