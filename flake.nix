@@ -1,21 +1,11 @@
 {
-  description = "My NixOS configuration";
+  description = "My nix flake configuration";
 
   inputs = {
-    # nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    # home-manager
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # flake-utils-plus
+    home-manager = { url = "github:nix-community/home-manager"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-
-    # rnix-lsp
-    rnix-lsp.url = "github:nix-community/rnix-lsp";
+    rnix-lsp = { url = "github:nix-community/rnix-lsp"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
 
