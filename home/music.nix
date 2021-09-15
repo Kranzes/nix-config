@@ -50,6 +50,7 @@
     cantata
     cava
     spek
+    rofi-mpd
   ];
 }
 

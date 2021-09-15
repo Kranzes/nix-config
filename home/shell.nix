@@ -30,7 +30,7 @@
     };
   };
 
-  home.sessionPath = [ "$HOME/.local/bin" "$HOME/MyScripts" ];
+  home.sessionPath = [ "$HOME/.local/bin" ];
 
   programs.dircolors = {
     enable = true;

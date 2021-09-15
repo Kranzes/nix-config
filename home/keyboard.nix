@@ -123,7 +123,7 @@
 
       "alt + 4" = "alacritty -e ncmpcpp";
 
-      "super + alt + m" = "$HOME/MyScripts/rofi-mpd -a";
+      "super + alt + m" = "rofi-mpd -a";
 
       #### MAIM ####
       "ctrl + Print" = "maim -s | xclip -selection clipboard -t image/png";
