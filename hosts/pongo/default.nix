@@ -22,13 +22,7 @@
 
   networking = {
     hostName = "pongo";
-    bridges.br0.interfaces = [ "enp6s0" ];
     networkmanager.enable = true;
-    useDHCP = false;
-    interfaces = {
-      enp6s0.useDHCP = true;
-      br0.useDHCP = true;
-    };
     firewall = {
       allowedUDPPorts = [
         80 # HTTP

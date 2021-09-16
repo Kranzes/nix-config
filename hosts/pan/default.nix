@@ -22,14 +22,7 @@
   networking = {
     hostName = "pan";
     networkmanager.enable = true;
-    useDHCP = false;
-    interfaces = {
-      wlp3s0.useDHCP = true;
-      enp0s25.useDHCP = true;
-    };
-    firewall = {
-      checkReversePath = false;
-    };
+    firewall.checkReversePath = false;
   };
 
   # Set your time zone.

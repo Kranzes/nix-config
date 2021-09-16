@@ -44,6 +44,7 @@
     nixpkgs-review
     nix-update
     acpi
+    networkmanagerapplet
   ];
 
 
