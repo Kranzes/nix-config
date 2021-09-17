@@ -40,16 +40,7 @@
   # Set your time zone.
   time.timeZone = "Asia/Jerusalem";
 
-  nix = {
-    trustedUsers = [ "kranzes" ];
-    binaryCaches = [
-      "https://robotnix.cachix.org"
-    ];
-    binaryCachePublicKeys = [
-      "robotnix.cachix.org-1:+y88eX6KTvkJyernp1knbpttlaLTboVp4vq/b24BIv0="
-    ];
-  };
-
+  nix.trustedUsers = [ "kranzes" ];
 
   environment.pathsToLink = [ "/share/zsh" ];
 
