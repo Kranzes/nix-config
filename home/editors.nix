@@ -7,7 +7,7 @@
     viAlias = true;
     vimdiffAlias = true;
     plugins = with pkgs.vimPlugins; [
-      nord-vim
+      nord-nvim
       lightline-vim
       vim-nix
       colorizer
