@@ -4,10 +4,12 @@
   services.mpd.musicDirectory = "/home/4TB-HDD/Media/Music";
   programs.beets = {
     enable = true;
-    package = (pkgs.beets.override {
+    package = ((pkgs.beets.override {
       enableExtraFiles = true;
       enableMpd = true;
-    });
+    }).overrideAttrs (_: {
+      doInstallCheck = false;
+    }));
     settings = {
       plugins = [ "permissions" "extrafiles" "mpdupdate" ];
       directory = "/home/4TB-HDD/Media/Music";
