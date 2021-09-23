@@ -16,10 +16,9 @@ jobs:
         extra_nix_config: |
           experimental-features = nix-command flakes
     # Update flake.lock
-    - run: nix flake update
-    - uses: EndBug/add-and-commit@v7.3.0
-      with:
-        author_name: Ilan Joselevich
-        author_email: personal@ilanjoselevich.com
-        message: 'flake.lock: Update'
-        add: 'flake.lock'
+    - name : 'flake.lock: Update'
+      run: |
+        git config user.name 'Ilan Joselevich'
+        git config user.email 'personal@ilanjoselevich.com'
+        nix flake update --commit-lock-file
+        git push
