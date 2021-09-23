@@ -2,6 +2,15 @@
 
 {
   programs = {
+    bat = {
+      enable = true;
+      config = {
+        paging = "never";
+        style = "numbers";
+        theme = "Nord";
+      };
+    };
+
     newsboat = {
       enable = true;
       autoReload = true;
