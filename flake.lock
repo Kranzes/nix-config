@@ -99,11 +99,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1632399259,
-        "narHash": "sha256-FAoG4I83alFZoAaIb14RM2x9Psjtk3zsbiWj0i1bCSo=",
+        "lastModified": 1632399591,
+        "narHash": "sha256-54dtLkGAbQ4Sln/bs/sI0GaCbXyK8+vDD8QBgxaiCXg=",
         "owner": "nix-community",
         "repo": "rnix-lsp",
-        "rev": "7e4d4726f54146b34ee08e2b418647442790881d",
+        "rev": "b3f2a6dbcd1115bd449b8cf1299d828c9ebeb485",
         "type": "github"
       },
       "original": {
