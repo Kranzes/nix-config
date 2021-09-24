@@ -45,7 +45,6 @@
     nix-update
     acpi
     networkmanagerapplet
-    exa
     ripgrep
   ];
 

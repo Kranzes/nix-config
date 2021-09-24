@@ -19,7 +19,7 @@
       history = "history 1";
       rm = "rm -I";
       mv = "mv -i";
-      ls = "exa --group-directories-first --color=auto";
+      ls = "ls --group-directories-first --color=auto";
       cat = "bat";
       ytdl = "yt-dlp";
       weather = "curl wttr.in/Rehovot";
