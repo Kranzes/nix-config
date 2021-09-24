@@ -34,6 +34,7 @@
       vim.api.nvim_set_keymap( 'n', '<C-n>', ':NvimTreeToggle<CR>', {noremap = true})
       vim.g.nvim_tree_hijack_netrw = 0
       vim.g.nvim_tree_disable_netrw = 0
+      vim.g.nvim_tree_hide_dotfiles = 1
       vim.g.nvim_tree_show_icons = {
         git = 0,
         folders = 0,
