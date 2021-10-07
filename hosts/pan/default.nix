@@ -34,7 +34,6 @@
 
 
   environment.systemPackages = with pkgs; [
-    neovim
     wget
     git
     tree
@@ -104,9 +103,10 @@
     enableGlobalCompInit = false;
   };
 
-
   # Unlock keyring on lightdm login.
   security.pam.services.lightdm.enableGnomeKeyring = true;
+
+  environment.variables.EDITOR = "vim";
 
   # remove bloatware (NixOS HTML file)
   documentation.nixos.enable = false;

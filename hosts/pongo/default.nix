@@ -45,7 +45,6 @@
   environment.pathsToLink = [ "/share/zsh" ];
 
   environment.systemPackages = with pkgs; [
-    neovim
     wget
     git
     tree
@@ -128,10 +127,10 @@
     pam.services.lightdm.enableGnomeKeyring = true;
   };
 
+  environment.variables.EDITOR = "vim";
+
   # remove bloatware (NixOS HTML file)
   documentation.nixos.enable = false;
 
-
   system.stateVersion = "20.09";
-
 }
