@@ -6,6 +6,7 @@
     useGlobalPkgs = true;
     users = {
       kranzes = {
+        home.stateVersion = "21.11";
         imports = [
           ./packages.nix
           ./programs.nix
@@ -25,6 +26,7 @@
           ./shell.nix
           ./gtk-qt.nix
           ./devel.nix
+          ./browser.nix
         ];
       };
     };
