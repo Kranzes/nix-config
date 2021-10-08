@@ -2,8 +2,12 @@
 
 {
   services.nginx.virtualHosts."ilanjoselevich.com" = {
-    forceSSL = true;
     enableACME = true;
+    forceSSL = true;
     root = "/var/www/ilanjoselevich.com";
+    locations."/android/".extraConfig = ''
+      autoindex on;
+      autoindex_localtime on;
+    '';
   };
 }
