@@ -23,6 +23,7 @@
       zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
       zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
       zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+      zstyle ':completion:*' group-name ""
       # Quote pasted URLs
       autoload -U url-quote-magic
       zle -N self-insert url-quote-magic
