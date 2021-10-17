@@ -30,6 +30,20 @@
       vim.o.hidden = true
       vim.cmd 'set noshowmode'
 
+      -- nvim-tree
+      vim.g.nvim_tree_hide_dotfiles = 1
+      vim.g.nvim_tree_show_icons = {
+        git = 0,
+        folders = 0,
+        files = 0,
+        folder_arrows = 0
+      }
+      require'nvim-tree'.setup {
+        disable_netrw = false,
+        update_to_buf_dir  = { enable = false }
+      }
+      vim.api.nvim_set_keymap( 'n', '<C-n>', ':NvimTreeToggle<CR>', {noremap = true})
+
       -- enable nord borders
       vim.g.nord_borders = true
 
