@@ -10,8 +10,8 @@
     };
     extraConfig = ''     
       audio_output {
-        type    "pulse"
-        name    "pulseaudio"
+        type    "pipewire"
+        name    "pipewire"
       }
       auto_update "yes"
     '';

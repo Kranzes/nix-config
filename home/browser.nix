@@ -52,7 +52,6 @@
         "network.stricttransportsecurity.preloadlist" = true;
         "privacy.donottrackheader.enabled" = true;
         "privacy.firstparty.isolate" = true;
-        "privacy.resistFingerprinting" = true;
         "privacy.trackingprotection.cryptomining.enabled" = true;
         "privacy.trackingprotection.enabled" = true;
         "privacy.trackingprotection.fingerprinting.enabled" = true;

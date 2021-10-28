@@ -8,8 +8,6 @@
     cinnamon.nemo
     virt-manager
     keepassxc
-    anki
-    translate-shell
     yt-dlp
     gotop
     p7zip
@@ -35,10 +33,8 @@
     piper
     thunderbird-bin
     discord
-    firefox-bin
     hunspellDicts.en-us
     hunspellDicts.he-il
-    vial
     ookla-speedtest
     nixpkgs-fmt
     nixpkgs-review
