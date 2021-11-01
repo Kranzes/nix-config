@@ -15,6 +15,7 @@
       kristofferhagen-nord-theme
       sponsorblock
       translate-web-pages
+      floccus
     ];
     profiles."kranzes" = {
       settings = {
