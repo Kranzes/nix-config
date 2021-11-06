@@ -5,7 +5,9 @@
     enable = true;
     enableCompletion = true;
     initExtraFirst = ''
-      PROMPT="[%n@%m %~]%(!.#.$) "
+      setopt PROMPT_SUBST
+      source ${pkgs.git}/share/bash-completion/completions/git-prompt.sh
+      PROMPT='[%n@%m %~]%(!.#.$)$(__git_ps1) '
       RPROMPT=
     '';
     initExtra = ''
