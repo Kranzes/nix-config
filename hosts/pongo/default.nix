@@ -98,11 +98,11 @@
       qemuOvmf = true;
       qemuRunAsRoot = true;
     };
-    podman = {
-      enable = true;
-      enableNvidia = true;
-      dockerCompat = true;
-    };
+    #    podman = {
+    #      enable = true;
+    #      enableNvidia = true;
+    #      dockerCompat = true;
+    #    };
   };
 
   users.users.kranzes = {
