@@ -69,7 +69,6 @@
     gvfs.enable = true;
     ratbagd.enable = true;
     upower.enable = true;
-    udev.packages = [ pkgs.vial ];
   };
 
 
@@ -95,8 +94,7 @@
     libvirtd = {
       enable = true;
       onBoot = "ignore";
-      qemuOvmf = true;
-      qemuRunAsRoot = true;
+      qemu.ovmf.enable = true;
     };
     #    podman = {
     #      enable = true;
@@ -112,7 +110,6 @@
     shell = pkgs.zsh;
   };
 
-  programs.fuse.userAllowOther = true;
   programs.adb.enable = true;
   programs.command-not-found.enable = false;
   programs.dconf.enable = true;

@@ -48,7 +48,6 @@
         "extensions.pocket.enabled" = false;
         "extensions.shield-recipe-client.enabled" = false;
         "extensions.activeThemeID" = "{e410fec2-1cbd-4098-9944-e21e708418af}";
-        "gfx.webrender.all" = true;
         "network.dns.blockDotOnion" = true;
         "network.stricttransportsecurity.preloadlist" = true;
         "privacy.donottrackheader.enabled" = true;
