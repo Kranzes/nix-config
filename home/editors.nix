@@ -31,7 +31,6 @@
       vim.cmd 'set noshowmode'
 
       -- nvim-tree
-      vim.g.nvim_tree_hide_dotfiles = 1
       vim.g.nvim_tree_show_icons = {
         git = 0,
         folders = 0,
@@ -39,6 +38,7 @@
         folder_arrows = 0
       }
       require'nvim-tree'.setup {
+        hide_dotfiles = true,
         disable_netrw = false,
         update_to_buf_dir  = { enable = false }
       }
@@ -56,6 +56,7 @@
 
       -- run nixpkgs-fmt on save
       vim.cmd 'autocmd BufWritePre *.nix lua vim.lsp.buf.formatting_sync(nil, nil)'
+      vim.cmd 'autocmd FileType markdown set linebreak'
       EOF
     '';
   };
