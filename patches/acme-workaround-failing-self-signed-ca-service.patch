@@ -1,0 +1,35 @@
+From b787367bb5f195ef1db5235e29c0e38cb1527df9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?J=C3=B6rg=20Thalheim?= <joerg@thalheim.io>
+Date: Thu, 25 Nov 2021 11:47:26 +0100
+Subject: [PATCH] acme: workaround failing self-signed-ca service
+
+---
+ nixos/modules/security/acme.nix | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/nixos/modules/security/acme.nix b/nixos/modules/security/acme.nix
+index cfbc8e91903ef..f7471fdf02794 100644
+--- a/nixos/modules/security/acme.nix
++++ b/nixos/modules/security/acme.nix
+@@ -75,10 +75,6 @@ let
+ 
+     path = with pkgs; [ minica ];
+ 
+-    unitConfig = {
+-      ConditionPathExists = "!/var/lib/acme/.minica/key.pem";
+-    };
+-
+     serviceConfig = commonServiceConfig // {
+       StateDirectory = "acme/.minica";
+       BindPaths = "/var/lib/acme/.minica:/tmp/ca";
+@@ -87,6 +83,10 @@ let
+ 
+     # Working directory will be /tmp
+     script = ''
++      # Somehow ConditionPathExists does not work always
++      if [[ -e /var/lib/acme/.minica/key.pem ]]; then
++        exit
++      fi
+       minica \
+         --ca-key ca/key.pem \
+         --ca-cert ca/cert.pem \
