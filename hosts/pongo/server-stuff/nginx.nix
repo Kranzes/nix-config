@@ -44,7 +44,7 @@
         {
           "jellyfin.ilanjoselevich.com" = proxy 8096;
           "stats.ilanjoselevich.com" = proxy 19999;
-          #          "git.ilanjoselevich.com" = proxy 3000;
+          "git.ilanjoselevich.com" = proxy 3000;
         };
     };
   };
