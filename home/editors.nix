@@ -15,8 +15,9 @@
       lexima-vim
       nvim-lspconfig
       nvim-tree-lua
+      nvim-treesitter
     ];
-    extraPackages = [ pkgs.rnix-lsp ];
+    extraPackages = with pkgs; [ rnix-lsp gcc ];
     extraConfig = ''
       lua << EOF
       -- enable nord theme
@@ -33,6 +34,18 @@
 
       -- enable nord borders
       vim.g.nord_borders = true
+
+      -- tree sitter
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = {"bash", "nix", "toml", "yaml", "css", "html", "latex"},
+        highlight_enable = true,
+        highlight = {
+          enable = true,
+        },
+        indent = {
+          enable = true,
+        },  
+      }
 
       -- set lightline theme to nord
       vim.g.lightline = { colorscheme = 'nord' }
