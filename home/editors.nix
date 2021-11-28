@@ -16,6 +16,8 @@
       nvim-lspconfig
       nvim-tree-lua
       nvim-treesitter
+      telescope-nvim
+      telescope-fzy-native-nvim
     ];
     extraPackages = with pkgs; [ rnix-lsp gcc ];
     extraConfig = ''
@@ -26,11 +28,12 @@
       -- enable rnix via lspconfig
       require'lspconfig'.rnix.setup{}
       
-      -- basic vim settings
+      -- basic vim settings/keybinds
       vim.o.number = true
       vim.o.mouse = 'a'
       vim.o.hidden = true
       vim.cmd 'set noshowmode'
+      vim.g.mapleader = " "
 
       -- enable nord borders
       vim.g.nord_borders = true
@@ -46,6 +49,11 @@
           enable = true,
         },  
       }
+
+      -- telescope
+      require('telescope').load_extension('fzy_native')
+      vim.api.nvim_set_keymap('n', '<Leader>ff', '<cmd>Telescope find_files<CR>', {noremap = true})
+      vim.api.nvim_set_keymap('n', '<Leader>fg', '<cmd>Telescope live_grep<CR>', {noremap = true})
 
       -- set lightline theme to nord
       vim.g.lightline = { colorscheme = 'nord' }
