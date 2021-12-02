@@ -87,10 +87,7 @@
     "neovim-flake": {
       "inputs": {
         "flake-utils": "flake-utils_3",
-        "nixpkgs": [
-          "neovim-nightly",
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "dir": "contrib",
@@ -134,6 +131,22 @@
       "locked": {
         "lastModified": 1638376152,
         "narHash": "sha256-ucgLpVqhFnClH7YRUHBHnmiOd82RZdFR3XJt36ks5fE=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "6daa4a5c045d40e6eae60a3b6e427e8700f1c07f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1638376152,
+        "narHash": "sha256-ucgLpVqhFnClH7YRUHBHnmiOd82RZdFR3XJt36ks5fE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "6daa4a5c045d40e6eae60a3b6e427e8700f1c07f",
@@ -166,7 +179,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "neovim-nightly": "neovim-nightly",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nur": "nur"
       }
     }

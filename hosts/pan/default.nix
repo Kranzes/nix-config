@@ -110,6 +110,4 @@
 
   # remove bloatware (NixOS HTML file)
   documentation.nixos.enable = false;
-
-  system.stateVersion = "20.09";
 }

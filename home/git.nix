@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   programs.git = {
     enable = true;
     userName = "Ilan Joselevich";
@@ -11,6 +10,4 @@
       init = { defaultBranch = "master"; };
     };
   };
-
 }
-

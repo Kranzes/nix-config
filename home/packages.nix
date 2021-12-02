@@ -36,6 +36,7 @@
     hunspellDicts.en-us
     hunspellDicts.he-il
     ookla-speedtest
+    nodePackages.gramma
     nixpkgs-fmt
     nixpkgs-review
     nix-update

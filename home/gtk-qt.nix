@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   gtk = {
     enable = true;
     theme = {
@@ -33,12 +32,4 @@
       gtk-xft-rgba="rgb"
     '';
   };
-
-  #  qt = {
-  #    enable = true;
-  #    platformTheme = "gnome";
-  #    style.package = pkgs.adwaita-qt;
-  #    style.name = "adwaita-dark";
-  #  };
 }
-

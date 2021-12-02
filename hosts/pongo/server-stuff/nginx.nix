@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   services = {
     nginx = {
       enable = true;
@@ -14,7 +13,6 @@
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
 
-      # Only allow PFS-enabled ciphers with AES256
       sslCiphers = "AES256+EECDH:AES256+EDH:g!aNULL";
 
       commonHttpConfig = ''
@@ -28,12 +26,11 @@
         proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
       '';
 
-      # Add any further config to match your needs, e.g.:
       virtualHosts =
         let
+          domain = "ilanjoselevich.com";
           base = locations: {
             inherit locations;
-
             forceSSL = true;
             enableACME = true;
           };
@@ -42,13 +39,11 @@
           };
         in
         {
-          "jellyfin.ilanjoselevich.com" = proxy 8096;
-          "stats.ilanjoselevich.com" = proxy 19999;
-          "git.ilanjoselevich.com" = proxy 3000;
+          "jellyfin.${domain}" = proxy 8096;
+          "stats.${domain}" = proxy 19999;
+          "git.${domain}" = proxy 3000;
         };
     };
   };
-
-
 }
 

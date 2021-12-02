@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 {
-
   xresources.extraConfig = ''
-
     ! special
     *.foreground:   #D8DEE9
     *.background:   #2E3440
@@ -42,7 +40,5 @@
     ! white
     *.color7: #E5E9F0
     *.color15: #ECEFF4
-
   '';
-
 }    

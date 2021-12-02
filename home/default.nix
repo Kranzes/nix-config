@@ -1,12 +1,11 @@
 { config, pkgs, ... }:
 
 {
-
   home-manager = {
     useGlobalPkgs = true;
     users = {
       kranzes = {
-        home.stateVersion = "21.11";
+        home.stateVersion = "22.05";
         imports = [
           ./packages.nix
           ./programs.nix
@@ -31,7 +30,4 @@
       };
     };
   };
-
-
 }
-

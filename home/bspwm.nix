@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 {
-
   xsession = {
     enable = true;
     windowManager.bspwm = {
@@ -26,4 +25,3 @@
   # Needed for bspswallow to work.
   home.file.".config/bspwm/terminals".text = "Alacritty";
 }
-

@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
-
 {
-
   programs.ssh = {
     enable = true;
     hashKnownHosts = true;
@@ -20,6 +18,4 @@
     enableSshSupport = true;
     pinentryFlavor = "curses";
   };
-
 }
-

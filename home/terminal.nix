@@ -1,37 +1,29 @@
 { config, pkgs, ... }:
 
 {
-
   programs.alacritty = {
     enable = true;
     package = pkgs.alacritty;
     settings = {
-
       font = {
-
         normal = {
           family = "JetBrains Mono";
           style = "Regular";
         };
-
         bold = {
           family = "JetBrains Mono";
           style = "Bold";
         };
-
         italic = {
           family = "JetBrains Mono";
           style = "Italic";
         };
-
         bold_italic = {
           family = "JetBrains Mono";
           style = "Bold Italic";
         };
-
         size = 8;
       };
-
       colors = {
         primary = {
           background = "#2e3440";
@@ -93,6 +85,5 @@
       };
     };
   };
-
 }
 

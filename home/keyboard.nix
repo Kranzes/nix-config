@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   home.keyboard = {
     layout = "us,il";
     options = [ "grp:lalt_lshift_toggle" ];
@@ -16,21 +15,10 @@
   services.sxhkd = {
     enable = true;
     keybindings = {
-
-      #
-      # wm independent hotkeys
-      #
-
       # terminal emulator
       "super + Return" = "alacritty";
-
       # program launcher
       "super + @space" = "rofi -show drun";
-
-      #
-      # bspwm hotkeys
-      #
-
       # quit/restart bspwm
       "super + alt + {q,r}" = "bspc {quit,wm -r}";
 
@@ -46,19 +34,11 @@
       # swap the current node and the biggest node
       "super + g" = "bspc node -s biggest";
 
-      #
-      # state/flags
-      #
-
       # set the window state
       "super + {t,shift + t,s,f}" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
 
       # set the node flags
       "super + ctrl + {m,x,y,z}" = "bspc node -g {marked,locked,sticky,private}";
-
-      #
-      # focus/swap
-      #
 
       # focus the node in the given direction
       "super + {_,shift + }{h,j,k,l}" = "bspc node -{f,s} {west,south,north,east}";
@@ -78,10 +58,6 @@
       # focus or send to the given desktop
       "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,10}'";
 
-      #
-      # preselect
-      #
-
       # preselect the direction
       "super + ctrl + {h,j,k,l}" = "bspc node -p {west,south,north,east}";
 
@@ -93,10 +69,6 @@
 
       # cancel the preselection for the focused desktop
       "super + ctrl + shift + space" = "bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel";
-
-      #
-      # move/resize
-      #
 
       # move a floating window
       "super + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
@@ -114,7 +86,7 @@
 
       "XF86AudioMicMute" = "pulsemixer --id source-42 --toggle-mute";
 
-      #### Launch Programs ####
+      # Launch programs
       "alt + 1" = "firefox";
 
       "alt + 2" = "Discord";
@@ -125,7 +97,7 @@
 
       "super + alt + m" = "rofi-mpd -a";
 
-      #### MAIM ####
+      # Screenshoting 
       "ctrl + Print" = "maim -s | xclip -selection clipboard -t image/png";
 
       "Print" = "maim | xclip -selection clipboard -t image/png && notify-send 'maim' 'Screenshot captured'";
@@ -139,6 +111,5 @@
           bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
     '';
   };
-
 }
 
