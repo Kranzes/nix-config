@@ -23,8 +23,6 @@
 
       channelsConfig.allowUnfree = true;
 
-      channels.nixpkgs.patches = [ ./patches/acme-workaround-failing-self-signed-ca-service.patch ];
-
       hostDefaults = {
         modules = [
           inputs.home-manager.nixosModule
