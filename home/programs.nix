@@ -27,50 +27,51 @@
 
     zathura = {
       enable = true;
-      options = {
-        font = "JetBrains Mono 9";
+      options = let colors = config.colorscheme.colors; in
+        {
+          font = "JetBrains Mono 9";
 
-        default-fg = "#eceff4";
-        default-bg = "#2e3440";
+          default-fg = "#${colors.base06}";
+          default-bg = "#${colors.base00}";
 
-        completion-bg = "#3b4252";
-        completion-fg = "#eceff4";
-        completion-highlight-bg = "#4c566a";
-        completion-highlight-fg = "#eceff4";
-        completion-group-bg = "#3b4252";
-        completion-group-fg = "#88c0d0";
+          completion-bg = "#${colors.base01}";
+          completion-fg = "#${colors.base06}";
+          completion-highlight-bg = "#${colors.base03}";
+          completion-highlight-fg = "#${colors.base06}";
+          completion-group-bg = "#${colors.base01}";
+          completion-group-fg = "#${colors.base0C}";
 
-        statusbar-fg = "#eceff4";
-        statusbar-bg = "#3b4252";
-        statusbar-h-padding = 10;
-        statusbar-v-padding = 10;
+          statusbar-fg = "#${colors.base06}";
+          statusbar-bg = "#${colors.base01}";
+          statusbar-h-padding = 10;
+          statusbar-v-padding = 10;
 
-        notification-bg = "#2e3440";
-        notification-fg = "#eceff4";
-        notification-error-bg = "#2e3440";
-        notification-error-fg = "#bf616a";
-        notification-warning-bg = "#2e3440";
-        notification-warning-fg = "#ebcb8b";
-        selection-notification = true;
+          notification-bg = "#${colors.base00}";
+          notification-fg = "#${colors.base06}";
+          notification-error-bg = "#${colors.base00}";
+          notification-error-fg = "#${colors.base08}";
+          notification-warning-bg = "#${colors.base00}";
+          notification-warning-fg = "#${colors.base0A}";
+          selection-notification = true;
 
-        inputbar-fg = "#eceff4";
-        inputbar-bg = "#3b4252";
+          inputbar-fg = "#${colors.base06}";
+          inputbar-bg = "#${colors.base01}";
 
-        recolor = true;
-        recolor-lightcolor = "#2e3440";
-        recolor-darkcolor = "#d8dee9";
+          recolor = true;
+          recolor-lightcolor = "#${colors.base00}";
+          recolor-darkcolor = "#${colors.base04}";
 
-        index-fg = "#eceff4";
-        index-bg = "#2e3440";
-        index-active-fg = "#eceff4";
-        index-active-bg = "#4c566a";
+          index-fg = "#${colors.base06}";
+          index-bg = "#${colors.base00}";
+          index-active-fg = "#${colors.base06}";
+          index-active-bg = "#${colors.base03}";
 
-        render-loading-bg = "#2e3440";
-        render-loading-fg = "#eceff4";
+          render-loading-bg = "#${colors.base00}";
+          render-loading-fg = "#${colors.base06}";
 
-        highlight-color = "#88c0d0";
-        highlight-active-color = "#5e81ac";
-      };
+          highlight-color = "#${colors.base0C}";
+          highlight-active-color = "#${colors.base0F}";
+        };
     };
   };
 }

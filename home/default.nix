@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home-manager = {
@@ -6,7 +6,9 @@
     users = {
       kranzes = {
         home.stateVersion = "22.05";
+        colorscheme = inputs.nix-colors.colorSchemes.nord;
         imports = [
+          inputs.nix-colors.homeManagerModule
           ./packages.nix
           ./programs.nix
           ./services.nix

@@ -14,7 +14,7 @@
         padding = 10;
         horizontal_padding = 10;
         frame_width = 4;
-        frame_color = "#4C566A";
+        frame_color = "#${config.colorscheme.colors.base03}";
         separator_color = "frame";
         sort = false;
         idle_threshold = 180;
@@ -34,8 +34,8 @@
         class = "Dunst";
       };
       urgency_normal = {
-        background = "#3b4252";
-        foreground = "#eceff4";
+        background = "#${config.colorscheme.colors.base01}";
+        foreground = "#${config.colorscheme.colors.base06}";
         timeout = 10;
       };
     };
