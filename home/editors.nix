@@ -12,7 +12,7 @@
       lightline-vim
       vim-nix
       colorizer
-      lexima-vim
+      nvim-autopairs
       nvim-lspconfig
       nvim-tree-lua
       nvim-treesitter
@@ -30,6 +30,9 @@
 
       -- enable rnix via lspconfig
       require'lspconfig'.rnix.setup{}
+
+      -- autopairs
+      require('nvim-autopairs').setup{}
       
       -- basic vim settings/keybinds
       vim.o.number = true

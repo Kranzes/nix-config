@@ -57,6 +57,7 @@
     thinkfan.enable = true;
     gvfs.enable = true;
     autorandr.enable = true;
+    fstrim.enable = true;
     tlp.enable = true;
     tlp.settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";

@@ -69,6 +69,7 @@
     gvfs.enable = true;
     ratbagd.enable = true;
     upower.enable = true;
+    fstrim.enable = true;
   };
 
 
@@ -96,11 +97,6 @@
       onBoot = "ignore";
       qemu.ovmf.enable = true;
     };
-    #    podman = {
-    #      enable = true;
-    #      enableNvidia = true;
-    #      dockerCompat = true;
-    #    };
   };
 
   users.users.kranzes = {
