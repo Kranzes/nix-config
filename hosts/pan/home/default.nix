@@ -3,7 +3,6 @@
 {
   home-manager.users.kranzes = {
     imports = [
-      ./autorandr.nix
       ./bspwm.nix
       ./shell.nix
       ./keyboard.nix
