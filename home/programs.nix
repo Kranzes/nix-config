@@ -11,6 +11,14 @@
       };
     };
 
+    discocss = {
+      enable = true;
+      css = builtins.readFile "${pkgs.fetchurl {
+        url = "https://orblazer.github.io/discord-nordic/base.css";
+        sha256 = "sha256-GNV+XJtnUO68wN3DjAwEclK7MBJU+MbMaoYHw9KbIpA="; }
+      }";
+    };
+
     newsboat = {
       enable = true;
       autoReload = true;

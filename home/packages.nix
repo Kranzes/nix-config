@@ -32,7 +32,6 @@
     ffmpeg
     piper
     thunderbird-bin
-    discord
     hunspellDicts.en-us
     hunspellDicts.he-il
     ookla-speedtest
@@ -44,9 +43,5 @@
     networkmanagerapplet
     ripgrep
   ];
-
-
-
-
 }
 

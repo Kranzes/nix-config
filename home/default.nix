@@ -3,12 +3,12 @@
 {
   home-manager = {
     useGlobalPkgs = true;
+    sharedModules = [ inputs.nix-colors.homeManagerModule inputs.discocss.hmModule ];
     users = {
       kranzes = {
         home.stateVersion = "22.05";
         colorscheme = inputs.nix-colors.colorSchemes.nord;
         imports = [
-          inputs.nix-colors.homeManagerModule
           ./packages.nix
           ./programs.nix
           ./services.nix

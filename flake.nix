@@ -8,6 +8,7 @@
     nur = { url = "github:nix-community/NUR"; inputs.nixpkgs.follows = "nixpkgs"; };
     neovim-nightly = { url = "github:nix-community/neovim-nightly-overlay"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-colors.url = "github:misterio77/nix-colors";
+    discocss = { url = "github:mlvzk/discocss/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
 
