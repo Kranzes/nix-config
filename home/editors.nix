@@ -15,14 +15,14 @@
       nvim-autopairs
       nvim-lspconfig
       nvim-tree-lua
-      nvim-treesitter
+      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
       telescope-nvim
-      telescope-fzy-native-nvim
+      telescope-fzf-native-nvim
       nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
     ];
-    extraPackages = with pkgs; [ rnix-lsp gcc ];
+    extraPackages = with pkgs; [ rnix-lsp gcc ripgrep fd ];
     extraConfig = ''
       lua << EOF
       -- enable nord theme
@@ -46,8 +46,6 @@
 
       -- tree sitter
       require('nvim-treesitter.configs').setup {
-        ensure_installed = {"bash", "nix", "toml", "yaml", "css", "html", "latex"},
-        highlight_enable = true,
         highlight = {
           enable = true,
         },
@@ -89,7 +87,7 @@
       }
 
       -- telescope
-      require('telescope').load_extension('fzy_native')
+      require('telescope').load_extension('fzf')
       vim.api.nvim_set_keymap('n', '<Leader>ff', '<cmd>Telescope find_files<CR>', {noremap = true})
       vim.api.nvim_set_keymap('n', '<Leader>fg', '<cmd>Telescope live_grep<CR>', {noremap = true})
 
