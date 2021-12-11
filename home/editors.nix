@@ -21,6 +21,7 @@
       nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
+      neogit
     ];
     extraPackages = with pkgs; [ rnix-lsp gcc ripgrep fd ];
     extraConfig = ''
@@ -90,6 +91,9 @@
       require('telescope').load_extension('fzf')
       vim.api.nvim_set_keymap('n', '<Leader>ff', '<cmd>Telescope find_files<CR>', {noremap = true})
       vim.api.nvim_set_keymap('n', '<Leader>fg', '<cmd>Telescope live_grep<CR>', {noremap = true})
+
+      -- neogit
+       require('neogit').setup {}
 
       -- set lightline theme to nord
       vim.g.lightline = { colorscheme = 'nord' }
