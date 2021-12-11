@@ -2,6 +2,11 @@
 {
   xsession = {
     enable = true;
+    pointerCursor = {
+      package = pkgs.gnome.adwaita-icon-theme;
+      name = "Adwaita";
+      size = 24;
+    };
     windowManager.bspwm = {
       enable = true;
       startupPrograms = [
