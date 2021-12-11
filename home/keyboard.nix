@@ -6,12 +6,6 @@
     options = [ "grp:lalt_lshift_toggle" ];
   };
 
-  # Chinese input using fcitx5
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [ fcitx5-chinese-addons ];
-  };
-
   services.sxhkd = {
     enable = true;
     keybindings = {
