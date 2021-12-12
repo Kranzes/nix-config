@@ -21,6 +21,8 @@
       nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
+      cmp-path
+      cmp-treesitter
       neogit
     ];
     extraPackages = with pkgs; [ rnix-lsp gcc ripgrep fd ];
@@ -37,6 +39,9 @@
       
       -- basic vim settings/keybinds
       vim.o.number = true
+      vim.o.relativenumber = true
+      vim.o.cursorline = true
+      vim.o.cursorlineopt = 'number'
       vim.o.mouse = 'a'
       vim.o.hidden = true
       vim.cmd 'set noshowmode'
@@ -61,12 +66,16 @@
         sources = {
           { name = "nvim_lsp" },
           { name = "buffer" },
+          { name = "path" },
+          { name = "treesitter" },
         },
         formatting = {
           format = function(entry, vim_item)
             vim_item.menu = ({
               buffer = "[Buffer]",
               nvim_lsp = "[LSP]",
+              treesitter = "[TS]",
+              path = "[Path]",
             })[entry.source.name]
             return vim_item
           end
