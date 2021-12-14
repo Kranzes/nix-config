@@ -17,6 +17,7 @@
       nvim-tree-lua
       telescope-nvim
       telescope-fzf-native-nvim
+      nvim-treesitter
       nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
