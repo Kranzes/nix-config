@@ -15,7 +15,6 @@
       nvim-autopairs
       nvim-lspconfig
       nvim-tree-lua
-      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
       telescope-nvim
       telescope-fzf-native-nvim
       nvim-cmp
@@ -55,6 +54,7 @@
 
       -- tree sitter
       require('nvim-treesitter.configs').setup {
+        ensure_installed = "all",
         highlight = {
           enable = true,
         },
