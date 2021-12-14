@@ -11,7 +11,7 @@
       nord-nvim
       lightline-vim
       vim-nix
-      colorizer
+      nvim-colorizer-lua
       nvim-autopairs
       nvim-lspconfig
       nvim-tree-lua
@@ -30,6 +30,9 @@
       lua << EOF
       -- enable nord theme
       require('nord').set()
+
+      -- enable colorizer
+      require'colorizer'.setup()
 
       -- enable rnix via lspconfig
       require'lspconfig'.rnix.setup{}
