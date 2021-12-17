@@ -5,13 +5,13 @@
   programs.beets = {
     enable = true;
     package = ((pkgs.beets.override {
-      enableExtraFiles = true;
       enableMpd = true;
+      enableFetchart = true;
     }).overrideAttrs (_: {
       doInstallCheck = false;
     }));
     settings = {
-      plugins = [ "permissions" "extrafiles" "mpdupdate" ];
+      plugins = [ "permissions" "mpdupdate" "fetchart" ];
       directory = "/home/4TB-HDD/Media/Music";
       library = "~/.local/share/musiclibrary.db";
       import = {
@@ -26,10 +26,8 @@
         file = 755;
         dir = 755;
       };
-      extrafiles = {
-        patterns = {
-          all = [ "*.*" ];
-        };
+      fetchart = {
+        sources = [ "filesystem" ];
       };
       mpd = {
         host = "localhost";
