@@ -21,6 +21,7 @@
       settings = {
         "app.normandy.enabled" = false;
         "app.shield.optoutstudies.enabled" = false;
+        "app.update.auto" = false;
         "beacon.enabled" = false;
         "breakpad.reportUR" = "";
         "browser.compactmode.show" = true;
@@ -39,10 +40,17 @@
         "browser.tabs.crashReporting.sendReport" = false;
         "browser.toolbars.bookmarks.visibility" = "always";
         "browser.uidensity" = 1;
+        "browser.aboutConfig.showWarning" = false;
+        "browser.shell.checkDefaultBrowser" = false;
+        "signon.autofillForms" = false;
+        "media.autoplay.default" = 2;
+        "device.sensors.enabled" = false;
         "datareporting.healthreport.service.enabled" = false;
         "datareporting.healthreport.uploadEnabled" = false;
         "datareporting.policy.dataSubmissionEnabled" = false;
         "dom.security.https_only_mode" = true;
+        "dom.battery.enabled" = false;
+        "dom.webaudio.enabled" = false;
         "experiments.enabled" = false;
         "experiments.supported" = false;
         "extensions.pocket.enabled" = false;
@@ -72,6 +80,7 @@
         "toolkit.telemetry.shutdownPingSender.enabled" = false;
         "toolkit.telemetry.unified" = false;
         "toolkit.telemetry.updatePing.enabled" = false;
+        "general.useragent.override" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36";
       };
     };
   };
