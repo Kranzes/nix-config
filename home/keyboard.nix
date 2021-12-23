@@ -6,6 +6,47 @@
     options = [ "grp:lalt_lshift_toggle" ];
   };
 
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [ fcitx5-chinese-addons ];
+  };
+
+  xdg.dataFile."fcitx5/themes/Nord-Dark/" = {
+    source = pkgs.fetchFromGitHub
+      {
+        owner = "tonyfettes";
+        repo = "fcitx5-nord";
+        rev = "bdaa8fb723b8d0b22f237c9a60195c5f9c9d74d1";
+        sha256 = "sha256-qVo/0ivZ5gfUP17G29CAW0MrRFUO0KN1ADl1I/rvchE=";
+      } + "/Nord-Dark";
+    recursive = true;
+  };
+
+  xdg.configFile = {
+    "fcitx5/conf/xcb.conf".text = "Allow Overriding System XKB Settings=False";
+    "fcitx5/config".text = ''
+      [Hotkey]
+      TriggerKeys=
+      EnumerateWithTriggerKeys=True
+      AltTriggerKeys=
+      EnumerateForwardKeys=
+      EnumerateBackwardKeys=
+      EnumerateSkipFirst=False
+      EnumerateGroupForwardKeys=
+      EnumerateGroupBackwardKeys=
+      [Hotkey/ActivateKeys]
+      0=Control+space
+      [Hotkey/DeactivateKeys]
+      0=Control+space
+    '';
+    "fcitx5/conf/classicui.conf".text = ''
+      Font="JetBrains Mono 10"
+      MenuFont="JetBrains Mono 10"
+      TrayFont="JetBrains Mono Bold 10"
+      Theme=Nord-Dark
+    '';
+  };
+
   services.sxhkd = {
     enable = true;
     keybindings = {
