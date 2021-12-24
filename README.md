@@ -17,8 +17,8 @@ Name        		| Description
 
 All of my hostnames are named after scientific names of monkeys/apes.
 
-Name              		    | Description
------------------------------------ | -----------
-[Pongo (Orangutan)](./hosts/pongo)  | My desktop running a Ryzen 7 2700X, 16GB of RAM and a GTX 950 
-[Pan (Chimpanzee)](./hosts/pan)     | My ThinkPad T430
-
+Name              		     	    | Description
+------------------------------------------- | -----------
+[Pongo (Orangutan)](./hosts/pongo) 	    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a GTX 950 
+[Pan (Chimpanzee)](./hosts/pan)     	    | My ThinkPad T430
+[Hylobatidae (Gibbon)](./hosts/hylobatidae) | QEMU/KVM virtual machine running on [Pongo](./hosts/pongo)

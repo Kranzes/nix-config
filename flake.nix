@@ -12,7 +12,7 @@
   };
 
 
-  outputs = { self, nixpkgs, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, flake-utils, home-manager, ... }@inputs:
 
     flake-utils.lib.mkFlake {
       inherit self inputs;
@@ -27,9 +27,8 @@
 
       hostDefaults = {
         modules = [
-          inputs.home-manager.nixosModule
-          ./home
-          ./modules
+          ./modules/nix.nix
+          ./modules/ssh.nix
         ];
       };
 
@@ -37,11 +36,21 @@
         pongo.modules = [
           ./hosts/pongo
           ./hosts/pongo/home
+          ./home
+          ./modules
+          home-manager.nixosModule
         ];
 
         pan.modules = [
           ./hosts/pan
           ./hosts/pan/home
+          ./home
+          ./modules
+          home-manager.nixosModule
+        ];
+
+        hylobatidae.modules = [
+          ./hosts/hylobatidae
         ];
       };
 
