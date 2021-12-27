@@ -9,10 +9,11 @@
     neovim-nightly = { url = "github:nix-community/neovim-nightly-overlay"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-colors.url = "github:misterio77/nix-colors";
     discocss = { url = "github:mlvzk/discocss/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
+    pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
 
-  outputs = { self, nixpkgs, flake-utils, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, flake-utils, home-manager, pre-commit-hooks, ... }@inputs:
 
     flake-utils.lib.mkFlake {
       inherit self inputs;
@@ -56,9 +57,16 @@
 
       overlay = import ./overlays { inherit inputs; };
 
-      outputsBuilder = channels: with channels.nixpkgs;{
+      outputsBuilder = channels: with channels.nixpkgs; {
         devShell = mkShell {
-          buildInputs = [ nixpkgs-fmt lefthook ];
+          packages = [ nixpkgs-fmt lefthook ];
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+        };
+
+        checks.pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks.nixpkgs-fmt.enable = true;
+          hooks.shellcheck.enable = true;
         };
       };
     };
