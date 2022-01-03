@@ -17,7 +17,7 @@
       nvim-tree-lua
       telescope-nvim
       telescope-fzf-native-nvim
-      nvim-treesitter
+      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
       nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
