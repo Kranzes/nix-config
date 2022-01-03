@@ -6,7 +6,7 @@
     home-manager = { url = "github:nix-community/home-manager"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nur = { url = "github:nix-community/NUR"; inputs.nixpkgs.follows = "nixpkgs"; };
-    neovim-nightly = { url = "github:nix-community/neovim-nightly-overlay"; inputs.nixpkgs.follows = "nixpkgs"; };
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     nix-colors.url = "github:misterio77/nix-colors";
     discocss = { url = "github:mlvzk/discocss/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; inputs.nixpkgs.follows = "nixpkgs"; };
