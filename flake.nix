@@ -18,6 +18,8 @@
     flake-utils.lib.mkFlake {
       inherit self inputs;
 
+      supportedSystems = [ "x86_64-linux" ];
+
       sharedOverlays = [
         self.overlay
         inputs.nur.overlay
