@@ -4,27 +4,11 @@
   services = {
     nginx = {
       enable = true;
-
-      clientMaxBodySize = "1g";
-
-      # Use recommended settings
+      package = pkgs.nginxMainline;
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
-
-      sslCiphers = "AES256+EECDH:AES256+EDH:g!aNULL";
-
-      commonHttpConfig = ''
-        map $scheme $hsts_header {
-          https   "max-age=31536000; includeSubdomains; preload";
-        }
-        add_header Strict-Transport-Security $hsts_header;
-        add_header 'Referrer-Policy' 'origin-when-cross-origin';
-        add_header X-Content-Type-Options nosniff;
-        add_header X-XSS-Protection "1; mode=block";
-        proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
-      '';
 
       virtualHosts =
         let
@@ -33,6 +17,7 @@
             inherit locations;
             forceSSL = true;
             enableACME = true;
+            kTLS = true;
           };
           proxy = port: base {
             "/".proxyPass = "http://127.0.0.1:" + toString (port) + "/";

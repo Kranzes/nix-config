@@ -56,7 +56,6 @@
     ];
   };
 
-
   systemd.services."nextcloud-setup" = {
     requires = [ "postgresql.service" ];
     after = [ "postgresql.service" ];
@@ -68,12 +67,10 @@
   };
 
   services.nginx.virtualHosts = {
-
     "cloud.ilanjoselevich.com" = {
-      ## Force HTTP redirect to HTTPS
       forceSSL = true;
-      ## LetsEncrypt
       enableACME = true;
+      kTLS = true;
     };
   };
 
