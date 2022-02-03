@@ -46,7 +46,6 @@
   swapDevices = [{ device = "/swapfile"; size = 16384; }];
 
   hardware = {
-    nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
     cpu.amd.updateMicrocode = true;

@@ -28,7 +28,7 @@
   # Set your time zone.
   time.timeZone = "Asia/Jerusalem";
 
-  nix.trustedUsers = [ "kranzes" ];
+  nix.settings.trusted-users = [ "kranzes" ];
 
   environment.pathsToLink = [ "/share/zsh" ];
 

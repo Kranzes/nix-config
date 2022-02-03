@@ -5,7 +5,7 @@
     enable = true;
     forwardX11 = true;
     passwordAuthentication = false;
-    challengeResponseAuthentication = false;
+    kbdInteractiveAuthentication = false;
     permitRootLogin = "no";
   };
 }
