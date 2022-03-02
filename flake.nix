@@ -61,7 +61,7 @@
 
       outputsBuilder = channels: with channels.nixpkgs; {
         devShell = mkShell {
-          packages = [ nixpkgs-fmt lefthook ];
+          packages = [ nixpkgs-fmt ];
           inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
 
