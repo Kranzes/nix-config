@@ -23,7 +23,7 @@
       cmp-buffer
       cmp-path
       cmp-treesitter
-      neogit
+      cmp-spell
     ];
     extraPackages = with pkgs; [ rnix-lsp gcc ripgrep fd ];
     extraConfig = ''
@@ -70,15 +70,15 @@
           { name = "nvim_lsp" },
           { name = "buffer" },
           { name = "path" },
-          { name = "treesitter" },
+          { name = 'spell' },
         },
         formatting = {
           format = function(entry, vim_item)
             vim_item.menu = ({
               buffer = "[Buffer]",
               nvim_lsp = "[LSP]",
-              treesitter = "[TS]",
               path = "[Path]",
+              spell = "[Spell]",
             })[entry.source.name]
             return vim_item
           end
@@ -104,9 +104,6 @@
       vim.api.nvim_set_keymap('n', '<Leader>ff', '<cmd>Telescope find_files<CR>', {noremap = true})
       vim.api.nvim_set_keymap('n', '<Leader>fg', '<cmd>Telescope live_grep<CR>', {noremap = true})
 
-      -- neogit
-       require('neogit').setup {}
-
       -- set lightline theme to nord
       vim.g.lightline = { colorscheme = 'nord' }
 
@@ -116,8 +113,9 @@
 
       -- run nixpkgs-fmt on save
       vim.cmd 'autocmd BufWritePre *.nix lua vim.lsp.buf.formatting_sync(nil, nil)'
-      -- set linebreak for markdown documents
+      -- set linebreak and spelling for markdown documents
       vim.cmd 'autocmd FileType markdown set linebreak'
+      vim.cmd 'autocmd FileType markdown set spell'
       EOF
     '';
   };
