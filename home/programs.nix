@@ -14,8 +14,8 @@
     discocss = {
       enable = true;
       css = builtins.readFile "${pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/orblazer/discord-nordic/5ea8160ff60409bd339d0abbfdd65b75dc3d968c/base.css";
-        sha256 = "sha256-jRdxJeyTrH+XDAlWSZ/POjnUYBu8/N7GWChlIrV7wYk="; }
+        url = "https://raw.githubusercontent.com/orblazer/discord-nordic/0d2608790e39bed6688858aa2c0ddb03e035d4b0/base.css";
+        sha256 = "sha256-j9H/lPdMaJo/sDSuL2UkZog+kHjnTEi8CVX/Cf5QPg8="; }
       }";
     };
 
