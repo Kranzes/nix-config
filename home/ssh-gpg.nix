@@ -1,14 +1,16 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   programs.ssh = {
     enable = true;
     hashKnownHosts = true;
-    matchBlocks = {
-      "github.com" = {
-        hostname = "github.com";
-        identityFile = "~/.ssh/id_git";
-      };
-    };
+    matchBlocks =
+      let
+        minions = { user = "deploy"; identityFile = "~/.ssh/id_deploy"; };
+      in
+      {
+        "github.com".identityFile = "~/.ssh/id_git";
+      } //
+      lib.genAttrs [ "oracle-amd" "oracle-amd2" "oracle-ampere" "vultr" ] (_: minions);
   };
 
   programs.gpg.enable = true;
