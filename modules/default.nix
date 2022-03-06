@@ -6,4 +6,5 @@
     ./xorg.nix
     ./nix.nix
   ];
+  services.tailscale.enable = true;
 }

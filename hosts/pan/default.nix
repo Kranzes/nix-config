@@ -22,7 +22,6 @@
   networking = {
     hostName = "pan";
     networkmanager.enable = true;
-    firewall.checkReversePath = false;
   };
 
   # Set your time zone.
