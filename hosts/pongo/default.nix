@@ -97,7 +97,13 @@
       onBoot = "ignore";
       qemu.ovmf.enable = true;
     };
+    podman = {
+      enable = true;
+      enableNvidia = true;
+      dockerCompat = true;
+    };
   };
+  programs.extra-container.enable = true;
 
   users.users.kranzes = {
     isNormalUser = true;
