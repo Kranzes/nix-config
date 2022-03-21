@@ -10,7 +10,7 @@
     ./server-stuff/netdata.nix
     ./server-stuff/jellyfin.nix
     ./server-stuff/gitea.nix
-    ./server-stuff/main-site.nix
+    #./server-stuff/main-site.nix
   ];
 
 }
