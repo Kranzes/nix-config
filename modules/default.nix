@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
     ./ssh.nix
     ./xorg.nix
-    ./nix.nix
+    ./nix-nixpkgs.nix
   ];
   services.tailscale.enable = true;
 }

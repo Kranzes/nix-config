@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, self, ... }:
 {
   xsession = {
     enable = true;
@@ -10,7 +10,7 @@
     windowManager.bspwm = {
       enable = true;
       startupPrograms = [
-        "pgrep ${pkgs.bspswallow}/bin/bspswallow || ${pkgs.bspswallow}/bin/bspswallow"
+        "pgrep ${self.packages.${pkgs.system}.bspswallow}/bin/bspswallow || ${self.packages.${pkgs.system}.bspswallow}/bin/bspswallow"
       ];
       settings = {
         remove_disabled_monitors = true;

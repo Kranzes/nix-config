@@ -1,9 +1,10 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, self, ... }:
 
 {
   home-manager = {
     useGlobalPkgs = true;
     sharedModules = [ inputs.nix-colors.homeManagerModule inputs.discocss.hmModule ];
+    extraSpecialArgs = { inherit inputs self; };
     users = {
       kranzes = {
         home.stateVersion = "22.05";

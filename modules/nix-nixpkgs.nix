@@ -1,11 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   nix = {
     package = pkgs.nixUnstable;
-    generateNixPathFromInputs = true;
-    generateRegistryFromInputs = true;
-    linkInputs = true;
+    registry.nixpkgs.flake = inputs.nixpkgs;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings.substituters = [
       "https://nix-community.cachix.org"
     ];
@@ -17,4 +16,6 @@
       builders-use-substitutes = true
     '';
   };
+  nixpkgs.overlays = [ inputs.nur.overlay ];
+  nixpkgs.config.allowUnfree = true;
 }
