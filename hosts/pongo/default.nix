@@ -101,13 +101,14 @@
       enable = true;
       enableNvidia = true;
       dockerCompat = true;
+      dockerSocket.enable = true;
     };
   };
   programs.extra-container.enable = true;
 
   users.users.kranzes = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "mpd" "libvirtd" "adbusers" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "mpd" "libvirtd" "adbusers" "podman" ];
     uid = 1000;
     shell = pkgs.zsh;
   };
