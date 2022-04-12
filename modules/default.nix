@@ -4,8 +4,7 @@
   imports = [
     ./ssh.nix
     ./xorg.nix
-    ./nix.nix
+    ./nix-nixpkgs.nix
   ];
   services.tailscale.enable = true;
-  nixpkgs.overlays = [ inputs.nur.overlay ];
 }
