@@ -11,11 +11,6 @@ jobs:
       with:
         fetch-depth: 0
     - uses: cachix/install-nix-action@v17
-      with:
-        install_url: https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20210823_af94b54/install
-        extra_nix_config: |
-          experimental-features = nix-command flakes
-    # Update flake.lock
     - name : 'flake.lock: Update'
       run: |
         git config user.name 'Ilan Joselevich'
