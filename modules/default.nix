@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -7,4 +7,5 @@
     ./nix.nix
   ];
   services.tailscale.enable = true;
+  nixpkgs.overlays = [ inputs.nur.overlay ];
 }
