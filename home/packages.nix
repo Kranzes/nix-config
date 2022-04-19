@@ -4,12 +4,10 @@
 
   home.packages = with pkgs; [
     wget
-    liquidctl
     cinnamon.nemo
     virt-manager
     keepassxc
     yt-dlp
-    gotop
     p7zip
     tdesktop
     killall
@@ -35,7 +33,6 @@
     hunspellDicts.en-us
     hunspellDicts.he-il
     ookla-speedtest
-    nodePackages.gramma
     nixpkgs-fmt
     nixpkgs-review
     nix-update
