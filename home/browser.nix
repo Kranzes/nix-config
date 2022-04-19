@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
       ublock-origin
       clearurls
       darkreader
