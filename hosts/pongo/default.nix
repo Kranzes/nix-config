@@ -97,18 +97,16 @@
       onBoot = "ignore";
       qemu.ovmf.enable = true;
     };
-    podman = {
+    docker = {
       enable = true;
       enableNvidia = true;
-      dockerCompat = true;
-      dockerSocket.enable = true;
     };
   };
   programs.extra-container.enable = true;
 
   users.users.kranzes = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "mpd" "libvirtd" "adbusers" "podman" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "mpd" "libvirtd" "adbusers" "docker" ];
     uid = 1000;
     shell = pkgs.zsh;
   };
