@@ -16,5 +16,6 @@
       builders-use-substitutes = true
     '';
   };
+  nixpkgs.overlays = [ inputs.nur.overlay ];
   nixpkgs.config.allowUnfree = true;
 }
