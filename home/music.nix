@@ -25,6 +25,7 @@
     Service = {
       ExecStart = "${pkgs.yams}/bin/yams -N";
       Environment = "NON_INTERACTIVE=1";
+      Restart = "on-failure";
     };
     Install = {
       WantedBy = [ "default.target" ];
