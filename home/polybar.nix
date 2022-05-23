@@ -61,7 +61,7 @@
           "border-right-color" = "\${colors.black1}";
           "font-0" = "JetBrains Mono:size=9;2";
           "font-1" = "JetBrains Mono:size=9;2";
-          "font-2" = "Font Awesome 5 Free Solid:size=9;2";
+          "font-2" = "Font Awesome 6 Free Solid:size=9;2";
           "wm-restack" = "bspwm";
         };
         "bar/leftbar" = {
@@ -161,7 +161,7 @@
           # Default: 1
           "interval" = "1";
           "format" = "<label>";
-          "label" = " %percentage_used%%";
+          "label" = " %percentage_used%%";
           "format-foreground" = "\${colors.red1}";
           "format-padding" = "1";
         };
