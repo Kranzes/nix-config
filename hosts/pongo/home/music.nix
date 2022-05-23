@@ -4,12 +4,12 @@
   services.mpd.musicDirectory = "/home/4TB-HDD/Media/Music";
   programs.beets = {
     enable = true;
-    package = ((pkgs.beets.override {
-      enableMpd = true;
-      enableFetchart = true;
-    }).overrideAttrs (_: {
-      doInstallCheck = false;
-    }));
+    package = pkgs.beets.override {
+      pluginOverrides = {
+        fetchart.enable = true;
+        mpdupdate.enable = true;
+      };
+    };
     settings = {
       plugins = [ "permissions" "mpdupdate" "fetchart" ];
       directory = "/home/4TB-HDD/Media/Music";
