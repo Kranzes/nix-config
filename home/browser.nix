@@ -50,7 +50,6 @@
         "datareporting.policy.dataSubmissionEnabled" = false;
         "dom.security.https_only_mode" = true;
         "dom.battery.enabled" = false;
-        "dom.webaudio.enabled" = false;
         "experiments.enabled" = false;
         "experiments.supported" = false;
         "extensions.pocket.enabled" = false;
