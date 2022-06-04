@@ -7,4 +7,5 @@
     ./nix-nixpkgs.nix
   ];
   services.tailscale.enable = true;
+  services.pcscd.enable = true;
 }
