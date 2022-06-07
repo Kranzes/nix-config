@@ -10,7 +10,7 @@
     ./editors.nix
     ./music.nix
     ./terminal.nix
-    ./ssh-gpg.nix
+    ./ssh.nix
     ./git.nix
     ./launcher.nix
     ./keyboard.nix
