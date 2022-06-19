@@ -25,7 +25,7 @@
     Service = {
       ExecStart = "${pkgs.yams}/bin/yams -N";
       Environment = "NON_INTERACTIVE=1";
-      Restart = "on-failure";
+      Restart = "always";
     };
     Install = {
       WantedBy = [ "default.target" ];
@@ -43,6 +43,18 @@
       follow_now_playing_lyrics = "yes";
       screen_switcher_mode = "playlist, media_library";
       display_bitrate = "yes";
+    };
+  };
+
+  services.mpd-discord-rpc = {
+    enable = true;
+    settings = {
+      format = {
+        details = "$title";
+        state = "$artist";
+        large_text = "$album";
+        small_image = "";
+      };
     };
   };
 
