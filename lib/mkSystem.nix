@@ -13,6 +13,7 @@ inputs.nixpkgs.lib.nixosSystem ({
   modules = [
     "${self}/hosts/${hostname}"
     "${self}/modules"
+    inputs.agenix.nixosModule
   ] ++ inputs.nixpkgs.lib.optionals home-manager [
     inputs.home-manager.nixosModule
     "${self}/home"

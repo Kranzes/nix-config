@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, self, ... }:
 
 {
   services.nextcloud = {
@@ -11,8 +11,8 @@
     config = {
       dbtype = "pgsql";
       dbhost = "/run/postgresql";
-      dbpassFile = "/var/nextcloud-db-pass";
-      adminpassFile = "/var/nextcloud-admin-root-pass";
+      dbpassFile = config.age.secrets.nextcloud-db-pass.path;
+      adminpassFile = config.age.secrets.nextcloud-admin-root-pass.path;
       adminuser = "admin-root";
       defaultPhoneRegion = "IL";
     };
@@ -41,5 +41,18 @@
   security.acme = {
     acceptTerms = true;
     certs."${config.services.nextcloud.hostName}".email = "personal@ilanjoselevich.com";
+  };
+
+  age.secrets = {
+    nextcloud-db-pass = {
+      file = "${self}/secrets/nextcloud-db-pass.age";
+      group = "nextcloud";
+      owner = "nextcloud";
+    };
+    nextcloud-admin-root-pass = {
+      file = "${self}/secrets/nextcloud-admin-root-pass.age";
+      group = "nextcloud";
+      owner = "nextcloud";
+    };
   };
 }
