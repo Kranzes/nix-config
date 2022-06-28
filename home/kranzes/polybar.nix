@@ -8,7 +8,7 @@
       polybar rightbar &
       polybar leftbar &
     '';
-    config = let colors = config.colorscheme.colors; in
+    config = let inherit (config.colorscheme) colors; in
       {
         "settings" = {
           "throttle-ms" = "50";

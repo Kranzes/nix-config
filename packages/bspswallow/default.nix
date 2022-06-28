@@ -3,5 +3,5 @@
 writeShellApplication {
   name = "bspswallow";
   runtimeInputs = [ xorg.xprop ];
-  text = (builtins.readFile ./bspswallow);
+  text = builtins.readFile ./bspswallow;
 }

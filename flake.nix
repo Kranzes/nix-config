@@ -31,6 +31,7 @@
         src = self;
         hooks.nixpkgs-fmt.enable = true;
         hooks.shellcheck.enable = true;
+        hooks.statix.enable = true;
       };
     };
 }

@@ -16,7 +16,7 @@
     @theme "~/.config/rofi/theme.rasi"
   '';
 
-  home.file.".config/rofi/theme.rasi".text = let colors = config.colorscheme.colors; in
+  home.file.".config/rofi/theme.rasi".text = let inherit (config.colorscheme) colors; in
     ''
       * {
            background:                  #${colors.base01};

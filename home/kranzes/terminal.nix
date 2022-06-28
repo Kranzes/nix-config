@@ -24,7 +24,7 @@
         };
         size = 8;
       };
-      colors = let colors = config.colorscheme.colors; in
+      colors = let inherit (config.colorscheme) colors; in
         {
           primary = {
             background = "#${colors.base00}";
