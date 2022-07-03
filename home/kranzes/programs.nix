@@ -13,9 +13,10 @@
 
     discocss = {
       enable = true;
+      discord = pkgs.discord.override { withOpenASAR = true; };
       css = builtins.readFile "${pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/orblazer/discord-nordic/612c74295c5466c5dc00d624d188ffc3f213da3d/base.css";
-        sha256 = "sha256-ur70DweeeLZBtHrF9k0+SDVPQjrTKTj7zL+cp45WyM0="; }
+        url = "https://raw.githubusercontent.com/orblazer/discord-nordic/c4851116eeed43cb89b9af220357bcb2f994e30a/base.css";
+        sha256 = "sha256-UKT9WoMrFI2a4YlhikXC2gs8eXBAqiXL+nmHfXPD+/w="; }
       }";
     };
 
