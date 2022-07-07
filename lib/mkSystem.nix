@@ -5,6 +5,8 @@
 , extraModules ? [ ]
 , home-manager
 , extraHomeModules ? [ ]
+, deployBuildOn ? "local"
+, deploySshUser
 }:
 
 inputs.nixpkgs.lib.nixosSystem {
@@ -14,6 +16,14 @@ inputs.nixpkgs.lib.nixosSystem {
     "${self}/hosts/${hostname}"
     "${self}/modules"
     inputs.agenix.nixosModule
+    {
+      _module.args.nixinate = {
+        host = hostname;
+        sshUser = deploySshUser;
+        buildOn = deployBuildOn;
+        substituteOnTarget = true;
+      };
+    }
   ] ++ inputs.nixpkgs.lib.optionals home-manager [
     inputs.home-manager.nixosModule
     "${self}/home"

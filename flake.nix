@@ -10,6 +10,7 @@
     discocss = { url = "github:mlvzk/discocss/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; inputs.nixpkgs.follows = "nixpkgs"; };
     agenix = { url = "github:ryantm/agenix"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nixinate = { url = "github:MatthewCroughan/nixinate"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
   outputs = { self, ... }@inputs:
@@ -18,9 +19,13 @@
       pkgs = inputs.nixpkgs.legacyPackages.${system};
     in
     {
-      nixosConfigurations = import ./hosts inputs;
       lib = import ./lib inputs;
+
+      nixosConfigurations = import ./hosts inputs;
+
       packages.${system} = import ./packages inputs;
+
+      apps = inputs.nixinate.nixinate.${system} self;
 
       devShells.${system}.default = pkgs.mkShell {
         packages = [ pkgs.nixpkgs-fmt inputs.agenix.defaultPackage.${system} pkgs.age-plugin-yubikey ];

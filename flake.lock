@@ -202,6 +202,26 @@
         "type": "github"
       }
     },
+    "nixinate": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1654872030,
+        "narHash": "sha256-a1e49vvdEapkG9tbC0WLEemLGXbMR6hEBeW22aGwueQ=",
+        "owner": "MatthewCroughan",
+        "repo": "nixinate",
+        "rev": "0f53b4f183fbde2ba2b50d3e7dd910b86ea179ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MatthewCroughan",
+        "repo": "nixinate",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1656753965,
@@ -277,6 +297,7 @@
         "home-manager": "home-manager",
         "neovim-nightly": "neovim-nightly",
         "nix-colors": "nix-colors",
+        "nixinate": "nixinate",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "pre-commit-hooks": "pre-commit-hooks"

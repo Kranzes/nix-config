@@ -6,6 +6,8 @@
     system = "x86_64-linux";
     home-manager = true;
     extraHomeModules = [ inputs.nix-colors.homeManagerModule inputs.discocss.hmModule ];
+    deployBuildOn = "remote";
+    deploySshUser = "kranzes";
   };
 
   pan = self.lib.mkSystem {
@@ -13,5 +15,7 @@
     system = "x86_64-linux";
     home-manager = true;
     extraHomeModules = [ inputs.nix-colors.homeManagerModule inputs.discocss.hmModule ];
+    deployBuildOn = "local";
+    deploySshUser = "kranzes";
   };
 }
