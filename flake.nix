@@ -8,7 +8,6 @@
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     nix-colors.url = "github:misterio77/nix-colors";
     discocss = { url = "github:mlvzk/discocss/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
-    pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; inputs.nixpkgs.follows = "nixpkgs"; };
     agenix = { url = "github:ryantm/agenix"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixinate = { url = "github:MatthewCroughan/nixinate"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
@@ -29,14 +28,6 @@
 
       devShells.${system}.default = pkgs.mkShell {
         packages = [ pkgs.nixpkgs-fmt inputs.agenix.defaultPackage.${system} pkgs.age-plugin-yubikey ];
-        inherit (self.checks.${system}.pre-commit-check) shellHook;
-      };
-
-      checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-        src = self;
-        hooks.nixpkgs-fmt.enable = true;
-        hooks.shellcheck.enable = true;
-        hooks.statix.enable = true;
       };
     };
 }
