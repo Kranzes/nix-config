@@ -7,12 +7,10 @@
       name = "Nordic-darker";
       package = pkgs.nordic;
     };
-
     iconTheme = {
-      name = "Zafiro-icons";
+      name = "Zafiro-icons-Dark";
       package = pkgs.zafiro-icons;
     };
-
     font = {
       name = "Roboto 10";
       package = pkgs.roboto;
