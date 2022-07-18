@@ -25,7 +25,6 @@
         in
         {
           "jellyfin.${domain}" = proxy 8096;
-          "stats.${domain}" = proxy 19999;
           "git.${domain}" = proxy 3000;
         };
     };

@@ -9,7 +9,6 @@
     certs."jellyfin.ilanjoselevich.com" = {
       extraDomainNames = map (subdomain: "${subdomain}.ilanjoselevich.com") [
         "git"
-        "stats"
       ];
     };
   };
