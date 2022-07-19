@@ -26,8 +26,10 @@
 
       apps = inputs.nixinate.nixinate.${system} self;
 
-      devShells.${system}.default = pkgs.mkShell {
+      devShells.${system}.default = pkgs.mkShellNoCC {
         packages = [ pkgs.nixpkgs-fmt inputs.agenix.defaultPackage.${system} pkgs.age-plugin-yubikey ];
       };
+
+      formatter.${system} = pkgs.nixpkgs-fmt;
     };
 }
