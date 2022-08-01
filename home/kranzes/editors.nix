@@ -24,6 +24,8 @@
       cmp-path
       cmp-treesitter
       cmp-spell
+      gitsigns-nvim
+      nvim-ts-rainbow
     ];
     extraPackages = with pkgs; [ ripgrep ];
     extraConfig = ''
@@ -43,6 +45,10 @@
 
       -- autopairs
       require('nvim-autopairs').setup{}
+
+      --
+      -- gitsigns
+      require('gitsigns').setup()
       
       -- basic vim settings/keybinds
       vim.o.number = true
@@ -65,6 +71,9 @@
         indent = {
           enable = true,
         },  
+        rainbow = {
+          enable = true,
+        }
       }
 
       -- cmp
