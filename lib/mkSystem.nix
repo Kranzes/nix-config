@@ -2,8 +2,9 @@
 
 { hostname
 , system
+, extraSpecialArgs ? { }
 , extraModules ? [ ]
-, home-manager
+, home-manager ? false
 , extraHomeModules ? [ ]
 , deployBuildOn ? "local"
 , deploySshUser
@@ -11,7 +12,7 @@
 
 inputs.nixpkgs.lib.nixosSystem {
   inherit system;
-  specialArgs = { inherit inputs self; };
+  specialArgs = { inherit inputs self; } // extraSpecialArgs;
   modules = [
     "${self}/hosts/${hostname}"
     "${self}/modules"
@@ -31,7 +32,7 @@ inputs.nixpkgs.lib.nixosSystem {
     {
       home-manager = {
         useGlobalPkgs = true;
-        extraSpecialArgs = { inherit inputs self; };
+        extraSpecialArgs = { inherit inputs self; } // extraSpecialArgs;
         sharedModules = extraHomeModules;
       };
     }

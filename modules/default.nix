@@ -1,11 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{ config, lib, headless, ... }:
 
 {
   imports = [
     ./ssh.nix
-    ./xorg.nix
     ./nix-nixpkgs.nix
-  ];
-  services.tailscale.enable = true;
-  services.pcscd.enable = true;
+    ./cachix-deploy.nix
+  ] ++ lib.optionals (!headless) [ ./xorg.nix ];
 }

@@ -35,7 +35,7 @@
     };
 
     zathura = {
-      enable = true;
+      enable = false;
       options = let inherit (config.colorscheme) colors; in
         {
           font = "JetBrains Mono 9";

@@ -14,7 +14,6 @@
       nvim-colorizer-lua
       nvim-autopairs
       nvim-lspconfig
-      nvim-tree-lua
       telescope-nvim
       telescope-fzf-native-nvim
       (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
@@ -22,7 +21,6 @@
       cmp-nvim-lsp
       cmp-buffer
       cmp-path
-      cmp-treesitter
       cmp-spell
       gitsigns-nvim
       nvim-ts-rainbow
@@ -46,10 +44,6 @@
       -- autopairs
       require('nvim-autopairs').setup{}
 
-      --
-      -- gitsigns
-      require('gitsigns').setup()
-      
       -- basic vim settings/keybinds
       vim.o.number = true
       vim.o.relativenumber = true

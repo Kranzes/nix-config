@@ -16,9 +16,8 @@ Name        		| Description
 
 ## Hosts
 
-All of my hostnames are named after scientific names of monkeys/apes.
-
 Name              		     	    | Description
 ------------------------------------------- | -----------
-[Pongo (Orangutan)](./hosts/pongo) 	    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a GTX 950 
-[Pan (Chimpanzee)](./hosts/pan)     	    | My ThinkPad T430
+[Pongo](./hosts/pongo) 	                    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a GTX 950 
+[Pan](./hosts/pan)     	                    | My ThinkPad T430
+[Vultr](./hosts/vultr)                      | Tiny VPS running on vultr

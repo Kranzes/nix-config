@@ -70,6 +70,8 @@
     ratbagd.enable = true;
     upower.enable = true;
     fstrim.enable = true;
+    tailscale.enable = true;
+    pcscd.enable = true;
   };
 
 
