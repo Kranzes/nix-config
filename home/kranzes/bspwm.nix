@@ -9,9 +9,6 @@
     };
     windowManager.bspwm = {
       enable = true;
-      startupPrograms = [
-        "pgrep ${self.packages.${pkgs.system}.bspswallow}/bin/bspswallow || ${self.packages.${pkgs.system}.bspswallow}/bin/bspswallow"
-      ];
       settings = {
         remove_disabled_monitors = true;
         remove_unplugged_monitors = true;
@@ -26,7 +23,4 @@
       };
     };
   };
-
-  # Needed for bspswallow to work.
-  home.file.".config/bspwm/terminals".text = "Alacritty";
 }
