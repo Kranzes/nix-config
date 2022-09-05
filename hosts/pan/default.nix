@@ -24,6 +24,8 @@
     networkmanager.enable = true;
   };
 
+  systemd.services.NetworkManager-wait-online.enable = false; # Slows down boot
+
   # Set your time zone.
   time.timeZone = "Asia/Jerusalem";
 
