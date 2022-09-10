@@ -44,6 +44,9 @@
       -- autopairs
       require('nvim-autopairs').setup{}
 
+      -- gitsigns
+      require('gitsigns').setup()
+
       -- basic vim settings/keybinds
       vim.o.number = true
       vim.o.relativenumber = true
