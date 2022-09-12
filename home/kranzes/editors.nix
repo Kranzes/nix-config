@@ -7,6 +7,9 @@
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
+    withRuby = false;
+    withNodeJs = false;
+    withPython3 = false;
     plugins = with pkgs.vimPlugins; [
       nord-nvim
       lightline-vim
@@ -25,7 +28,7 @@
       gitsigns-nvim
       nvim-ts-rainbow
     ];
-    extraPackages = with pkgs; [ ripgrep ];
+    extraPackages = with pkgs; [ ripgrep git ];
     extraConfig = ''
       lua << EOF
       -- enable nord theme
@@ -34,7 +37,7 @@
       -- enable colorizer
       require'colorizer'.setup()
 
-      -- enable rnin via lspconfig
+      -- enable rnix via lspconfig
       require'lspconfig'.rnix.setup{
         cmd = { "${pkgs.rnix-lsp}/bin/rnix-lsp" }
       }
