@@ -104,26 +104,6 @@
         "type": "github"
       }
     },
-    "hercules-ci-effects": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1661435920,
-        "narHash": "sha256-KD9zq5llB8l/gCnPv9Qa7T4Vb9o8pT6dPj/B1c+PXu4=",
-        "owner": "hercules-ci",
-        "repo": "hercules-ci-effects",
-        "rev": "f659b6f02f216d49ade19db052c6e28d6c684986",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "hercules-ci-effects",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -294,7 +274,6 @@
       "inputs": {
         "agenix": "agenix",
         "discocss": "discocss",
-        "hercules-ci-effects": "hercules-ci-effects",
         "home-manager": "home-manager",
         "neovim-nightly": "neovim-nightly",
         "nix-colors": "nix-colors",

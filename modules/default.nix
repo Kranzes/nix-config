@@ -4,6 +4,6 @@
   imports = [
     ./ssh.nix
     ./nix-nixpkgs.nix
-    ./cachix-deploy.nix
+    #./cachix-deploy.nix
   ] ++ lib.optionals (!headless) [ ./xorg.nix ];
 }

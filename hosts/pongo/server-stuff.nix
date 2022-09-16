@@ -5,6 +5,6 @@
     ./server-stuff/nextcloud.nix
     ./server-stuff/jellyfin.nix
     ./server-stuff/gitea.nix
-    ./server-stuff/hercules-ci.nix
+    #./server-stuff/hercules-ci.nix
   ];
 }
