@@ -13,6 +13,7 @@
     discocss = { url = "github:mlvzk/discocss/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
     agenix = { url = "github:ryantm/agenix"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixinate = { url = "github:MatthewCroughan/nixinate"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nil = { url = "github:oxalica/nil"; inputs.nixpkgs.follows = "nixpkgs"; };
     #hercules-ci-effects = { url = "github:hercules-ci/hercules-ci-effects"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
