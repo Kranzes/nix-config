@@ -22,7 +22,7 @@
     tree
     fzf
     filezilla
-    gnome3.gnome-disk-utility
+    gnome.gnome-disk-utility
     nextcloud-client
     lm_sensors
     libreoffice

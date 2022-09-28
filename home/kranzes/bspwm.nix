@@ -1,12 +1,15 @@
 { config, pkgs, self, ... }:
 {
+  home.pointerCursor = {
+    package = pkgs.gnome.adwaita-icon-theme;
+    name = "Adwaita";
+    size = 24;
+    x11.enable = true;
+    gtk.enable = true;
+  };
+
   xsession = {
     enable = true;
-    pointerCursor = {
-      package = pkgs.gnome.adwaita-icon-theme;
-      name = "Adwaita";
-      size = 24;
-    };
     windowManager.bspwm = {
       enable = true;
       settings = {
