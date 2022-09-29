@@ -23,7 +23,7 @@
         "app.shield.optoutstudies.enabled" = false;
         "app.update.auto" = false;
         "beacon.enabled" = false;
-        "breakpad.reportUR" = "";
+        "breakpad.reportURL" = "";
         "browser.compactmode.show" = true;
         "browser.contentblocking.category" = "strict";
         "browser.crashReports.unsubmittedCheck.enabled" = false;
@@ -79,7 +79,6 @@
         "toolkit.telemetry.shutdownPingSender.enabled" = false;
         "toolkit.telemetry.unified" = false;
         "toolkit.telemetry.updatePing.enabled" = false;
-        "general.useragent.override" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0";
       };
     };
   };
