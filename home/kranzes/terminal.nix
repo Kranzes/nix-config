@@ -47,7 +47,7 @@
               foreground = "CellBackground";
               background = "#${colors.base0C}";
             };
-            bar = {
+            footer_bar = {
               background = "#${colors.base02}";
               foreground = "#${colors.base04}";
             };
