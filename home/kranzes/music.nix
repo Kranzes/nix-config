@@ -3,7 +3,7 @@
 {
   services.mpd = {
     enable = true;
-    dataDir = "/home/kranzes/.config/mpd";
+    dataDir = "${config.xdg.dataHome}/mpd";
     network = {
       listenAddress = "any";
       port = 6600;
@@ -27,22 +27,19 @@
       Environment = "NON_INTERACTIVE=1";
       Restart = "always";
     };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
+    Install.WantedBy = [ "default.target" ];
   };
 
   programs.ncmpcpp = {
     enable = true;
-    package = pkgs.ncmpcpp;
     settings = {
-      ncmpcpp_directory = "/home/kranzes/.config/ncmpcpp";
-      lyrics_directory = "/home/kranzes/.cache/lyrics";
-      progressbar_look = "▄▄";
-      media_library_primary_tag = "album_artist";
-      follow_now_playing_lyrics = "yes";
       screen_switcher_mode = "playlist, media_library";
+      media_library_primary_tag = "album_artist";
+      progressbar_look = "▄▄";
       display_bitrate = "yes";
+      lyrics_directory = "${config.xdg.cacheHome}/lyrics";
+      follow_now_playing_lyrics = "yes";
+      lyrics_fetchers = "genius";
     };
   };
 
