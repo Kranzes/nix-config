@@ -6,7 +6,7 @@
     system = "x86_64-linux";
     extraSpecialArgs.headless = false;
     home-manager = true;
-    extraHomeModules = [ inputs.nix-colors.homeManagerModule inputs.discocss.hmModule ];
+    extraHomeModules = [ inputs.nix-colors.homeManagerModule ];
     deployBuildOn = "remote";
     deploySshUser = "kranzes";
   };
@@ -16,7 +16,7 @@
     system = "x86_64-linux";
     extraSpecialArgs.headless = false;
     home-manager = true;
-    extraHomeModules = [ inputs.nix-colors.homeManagerModule inputs.discocss.hmModule ];
+    extraHomeModules = [ inputs.nix-colors.homeManagerModule ];
     deploySshUser = "kranzes";
   };
 

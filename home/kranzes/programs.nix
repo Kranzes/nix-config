@@ -13,10 +13,18 @@
 
     discocss = {
       enable = true;
-      discord = pkgs.discord.override { withOpenASAR = true; };
+      discordPackage = pkgs.discord.override { withOpenASAR = true; };
+      package = pkgs.discocss.overrideAttrs (_: {
+        patches = [
+          (pkgs.fetchpatch {
+            url = "https://github.com/mlvzk/discocss/commit/83b53f3d08cd1d448caa4aa77a4a19f2fdc2f523.patch";
+            sha256 = "sha256-iyKXJ7Xa9X1v0cyKnkCHmXpd1Iuy/VBuhRv4x8lz5Cs=";
+          })
+        ];
+      });
       css = builtins.readFile "${pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/orblazer/discord-nordic/7088a690246a077c11f31ee7329168e9876a2349/base.css";
-        sha256 = "sha256-6OxsGnPnuVi0jzrKVi+84QKDjtceaGwBqRnKemGCS6s="; }
+        url = "https://raw.githubusercontent.com/orblazer/discord-nordic/8b62f70a6b61e63da1c5b603ff7f8205651e7d09/base.css";
+        sha256 = "sha256-HMnGC5KmNYAU4j8lOdNzWPnm48z8YgkY59LxoCF9wB0="; }
       }";
     };
 

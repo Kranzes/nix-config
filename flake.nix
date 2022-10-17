@@ -7,7 +7,6 @@
     nur.url = "github:nix-community/NUR";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     nix-colors.url = "github:misterio77/nix-colors";
-    discocss = { url = "github:mlvzk/discocss/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
     agenix = { url = "github:ryantm/agenix"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixinate = { url = "github:MatthewCroughan/nixinate"; inputs.nixpkgs.follows = "nixpkgs"; };
     nil = { url = "github:oxalica/nil"; inputs.nixpkgs.follows = "nixpkgs"; };
