@@ -61,19 +61,6 @@
     fstrim.enable = true;
     tailscale.enable = true;
     pcscd.enable = true;
-    tlp.enable = true;
-    tlp.settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_BOOST_ON_AC = "1";
-      CPU_BOOST_ON_BAT = "1";
-      WIFI_PWR_ON_BAT = "no";
-      DEVICES_TO_DISABLE_ON_DOCK = "wifi";
-      DEVICES_TO_ENABLE_ON_UNDOCK = "wifi";
-      SOUND_POWER_SAVE_ON_BAT = "0";
-    };
   };
 
   # Enable sound.

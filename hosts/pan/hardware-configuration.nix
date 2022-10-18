@@ -29,6 +29,8 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/de4c7929-ed56-4d50-a86e-3ec060dba4d5"; }];
 
+  powerManagement.cpuFreqGovernor = "conservative";
+
   hardware = {
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
