@@ -5,6 +5,7 @@
     nextcloud-client.enable = true;
     nextcloud-client.startInBackground = true;
     network-manager-applet.enable = true;
+    gnome-keyring.enable = true;
   };
 
   systemd.user.sockets.yubikey-touch-detector = {

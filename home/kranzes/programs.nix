@@ -18,7 +18,7 @@
         patches = [
           (pkgs.fetchpatch {
             url = "https://github.com/mlvzk/discocss/commit/83b53f3d08cd1d448caa4aa77a4a19f2fdc2f523.patch";
-            sha256 = "sha256-iyKXJ7Xa9X1v0cyKnkCHmXpd1Iuy/VBuhRv4x8lz5Cs=";
+            sha256 = "sha256-T7OCmX2ZVcTSSp+nXVSNvOSB5IDg9dG5b/mL9kIemmk=";
           })
         ];
       });
