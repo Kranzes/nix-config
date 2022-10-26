@@ -33,6 +33,7 @@
       ripgrep # telescope
       git # gitsigns
       inputs.nil.packages.${pkgs.system}.nil # lspconfig
+      nodePackages.bash-language-server # lspconfig
     ];
     extraConfig = ''
       lua << EOF
@@ -81,7 +82,7 @@
       require('gitsigns').setup()
 
       -- LSP & nvim-cmp setup
-      local servers = { 'nil_ls' }
+      local servers = { 'nil_ls', 'bashls' }
       for _, lsp in ipairs(servers) do
         require('lspconfig')[lsp].setup {
           capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
