@@ -14,7 +14,10 @@
   boot.kernelParams = [ "i915.fastboot=1" "intel_iommu=on" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/cead3453-145b-49bc-803f-0ba39ec9d9b2";
+  boot.initrd.luks.devices."root" = {
+    device = "/dev/disk/by-uuid/cead3453-145b-49bc-803f-0ba39ec9d9b2";
+    crypttabExtraOpts = [ "fido2-device=auto" ];
+  };
 
   fileSystems = {
     "/" = {

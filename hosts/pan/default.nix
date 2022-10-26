@@ -13,6 +13,7 @@
   # Use the systemd-boot
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    initrd.systemd.enable = true;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
