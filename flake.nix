@@ -10,14 +10,12 @@
     agenix = { url = "github:ryantm/agenix"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixinate = { url = "github:MatthewCroughan/nixinate"; inputs.nixpkgs.follows = "nixpkgs"; };
     nil = { url = "github:oxalica/nil"; inputs.nixpkgs.follows = "nixpkgs"; };
-    #hercules-ci-effects = { url = "github:hercules-ci/hercules-ci-effects"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
-  outputs = { self, ... }@inputs:
+  outputs = inputs:
     let
       system = "x86_64-linux";
       pkgs = inputs.nixpkgs.legacyPackages.${system};
-      #hci-effects = inputs.hercules-ci-effects.lib.withPkgs pkgs;
     in
     {
       lib = import ./lib inputs;
@@ -26,16 +24,10 @@
 
       packages.${system} = import ./packages inputs;
 
-      apps = inputs.nixinate.nixinate.${system} self;
+      apps = inputs.nixinate.nixinate.${system} inputs.self;
 
       devShells.${system}.default = pkgs.mkShellNoCC {
         packages = [ pkgs.nixpkgs-fmt inputs.agenix.defaultPackage.${system} pkgs.age-plugin-yubikey ];
       };
-
-      #effects = { branch, ... }: {
-      #  deploy = hci-effects.runIf (branch == "master") (hci-effects.runCachixDeploy {
-      #    deploy.agents = pkgs.lib.mapAttrs (_: x: x.config.system.build.toplevel) self.nixosConfigurations;
-      #  });
-      #};
     };
 }

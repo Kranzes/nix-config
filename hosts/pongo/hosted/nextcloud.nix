@@ -1,10 +1,12 @@
-{ config, pkgs, self, ... }:
-
+{ config, pkgs, inputs, ... }:
+let
+  domain = "cloud.ilanjoselevich.com";
+in
 {
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud25;
-    hostName = "cloud.ilanjoselevich.com";
+    hostName = domain;
     nginx.recommendedHttpHeaders = true;
     https = true;
     autoUpdateApps.enable = true;
@@ -20,9 +22,9 @@
 
   services.postgresql = {
     enable = true;
-    ensureDatabases = [ "${config.services.nextcloud.config.dbname}" ];
+    ensureDatabases = [ config.services.nextcloud.config.dbname ];
     ensureUsers = [{
-      name = "${config.services.nextcloud.config.dbuser}";
+      name = config.services.nextcloud.config.dbuser;
       ensurePermissions."DATABASE ${config.services.nextcloud.config.dbname}" = "ALL PRIVILEGES";
     }];
   };
@@ -33,24 +35,27 @@
     after = [ "postgresql.service" ];
   };
 
-  services.nginx.virtualHosts."${config.services.nextcloud.hostName}" = {
-    forceSSL = true;
-    enableACME = true;
+  services.nginx = {
+    enable = true;
+    virtualHosts.${domain} = {
+      forceSSL = true;
+      enableACME = true;
+    };
   };
 
   security.acme = {
     acceptTerms = true;
-    certs."${config.services.nextcloud.hostName}".email = "personal@ilanjoselevich.com";
+    certs.${domain}.email = "personal@ilanjoselevich.com";
   };
 
   age.secrets = {
     nextcloud-db-pass = {
-      file = "${self}/secrets/nextcloud-db-pass.age";
+      file = "${inputs.self}/secrets/nextcloud-db-pass.age";
       group = "nextcloud";
       owner = "nextcloud";
     };
     nextcloud-admin-root-pass = {
-      file = "${self}/secrets/nextcloud-admin-root-pass.age";
+      file = "${inputs.self}/secrets/nextcloud-admin-root-pass.age";
       group = "nextcloud";
       owner = "nextcloud";
     };

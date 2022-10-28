@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
   programs.zsh.shellAliases = {
     # fan speed

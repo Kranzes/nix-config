@@ -1,4 +1,4 @@
-{ self, ... } @ inputs:
+inputs:
 
 { hostname
 , system
@@ -12,10 +12,10 @@
 
 inputs.nixpkgs.lib.nixosSystem {
   inherit system;
-  specialArgs = { inherit inputs self; } // extraSpecialArgs;
+  specialArgs = { inherit inputs; } // extraSpecialArgs;
   modules = [
-    "${self}/hosts/${hostname}"
-    "${self}/modules"
+    "${inputs.self}/hosts/${hostname}"
+    "${inputs.self}/modules"
     inputs.agenix.nixosModule
     {
       _module.args.nixinate = {
@@ -27,12 +27,12 @@ inputs.nixpkgs.lib.nixosSystem {
     }
   ] ++ inputs.nixpkgs.lib.optionals home-manager [
     inputs.home-manager.nixosModule
-    "${self}/home"
-    "${self}/hosts/${hostname}/home"
+    "${inputs.self}/home"
+    "${inputs.self}/hosts/${hostname}/home"
     {
       home-manager = {
         useGlobalPkgs = true;
-        extraSpecialArgs = { inherit inputs self; } // extraSpecialArgs;
+        extraSpecialArgs = { inherit inputs; } // extraSpecialArgs;
         sharedModules = extraHomeModules;
       };
     }

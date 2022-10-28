@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   services.mpd.musicDirectory = "/home/4TB-HDD/Media/Music";

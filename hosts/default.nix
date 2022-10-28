@@ -1,7 +1,7 @@
-{ self, ... } @ inputs:
+inputs:
 
 {
-  pongo = self.lib.mkSystem {
+  pongo = inputs.self.lib.mkSystem {
     hostname = "pongo";
     system = "x86_64-linux";
     extraSpecialArgs.headless = false;
@@ -11,7 +11,7 @@
     deploySshUser = "kranzes";
   };
 
-  pan = self.lib.mkSystem {
+  pan = inputs.self.lib.mkSystem {
     hostname = "pan";
     system = "x86_64-linux";
     extraSpecialArgs.headless = false;
@@ -20,7 +20,7 @@
     deploySshUser = "kranzes";
   };
 
-  vultr = self.lib.mkSystem {
+  vultr = inputs.self.lib.mkSystem {
     hostname = "vultr";
     system = "x86_64-linux";
     extraSpecialArgs.headless = true;

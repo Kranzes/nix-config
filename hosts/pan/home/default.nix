@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
   home-manager.users.kranzes = {
     imports = [

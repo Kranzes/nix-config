@@ -1,4 +1,4 @@
-{ config, pkgs, self, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   services.mpd = {
@@ -60,7 +60,7 @@
     cantata
     cava
     spek
-    self.packages."${pkgs.system}".rofi-mpd
+    inputs.self.packages."${pkgs.system}".rofi-mpd
   ];
 }
 
