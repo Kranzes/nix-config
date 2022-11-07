@@ -1,6 +1,6 @@
 # configuration.nix
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -12,7 +12,7 @@
   ];
   # Use the systemd-boot
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     supportedFilesystems = [ "ntfs" ];
     loader = {
       systemd-boot.enable = true;

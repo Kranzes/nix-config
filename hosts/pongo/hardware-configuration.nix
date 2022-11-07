@@ -45,6 +45,8 @@
 
   swapDevices = [{ device = "/swapfile"; size = 16384; }];
 
+  powerManagement.cpuFreqGovernor = "performance";
+
   hardware = {
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
