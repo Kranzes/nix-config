@@ -1,7 +1,10 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./hercules-ci.nix
+  ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

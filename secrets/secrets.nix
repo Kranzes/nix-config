@@ -14,4 +14,7 @@ in
   # Pongo
   "nextcloud-db-pass.age".publicKeys = allUsers ++ [ systems.pongo ];
   "nextcloud-admin-root-pass.age".publicKeys = allUsers ++ [ systems.pongo ];
+  # Vultr
+  "herculesSecrets.age".publicKeys = allUsers ++ [ systems.vultr ];
+  "vultr-herculesClusterJoinToken.age".publicKeys = allUsers ++ [ systems.vultr ];
 }
