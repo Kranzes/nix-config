@@ -19,7 +19,8 @@
       nvim-lspconfig
       telescope-nvim
       telescope-fzf-native-nvim
-      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+      telescope-manix
+      nvim-treesitter.withAllGrammars
       nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
@@ -28,9 +29,11 @@
       gitsigns-nvim
       nvim-ts-rainbow
       formatter-nvim
+      rust-tools-nvim
     ];
     extraPackages = with pkgs; [
       ripgrep # telescope
+      manix # telescope
       git # gitsigns
       inputs.nil.packages.${pkgs.system}.nil # lspconfig
       nodePackages.bash-language-server # lspconfig
@@ -61,8 +64,10 @@
 
       -- telescope
       require('telescope').load_extension('fzf')
-      vim.keymap.set('n', '<space>ff', '<cmd>Telescope find_files<CR>', noremap)
-      vim.keymap.set('n', '<space>fg', '<cmd>Telescope live_grep<CR>', noremap)
+      require('telescope').load_extension('manix')
+      vim.keymap.set('n', '<space>ff', require('telescope.builtin').find_files)
+      vim.keymap.set('n', '<space>fg', require('telescope.builtin').live_grep)
+      vim.keymap.set('n', '<space>mn', require('telescope-manix').search)
 
       -- tree sitter
       require('nvim-treesitter.configs').setup {
@@ -105,13 +110,15 @@
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
       end
 
-      local servers = { 'nil_ls', 'bashls', 'rust_analyzer' }
+      local servers = { 'nil_ls', 'bashls' }
       for _, lsp in ipairs(servers) do
         require('lspconfig')[lsp].setup {
           capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
           on_attach = on_attach,
         }
       end
+
+      require("rust-tools").setup()
 
       vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
         vim.lsp.handlers.hover,
