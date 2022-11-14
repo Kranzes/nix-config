@@ -14,14 +14,6 @@
     discocss = {
       enable = true;
       discordPackage = pkgs.discord.override { withOpenASAR = true; };
-      package = pkgs.discocss.overrideAttrs (_: {
-        patches = [
-          (pkgs.fetchpatch {
-            url = "https://github.com/mlvzk/discocss/commit/83b53f3d08cd1d448caa4aa77a4a19f2fdc2f523.patch";
-            sha256 = "sha256-T7OCmX2ZVcTSSp+nXVSNvOSB5IDg9dG5b/mL9kIemmk=";
-          })
-        ];
-      });
       css = builtins.readFile "${pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/orblazer/discord-nordic/8b62f70a6b61e63da1c5b603ff7f8205651e7d09/base.css";
         sha256 = "sha256-HMnGC5KmNYAU4j8lOdNzWPnm48z8YgkY59LxoCF9wB0="; }
