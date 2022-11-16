@@ -118,7 +118,7 @@
         }
       end
 
-      require("rust-tools").setup()
+      require("rust-tools").setup({ server = { on_attach = on_attach }})
 
       vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
         vim.lsp.handlers.hover,
