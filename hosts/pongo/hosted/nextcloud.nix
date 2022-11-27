@@ -8,6 +8,7 @@ in
     package = pkgs.nextcloud25;
     hostName = domain;
     nginx.recommendedHttpHeaders = true;
+    enableBrokenCiphersForSSE = false;
     https = true;
     autoUpdateApps.enable = true;
     config = {
