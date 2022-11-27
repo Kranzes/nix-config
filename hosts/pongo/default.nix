@@ -44,6 +44,8 @@
 
   nix.settings.trusted-users = [ "kranzes" ];
 
+  environment.pathsToLink = [ "/share/zsh" ];
+
   environment.systemPackages = with pkgs; [
     wget
     git
@@ -121,6 +123,10 @@
   programs.command-not-found.enable = false;
   programs.dconf.enable = true;
   programs.steam.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableGlobalCompInit = false;
+  };
 
   # security related stuff
   security = {

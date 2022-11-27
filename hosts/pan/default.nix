@@ -32,6 +32,8 @@
 
   nix.settings.trusted-users = [ "kranzes" ];
 
+  environment.pathsToLink = [ "/share/zsh" ];
+
 
   environment.systemPackages = with pkgs; [
     wget
@@ -92,6 +94,10 @@
   programs.adb.enable = true;
   programs.command-not-found.enable = false;
   programs.dconf.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableGlobalCompInit = false;
+  };
 
   # Unlock keyring on lightdm login.
   security.pam.services.lightdm.enableGnomeKeyring = true;
