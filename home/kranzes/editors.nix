@@ -26,6 +26,8 @@
       cmp-buffer
       cmp-path
       cmp-spell
+      cmp_luasnip
+      luasnip
       gitsigns-nvim
       nvim-ts-rainbow
       formatter-nvim
@@ -136,11 +138,17 @@
 
       local cmp = require 'cmp'
       cmp.setup {
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end
+        },
         sources = {
           { name = "nvim_lsp" },
           { name = "buffer" },
           { name = "path" },
           { name = 'spell' },
+          { name = 'luasnip' },
         },
         formatting = {
           format = function(entry, vim_item)
@@ -149,6 +157,7 @@
               nvim_lsp = "[LSP]",
               path = "[Path]",
               spell = "[Spell]",
+              luasnip = "[Snip]",
             })[entry.source.name]
             return vim_item
           end
