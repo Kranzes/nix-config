@@ -14,6 +14,7 @@
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     supportedFilesystems = [ "ntfs" ];
+    initrd.systemd.enable = true;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -101,16 +102,12 @@
       onBoot = "ignore";
       qemu.ovmf.enable = true;
     };
-    docker = {
-      enable = true;
-      enableNvidia = true;
-    };
   };
   programs.extra-container.enable = true;
 
   users.users.kranzes = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "mpd" "libvirtd" "adbusers" "docker" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "mpd" "libvirtd" "adbusers" ];
     uid = 1000;
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
@@ -122,7 +119,6 @@
   programs.adb.enable = true;
   programs.command-not-found.enable = false;
   programs.dconf.enable = true;
-  programs.steam.enable = true;
   programs.zsh = {
     enable = true;
     enableGlobalCompInit = false;
