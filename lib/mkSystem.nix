@@ -16,7 +16,7 @@ inputs.nixpkgs.lib.nixosSystem {
   modules = [
     "${inputs.self}/hosts/${hostname}"
     "${inputs.self}/modules"
-    inputs.agenix.nixosModule
+    inputs.agenix.nixosModules.age
     {
       _module.args.nixinate = {
         host = hostname;
