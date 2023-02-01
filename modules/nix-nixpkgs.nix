@@ -1,12 +1,22 @@
-{ config, inputs, ... }:
+{ lib, inputs, ... }:
 
 {
+  environment.etc = {
+    "nix/flake-channels/nixpkgs".source = inputs.nixpkgs;
+    "nix/flake-channels/home-manager".source = inputs.home-manager;
+  };
+
   nix = {
-    registry.nixpkgs.flake = inputs.nixpkgs;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    registry = lib.mapAttrs (_: v: { flake = v; }) inputs;
+    nixPath = [
+      "nixpkgs=/etc/nix/flake-channels/nixpkgs"
+      "home-manager=/etc/nix/flake-channels/home-manager"
+    ];
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       builders-use-substitutes = true;
+      auto-optimise-store = true;
+      warn-dirty = false;
       trusted-users = [ "@wheel" ];
       substituters = [
         "https://nix-community.cachix.org"
@@ -16,6 +26,8 @@
       ];
     };
   };
+
+
   nixpkgs.overlays = [ inputs.nur.overlay ];
   nixpkgs.config.allowUnfree = true;
 }
