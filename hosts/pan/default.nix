@@ -58,7 +58,6 @@
     upower.enable = true;
     thinkfan.enable = true;
     gvfs.enable = true;
-    autorandr.enable = true;
     fstrim.enable = true;
     tailscale.enable = true;
     pcscd.enable = true;
