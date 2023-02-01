@@ -139,7 +139,7 @@
           "host" = "localhost";
           "port" = "6600";
           "format-foreground" = "\${colors.blue1}";
-          "label-song" = "𝄞 %artist% - %title%";
+          "label-song" = "%artist% - %title%";
           "format-online" = "<label-song>";
         };
         "module/pulseaudio" = {

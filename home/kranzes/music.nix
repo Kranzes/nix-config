@@ -39,7 +39,7 @@
       display_bitrate = "yes";
       lyrics_directory = "${config.xdg.cacheHome}/lyrics";
       follow_now_playing_lyrics = "yes";
-      lyrics_fetchers = "genius";
+      lyrics_fetchers = "musixmatch, azlyrics";
     };
   };
 
