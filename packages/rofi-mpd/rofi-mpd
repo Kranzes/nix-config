@@ -4,26 +4,26 @@ mb() { rofi -sort -matching normal -dmenu -i -kb-custom-1 "Alt+q" "$@" ;}
 artist() {
   lines="$(mpc list artist | wc -l)"
   [ "$lines" -gt 8 ] && lines=8
-  mpc list AlbumArtist | sort -f | m -p "Artists" -l $lines
+  mpc list AlbumArtist | sort -f | m -p "Artists" -l "$lines"
 }
 
 a_album() {
   artist="$1"
   lines="$(mpc list album artist "$artist" | wc -l)"
   [ "$lines" -gt 8 ] && lines=8
-  mpc list album artist "$artist" | sort -f | mb -p "Albums" -l $lines
+  mpc list album artist "$artist" | sort -f | mb -p "Albums" -l "$lines"
 }
 
 album() {
   lines="$(mpc list album | wc -l)"
   [ "$lines" -gt 8 ] && lines=8
-  mpc list album | sort -f | mb -p "Album" -l $lines
+  mpc list album | sort -f | mb -p "Album" -l "$lines"
 }
 
 song() {
   lines="$(mpc list title | wc -l)"
   [ "$lines" -gt 8 ] && lines=8
-  mpc list title | sort -f | mb -p "Song" -l $lines
+  mpc list title | sort -f | mb -p "Song" -l "$lines"
 }
 
 case "$1" in
