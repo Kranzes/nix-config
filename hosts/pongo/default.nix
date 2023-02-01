@@ -22,7 +22,6 @@
   };
 
   networking = {
-    hostName = "pongo";
     networkmanager.enable = true;
     firewall = {
       allowedUDPPorts = [

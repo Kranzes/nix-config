@@ -7,7 +7,6 @@ inputs:
     extraSpecialArgs.headless = false;
     home-manager = true;
     extraHomeModules = [ inputs.nix-colors.homeManagerModule ];
-    deployBuildOn = "remote";
     deploySshUser = "kranzes";
   };
 
@@ -17,11 +16,12 @@ inputs:
     extraSpecialArgs.headless = false;
     home-manager = true;
     extraHomeModules = [ inputs.nix-colors.homeManagerModule ];
+    deployBuildOn = "local";
     deploySshUser = "kranzes";
   };
 
-  vultr = inputs.self.lib.mkSystem {
-    hostname = "vultr";
+  hetzner = inputs.self.lib.mkSystem {
+    hostname = "hetzner";
     system = "x86_64-linux";
     extraSpecialArgs.headless = true;
     deploySshUser = "kranzes";

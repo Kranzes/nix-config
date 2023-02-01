@@ -21,7 +21,6 @@
   };
 
   networking = {
-    hostName = "pan";
     networkmanager.enable = true;
   };
 

@@ -20,4 +20,4 @@ Name              		     	    | Description
 ------------------------------------------- | -----------
 [Pongo](./hosts/pongo) 	                    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a GTX 950 
 [Pan](./hosts/pan)     	                    | My ThinkPad T430
-[Vultr](./hosts/vultr)                      | Tiny VPS running on vultr
+[Hetzner](./hosts/hetzner)                  | CPX31 VPS running on Hetzner Cloud

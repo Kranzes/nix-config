@@ -6,7 +6,7 @@ inputs:
 , extraModules ? [ ]
 , home-manager ? false
 , extraHomeModules ? [ ]
-, deployBuildOn ? "local"
+, deployBuildOn ? "remote"
 , deploySshUser
 }:
 
@@ -18,6 +18,7 @@ inputs.nixpkgs.lib.nixosSystem {
     "${inputs.self}/modules"
     inputs.agenix.nixosModules.age
     {
+      networking.hostName = hostname;
       _module.args.nixinate = {
         host = hostname;
         sshUser = deploySshUser;
