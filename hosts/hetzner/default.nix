@@ -2,6 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ./hercules-ci.nix
+    ./impermanence.nix
   ];
 
   users.mutableUsers = false;

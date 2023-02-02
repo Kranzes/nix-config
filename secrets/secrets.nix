@@ -2,7 +2,7 @@ let
   systems = {
     pongo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMZiUguDNKZlxJpDmuN4Z2AAK9iH9oQLqMQpvo7RZ4q+";
     pan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGDbBEzvhMeRzkGHpV+rd8Jq8O3hHBQYQhuzpvep08Ux";
-    hetzner = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIIDK8du9y+MvMC9PFjoCTpQHoWZuvyBTk3CmApBAYe";
+    hetzner = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILL1Ae0IWUaynCv2AaWxh2U2EDeDrD9ADPpI6O3nu3D0";
   };
   users = {
     kranzes-yk5 = "age1yubikey1q2nnp3j3umru793y4rz662e0sgcgf69v3900s6gdntwxxrwle5hkwcss32k";
