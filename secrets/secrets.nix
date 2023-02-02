@@ -11,6 +11,8 @@ let
   allUsers = builtins.attrValues users;
 in
 {
+  # Infra/All
+  "infra-tailscaleAuthKey.age".publicKeys = allUsers ++ (with systems; [ pongo pan hetzner ]);
   # Pongo
   "nextcloud-db-pass.age".publicKeys = allUsers ++ [ systems.pongo ];
   "nextcloud-admin-root-pass.age".publicKeys = allUsers ++ [ systems.pongo ];

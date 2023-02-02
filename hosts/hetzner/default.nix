@@ -8,8 +8,6 @@
 
   programs.vim.defaultEditor = true;
 
-  services.tailscale.enable = true;
-
   environment.noXlibs = true;
 
   documentation.nixos.enable = false;

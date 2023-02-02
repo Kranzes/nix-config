@@ -58,7 +58,6 @@
     thinkfan.enable = true;
     gvfs.enable = true;
     fstrim.enable = true;
-    tailscale.enable = true;
     pcscd.enable = true;
   };
 
