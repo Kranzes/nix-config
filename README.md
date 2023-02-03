@@ -1,7 +1,5 @@
 # nix-config
 
-[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
-
 A nix flake that holds all of the system configurations of my personal machines.
 
 ## Configurations & Modules
@@ -9,7 +7,7 @@ A nix flake that holds all of the system configurations of my personal machines.
 Name        		| Description
 ----------------------- | -----------
 [Hosts](./hosts)	| Host specific configurations (system-wide & Home-Manager)
-[Modules](./modules)    | Shared system-wide configurations between hosts
+[Profiles](./profiles)  | Shared system-wide configurations between hosts
 [Home](./home)          | Shared Home-Manager configurations between hosts
 [Packages](./packages)  | Modified nixpkgs packages and custom packages
 [Lib](./lib)            | libraries, tools and functions used in across this repo

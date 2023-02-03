@@ -15,7 +15,7 @@ inputs.nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs; } // extraSpecialArgs;
   modules = [
     "${inputs.self}/hosts/${hostname}"
-    "${inputs.self}/modules"
+    "${inputs.self}/profiles"
     inputs.agenix.nixosModules.age
     {
       networking.hostName = hostname;
