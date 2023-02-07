@@ -4,20 +4,20 @@
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      ublock-origin
-      clearurls
-      darkreader
-      facebook-container
-      i-dont-care-about-cookies
-      privacy-badger
-      flagfox
-      kristofferhagen-nord-theme
-      sponsorblock
-      translate-web-pages
-      floccus
-    ];
     profiles."kranzes" = {
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        clearurls
+        darkreader
+        facebook-container
+        i-dont-care-about-cookies
+        privacy-badger
+        flagfox
+        kristofferhagen-nord-theme
+        sponsorblock
+        translate-web-pages
+        floccus
+      ];
       settings = {
         "app.normandy.enabled" = false;
         "app.shield.optoutstudies.enabled" = false;
