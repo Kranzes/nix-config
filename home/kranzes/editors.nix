@@ -3,7 +3,7 @@
 {
   programs.neovim = {
     enable = true;
-    #package = inputs.neovim-nightly.packages.${pkgs.system}.neovim;
+    package = inputs.neovim-nightly.packages.${pkgs.system}.neovim;
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
@@ -95,6 +95,7 @@
       vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
       local on_attach = function(client, bufnr)
+        client.server_capabilities.semanticTokensProvider = nil
         local bufopts = { noremap=true, silent=true, buffer=bufnr }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
