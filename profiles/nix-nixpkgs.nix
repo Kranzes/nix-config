@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ inputs, ... }:
 
 {
   environment.etc = {
@@ -7,7 +7,10 @@
   };
 
   nix = {
-    registry = lib.mapAttrs (_: v: { flake = v; }) inputs;
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      home-manager.flake = inputs.home-manager;
+    };
     nixPath = [
       "nixpkgs=/etc/nix/flake-channels/nixpkgs"
       "home-manager=/etc/nix/flake-channels/home-manager"
@@ -26,7 +29,6 @@
       ];
     };
   };
-
 
   nixpkgs.overlays = [ inputs.nur.overlay ];
   nixpkgs.config.allowUnfree = true;
