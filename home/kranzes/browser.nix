@@ -1,22 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
     profiles."kranzes" = {
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
         clearurls
         darkreader
         facebook-container
         i-dont-care-about-cookies
         privacy-badger
-        flagfox
         kristofferhagen-nord-theme
         sponsorblock
         translate-web-pages
-        floccus
+        (flagfox.overrideAttrs (_: { meta.license.free = true; }))
       ];
       settings = {
         "app.normandy.enabled" = false;

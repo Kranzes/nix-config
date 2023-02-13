@@ -30,6 +30,5 @@
     };
   };
 
-  nixpkgs.overlays = [ inputs.nur.overlay ];
   nixpkgs.config.allowUnfree = true;
 }
