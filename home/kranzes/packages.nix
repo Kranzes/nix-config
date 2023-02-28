@@ -39,6 +39,7 @@
     acpi
     networkmanagerapplet
     ripgrep
+    yubioath-flutter
   ];
 }
 

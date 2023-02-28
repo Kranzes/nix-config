@@ -61,15 +61,18 @@
       vim.cmd 'autocmd FileType markdown set spell'
 
       -- copy to system clipboard
-      vim.keymap.set('v', '<F12>', '"+y', noremap, silent)
-      vim.keymap.set('n', '<F12>', ':%+y<CR>', noremap, silent)
+      local opts = { noremap=true, silent=true }
+      vim.keymap.set('v', '<F12>', '"+y', opts)
+      vim.keymap.set('n', '<F12>', ':%+y<CR>', opts)
 
       -- telescope
+      local opts = { noremap=true, silent=true }
       require('telescope').load_extension('fzf')
       require('telescope').load_extension('manix')
-      vim.keymap.set('n', '<space>ff', require('telescope.builtin').find_files)
-      vim.keymap.set('n', '<space>fg', require('telescope.builtin').live_grep)
-      vim.keymap.set('n', '<space>mn', require('telescope-manix').search)
+      vim.keymap.set('n', '<space>ff', require('telescope.builtin').find_files, opts)
+      vim.keymap.set('n', '<space>fg', require('telescope.builtin').live_grep, opts)
+      vim.keymap.set('n', '<space>mn', require('telescope-manix').search, opts)
+      vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
 
       -- tree sitter
       require('nvim-treesitter.configs').setup {
@@ -110,7 +113,6 @@
         vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
       end
 
       local servers = { 'nil_ls', 'bashls' }

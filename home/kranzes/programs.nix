@@ -15,8 +15,8 @@
       enable = true;
       discordPackage = pkgs.discord.override { withOpenASAR = true; };
       css = builtins.readFile "${pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/orblazer/discord-nordic/6db420c0123ea7f4c45b469081c19b66c10e9fdd/nordic.theme.css";
-        sha256 = "sha256-DbZ6g009tjBye4Rlis/jULHssIv+jIaVPEtOCzL+40M="; }
+        url = "https://raw.githubusercontent.com/orblazer/discord-nordic/891278dd580fcb496bff6e1189d7eb62c81cba6f/nordic.theme.css";
+        sha256 = "sha256-MUZ/9Pbj7j362OkFGtSQe+bKCriDwQSyQEFxE5WqA6U="; }
       }";
     };
 
