@@ -8,6 +8,7 @@ inputs:
 , extraHomeModules ? [ ]
 , deployBuildOn ? "remote"
 , deploySshUser
+, deployHermetic ? true
 }:
 
 inputs.nixpkgs.lib.nixosSystem {
@@ -24,6 +25,7 @@ inputs.nixpkgs.lib.nixosSystem {
         sshUser = deploySshUser;
         buildOn = deployBuildOn;
         substituteOnTarget = true;
+        hermetic = deployHermetic;
       };
     }
   ] ++ inputs.nixpkgs.lib.optionals home-manager [

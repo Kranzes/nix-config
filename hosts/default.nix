@@ -26,4 +26,12 @@ inputs:
     extraSpecialArgs.headless = true;
     deploySshUser = "kranzes";
   };
+
+  oracle = inputs.self.lib.mkSystem {
+    hostname = "oracle";
+    system = "aarch64-linux";
+    extraSpecialArgs.headless = true;
+    deploySshUser = "kranzes";
+    deployHermetic = false;
+  };
 }
