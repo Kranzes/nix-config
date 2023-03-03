@@ -3,10 +3,13 @@
 {
   services.tailscale.enable = true;
 
-  systemd.services.tailscaled.serviceConfig.ExecStart = [
-    ""
-    "${config.services.tailscale.package}/bin/tailscaled --state=mem: --port $PORT $FLAGS"
-  ];
+  systemd.services.tailscaled = {
+    restartIfChanged = false;
+    serviceConfig.ExecStart = [
+      ""
+      "${config.services.tailscale.package}/bin/tailscaled --state=mem: --port $PORT $FLAGS"
+    ];
+  };
 
   age.secrets.tailscaleAuthKey.file = "${inputs.self}/secrets/infra-tailscaleAuthKey.age";
 
