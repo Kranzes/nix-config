@@ -30,7 +30,9 @@
       fi
 
       # otherwise authenticate with tailscale
-      ${config.services.tailscale.package}/bin/tailscale up -authkey file:${config.age.secrets.tailscaleAuthKey.path}
+      ${config.services.tailscale.package}/bin/tailscale up \
+        --authkey file:${config.age.secrets.tailscaleAuthKey.path} \
+        --hostname=${config.networking.hostName}
     '';
   };
 }
