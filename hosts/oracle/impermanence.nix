@@ -7,12 +7,12 @@
     hideMounts = true;
     directories = [
       "/var/log"
+      "/var/lib/nixos"
       "/var/lib/systemd/coredump"
     ];
-    files = [
+    files = ([
       "/etc/machine-id"
-    ]
-    ++ builtins.concatMap (key: [ key.path (key.path + ".pub") ]) config.services.openssh.hostKeys;
+    ] ++ builtins.concatMap (key: [ key.path (key.path + ".pub") ]) config.services.openssh.hostKeys);
   };
 
   age.identityPaths = [ "/nix/persistent/etc/ssh/ssh_host_ed25519_key" ];

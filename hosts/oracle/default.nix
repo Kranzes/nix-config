@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./hercules-ci.nix
     ./impermanence.nix
+    ./devel.nix
   ];
 
   users.mutableUsers = false;
