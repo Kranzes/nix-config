@@ -19,4 +19,3 @@ Name              		     	    | Description
 [Pongo](./hosts/pongo) 	                    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a GTX 950 
 [Pan](./hosts/pan)     	                    | My ThinkPad T430
 [Hetzner](./hosts/hetzner)                  | CPX31 VPS running on Hetzner Cloud
-[Oracle](./hosts/oracle)                    | Ampere 4C/24GB VPS on Oracle Cloud
