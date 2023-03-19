@@ -32,6 +32,7 @@
       nvim-ts-rainbow
       formatter-nvim
       rust-tools-nvim
+      floating-input-nvim
     ];
     extraPackages = with pkgs; [
       ripgrep # telescope
