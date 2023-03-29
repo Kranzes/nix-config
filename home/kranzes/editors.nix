@@ -29,6 +29,7 @@
       cmp_luasnip
       luasnip
       gitsigns-nvim
+      nvim-ts-rainbow
       formatter-nvim
       rust-tools-nvim
       floating-input-nvim
@@ -77,7 +78,8 @@
       -- tree sitter
       require('nvim-treesitter.configs').setup {
         highlight = { enable = true, },
-        indent = { enable = true, }
+        indent = { enable = true, },
+        rainbow = { enable = true, }
       }
 
       -- enable colorizer
