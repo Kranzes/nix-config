@@ -14,7 +14,6 @@ in
     config = {
       dbtype = "pgsql";
       dbhost = "/run/postgresql";
-      dbpassFile = config.age.secrets.nextcloud-db-pass.path;
       adminpassFile = config.age.secrets.nextcloud-admin-root-pass.path;
       adminuser = "admin-root";
       defaultPhoneRegion = "IL";
@@ -49,16 +48,9 @@ in
     certs.${domain}.email = "personal@ilanjoselevich.com";
   };
 
-  age.secrets = {
-    nextcloud-db-pass = {
-      file = "${inputs.self}/secrets/nextcloud-db-pass.age";
-      group = "nextcloud";
-      owner = "nextcloud";
-    };
-    nextcloud-admin-root-pass = {
-      file = "${inputs.self}/secrets/nextcloud-admin-root-pass.age";
-      group = "nextcloud";
-      owner = "nextcloud";
-    };
+  age.secrets.nextcloud-admin-root-pass = {
+    file = "${inputs.self}/secrets/nextcloud-admin-root-pass.age";
+    group = "nextcloud";
+    owner = "nextcloud";
   };
 }
