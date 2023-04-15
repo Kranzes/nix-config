@@ -20,13 +20,11 @@ in
         partitions = [
           {
             name = "boot";
-            type = "partition";
             start = "0";
             end = "1M";
             flags = [ "bios_grub" ];
           }
           {
-            type = "partition";
             name = "ESP";
             start = "1M";
             end = "512M";
@@ -39,7 +37,6 @@ in
           }
           {
             name = "nix";
-            type = "partition";
             start = "512M";
             end = "100%";
             part-type = "primary";
