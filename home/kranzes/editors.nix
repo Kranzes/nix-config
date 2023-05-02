@@ -116,10 +116,19 @@
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
       end
 
+      local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      capabilities = {
+        workspace = {
+          didChangeWatchedFiles = {
+            didChangeWatchedFiles = true,
+          },
+        },
+      }
+
       local servers = { 'nil_ls', 'bashls' }
       for _, lsp in ipairs(servers) do
         require('lspconfig')[lsp].setup {
-          capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+          capabilities = capabilities,
           on_attach = on_attach,
         }
       end
