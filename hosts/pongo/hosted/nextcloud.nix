@@ -1,43 +1,24 @@
 { config, pkgs, inputs, ... }:
-let
-  domain = "cloud.ilanjoselevich.com";
-in
+
 {
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud26;
-    hostName = domain;
+    hostName = "cloud.ilanjoselevich.com";
     nginx.recommendedHttpHeaders = true;
-    enableBrokenCiphersForSSE = false;
     https = true;
     autoUpdateApps.enable = true;
+    enableBrokenCiphersForSSE = false;
     config = {
       dbtype = "pgsql";
-      dbhost = "/run/postgresql";
       adminpassFile = config.age.secrets.nextcloud-admin-root-pass.path;
       adminuser = "admin-root";
-      defaultPhoneRegion = "IL";
     };
-  };
-
-  services.postgresql = {
-    enable = true;
-    ensureDatabases = [ config.services.nextcloud.config.dbname ];
-    ensureUsers = [{
-      name = config.services.nextcloud.config.dbuser;
-      ensurePermissions."DATABASE ${config.services.nextcloud.config.dbname}" = "ALL PRIVILEGES";
-    }];
-  };
-
-  # Ensure nextcloud does not start before its database
-  systemd.services."nextcloud-setup" = {
-    requires = [ "postgresql.service" ];
-    after = [ "postgresql.service" ];
   };
 
   services.nginx = {
     enable = true;
-    virtualHosts.${domain} = {
+    virtualHosts.${config.services.nextcloud.hostName} = {
       forceSSL = true;
       enableACME = true;
     };
@@ -45,7 +26,7 @@ in
 
   security.acme = {
     acceptTerms = true;
-    certs.${domain}.email = "personal@ilanjoselevich.com";
+    certs.${config.services.nextcloud.hostName}.email = "personal@ilanjoselevich.com";
   };
 
   age.secrets.nextcloud-admin-root-pass = {
