@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   programs.git = {
     enable = true;
@@ -12,4 +14,6 @@
       user.signingKey = "~/.ssh/id_ed25519_sk.pub";
     };
   };
+
+  home.packages = [ pkgs.git-open ];
 }
