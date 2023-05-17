@@ -57,9 +57,6 @@
 
   home.packages = with pkgs; [
     mpc_cli
-    cantata
-    cava
-    spek
     inputs.self.packages."${pkgs.system}".rofi-mpd
   ];
 }

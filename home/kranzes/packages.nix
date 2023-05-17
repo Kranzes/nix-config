@@ -21,25 +21,19 @@
     pulsemixer
     tree
     fzf
-    filezilla
     gnome.gnome-disk-utility
     nextcloud-client
     lm_sensors
-    libreoffice
     ffmpegthumbnailer
     ffmpeg
     piper
     thunderbird-bin
-    hunspellDicts.en-us
-    hunspellDicts.he-il
     ookla-speedtest
     nixpkgs-fmt
     nixpkgs-review
     nix-update
     acpi
-    networkmanagerapplet
     ripgrep
-    yubioath-flutter
   ];
 }
 
