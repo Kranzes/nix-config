@@ -1,11 +1,9 @@
-inputs:
-
-let
-  system = "x86_64-linux";
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
-in
+{ inputs, ... }:
 
 {
-  rofi-mpd = pkgs.callPackage "${inputs.self}/packages/rofi-mpd" { };
-  neovim = inputs.self.nixosConfigurations.pongo.config.home-manager.users.kranzes.programs.neovim.finalPackage.override { wrapRc = true; };
+  perSystem = { pkgs, lib, ... }: {
+    packages = lib.genAttrs (lib.remove "default.nix" (lib.attrNames (builtins.readDir ./.))) (p: pkgs.callPackage ./${p} { });
+  };
+
+  flake.packages.${inputs.self.nixosConfigurations.pongo.config.nixpkgs.system}.neovim = inputs.self.nixosConfigurations.pongo.config.home-manager.users.kranzes.programs.neovim.finalPackage.override { wrapRc = true; };
 }

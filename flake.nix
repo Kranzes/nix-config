@@ -3,11 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts = { url = "github:hercules-ci/flake-parts"; inputs.nixpkgs-lib.follows = "nixpkgs"; };
     home-manager = { url = "github:nix-community/home-manager"; inputs.nixpkgs.follows = "nixpkgs"; };
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     nix-colors.url = "github:misterio77/nix-colors";
     agenix = { url = "github:ryantm/agenix"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nixinate = { url = "github:MatthewCroughan/nixinate"; inputs.nixpkgs.follows = "nixpkgs"; };
     nil = { url = "github:oxalica/nil"; inputs.nixpkgs.follows = "nixpkgs"; };
     disko = { url = "github:nix-community/disko"; inputs.nixpkgs.follows = "nixpkgs"; };
     impermanence.url = "github:nix-community/impermanence";
@@ -15,25 +15,32 @@
   };
 
   outputs = inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
-    in
-    {
-      lib = import ./lib inputs;
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
 
-      nixosConfigurations = import ./hosts inputs;
+      imports = [
+        ./packages
+        ./lib
+        ./hosts
+      ];
 
-      packages.${system} = import ./packages inputs;
+      perSystem = { pkgs, inputs', lib, ... }: {
+        devShells.default = pkgs.mkShellNoCC {
+          packages = [
+            inputs'.agenix.packages.agenix
+            pkgs.age-plugin-yubikey
+          ];
+        };
 
-      apps = inputs.nixinate.nixinate.${system} inputs.self;
-
-      devShells.${system}.default = pkgs.mkShellNoCC {
-        packages = [
-          pkgs.nixpkgs-fmt
-          inputs.agenix.packages.${system}.agenix
-          pkgs.age-plugin-yubikey
-        ];
+        apps = lib.mapAttrs' (n: lib.nameValuePair "deploy-${n}") (lib.genAttrs (lib.attrNames inputs.self.nixosConfigurations) (host:
+          let hostCfg = inputs.self.nixosConfigurations.${host}.config; in {
+            program = toString (pkgs.writeShellScript "deploy-${host}" ''
+              set -x
+              ${lib.getExe pkgs.nixos-rebuild} switch -s --use-remote-sudo --fast --flake ${inputs.self}#${host} \
+                --target-host ${hostCfg.networking.hostName} ${lib.optionalString (host == "pongo") "--build-host ${hostCfg.networking.hostName}"}
+            '');
+          })
+        );
       };
     };
 }

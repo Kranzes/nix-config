@@ -6,9 +6,6 @@ inputs:
 , extraModules ? [ ]
 , home-manager ? false
 , extraHomeModules ? [ ]
-, deployBuildOn ? "remote"
-, deploySshUser
-, deployHermetic ? true
 }:
 
 inputs.nixpkgs.lib.nixosSystem {
@@ -18,16 +15,7 @@ inputs.nixpkgs.lib.nixosSystem {
     "${inputs.self}/hosts/${hostname}"
     "${inputs.self}/profiles"
     inputs.agenix.nixosModules.age
-    {
-      networking.hostName = hostname;
-      _module.args.nixinate = {
-        host = hostname;
-        sshUser = deploySshUser;
-        buildOn = deployBuildOn;
-        substituteOnTarget = true;
-        hermetic = deployHermetic;
-      };
-    }
+    { networking.hostName = hostname; }
   ] ++ inputs.nixpkgs.lib.optionals home-manager [
     inputs.home-manager.nixosModule
     "${inputs.self}/home"
