@@ -9,6 +9,7 @@
     https = true;
     autoUpdateApps.enable = true;
     enableBrokenCiphersForSSE = false;
+    database.createLocally = true;
     config = {
       dbtype = "pgsql";
       adminpassFile = config.age.secrets.nextcloud-admin-root-pass.path;
