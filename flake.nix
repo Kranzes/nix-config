@@ -32,15 +32,16 @@
           ];
         };
 
-        apps = lib.mapAttrs' (n: lib.nameValuePair "deploy-${n}") (lib.genAttrs (lib.attrNames inputs.self.nixosConfigurations) (host:
-          let hostCfg = inputs.self.nixosConfigurations.${host}.config; in {
-            program = toString (pkgs.writeShellScript "deploy-${host}" ''
+        apps = lib.mapAttrs'
+          (host: cfg: {
+            name = "deploy-${host}";
+            value.program = toString (pkgs.writeShellScript "deploy-${host}" ''
               set -x
               ${lib.getExe pkgs.nixos-rebuild} switch -s --use-remote-sudo --fast --flake ${inputs.self}#${host} \
-                --target-host ${hostCfg.networking.hostName} ${lib.optionalString (host == "pongo") "--build-host ${hostCfg.networking.hostName}"}
+              --target-host ${cfg.config.networking.hostName} ${lib.optionalString (host == "pongo") "--build-host ${cfg.config.networking.hostName}"}
             '');
           })
-        );
+          inputs.self.nixosConfigurations;
       };
     };
 }
