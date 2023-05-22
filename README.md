@@ -11,6 +11,7 @@ Name        		| Description
 [Home](./home)          | Shared Home-Manager configurations between hosts
 [Packages](./packages)  | Modified nixpkgs packages and custom packages
 [Lib](./lib)            | libraries, tools and functions used in across this repo
+[Devel](./devel)        | Devshell, deployment tool, etc
 
 ## Hosts
 
@@ -18,4 +19,4 @@ Name              		     	    | Description
 ------------------------------------------- | -----------
 [Pongo](./hosts/pongo) 	                    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a GTX 950 
 [Pan](./hosts/pan)     	                    | My ThinkPad T430
-[Hetzner](./hosts/hetzner)                  | CPX31 VPS running on Hetzner Cloud
+[Hetzner](./hosts/hetzner)                  | CX41 VPS running on Hetzner Cloud
