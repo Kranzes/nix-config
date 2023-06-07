@@ -62,7 +62,7 @@ in
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     initrd.systemd.enable = true;
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
     loader.grub = {
       enable = true;
       inherit device;
