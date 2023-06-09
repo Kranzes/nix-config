@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   environment.etc = {
@@ -7,6 +7,7 @@
   };
 
   nix = {
+    package = pkgs.nixUnstable;
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
       home-manager.flake = inputs.home-manager;
