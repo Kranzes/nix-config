@@ -3,7 +3,6 @@
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-bin;
     profiles."kranzes" = {
       extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
