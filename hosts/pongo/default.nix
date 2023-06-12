@@ -10,16 +10,6 @@
     ./hosted
     ./home
   ];
-  # Use the systemd-boot
-  boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
-    supportedFilesystems = [ "ntfs" ];
-    initrd.systemd.enable = true;
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-  };
 
   networking = {
     networkmanager.enable = true;
@@ -98,7 +88,12 @@
     libvirtd = {
       enable = true;
       onBoot = "ignore";
-      qemu.ovmf.enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        ovmf.enable = true;
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
+        swtpm.enable = true;
+      };
     };
   };
   programs.extra-container.enable = true;
