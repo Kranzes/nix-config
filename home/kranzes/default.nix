@@ -8,7 +8,6 @@
     ./programs.nix
     ./services.nix
     ./editors.nix
-    ./music.nix
     ./terminal.nix
     ./ssh.nix
     ./git.nix

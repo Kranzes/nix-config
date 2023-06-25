@@ -5,8 +5,8 @@
     package = pkgs.polybarFull;
     script = ''
       polybar centerbar &
-      polybar rightbar &
       polybar leftbar &
+      polybar rightbar &
     '';
     config = let inherit (config.colorscheme) colors; in
       {

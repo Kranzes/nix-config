@@ -22,6 +22,7 @@
         "app.update.auto" = false;
         "beacon.enabled" = false;
         "breakpad.reportURL" = "";
+        "browser.tabs.inTitlebar" = 0;
         "browser.compactmode.show" = true;
         "browser.contentblocking.category" = "strict";
         "browser.crashReports.unsubmittedCheck.enabled" = false;

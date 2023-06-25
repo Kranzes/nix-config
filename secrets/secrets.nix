@@ -2,6 +2,7 @@ let
   systems = {
     pongo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq0cqSiwsTj1ktlr70ToobLXD9JIRQynTuOpmwpYilB";
     pan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGDbBEzvhMeRzkGHpV+rd8Jq8O3hHBQYQhuzpvep08Ux";
+    gorilla = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKjg+i3lXnTMb/jGlsbguKdCsrz3M6zmDRd/NheBnUoT";
     hetzner = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILL1Ae0IWUaynCv2AaWxh2U2EDeDrD9ADPpI6O3nu3D0";
   };
   users = {
@@ -12,7 +13,7 @@ let
 in
 {
   # Infra/All
-  "infra-tailscaleAuthKey.age".publicKeys = allUsers ++ (with systems; [ pongo pan hetzner ]);
+  "infra-tailscaleAuthKey.age".publicKeys = allUsers ++ (with systems; [ pongo pan hetzner gorilla ]);
   "herculesSecrets.age".publicKeys = allUsers ++ (with systems; [ hetzner ]);
   # Pongo
   "nextcloud-admin-root-pass.age".publicKeys = allUsers ++ [ systems.pongo ];
