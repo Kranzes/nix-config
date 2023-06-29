@@ -25,11 +25,5 @@
       home-manager = true;
       extraHomeModules = [ inputs.nix-colors.homeManagerModule ];
     };
-
-    hetzner = inputs.self.lib.mkSystem {
-      hostname = "hetzner";
-      system = "x86_64-linux";
-      extraSpecialArgs.headless = true;
-    };
   };
 }

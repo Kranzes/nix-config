@@ -3,16 +3,10 @@
 {
   services.hercules-ci-agent = {
     enable = true;
-    settings.binaryCachesPath = pkgs.writeTextFile { name = "binary-caches.json"; text = "{}"; };
+    settings.binaryCachesPath = pkgs.writeText "binary-caches.json" "{}";
     settings.secretsJsonPath = config.age.secrets.herculesSecrets.path;
     settings.clusterJoinTokenPath = config.age.secrets.herculesClusterJoinToken.path;
   };
-
-  environment.persistence."/nix/persistent".directories = [{
-    directory = config.services.hercules-ci-agent.settings.baseDirectory;
-    user = "hercules-ci-agent";
-    group = "hercules-ci-agent";
-  }];
 
   age.secrets = {
     herculesSecrets = {
