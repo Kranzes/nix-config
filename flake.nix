@@ -11,7 +11,6 @@
     nil = { url = "github:oxalica/nil"; inputs.nixpkgs.follows = "nixpkgs"; };
     disko = { url = "github:nix-community/disko"; inputs.nixpkgs.follows = "nixpkgs"; };
     lanzaboote.url = "github:nix-community/lanzaboote";
-    hercules-ci-effects = { url = "github:Kranzes/hercules-ci-effects/cd-async"; inputs.nixpkgs.follows = "nixpkgs"; };
     firefox-addons = { url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 

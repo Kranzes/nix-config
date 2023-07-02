@@ -16,11 +16,5 @@ in
   # Pongo
   "nextcloud-admin-root-pass.age".publicKeys = allUsers ++ [ systems.pongo ];
   "herculesSecrets.age".publicKeys = allUsers ++ [ systems.pongo ];
-  "herculesBinaryCaches.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-herculesClusterJoinToken.age".publicKeys = allUsers ++ [ systems.pongo ];
-  "pongo-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.pongo ];
-  # Pan
-  "pan-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.pan ];
-  # Gorilla
-  "gorilla-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.gorilla ];
 }

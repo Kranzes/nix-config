@@ -1,19 +1,14 @@
-{ config, inputs, ... }:
+{ pkgs, config, inputs, ... }:
 
 {
   services.hercules-ci-agent = {
     enable = true;
-    settings.binaryCachesPath = config.age.secrets.herculesBinaryCaches.path;
+    settings.binaryCachesPath = pkgs.writeText "binary-caches.json" "{}";
     settings.secretsJsonPath = config.age.secrets.herculesSecrets.path;
     settings.clusterJoinTokenPath = config.age.secrets.herculesClusterJoinToken.path;
   };
 
   age.secrets = {
-    herculesBinaryCaches = {
-      file = "${inputs.self}/secrets/herculesBinaryCaches.age";
-      group = "hercules-ci-agent";
-      owner = "hercules-ci-agent";
-    };
     herculesSecrets = {
       file = "${inputs.self}/secrets/herculesSecrets.age";
       group = "hercules-ci-agent";
@@ -24,11 +19,5 @@
       group = "hercules-ci-agent";
       owner = "hercules-ci-agent";
     };
-  };
-
-  nix.gc = {
-    automatic = true;
-    persistent = true;
-    dates = "monthly";
   };
 }

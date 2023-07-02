@@ -1,19 +1,6 @@
-{ inputs, withSystem, config, ... }:
+{ inputs, ... }:
 
 {
-  imports = [
-    inputs.hercules-ci-effects.flakeModule
-  ];
-
-  herculesCI = herculesCI: {
-    onPush.default.outputs.effects.cachix-deploy = withSystem config.defaultEffectSystem ({ hci-effects, pkgs, ... }:
-      hci-effects.runIf (herculesCI.config.repo.branch == "master") (hci-effects.runCachixDeploy {
-        deploy.agents = pkgs.lib.mapAttrs (_: x: x.config.system.build.toplevel) inputs.self.nixosConfigurations;
-        async = true;
-      })
-    );
-  };
-
   perSystem = { pkgs, inputs', lib, ... }: {
     devShells.default = pkgs.mkShellNoCC {
       packages = [
