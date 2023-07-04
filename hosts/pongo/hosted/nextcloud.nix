@@ -10,6 +10,7 @@
     autoUpdateApps.enable = true;
     enableBrokenCiphersForSSE = false;
     database.createLocally = true;
+    configureRedis = true;
     config = {
       dbtype = "pgsql";
       adminpassFile = config.age.secrets.nextcloud-admin-root-pass.path;
