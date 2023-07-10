@@ -14,7 +14,7 @@
         kristofferhagen-nord-theme
         sponsorblock
         translate-web-pages
-        (flagfox.overrideAttrs (_: { meta.license.free = true; }))
+        (flagfox.overrideAttrs { meta.license.free = true; })
       ];
       settings = {
         "app.normandy.enabled" = false;

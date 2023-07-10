@@ -1,11 +1,6 @@
 { pkgs, inputs, ... }:
 
 {
-  environment.etc = {
-    "nix/flake-channels/nixpkgs".source = inputs.nixpkgs;
-    "nix/flake-channels/home-manager".source = inputs.home-manager;
-  };
-
   nix = {
     package = pkgs.nixUnstable;
     registry = {
@@ -13,8 +8,8 @@
       home-manager.flake = inputs.home-manager;
     };
     nixPath = [
-      "nixpkgs=/etc/nix/flake-channels/nixpkgs"
-      "home-manager=/etc/nix/flake-channels/home-manager"
+      "nixpkgs=flake:nixpkgs"
+      "home-manager=flake:home-manager"
     ];
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
