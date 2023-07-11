@@ -62,8 +62,6 @@ in
     kernelParams = [ "acpi_backlight=native" "mem_sleep_default=deep" ];
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
-    plymouth.enable = true;
-    plymouth.theme = "breeze";
   };
 
 
