@@ -57,7 +57,6 @@ in
     loader.efi.canTouchEfiVariables = true;
     initrd.systemd.enable = true;
     initrd.availableKernelModules = [ "nvme" "ehci_pci" "xhci_pci" "rtsx_pci_sdmmc" ];
-    initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "kvm-amd" ];
     kernelParams = [ "acpi_backlight=native" "mem_sleep_default=deep" ];
     kernelPackages = pkgs.linuxPackages_latest;
