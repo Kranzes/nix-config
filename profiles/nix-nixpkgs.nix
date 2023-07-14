@@ -12,11 +12,22 @@
       "home-manager=flake:home-manager"
     ];
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "cgroups"
+        "auto-allocate-uids"
+        "repl-flake"
+        "no-url-literals"
+      ];
+      use-cgroups = true;
+      auto-allocate-uids = true;
       builders-use-substitutes = true;
       auto-optimise-store = true;
       warn-dirty = false;
-      trusted-users = [ "@wheel" ];
+      trusted-users = [
+        "@wheel"
+      ];
       substituters = [
         "https://nix-community.cachix.org"
       ];
