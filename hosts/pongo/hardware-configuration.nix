@@ -85,4 +85,6 @@ in
     logitech.wireless.enable = true;
     logitech.wireless.enableGraphical = true;
   };
+  # For piper (Logitech mice crap).
+  services.ratbagd.enable = true;
 }

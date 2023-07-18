@@ -1,15 +1,12 @@
-{ pkgs, inputs, ... }:
+{ inputs, ... }:
+{ pkgs, ... }:
 
 {
   nix = {
     package = pkgs.nixUnstable;
-    registry = {
-      nixpkgs.flake = inputs.nixpkgs;
-      home-manager.flake = inputs.home-manager;
-    };
+    registry.nixpkgs.flake = inputs.nixpkgs;
     nixPath = [
       "nixpkgs=flake:nixpkgs"
-      "home-manager=flake:home-manager"
     ];
     settings = {
       experimental-features = [

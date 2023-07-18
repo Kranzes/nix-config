@@ -34,6 +34,8 @@
     nix-update
     acpi
     ripgrep
+    fd
+    sd
   ];
 }
 

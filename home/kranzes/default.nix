@@ -1,11 +1,9 @@
-{ inputs, ... }:
-
 {
   home.stateVersion = "22.05";
-  colorscheme = inputs.nix-colors.colorSchemes.nord;
   imports = [
     ./packages.nix
     ./programs.nix
+    ./fonts.nix
     ./services.nix
     ./editors.nix
     ./terminal.nix

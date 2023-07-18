@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
+
 {
   home.pointerCursor = {
     package = pkgs.gnome.adwaita-icon-theme;
@@ -15,7 +16,7 @@
       settings = {
         remove_disabled_monitors = true;
         remove_unplugged_monitors = true;
-        focused_border_color = "#${config.colorscheme.colors.base0C}";
+        focused_border_color = "#88C0D0";
         border_width = 2;
         window_gap = 15;
       };

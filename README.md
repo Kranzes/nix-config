@@ -4,18 +4,17 @@ A nix flake that holds all of the system configurations of my personal machines.
 
 ## Configurations & Modules
 
-Name        		| Description
+Name                    | Description
 ----------------------- | -----------
-[Hosts](./hosts)	| Host specific configurations (system-wide & Home-Manager)
-[Profiles](./profiles)  | Shared system-wide configurations between hosts
-[Home](./home)          | Shared Home-Manager configurations between hosts
+[Hosts](./hosts)	    | Host specific configurations (system-wide & Home-Manager)
+[Profiles](./profiles)  | System-wide "profiles" (modular configurations) used by some hosts
+[Home](./home)          | Home-Manager configurations for users that may be imported by some hosts
 [Packages](./packages)  | Modified nixpkgs packages and custom packages
-[Lib](./lib)            | libraries, tools and functions used in across this repo
-[Devel](./devel)        | Devshell, deployment tool, etc
+[dev](./dev)            | Devshell, deployment tool, etc
 
 ## Hosts
 
-Name              		     	    | Description
+Name                                        | Description
 ------------------------------------------- | -----------
 [Pongo](./hosts/pongo) 	                    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a GTX 950 
 [Pan](./hosts/pan)     	                    | My ThinkPad T430

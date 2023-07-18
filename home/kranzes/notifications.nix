@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
+
 {
   services.dunst = {
     enable = true;
@@ -14,7 +15,7 @@
         padding = 10;
         horizontal_padding = 10;
         frame_width = 4;
-        frame_color = "#${config.colorscheme.colors.base03}";
+        frame_color = "#4C566A";
         separator_color = "frame";
         sort = false;
         idle_threshold = 180;
@@ -34,12 +35,12 @@
         class = "Dunst";
       };
       urgency_normal = {
-        background = "#${config.colorscheme.colors.base01}";
-        foreground = "#${config.colorscheme.colors.base06}";
+        background = "#3B4252";
+        foreground = "#ECEFF4";
         timeout = 10;
       };
     };
   };
 
-  home.packages = with pkgs; [ libnotify ];
+  home.packages = [ pkgs.libnotify ];
 }
