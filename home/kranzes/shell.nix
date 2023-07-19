@@ -42,8 +42,6 @@
     };
   };
 
-  home.sessionPath = [ "$HOME/.local/bin" ];
-
   programs.dircolors = {
     enable = true;
     enableZshIntegration = true;

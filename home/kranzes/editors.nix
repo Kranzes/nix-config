@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   programs.neovim = {
@@ -38,7 +38,7 @@
       ripgrep # telescope
       manix # telescope
       git # gitsigns
-      inputs.nil.packages.${pkgs.system}.nil # lspconfig
+      nil # lspconfig
       nodePackages.bash-language-server # lspconfig
     ];
     extraConfig = ''
@@ -130,6 +130,12 @@
         require('lspconfig')[lsp].setup {
           capabilities = capabilities,
           on_attach = on_attach,
+          settings = {
+            ['nil'] = {
+              autoArchive = true,
+              autoEvalInputs = true,
+            }
+          }
         }
       end
 
@@ -192,7 +198,7 @@
       -- formatting
       require("formatter").setup {
         filetype = {
-          nix = { function() return { exe = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" } end, },
+          nix = { function() return { exe = "${lib.getExe pkgs.nixpkgs-fmt}" } end, },
         },
       }
       vim.cmd 'autocmd BufWritePost * FormatWrite'

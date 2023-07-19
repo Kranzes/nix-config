@@ -5,10 +5,6 @@
     enable = true;
     dataDir = "${config.xdg.dataHome}/mpd";
     musicDirectory = "/home/4TB-HDD/Media/Music";
-    network = {
-      listenAddress = "any";
-      port = 6600;
-    };
     extraConfig = ''     
       audio_output {
         type    "pipewire"

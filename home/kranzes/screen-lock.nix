@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   services.screen-locker = {
     enable = true;
     xautolock.detectSleep = true;
     inactiveInterval = 15;
-    lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
+    lockCmd = lib.getExe pkgs.xsecurelock;
   };
 }

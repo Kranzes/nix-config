@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   services = {
@@ -23,7 +23,7 @@
       Requires = "yubikey-touch-detector.socket";
     };
     Service = {
-      ExecStart = "${pkgs.yubikey-touch-detector}/bin/yubikey-touch-detector --libnotify";
+      ExecStart = "${lib.getExe pkgs.yubikey-touch-detector} --libnotify";
       EnvironmentFile = "-%E/yubikey-touch-detector/service.conf";
     };
     Install = {
