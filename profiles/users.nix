@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 let
-  isZshSetForUsers = lib.any (s: s == "zsh") (lib.mapAttrsToList (_: p: lib.getName p.shell) config.users.users);
+  isZshSetForUsers = lib.elem "zsh" (lib.mapAttrsToList (_: p: lib.getName p.shell) config.users.users);
 in
 {
   users.users.kranzes = {
