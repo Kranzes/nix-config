@@ -15,6 +15,7 @@
     wget
     gitMinimal
     tree
+    htop
   ];
 
   # I live in Israel still :(

@@ -10,7 +10,6 @@
     audio
     laptop
     opengl
-    security
     xserver
   ]);
 

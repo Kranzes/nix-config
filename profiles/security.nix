@@ -1,10 +1,12 @@
+{ config, ... }:
+
 {
   # Used by some programs.
-  security.pam.services.lightdm.enableGnomeKeyring = true;
-  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.lightdm.enableGnomeKeyring = config.services.xserver.enable;
+  services.gnome.gnome-keyring.enable = config.services.xserver.enable;
 
   # Needed for some YubiKey functionalities.
-  services.pcscd.enable = true;
+  services.pcscd.enable = config.services.xserver.enable;
 
   services.kanidm = {
     enableClient = true;

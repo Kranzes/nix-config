@@ -5,6 +5,7 @@ let
     docs
     misc
     nix-nixpkgs
+    security
     ssh
     tailscale
     users

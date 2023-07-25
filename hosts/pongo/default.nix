@@ -10,7 +10,6 @@
     android
     audio
     opengl
-    security
     xserver
   ]);
 
