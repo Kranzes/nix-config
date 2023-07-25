@@ -2,17 +2,19 @@
 
 {
   flake.nixosModules = {
-    android = import ./android.nix;
-    audio = import ./audio.nix;
-    docs = import ./docs.nix;
-    laptop = import ./laptop.nix;
-    misc = import ./misc.nix;
+    android = ./android.nix;
+    audio = ./audio.nix;
+    docs = ./docs.nix;
+    impermanence = import ./impermanence.nix { inherit inputs; };
+    laptop = ./laptop.nix;
+    misc = ./misc.nix;
+    nginx = ./nginx.nix;
     nix-nixpkgs = import ./nix-nixpkgs.nix { inherit inputs; };
-    opengl = import ./opengl.nix;
-    security = import ./security.nix;
-    ssh = import ./ssh.nix;
+    opengl = ./opengl.nix;
+    security = ./security.nix;
+    ssh = ./ssh.nix;
     tailscale = import ./tailscale.nix { inherit inputs; };
-    users = import ./users.nix;
-    xserver = import ./xserver.nix;
+    users = ./users.nix;
+    xserver = ./xserver.nix;
   };
 } 
