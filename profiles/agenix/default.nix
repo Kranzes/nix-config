@@ -11,8 +11,8 @@
   age.rekey = {
     hostPubkey = lib.fileContents "${inputs.self}/hosts/${config.networking.hostName}/hostKey.pub";
     masterIdentities = [
-      "${inputs.self}/secrets/identities/yubikey-5.pub"
-      "${inputs.self}/secrets/identities/yubikey-5c.pub"
+      ./yubikey-5.pub
+      ./yubikey-5c.pub
     ];
   };
 }

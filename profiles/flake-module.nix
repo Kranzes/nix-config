@@ -2,7 +2,7 @@
 
 {
   flake.nixosModules = {
-    agenix = import ./agenix.nix { inherit inputs; };
+    agenix = import ./agenix { inherit inputs; };
     android = ./android.nix;
     audio = ./audio.nix;
     docs = ./docs.nix;
@@ -14,7 +14,7 @@
     opengl = ./opengl.nix;
     security = ./security.nix;
     ssh = ./ssh.nix;
-    tailscale = import ./tailscale.nix { inherit inputs; };
+    tailscale = ./tailscale;
     users = ./users.nix;
     xserver = ./xserver.nix;
   };

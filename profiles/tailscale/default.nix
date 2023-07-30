@@ -1,6 +1,4 @@
-{ inputs, ... }:
-
-{ pkgs, lib, config, options, ... }:
+{ lib, config, options, ... }:
 
 {
   config = lib.mkMerge [
@@ -11,7 +9,7 @@
         authKeyFile = lib.mkDefault config.age.secrets.tailscaleAuthKey.path;
       };
 
-      age.secrets.tailscaleAuthKey.rekeyFile = lib.mkDefault "${inputs.self}/secrets/infra-tailscaleAuthKey.age";
+      age.secrets.tailscaleAuthKey.rekeyFile = lib.mkDefault ./infra-tailscaleAuthKey.age;
     }
     (lib.optionalAttrs (options ? environment.persistence) {
       environment.persistence."/nix/persistent".directories = [ "/var/lib/tailscale" ];
