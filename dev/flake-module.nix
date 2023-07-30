@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-  perSystem = { pkgs, inputs', lib, ... }: {
+  perSystem = { pkgs, lib, ... }: {
     apps = lib.mkMerge [
       (lib.mapAttrs'
         (host: cfg: {

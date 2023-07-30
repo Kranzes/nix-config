@@ -1,6 +1,6 @@
 { inputs, ... }:
 
-{ pkgs, lib, config, options, ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -9,7 +9,7 @@
   ];
 
   age.rekey = {
-    hostPubkey = lib.fileContents "${inputs.self}/hosts/${config.networking.hostName}/hostKey.pub";
+    hostPubkey = "${inputs.self}/hosts/${config.networking.hostName}/hostKey.pub";
     masterIdentities = [ ./yubikey-5.pub ];
     extraEncryptionPubkeys = [ ./yubikey-5c.pub ];
   };
