@@ -2,6 +2,7 @@
 
 {
   flake.nixosModules = {
+    agenix = import ./agenix.nix { inherit inputs; };
     android = ./android.nix;
     audio = ./audio.nix;
     docs = ./docs.nix;

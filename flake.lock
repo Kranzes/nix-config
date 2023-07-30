@@ -22,6 +22,26 @@
         "type": "github"
       }
     },
+    "agenix-rekey": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1687304097,
+        "narHash": "sha256-VId0oZxpYm4HSHwbsuGKI84zFkL6Gp4wuoJbbl52oZg=",
+        "owner": "oddlama",
+        "repo": "agenix-rekey",
+        "rev": "b1811920562ba287b680f35644ce3ed78d029cdf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oddlama",
+        "repo": "agenix-rekey",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -608,6 +628,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "agenix-rekey": "agenix-rekey",
         "disko": "disko",
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",

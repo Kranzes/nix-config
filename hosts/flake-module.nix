@@ -2,6 +2,7 @@
 
 let
   commonProfiles = with inputs.self.nixosModules; [
+    agenix
     docs
     misc
     nix-nixpkgs
@@ -21,41 +22,35 @@ let
       };
     }
   ];
+  nixosSystemWithDefaults = args: (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args [ "hostName" ]) // ({
+    specialArgs = { inherit inputs; } // args.specialArgs or { };
+    modules = [
+      "${inputs.self}/hosts/${args.hostName}"
+      { networking = { inherit (args) hostName; }; }
+    ] ++ commonProfiles ++ (args.modules or [ ]);
+  })));
 in
 
 {
   flake.nixosConfigurations = {
-    pongo = inputs.nixpkgs.lib.nixosSystem {
+    pongo = nixosSystemWithDefaults {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        "${inputs.self}/hosts/pongo"
-        { networking.hostName = "pongo"; }
-      ] ++ commonProfiles ++ commonHome;
+      hostName = "pongo";
+      modules = commonHome;
     };
-    gorilla = inputs.nixpkgs.lib.nixosSystem {
+    gorilla = nixosSystemWithDefaults {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        "${inputs.self}/hosts/gorilla"
-        { networking.hostName = "gorilla"; }
-      ] ++ commonProfiles ++ commonHome;
+      hostName = "gorilla";
+      modules = commonHome;
     };
-    pan = inputs.nixpkgs.lib.nixosSystem {
+    pan = nixosSystemWithDefaults {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        "${inputs.self}/hosts/pan"
-        { networking.hostName = "pan"; }
-      ] ++ commonProfiles ++ commonHome;
+      hostName = "pan";
+      modules = commonHome;
     };
-    hetzner = inputs.nixpkgs.lib.nixosSystem {
+    hetzner = nixosSystemWithDefaults {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        "${inputs.self}/hosts/hetzner"
-        { networking.hostName = "hetzner"; }
-      ] ++ commonProfiles;
+      hostName = "hetzner";
     };
   };
 }

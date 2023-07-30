@@ -3,9 +3,9 @@
 {
   imports = [
     ./libvirt.nix
-    ./nextcloud.nix
+    ./nextcloud
     ./jellyfin.nix
-    ./hercules-ci.nix
+    ./hercules-ci
     inputs.self.nixosModules.nginx
   ];
 }

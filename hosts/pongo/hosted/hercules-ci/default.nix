@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, ... }:
+{ pkgs, config, ... }:
 
 {
   services.hercules-ci-agent = {
@@ -12,12 +12,12 @@
 
   age.secrets = {
     herculesSecrets = {
-      file = "${inputs.self}/secrets/herculesSecrets.age";
+      rekeyFile = ./herculesSecrets.age;
       group = "hercules-ci-agent";
       owner = "hercules-ci-agent";
     };
     herculesClusterJoinToken = {
-      file = "${inputs.self}/secrets/${config.networking.hostName}-herculesClusterJoinToken.age";
+      rekeyFile = ./${config.networking.hostName}-herculesClusterJoinToken.age;
       group = "hercules-ci-agent";
       owner = "hercules-ci-agent";
     };
