@@ -15,7 +15,6 @@
         "cgroups"
         "auto-allocate-uids"
         "repl-flake"
-        "no-url-literals"
       ];
       use-cgroups = true;
       auto-allocate-uids = true;
