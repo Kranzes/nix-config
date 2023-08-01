@@ -9,8 +9,13 @@
   ];
 
   age.rekey = {
-    hostPubkey = "${inputs.self}/hosts/${config.networking.hostName}/hostKey.pub";
+    hostPubkey = ../../hosts/${config.networking.hostName}/hostKey.pub;
+    # Main for rekeying
     masterIdentities = [ ./yubikey-5.pub ];
-    extraEncryptionPubkeys = [ ./yubikey-5c.pub ];
+    # Backup
+    extraEncryptionPubkeys = [
+      # YubiKey 5C NFC
+      "age1yubikey1qfejptxfycw5ft2lt388y9eqrjxsk0eqqz3ud4ad87rtvq5qzrzljjruft2"
+    ];
   };
 }
