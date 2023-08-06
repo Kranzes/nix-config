@@ -1,5 +1,5 @@
 { inputs, ... }:
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   nix = {
@@ -25,6 +25,7 @@
       trusted-users = [
         "@wheel"
       ];
+      allowed-users = lib.mapAttrsToList (_: u: u.name) (lib.filterAttrs (_: user: user.isNormalUser) config.users.users);
       substituters = [
         "https://nix-community.cachix.org"
       ];
