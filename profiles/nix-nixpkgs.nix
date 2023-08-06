@@ -5,6 +5,7 @@
   nix = {
     package = pkgs.nixUnstable;
     registry.nixpkgs.flake = inputs.nixpkgs;
+    channel.enable = false;
     nixPath = [
       "nixpkgs=flake:nixpkgs"
     ];
