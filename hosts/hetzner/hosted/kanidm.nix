@@ -18,6 +18,10 @@ in
       trust_x_forward_for = true;
       tls_chain = "${certDir}/fullchain.pem";
       tls_key = "${certDir}/key.pem";
+      online_backup = {
+        path = "/var/lib/kanidm/backups";
+        schedule = "0 0 * * *"; # Every day at midnight.
+      };
     };
   };
 
