@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   services.mpd = {
@@ -20,7 +20,7 @@
       After = [ "mpd.service" ];
     };
     Service = {
-      ExecStart = "${pkgs.yams}/bin/yams -N";
+      ExecStart = "${lib.getExe pkgs.yams} -N";
       Environment = "NON_INTERACTIVE=1";
       Restart = "always";
     };
