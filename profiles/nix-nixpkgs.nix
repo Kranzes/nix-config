@@ -6,9 +6,7 @@
     package = pkgs.nixUnstable;
     registry.nixpkgs.flake = inputs.nixpkgs;
     channel.enable = false;
-    nixPath = [
-      "nixpkgs=flake:nixpkgs"
-    ];
+    nixPath = lib.singleton config.nix.settings.nix-path;
     settings = {
       experimental-features = [
         "nix-command"
@@ -17,6 +15,7 @@
         "auto-allocate-uids"
         "repl-flake"
       ];
+      nix-path = "nixpkgs=flake:nixpkgs";
       use-cgroups = true;
       auto-allocate-uids = true;
       builders-use-substitutes = true;
