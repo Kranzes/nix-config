@@ -39,6 +39,7 @@
       manix # telescope
       git # gitsigns
       nil # lspconfig
+      pyright # lspconfig
       nodePackages.bash-language-server # lspconfig
     ];
     extraConfig = ''
@@ -125,7 +126,7 @@
         },
       }
 
-      local servers = { 'nil_ls', 'bashls' }
+      local servers = { 'nil_ls', 'pyright', 'bashls' }
       for _, lsp in ipairs(servers) do
         require('lspconfig')[lsp].setup {
           capabilities = capabilities,
