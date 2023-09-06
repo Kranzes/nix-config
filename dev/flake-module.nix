@@ -13,9 +13,9 @@
               TASK="switch"
             fi
             set -x
-            ${lib.optionalString cfg.config.security.sudo.wheelNeedsPassword "NIX_SSHOPTS=-tt"}
+            ${lib.optionalString cfg.config.security.sudo.wheelNeedsPassword "export NIX_SSHOPTS=-tt"}
             ${lib.getExe (pkgs.nixos-rebuild.override { nix = pkgs.nixUnstable; })} "$TASK" -s --use-remote-sudo --fast --flake ${inputs.self}#${host} \
-            --target-host ${cfg.config.networking.hostName} ${lib.optionalString (host == "pongo") "--build-host ${cfg.config.networking.hostName}"}
+              --target-host ${cfg.config.networking.hostName} ${lib.optionalString (host == "pongo") "--build-host ${cfg.config.networking.hostName}"}
           '');
         })
         inputs.self.nixosConfigurations)
