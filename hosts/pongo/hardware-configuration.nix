@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 let
   device = "/dev/nvme0n1";
 in
@@ -72,7 +72,7 @@ in
     loader.efi.canTouchEfiVariables = true;
     initrd.systemd.enable = true;
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = [ "kvm-amd" "i2c-dev" "i2c_piix4" ];
     kernelParams = [ "amd_iommu=on" ];
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     tmp.cleanOnBoot = true;
@@ -87,4 +87,34 @@ in
   };
   # For piper (Logitech mice crap).
   services.ratbagd.enable = true;
+
+
+  systemd.services."cooling-and-rgb-setup" = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ProtectSystem = "strict";
+      PrivateNetwork = true;
+      ProtectHostname = true;
+      LockPersonality = true;
+      ProtectClock = true;
+      ProtectHome = true;
+      CapabilityBoundingSet = "";
+      NoNewPrivileges = true;
+    };
+    script = ''
+      echo "Initializing NZXT devices..."
+      ${lib.getExe pkgs.liquidctl} initialize all > /dev/null
+     
+      echo "Configuring pump and fan speed for the AIO..."
+      ${lib.getExe pkgs.liquidctl} --match "kraken" set pump speed 100
+      ${lib.getExe pkgs.liquidctl} --match "kraken" set fan speed 45
+    
+      echo "Setting fan speed for the case fans..."
+      ${lib.getExe pkgs.liquidctl} --match "smart device" set sync speed 100
+    
+      echo "Turning off all the LEDs..."
+      ${lib.getExe pkgs.openrgb} --noautoconnect --config $(mktemp) --mode off > /dev/null
+    '';
+  };
 }
