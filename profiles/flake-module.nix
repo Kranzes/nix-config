@@ -6,6 +6,7 @@
     android = ./android.nix;
     audio = ./audio.nix;
     docs = ./docs.nix;
+    grafana-agent = ./grafana-agent.nix;
     impermanence = import ./impermanence.nix { inherit inputs; };
     laptop = ./laptop.nix;
     misc = ./misc.nix;

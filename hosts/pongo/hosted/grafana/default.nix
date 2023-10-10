@@ -48,6 +48,13 @@ in
         feedback_links_enabled = false;
       };
     };
+    provision.datasources.settings.datasources = [
+      {
+        name = "Loki";
+        type = "loki";
+        url = "http://pongo:3100";
+      }
+    ];
   };
 
   services.postgresql = {
