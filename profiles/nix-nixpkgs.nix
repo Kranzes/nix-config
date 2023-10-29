@@ -19,7 +19,6 @@
       use-cgroups = true;
       auto-allocate-uids = true;
       builders-use-substitutes = true;
-      auto-optimise-store = true;
       warn-dirty = false;
       trusted-users = [
         "@wheel"
