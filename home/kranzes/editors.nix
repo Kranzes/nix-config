@@ -3,7 +3,8 @@
 {
   programs.neovim = {
     enable = true;
-    package = inputs.neovim-nightly.packages.${pkgs.system}.neovim;
+    # TODO Undo once https://github.com/nix-community/neovim-nightly-overlay/issues/332 is solved. 
+    #package = inputs.neovim-nightly.packages.${pkgs.system}.neovim;
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
