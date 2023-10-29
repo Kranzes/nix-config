@@ -8,7 +8,6 @@
     nginx.recommendedHttpHeaders = true;
     https = true;
     autoUpdateApps.enable = true;
-    enableBrokenCiphersForSSE = false;
     database.createLocally = true;
     configureRedis = true;
     config = {
