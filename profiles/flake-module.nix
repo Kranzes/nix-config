@@ -5,6 +5,7 @@
     agenix = import ./agenix.nix { inherit inputs; };
     android = ./android.nix;
     audio = ./audio.nix;
+    cachix-deploy = ./cachix-deploy.nix;
     docs = ./docs.nix;
     grafana-agent = ./grafana-agent.nix;
     impermanence = import ./impermanence.nix { inherit inputs; };

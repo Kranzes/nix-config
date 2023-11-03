@@ -1,7 +1,16 @@
-{ inputs, ... }:
+{ inputs, withSystem, config, lib, ... }:
 
 {
+  imports = [ inputs.hercules-ci-effects.flakeModule ];
+
   perSystem = { pkgs, lib, inputs', ... }: {
+    devShells.default = pkgs.mkShellNoCC {
+      packages = [
+        inputs'.agenix.packages.agenix
+        pkgs.age-plugin-yubikey
+      ];
+    };
+
     apps = (lib.mapAttrs'
       (host: cfg: {
         name = "deploy-${host}";
@@ -18,12 +27,15 @@
         '');
       })
       inputs.self.nixosConfigurations);
+  };
 
-    devShells.default = pkgs.mkShellNoCC {
-      packages = [
-        inputs'.agenix.packages.agenix
-        pkgs.age-plugin-yubikey
-      ];
-    };
+
+  herculesCI = herculesCI: {
+    onPush.default.outputs.effects.cachix-deploy = withSystem config.defaultEffectSystem ({ hci-effects, ... }:
+      hci-effects.runIf (herculesCI.config.repo.branch == "master") (hci-effects.runCachixDeploy {
+        deploy.agents = lib.mapAttrs (_: x: x.config.system.build.toplevel) inputs.self.nixosConfigurations;
+        async = true;
+      })
+    );
   };
 }
