@@ -33,7 +33,20 @@
   herculesCI = herculesCI: {
     onPush.default.outputs.effects.cachix-deploy = withSystem config.defaultEffectSystem ({ hci-effects, ... }:
       hci-effects.runIf (herculesCI.config.repo.branch == "master") (hci-effects.runCachixDeploy {
-        deploy.agents = lib.mapAttrs (_: x: x.config.system.build.toplevel) inputs.self.nixosConfigurations;
+        deploy = {
+          agents = lib.mapAttrs (_: x: x.config.system.build.toplevel) inputs.self.nixosConfigurations;
+          rollbackScript = lib.genAttrs config.systems (lib.flip withSystem ({ pkgs, ... }: pkgs.writeShellScript "cachix-deploy-rollback-script" ''
+            echo "Checking if tailscale is still running..."
+            status=$(${lib.getExe pkgs.tailscale} status --json | ${lib.getExe pkgs.jq} -r ".BackendState")
+            if [[ "$status" == "Running" ]]; then
+              echo "Tailscale is running, not rolling back."
+              exit 0
+            else
+              echo "Tailscale is not running, rolling back."
+              exit 1
+            fi
+          ''));
+        };
         async = true;
       })
     );
