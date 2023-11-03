@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, inputs, ... }:
 let
   domain = "login.ilanjoselevich.com";
 in
@@ -23,7 +23,7 @@ in
   };
 
   age.secrets.oauth2-proxy-secret = {
-    rekeyFile = ./oauth2-proxy-secret.age;
+    file = "${inputs.self}/secrets/${config.networking.hostName}-oauth2-proxy-secret.age";
     group = "oauth2_proxy";
     owner = "oauth2_proxy";
   };

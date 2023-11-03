@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-  perSystem = { pkgs, lib, ... }: {
+  perSystem = { pkgs, lib, inputs', ... }: {
     apps = (lib.mapAttrs'
       (host: cfg: {
         name = "deploy-${host}";
@@ -18,10 +18,12 @@
         '');
       })
       inputs.self.nixosConfigurations);
-  };
 
-  flake.agenix-rekey = inputs.agenix-rekey.configure {
-    userFlake = inputs.self;
-    nodes = inputs.self.nixosConfigurations;
+    devShells.default = pkgs.mkShellNoCC {
+      packages = [
+        inputs'.agenix.packages.agenix
+        pkgs.age-plugin-yubikey
+      ];
+    };
   };
 }

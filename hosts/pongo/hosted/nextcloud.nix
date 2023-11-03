@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   services.nextcloud = {
@@ -31,7 +31,7 @@
   };
 
   age.secrets.nextcloud-admin-root-pass = {
-    rekeyFile = ./nextcloud-admin-root-pass.age;
+    file = "${inputs.self}/secrets/${config.networking.hostName}-nextcloud-admin-root-pass.age";
     group = "nextcloud";
     owner = "nextcloud";
   };
