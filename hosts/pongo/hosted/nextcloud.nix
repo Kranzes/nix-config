@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 {
   services.nextcloud = {
@@ -31,7 +31,7 @@
   };
 
   age.secrets.nextcloud-admin-root-pass = {
-    file = "${inputs.self}/secrets/${config.networking.hostName}-nextcloud-admin-root-pass.age";
+    file = ../../../secrets/${config.networking.hostName}-nextcloud-admin-root-pass.age;
     group = "nextcloud";
     owner = "nextcloud";
   };

@@ -19,14 +19,14 @@ let
       home-manager = {
         useGlobalPkgs = true;
         extraSpecialArgs = { inherit inputs; };
-        users.kranzes = import "${inputs.self}/home/kranzes";
+        users.kranzes = import ../home/kranzes;
       };
     }
   ];
   nixosSystemWithDefaults = args: (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args [ "hostName" ]) // ({
     specialArgs = { inherit inputs; } // args.specialArgs or { };
     modules = [
-      "${inputs.self}/hosts/${args.hostName}"
+      ./${args.hostName}
       { networking = { inherit (args) hostName; }; }
     ] ++ commonProfiles ++ (args.modules or [ ]);
   })));

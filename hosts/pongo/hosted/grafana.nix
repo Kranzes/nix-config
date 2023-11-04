@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, ... }:
 let
   domain = "monitoring.ilanjoselevich.com";
 in
@@ -68,12 +68,12 @@ in
 
   age.secrets = {
     grafana-oauth2 = {
-      file = "${inputs.self}/secrets/${config.networking.hostName}-grafana-oauth2.age";
+      file = ../../../secrets/${config.networking.hostName}-grafana-oauth2.age;
       group = "grafana";
       owner = "grafana";
     };
     grafana-signing-key = {
-      file = "${inputs.self}/secrets/${config.networking.hostName}-grafana-signing-key.age";
+      file = ../../../secrets/${config.networking.hostName}-grafana-signing-key.age;
       group = "grafana";
       owner = "grafana";
     };
