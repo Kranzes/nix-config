@@ -108,7 +108,7 @@ in
      
       echo "Configuring pump and fan speed for the AIO..."
       ${lib.getExe pkgs.liquidctl} --match "kraken" set pump speed 100
-      ${lib.getExe pkgs.liquidctl} --match "kraken" set fan speed 70
+      ${lib.getExe pkgs.liquidctl} --match "kraken" set fan speed 100
     
       echo "Setting fan speed for the case fans..."
       ${lib.getExe pkgs.liquidctl} --match "smart device" set sync speed 100
