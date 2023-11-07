@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   home.pointerCursor = {
@@ -13,6 +13,7 @@
     enable = true;
     windowManager.bspwm = {
       enable = true;
+      monitors.primary = map (toString) (lib.range 1 10);
       settings = {
         remove_disabled_monitors = true;
         remove_unplugged_monitors = true;
@@ -20,11 +21,7 @@
         border_width = 2;
         window_gap = 15;
       };
-      rules = {
-        "Zathura" = {
-          state = "tiled";
-        };
-      };
+      rules."Zathura".state = "tiled";
     };
   };
 }
