@@ -2,6 +2,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      env.WINIT_X11_SCALE_FACTOR = "1";
       font = {
         normal = {
           family = "JetBrains Mono";
@@ -19,7 +20,7 @@
           family = "JetBrains Mono";
           style = "Bold Italic";
         };
-        size = 8;
+        size = 9;
       };
       colors = {
         primary = {
