@@ -6,11 +6,11 @@
     ./xserver.nix
     ./home
   ] ++ (with inputs.self.nixosModules; [
-    android
-    audio
-    laptop
-    opengl
-    xserver
+    profiles-android
+    profiles-audio
+    profiles-laptop
+    profiles-opengl
+    profiles-xserver
   ]);
 
 

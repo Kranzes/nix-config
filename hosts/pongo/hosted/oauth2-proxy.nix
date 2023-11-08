@@ -28,17 +28,9 @@ in
     owner = "oauth2_proxy";
   };
 
-  services.nginx = {
-    enable = true;
-    virtualHosts.${domain} = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/".proxyPass = config.services.oauth2_proxy.httpAddress;
-    };
-  };
-
-  security.acme = {
-    acceptTerms = true;
-    certs.${domain}.email = "personal@ilanjoselevich.com";
+  services.nginx.virtualHosts.${domain} = {
+    forceSSL = true;
+    enableACME = true;
+    locations."/".proxyPass = config.services.oauth2_proxy.httpAddress;
   };
 }

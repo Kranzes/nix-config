@@ -22,6 +22,7 @@
       imports = [
         ./hosts/flake-module.nix
         ./profiles/flake-module.nix
+        ./hosted/flake-module.nix
         ./packages/flake-module.nix
         ./dev/flake-module.nix
       ];

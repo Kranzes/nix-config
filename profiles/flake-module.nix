@@ -2,22 +2,20 @@
 
 {
   flake.nixosModules = {
-    agenix = import ./agenix.nix { inherit inputs; };
-    android = ./android.nix;
-    audio = ./audio.nix;
-    cachix-deploy = ./cachix-deploy.nix;
-    docs = ./docs.nix;
-    grafana-agent = ./grafana-agent.nix;
-    impermanence = import ./impermanence.nix { inherit inputs; };
-    laptop = ./laptop.nix;
-    misc = ./misc.nix;
-    nginx = ./nginx.nix;
-    nix-nixpkgs = import ./nix-nixpkgs.nix { inherit inputs; };
-    opengl = ./opengl.nix;
-    security = ./security.nix;
-    ssh = ./ssh.nix;
-    tailscale = ./tailscale.nix;
-    users = ./users.nix;
-    xserver = ./xserver.nix;
+    profiles-agenix = import ./agenix.nix { inherit inputs; };
+    profiles-android = ./android.nix;
+    profiles-audio = ./audio.nix;
+    profiles-cachix-deploy = ./cachix-deploy.nix;
+    profiles-docs = ./docs.nix;
+    profiles-impermanence = import ./impermanence.nix { inherit inputs; };
+    profiles-laptop = ./laptop.nix;
+    profiles-misc = ./misc.nix;
+    profiles-nix-nixpkgs = import ./nix-nixpkgs.nix { inherit inputs; };
+    profiles-opengl = ./opengl.nix;
+    profiles-security = ./security.nix;
+    profiles-ssh = ./ssh.nix;
+    profiles-tailscale = ./tailscale.nix;
+    profiles-users = ./users.nix;
+    profiles-xserver = ./xserver.nix;
   };
 } 

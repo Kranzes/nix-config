@@ -2,15 +2,15 @@
 
 let
   commonProfiles = with inputs.self.nixosModules; [
-    agenix
-    cachix-deploy
-    docs
-    misc
-    nix-nixpkgs
-    security
-    ssh
-    tailscale
-    users
+    profiles-agenix
+    profiles-cachix-deploy
+    profiles-docs
+    profiles-misc
+    profiles-nix-nixpkgs
+    profiles-security
+    profiles-ssh
+    profiles-tailscale
+    profiles-users
   ];
 
   commonHome = [

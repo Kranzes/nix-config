@@ -17,17 +17,9 @@
     };
   };
 
-  services.nginx = {
-    enable = true;
-    virtualHosts.${config.services.nextcloud.hostName} = {
-      forceSSL = true;
-      enableACME = true;
-    };
-  };
-
-  security.acme = {
-    acceptTerms = true;
-    certs.${config.services.nextcloud.hostName}.email = "personal@ilanjoselevich.com";
+  services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
+    forceSSL = true;
+    enableACME = true;
   };
 
   age.secrets.nextcloud-admin-root-pass = {

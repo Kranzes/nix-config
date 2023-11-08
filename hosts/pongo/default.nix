@@ -7,10 +7,10 @@
     ./hosted
     ./home
   ] ++ (with inputs.self.nixosModules; [
-    android
-    audio
-    opengl
-    xserver
+    profiles-android
+    profiles-audio
+    profiles-opengl
+    profiles-xserver
   ]);
 
   system.stateVersion = "23.11";

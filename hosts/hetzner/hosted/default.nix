@@ -3,7 +3,7 @@
 {
   imports = [
     ./kanidm.nix
-    inputs.self.nixosModules.nginx
-    inputs.self.nixosModules.grafana-agent
+    inputs.self.nixosModules.hosted-nginx
+    inputs.self.nixosModules.hosted-grafana-agent
   ];
 }

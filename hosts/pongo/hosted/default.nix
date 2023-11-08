@@ -9,7 +9,7 @@
     ./oauth2-proxy.nix
     ./grafana.nix
     ./loki.nix
-    inputs.self.nixosModules.grafana-agent
-    inputs.self.nixosModules.nginx
+    inputs.self.nixosModules.hosted-grafana-agent
+    inputs.self.nixosModules.hosted-nginx
   ];
 }

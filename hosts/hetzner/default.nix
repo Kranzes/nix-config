@@ -4,7 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./hosted
-    inputs.self.nixosModules.impermanence
+    inputs.self.nixosModules.profiles-impermanence
   ];
 
   security.sudo.wheelNeedsPassword = false;

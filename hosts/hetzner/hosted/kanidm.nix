@@ -4,11 +4,6 @@ let
   certDir = config.security.acme.certs.${domain}.directory;
 in
 {
-  security.acme = {
-    acceptTerms = true;
-    certs.${domain}.email = "personal@ilanjoselevich.com";
-  };
-
   services.kanidm = {
     enableServer = true;
     serverSettings = {
@@ -33,13 +28,10 @@ in
     };
   };
 
-  services.nginx = {
-    enable = true;
-    virtualHosts.${domain} = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/".proxyPass = "https://${config.services.kanidm.serverSettings.bindaddress}";
-    };
+  services.nginx.virtualHosts.${domain} = {
+    forceSSL = true;
+    enableACME = true;
+    locations."/".proxyPass = "https://${config.services.kanidm.serverSettings.bindaddress}";
   };
 
   environment.persistence."/nix/persistent".directories = [

@@ -79,20 +79,12 @@ in
     };
   };
 
-  services.nginx = {
-    enable = true;
-    virtualHosts.${domain} = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://${config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
-        proxyWebsockets = true;
-      };
+  services.nginx.virtualHosts.${domain} = {
+    forceSSL = true;
+    enableACME = true;
+    locations."/" = {
+      proxyPass = "http://${config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
+      proxyWebsockets = true;
     };
-  };
-
-  security.acme = {
-    acceptTerms = true;
-    certs.${domain}.email = "personal@ilanjoselevich.com";
   };
 }
