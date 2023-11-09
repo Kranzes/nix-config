@@ -8,5 +8,5 @@ in
 {
   imports = [ inputs.agenix.nixosModules.age ];
 
-  age.identityPaths = lib.mkIf (options ? environment.persistence) (map (x: "/nix/persistent" + x) sshHostKeys);
+  age.identityPaths = if (options ? environment.persistence) then (map (x: "/nix/persistent" + x) sshHostKeys) else sshHostKeys;
 }
