@@ -1,6 +1,6 @@
 { inputs, ... }:
 
-{ config, options, lib, ... }:
+{ config, options, ... }:
 
 let
   sshHostKeys = builtins.catAttrs "path" config.services.openssh.hostKeys;

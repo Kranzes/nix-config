@@ -13,7 +13,7 @@
     enable = true;
     windowManager.bspwm = {
       enable = true;
-      monitors.primary = map (toString) (lib.range 1 10);
+      monitors.primary = map toString (lib.range 1 10);
       settings = {
         remove_disabled_monitors = true;
         remove_unplugged_monitors = true;

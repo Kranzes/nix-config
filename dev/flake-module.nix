@@ -1,7 +1,10 @@
 { inputs, withSystem, config, lib, ... }:
 
 {
-  imports = [ inputs.hercules-ci-effects.flakeModule ];
+  imports = [
+    inputs.hercules-ci-effects.flakeModule
+    inputs.treefmt-nix.flakeModule
+  ];
 
   perSystem = { pkgs, lib, inputs', ... }: {
     devShells.default = pkgs.mkShellNoCC {
@@ -11,7 +14,16 @@
       ];
     };
 
-    apps = (lib.mapAttrs'
+    treefmt = {
+      projectRootFile = "flake.nix";
+      programs = {
+        nixpkgs-fmt.enable = true;
+        deadnix.enable = true;
+        statix.enable = true;
+      };
+    };
+
+    apps = lib.mapAttrs'
       (host: cfg: {
         name = "deploy-${host}";
         value.program = toString (pkgs.writeShellScript "deploy-${host}" ''
@@ -26,7 +38,7 @@
             --target-host ${cfg.config.networking.hostName} ${lib.optionalString (host == "pongo") "--build-host ${cfg.config.networking.hostName}"}
         '');
       })
-      inputs.self.nixosConfigurations);
+      inputs.self.nixosConfigurations;
   };
 
 

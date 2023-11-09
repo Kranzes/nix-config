@@ -60,7 +60,7 @@ in
         can not contain tables/objects due to limitations of the TOML library. Values
         involving arrays of non-primitive types may not be representable currently.
       '';
-      type = format.type;
+      inherit (format) type;
       defaultText = lib.literalExpression ''
         {
           agent.source = "..."; # One of "nixpkgs", "flake", "override"
