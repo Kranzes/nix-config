@@ -13,8 +13,5 @@
     profiles-xserver
   ]);
 
-
-  time.timeZone = "Atlantic/Canary";
-
   system.stateVersion = "23.11";
 }
