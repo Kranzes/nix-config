@@ -1,12 +1,16 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   home-manager.users.kranzes = {
     imports = [
       ./music.nix
-      ./bspwm.nix
       ./gaming.nix
     ];
-    home.packages = with pkgs; [ lutris ];
+
+    # Overrides.
+    xsession.windowManager.bspwm.startupPrograms = [
+      "${lib.getExe pkgs.feh} --no-fehbg --bg-scale $HOME/Wallpapers/pexels-pok-rie.jpg"
+    ];
+    programs.alacritty.settings.font.size = lib.mkForce 8;
   };
 }
