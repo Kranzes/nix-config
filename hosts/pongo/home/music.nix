@@ -59,7 +59,8 @@
 
   programs.beets = {
     enable = true;
-    package = pkgs.beets.override {
+    # TODO: remove when https://github.com/NixOS/nixpkgs/pull/268598 is fixed.
+    package = (builtins.getFlake "github:NixOS/nixpkgs/df4d6022db36b396fca38931afb41a626ef88e8a").legacyPackages.${pkgs.system}.beets.override {
       pluginOverrides = {
         fetchart.enable = true;
         mpdupdate.enable = true;
