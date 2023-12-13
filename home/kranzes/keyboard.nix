@@ -51,7 +51,7 @@
       "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,10}'";
 
       # preselect the direction
-      "super + ctrl + {h,j,k,l}" = "bspc node -p iwest,south,north,east}";
+      "super + ctrl + {h,j,k,l}" = "bspc node -p {west,south,north,east}";
 
       # preselect the ratio
       "super + ctrl + {1-9}" = "bspc node -o 0.{1-9}";

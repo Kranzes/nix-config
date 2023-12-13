@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   services.mpd = {
@@ -59,14 +59,11 @@
 
   programs.beets = {
     enable = true;
-    package = pkgs.beets.override {
-      pluginOverrides = {
-        fetchart.enable = true;
-        mpdupdate.enable = true;
-      };
+    package = pkgs.beetsPackages.beets-minimal.override {
+      pluginOverrides = lib.genAttrs config.programs.beets.settings.plugins (_: { enable = true; });
     };
     settings = {
-      plugins = [ "permissions" "mpdupdate" "fetchart" ];
+      plugins = [ "permissions" "fetchart" "mpdupdate" ];
       directory = "/home/4TB-HDD/Media/Music";
       library = "~/.local/share/musiclibrary.db";
       import = {
