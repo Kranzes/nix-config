@@ -11,7 +11,13 @@
     withNodeJs = false;
     withPython3 = false;
     plugins = with pkgs.vimPlugins; [
-      nord-nvim
+      (nord-nvim.overrideAttrs {
+        # TODO remove once https://github.com/shaunsingh/nord.nvim/pull/151 is merged
+        patches = lib.singleton (pkgs.fetchpatch {
+          url = "https://github.com/shaunsingh/nord.nvim/commit/120b123f3eee8c2790045ebb6e6859abd6efd0ea.patch";
+          hash = "sha256-Ip/ATUAmaOqXLfV2ilsqo+g1o3aE+pgUy31SnEiovxE=";
+        });
+      })
       lightline-vim
       vim-nix
       nvim-colorizer-lua
@@ -29,7 +35,7 @@
       cmp_luasnip
       luasnip
       gitsigns-nvim
-      nvim-ts-rainbow
+      rainbow-delimiters-nvim
       formatter-nvim
       rust-tools-nvim
       floating-input-nvim
@@ -79,8 +85,7 @@
       -- tree sitter
       require('nvim-treesitter.configs').setup {
         highlight = { enable = true, },
-        indent = { enable = true, },
-        rainbow = { enable = true, }
+        indent = { enable = true, }
       }
 
       -- enable colorizer
