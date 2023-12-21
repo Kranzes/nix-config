@@ -3,7 +3,7 @@ let
     pongo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq0cqSiwsTj1ktlr70ToobLXD9JIRQynTuOpmwpYilB";
     gorilla = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKjg+i3lXnTMb/jGlsbguKdCsrz3M6zmDRd/NheBnUoT";
     hetzner = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICd6HBMr+HEX0i8ZVN7QLeLo1+z+OkDjESDw1nc5IGqP";
-    pan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGDbBEzvhMeRzkGHpV+rd8Jq8O3hHBQYQhuzpvep08Ux";
+    pan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/SSCGsV61hZy5NVzjeA07PufZIHufUIeCD6id9orKF";
   };
   users = {
     kranzes-yk5 = "age1yubikey1qgmx6kq5upm2hkzhlpaj5q6yj2d4h02r5f9tdjv9y9yja4xq4wa5k42ae6d";
