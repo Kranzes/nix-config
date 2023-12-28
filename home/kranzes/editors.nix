@@ -11,13 +11,7 @@
     withNodeJs = false;
     withPython3 = false;
     plugins = with pkgs.vimPlugins; [
-      (nord-nvim.overrideAttrs {
-        # TODO remove once https://github.com/shaunsingh/nord.nvim/pull/151 is merged
-        patches = lib.singleton (pkgs.fetchpatch {
-          url = "https://github.com/shaunsingh/nord.nvim/commit/120b123f3eee8c2790045ebb6e6859abd6efd0ea.patch";
-          hash = "sha256-Ip/ATUAmaOqXLfV2ilsqo+g1o3aE+pgUy31SnEiovxE=";
-        });
-      })
+      nord-nvim
       lightline-vim
       vim-nix
       nvim-colorizer-lua
