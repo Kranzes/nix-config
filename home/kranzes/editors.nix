@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   programs.neovim = {
@@ -30,17 +30,18 @@
       luasnip
       gitsigns-nvim
       rainbow-delimiters-nvim
-      formatter-nvim
-      rust-tools-nvim
+      rustaceanvim
       floating-input-nvim
     ];
     extraPackages = with pkgs; [
       ripgrep # telescope
-      manix # telescope
       git # gitsigns
       nil # lspconfig
+      nixpkgs-fmt # lspconfig
       pyright # lspconfig
       nodePackages.bash-language-server # lspconfig
+      rust-analyzer # rustaceanvim
+      rustfmt # lspconfig
     ];
     extraConfig = ''
       lua << EOF
@@ -57,6 +58,7 @@
       require('nord').set()
       vim.g.nord_borders = true
       vim.g.lightline = { colorscheme = 'nord' }
+      vim.api.nvim_set_hl(0, "LspInlayHint", { link = "Comment" })
 
       -- set linebreak and spelling for markdown documents
       vim.cmd 'autocmd FileType markdown set linebreak'
@@ -70,10 +72,8 @@
       -- telescope
       local opts = { noremap=true, silent=true }
       require('telescope').load_extension('fzf')
-      require('telescope').load_extension('manix')
       vim.keymap.set('n', '<space>ff', require('telescope.builtin').find_files, opts)
       vim.keymap.set('n', '<space>fg', require('telescope.builtin').live_grep, opts)
-      vim.keymap.set('n', '<space>mn', require('telescope-manix').search, opts)
       vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
 
       -- tree sitter
@@ -98,48 +98,61 @@
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
       vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       local on_attach = function(client, bufnr)
         client.server_capabilities.semanticTokensProvider = nil
         local bufopts = { noremap=true, silent=true, buffer=bufnr }
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-        vim.keymap.set('n', '<space>wl', function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, bufopts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set('n', '<space>ih', function() vim.lsp.inlay_hint.enable(nil, not vim.lsp.inlay_hint.is_enabled()) end, bufopts)
+
+        -- formatting
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          pattern = '*',
+          callback = function()
+            vim.lsp.buf.format()
+          end,
+        })
       end
 
-      local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-      capabilities = {
-        workspace = {
-          didChangeWatchedFiles = {
-            didChangeWatchedFiles = true,
+      require('lspconfig').nil_ls.setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          ['nil'] = {
+            nix = {
+              maxMemoryMB = 8192,
+              flake = {
+                autoArchive = true,
+                autoEvalInputs = true,
+              },
+            },
+            formatting = {
+              command = { "nixpkgs-fmt" },
+            },
           },
         },
       }
 
-      local servers = { 'nil_ls', 'pyright', 'bashls' }
-      for _, lsp in ipairs(servers) do
-        require('lspconfig')[lsp].setup {
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = {
-            ['nil'] = {
-              autoArchive = true,
-              autoEvalInputs = true,
-            }
-          }
-        }
-      end
+      require('lspconfig').pyright.setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+      }
 
-      require("rust-tools").setup({ server = { on_attach = on_attach }})
+      require('lspconfig').bashls.setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+      }
+
+      vim.g.rustaceanvim = {
+        server = {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        },
+      }
 
       vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
         vim.lsp.handlers.hover,
@@ -194,14 +207,6 @@
           ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true, })
         },
       }
-
-      -- formatting
-      require("formatter").setup {
-        filetype = {
-          nix = { function() return { exe = "${lib.getExe pkgs.nixpkgs-fmt}" } end, },
-        },
-      }
-      vim.cmd 'autocmd BufWritePost * FormatWrite'
       EOF
     '';
   };
