@@ -74,7 +74,7 @@ in
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
     kernelModules = [ "kvm-amd" "i2c-dev" "i2c_piix4" ];
     kernelParams = [ "amd_iommu=on" ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
   };
 
