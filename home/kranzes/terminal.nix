@@ -40,15 +40,13 @@
           background = "#4c566a";
           text = "CellForeground";
         };
-        search = {
-          footer_bar = {
-            background = "#434c5e";
-            foreground = "#d8dee9";
-          };
-          matches = {
-            background = "#88c0d0";
-            foreground = "CellBackground";
-          };
+        footer_bar = {
+          background = "#434c5e";
+          foreground = "#d8dee9";
+        };
+        search.matches = {
+          background = "#88c0d0";
+          foreground = "CellBackground";
         };
         normal = {
           black = "#3b4252";
