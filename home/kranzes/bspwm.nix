@@ -17,7 +17,8 @@
       settings = {
         remove_disabled_monitors = true;
         remove_unplugged_monitors = true;
-        focused_border_color = "#88C0D0";
+        normal_border_color = "#6E738D";
+        focused_border_color = "#f5bde6"; # catppuccin macchiato
         border_width = 2;
         window_gap = 15;
       };

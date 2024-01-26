@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.zsh = {
@@ -9,6 +9,9 @@
       source ${pkgs.git}/share/bash-completion/completions/git-prompt.sh
       PROMPT='[%n@%m %~]%(!.#.$)$(__git_ps1) '
       RPROMPT=
+    '';
+    initExtraBeforeCompInit = ''
+      export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-macchiato)"
     '';
     initExtra = ''
       setopt INTERACTIVE_COMMENTS
@@ -40,14 +43,5 @@
       weather = "curl wttr.in/Rehovot";
       ssh = "TERM=xterm-256color ssh";
     };
-  };
-
-  programs.dircolors = {
-    enable = true;
-    enableZshIntegration = true;
-    extraConfig = builtins.readFile "${pkgs.fetchurl {
-      url = "https://github.com/arcticicestudio/nord-dircolors/raw/addb3b427e008d23affc721450fde86f27566f1d/src/dir_colors";
-      sha256 = "sha256-hlezTQqouVKbxgQBxtZU4en0idDiTCRJtFGH6XYFmtc="; }
-    }";
   };
 }

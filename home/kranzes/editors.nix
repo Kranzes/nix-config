@@ -11,7 +11,7 @@
     withNodeJs = false;
     withPython3 = false;
     plugins = with pkgs.vimPlugins; [
-      nord-nvim
+      catppuccin-nvim
       lightline-vim
       vim-nix
       nvim-colorizer-lua
@@ -54,10 +54,14 @@
       vim.o.hidden = true
       vim.cmd 'set noshowmode'
 
-       -- theming
-      require('nord').set()
-      vim.g.nord_borders = true
-      vim.g.lightline = { colorscheme = 'nord' }
+      -- theming
+      require("catppuccin").setup({
+        flavour = "macchiato",
+        custom_highlights = function(colors) return { NormalFloat = { bg = colors.base } } end
+      })
+
+      vim.cmd.colorscheme "catppuccin"
+      vim.g.lightline = { colorscheme = 'catppuccin' }
       vim.api.nvim_set_hl(0, "LspInlayHint", { link = "Comment" })
 
       -- set linebreak and spelling for markdown documents
@@ -101,7 +105,6 @@
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       local on_attach = function(client, bufnr)
-        client.server_capabilities.semanticTokensProvider = nil
         local bufopts = { noremap=true, silent=true, buffer=bufnr }
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)

@@ -1,65 +1,32 @@
 { pkgs, ... }:
 
 {
-  # Remove when https://github.com/mlvzk/discocss/issues/26 is fixed.
-  home.packages = [ (pkgs.discord.override { withOpenASAR = true; }) ];
-
   programs = {
     bat = {
       enable = true;
       config = {
         paging = "never";
         style = "numbers";
-        theme = "Nord";
+        theme = "catppuccin";
       };
-    };
-
-    discocss = {
-      enable = false; # Disable until https://github.com/mlvzk/discocss/issues/26 is fixed.
-      discordPackage = pkgs.discord.override { withOpenASAR = true; };
-      css = builtins.readFile "${pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/orblazer/discord-nordic/bfd1da7e7a9a4291cd8f8c3dffc6a93dfc3d39d7/nordic.theme.css";
-        sha256 = "sha256-LH/bRd7J2I69vdgpFkAa/HPEGISh6CFIyoT1f5uMBI8="; }
-      }";
+      themes.catppuccin.src = pkgs.fetchurl {
+        url = "https://github.com/catppuccin/bat/raw/477622171ec0529505b0ca3cada68fc9433648c6/Catppuccin-macchiato.tmTheme";
+        hash = "sha256-76fS4lq8obgOAYaKSVqBc2wOP+RLUCeTQL69vrUfs3k=";
+      };
     };
 
     zathura = {
       enable = true;
       options = {
-        font = "JetBrains Mono 9";
-        completion-bg = "#3B4252";
-        completion-fg = "#ECEFF4";
-        completion-group-bg = "#3B4252";
-        completion-group-fg = "#88C0D0";
-        completion-highlight-bg = "#4C566A";
-        completion-highlight-fg = "#ECEFF4";
-        default-bg = "#2E3440";
-        default-fg = "#ECEFF4";
-        highlight-active-color = "#5E81AC";
-        highlight-color = "#88C0D0";
-        index-active-bg = "#4C566A";
-        index-active-fg = "#ECEFF4";
-        index-bg = "#2E3440";
-        index-fg = "#ECEFF4";
-        inputbar-bg = "#3B4252";
-        inputbar-fg = "#ECEFF4";
-        notification-bg = "#2E3440";
-        notification-error-bg = "#2E3440";
-        notification-error-fg = "#BF616A";
-        notification-fg = "#ECEFF4";
-        notification-warning-bg = "#2E3440";
-        notification-warning-fg = "#EBCB8B";
+        font = "JetBrains Mono 8";
         recolor = true;
-        recolor-darkcolor = "#D8DEE9";
-        recolor-lightcolor = "#2E3440";
-        render-loading-bg = "#2E3440";
-        render-loading-fg = "#ECEFF4";
-        selection-notification = true;
-        statusbar-bg = "#3B4252";
-        statusbar-fg = "#ECEFF4";
-        statusbar-h-padding = 10;
-        statusbar-v-padding = 10;
       };
+      extraConfig = ''
+        include ${pkgs.fetchurl {
+          url = "https://github.com/catppuccin/zathura/raw/b409a2077744e612f61d2edfd9efaf972e155c5f/src/catppuccin-macchiato";
+          hash = "sha256-cuR2W/Iwd57XZ+rE/ldIhIPZOQcHZNLtQEl2rUpC4Ek=";
+        }}
+      '';
     };
   };
 }

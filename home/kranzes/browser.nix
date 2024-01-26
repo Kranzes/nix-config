@@ -11,7 +11,6 @@
         facebook-container
         i-dont-care-about-cookies
         privacy-badger
-        kristofferhagen-nord-theme
         sponsorblock
         translate-web-pages
         (flagfox.overrideAttrs { meta.license.free = true; })

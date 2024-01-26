@@ -12,7 +12,6 @@
     ./launcher.nix
     ./keyboard.nix
     ./bspwm.nix
-    ./xresources.nix
     ./notifications.nix
     ./polybar.nix
     ./screen-lock.nix

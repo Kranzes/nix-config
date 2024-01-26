@@ -36,6 +36,7 @@
     ripgrep
     fd
     sd
+    discord
   ];
 }
 
