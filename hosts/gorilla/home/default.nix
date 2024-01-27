@@ -9,7 +9,7 @@
       polybar leftbar &
     '';
     xsession.windowManager.bspwm.startupPrograms = [
-      "${lib.getExe pkgs.feh} --no-fehbg --bg-scale $HOME/Wallpapers/monkeys.jpg"
+      "${lib.getExe pkgs.feh} --no-fehbg --bg-scale $HOME/Wallpapers/evening-sky.png"
     ];
   };
 }
