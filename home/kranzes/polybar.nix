@@ -31,7 +31,7 @@
         "inherit" = "section/base";
         modules-left = "bspwm";
         offset-x = 10;
-        width = 223;
+        width = 221;
       };
       "module/bspwm" = {
         type = "internal/bspwm";
