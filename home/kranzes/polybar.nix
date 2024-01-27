@@ -36,15 +36,13 @@
       "module/bspwm" = {
         type = "internal/bspwm";
         label-active = "%index%";
-        label-active-background = "\${colors.crust}";
-        label-active-foreground = "\${colors.green}";
+        label-active-background = "\${colors.mauve}";
+        label-active-foreground = "\${colors.base}";
         label-active-padding = 1;
         label-empty = "%index%";
-        label-empty-background = "\${colors.base}";
         label-empty-padding = 1;
         label-occupied = "%index%";
-        label-occupied-background = "\${colors.mantle}";
-        label-occupied-foreground = "\${colors.peach}";
+        label-occupied-background = "\${colors.surface0}";
         label-occupied-padding = 1;
         label-urgent = "%index%";
         label-urgent-background = "\${colors.red}";
@@ -79,7 +77,7 @@
         type = "internal/memory";
         format-foreground = "\${colors.peach}";
         format-padding = 1;
-        label = " %percentage_used%";
+        label = " %percentage_used%%";
       };
       "module/pulseaudio" = {
         type = "internal/pulseaudio";
