@@ -6,7 +6,7 @@
 
   services.hercules-ci-agents."kranzes" = {
     enable = true;
-    package = (builtins.getFlake "github:hercules-ci/hercules-ci-agent/e44538cf90ecd8173a6edf75f9a14364d3b9962f").packages.${pkgs.system}.hercules-ci-agent;
+    package = (builtins.getFlake "github:hercules-ci/hercules-ci-agent/f01ae96b022bb12d35d7223548a0b05623a55ddf").packages.${pkgs.system}.hercules-ci-agent;
     settings = {
       clusterJoinTokenPath = config.age.secrets.kranzes-hercules-cluster-join-token.path;
       secretsJsonPath = config.age.secrets.kranzes-hercules-secrets.path;
