@@ -15,6 +15,7 @@
       adminpassFile = config.age.secrets.nextcloud-admin-root-pass.path;
       adminuser = "admin-root";
     };
+    extraOptions.user_oidc.use_pkce = true;
   };
 
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
