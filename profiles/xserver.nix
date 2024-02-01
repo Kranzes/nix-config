@@ -4,8 +4,8 @@
   services.xserver = {
     enable = true;
     # Hebrew keyboard.
-    layout = lib.mkDefault "us,il";
-    xkbOptions = lib.mkDefault "grp:lalt_lshift_toggle";
+    xkb.layout = lib.mkDefault "us,il";
+    xkb.options = lib.mkDefault "grp:lalt_lshift_toggle";
     # Disable mouse acceleration.
     libinput = {
       enable = true;
