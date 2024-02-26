@@ -12,37 +12,33 @@ in
       inherit device;
       type = "disk";
       content = {
-        type = "table";
-        format = "gpt";
-        partitions = [
-          {
-            name = "boot";
-            start = "1MiB";
-            end = "512MiB";
-            bootable = true;
+        type = "gpt";
+        partitions = {
+          boot = {
+            size = "512M";
+            type = "EF00";
+            label = "boot";
             content = {
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
             };
-          }
-          {
-            name = "nixos";
-            start = "512MiB";
-            end = "100%";
-            part-type = "primary";
-            bootable = true;
+          };
+          nixos = {
+            size = "100%";
+            label = "nixos";
             content = {
               type = "luks";
               name = "cryptroot";
+              settings.allowDiscards = true;
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
               };
             };
-          }
-        ];
+          };
+        };
       };
     };
   };
