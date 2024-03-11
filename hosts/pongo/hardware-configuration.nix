@@ -59,6 +59,12 @@ in
       fsType = "none";
       options = [ "bind" "ro" ];
     };
+
+    "/mnt/nextcloud/yael" = {
+      device = "/home/1TB-HDD/yael";
+      fsType = "none";
+      options = [ "bind" "rw" ];
+    };
   };
 
   zramSwap.enable = true;
