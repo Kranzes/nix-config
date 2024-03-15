@@ -5,7 +5,7 @@
     ./libvirt.nix
     ./nextcloud.nix
     ./jellyfin.nix
-    ./hercules-ci
+    ./hercules-ci.nix
     ./grafana.nix
     ./loki.nix
     inputs.self.nixosModules.hosted-grafana-agent
