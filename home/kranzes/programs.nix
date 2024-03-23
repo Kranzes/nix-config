@@ -10,21 +10,18 @@
         theme = "catppuccin";
       };
       themes.catppuccin.src = pkgs.fetchurl {
-        url = "https://github.com/catppuccin/bat/raw/477622171ec0529505b0ca3cada68fc9433648c6/Catppuccin-macchiato.tmTheme";
-        hash = "sha256-76fS4lq8obgOAYaKSVqBc2wOP+RLUCeTQL69vrUfs3k=";
+        url = "https://raw.githubusercontent.com/catppuccin/bat/2bafe4454d8db28491e9087ff3a1382c336e7d27/themes/Catppuccin%20Macchiato.tmTheme";
+        hash = "sha256-0cSE5kHAM/ztjI6irf88A+Mkmdh7QS3PV5h5jTatAvQ=";
       };
     };
 
     zathura = {
       enable = true;
-      options = {
-        font = "JetBrains Mono 8";
-        recolor = true;
-      };
+      options.font = "JetBrains Mono 8";
       extraConfig = ''
         include ${pkgs.fetchurl {
-          url = "https://github.com/catppuccin/zathura/raw/b409a2077744e612f61d2edfd9efaf972e155c5f/src/catppuccin-macchiato";
-          hash = "sha256-cuR2W/Iwd57XZ+rE/ldIhIPZOQcHZNLtQEl2rUpC4Ek=";
+          url = "https://github.com/catppuccin/zathura/raw/1bda9d8274dd327b7931886ef0c5c1eb33903814/src/catppuccin-macchiato";
+          hash = "sha256-tsenfgz1LToAy2cICcPFheutThKhlXEAZfDtW+MnCEk=";
         }}
       '';
     };
