@@ -62,4 +62,6 @@ in
   };
 
   zramSwap.enable = true;
+
+  powerManagement.cpuFreqGovernor = "performance";
 }

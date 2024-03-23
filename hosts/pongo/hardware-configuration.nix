@@ -88,6 +88,8 @@ in
     logitech.wireless.enableGraphical = true;
   };
 
+  powerManagement.cpuFreqGovernor = "performance";
+
   services = {
     ratbagd.enable = true;
     fstrim.enable = true;
@@ -97,7 +99,6 @@ in
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ProtectSystem = "strict";
       PrivateNetwork = true;
       ProtectHostname = true;
       LockPersonality = true;
@@ -118,7 +119,7 @@ in
       ${lib.getExe pkgs.liquidctl} --match "smart device" set sync speed 100
     
       echo "Turning off all the LEDs..."
-      ${lib.getExe pkgs.openrgb} --noautoconnect --config $(mktemp) --mode off > /dev/null
+      ${lib.getExe pkgs.openrgb} --noautoconnect --mode off > /dev/null
     '';
   };
 }
