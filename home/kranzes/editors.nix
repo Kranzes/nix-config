@@ -42,6 +42,8 @@
       nodePackages.bash-language-server # lspconfig
       rust-analyzer # rustaceanvim
       rustfmt # lspconfig
+      cargo # lspconfig
+      clippy # lspconfig
     ];
     extraConfig = ''
       lua << EOF
