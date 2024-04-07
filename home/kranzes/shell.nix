@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   programs.zsh = {
@@ -11,7 +11,7 @@
       RPROMPT=
     '';
     initExtraBeforeCompInit = ''
-      export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-macchiato)"
+      export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-${config.catppuccin.flavour})"
     '';
     initExtra = ''
       setopt INTERACTIVE_COMMENTS

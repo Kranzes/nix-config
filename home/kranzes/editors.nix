@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, ... }:
 
 {
   programs.neovim = {
@@ -58,7 +58,7 @@
 
       -- theming
       require("catppuccin").setup({
-        flavour = "macchiato",
+        flavour = "${config.catppuccin.flavour}",
         custom_highlights = function(colors) return { NormalFloat = { bg = colors.base } } end
       })
 

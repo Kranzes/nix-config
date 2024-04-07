@@ -1,22 +1,18 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   gtk = {
     enable = true;
-    theme = {
-      name = "Catppuccin-Macchiato-Compact-Lavender-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        variant = "macchiato";
-        accents = [ "lavender" ];
-        size = "compact";
-        tweaks = [ "rimless" ];
-      };
+    catppuccin = {
+      enable = true;
+      size = "compact";
+      tweaks = [ "rimless" ];
     };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "macchiato";
-        accent = "lavender";
+        flavor = config.catppuccin.flavour;
+        inherit (config.catppuccin) accent;
       };
     };
     font = {

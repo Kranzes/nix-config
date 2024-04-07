@@ -9,12 +9,7 @@
       polybar leftbar &
       polybar rightbar &
     '';
-    extraConfig = ''
-      include-file = ${pkgs.fetchurl {
-        url = "https://github.com/catppuccin/polybar/raw/a9ea53b739d0415c6c2944927645934f9a0e5897/themes/macchiato.ini";
-        hash = "sha256-WwEVk+r2G7FAQPt36gXxHqUKukHd3ErZ+Rd2E8VaGkk=";
-      }}
-    '';
+    catppuccin.enable = true;
     config = {
       "section/base" = {
         height = 20;

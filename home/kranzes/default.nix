@@ -1,6 +1,15 @@
+{ inputs, lib, ... }:
+
 {
   home.stateVersion = "22.05";
+
+  catppuccin = {
+    flavour = lib.mkDefault "macchiato";
+    accent = lib.mkDefault "lavender";
+  };
+
   imports = [
+    inputs.catppuccin.homeManagerModules.catppuccin
     ./packages.nix
     ./programs.nix
     ./fonts.nix
