@@ -64,6 +64,11 @@ in
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
     cpu.amd.updateMicrocode = true;
+    trackpoint = {
+      enable = true;
+      emulateWheel = true;
+      device = "ETPS/2 Elantech TrackPoint";
+    };
   };
 
   powerManagement.cpuFreqGovernor = "conservative";
