@@ -19,7 +19,7 @@
         from = "2023-10-10";
         store = "tsdb";
         object_store = "filesystem";
-        schema = "v12";
+        schema = "v13";
         index = {
           prefix = "index_";
           period = "24h";
