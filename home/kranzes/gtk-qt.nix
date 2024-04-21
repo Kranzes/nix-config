@@ -1,6 +1,8 @@
 { pkgs, config, ... }:
 
 {
+  xdg.enable = true;
+
   gtk = {
     enable = true;
     catppuccin = {
