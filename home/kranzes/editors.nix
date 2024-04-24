@@ -112,7 +112,7 @@
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set('n', '<space>ih', function() vim.lsp.inlay_hint.enable(nil, not vim.lsp.inlay_hint.is_enabled()) end, bufopts)
+        vim.keymap.set('n', '<space>ih', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, bufopts)
 
         -- formatting
         vim.api.nvim_create_autocmd('BufWritePre', {
