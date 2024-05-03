@@ -13,7 +13,6 @@
         "flakes"
         "cgroups"
         "auto-allocate-uids"
-        "repl-flake"
       ];
       nix-path = "nixpkgs=flake:nixpkgs";
       use-cgroups = true;
