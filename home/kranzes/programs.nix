@@ -14,5 +14,7 @@
       options.font = "JetBrains Mono 8";
       catppuccin.enable = true;
     };
+
+    nheko.enable = true;
   };
 }
