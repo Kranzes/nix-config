@@ -153,6 +153,11 @@
       }
 
       vim.g.rustaceanvim = {
+        tools = {
+          float_win_config = {
+            border = 'rounded'
+          }
+        },
         server = {
           on_attach = on_attach,
           capabilities = capabilities,
