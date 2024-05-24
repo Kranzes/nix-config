@@ -1,9 +1,8 @@
-{ pkgs, inputs, config, ... }:
+{ pkgs, config, ... }:
 
 {
   programs.neovim = {
     enable = true;
-    package = inputs.neovim-nightly.packages.${pkgs.system}.neovim;
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
