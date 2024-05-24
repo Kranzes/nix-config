@@ -27,7 +27,7 @@
       RPROMPT=
     '';
     initExtraBeforeCompInit = ''
-      export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-${config.catppuccin.flavour})"
+      export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-${config.catppuccin.flavor})"
     '';
     initExtra = ''
       setopt INTERACTIVE_COMMENTS

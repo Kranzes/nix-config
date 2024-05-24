@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   xdg.enable = true;
@@ -9,13 +9,7 @@
       enable = true;
       size = "compact";
       tweaks = [ "rimless" ];
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = config.catppuccin.flavour;
-        inherit (config.catppuccin) accent;
-      };
+      icon.enable = true;
     };
     font = {
       name = "Roboto 10";

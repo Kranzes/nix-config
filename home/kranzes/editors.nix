@@ -57,7 +57,7 @@
 
       -- theming
       require("catppuccin").setup({
-        flavour = "${config.catppuccin.flavour}",
+        flavour = "${config.catppuccin.flavor}",
         custom_highlights = function(colors) return { NormalFloat = { bg = colors.base } } end
       })
 
