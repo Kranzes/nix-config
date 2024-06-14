@@ -31,6 +31,7 @@
       rainbow-delimiters-nvim
       rustaceanvim
       floating-input-nvim
+      nvim-treesitter-context
     ];
     extraPackages = with pkgs; [
       ripgrep # telescope
