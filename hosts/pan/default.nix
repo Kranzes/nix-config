@@ -9,7 +9,6 @@
     profiles-android
     profiles-audio
     profiles-laptop
-    profiles-opengl
     profiles-xserver
   ]);
 

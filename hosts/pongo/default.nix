@@ -9,7 +9,6 @@
   ] ++ (with inputs.self.nixosModules; [
     profiles-android
     profiles-audio
-    profiles-opengl
     profiles-xserver
   ]);
 

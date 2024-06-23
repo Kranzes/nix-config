@@ -11,7 +11,6 @@
     profiles-laptop = ./laptop.nix;
     profiles-misc = ./misc.nix;
     profiles-nix-nixpkgs = import ./nix-nixpkgs.nix { inherit inputs; };
-    profiles-opengl = ./opengl.nix;
     profiles-security = ./security.nix;
     profiles-ssh = ./ssh.nix;
     profiles-tailscale = ./tailscale.nix;
