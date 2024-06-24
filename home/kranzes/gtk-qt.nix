@@ -12,7 +12,8 @@
       icon.enable = true;
     };
     font = {
-      name = "Roboto 10";
+      name = "Roboto";
+      size = 10;
       package = pkgs.roboto;
     };
 
