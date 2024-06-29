@@ -1,7 +1,7 @@
 let
   systems = {
     pongo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq0cqSiwsTj1ktlr70ToobLXD9JIRQynTuOpmwpYilB";
-    gorilla = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKjg+i3lXnTMb/jGlsbguKdCsrz3M6zmDRd/NheBnUoT";
+    gorilla = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDTblFcEmy7kyJRgZ43BWmNk22TE4N+xyTDeJC7jpwc";
     hetzner = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICd6HBMr+HEX0i8ZVN7QLeLo1+z+OkDjESDw1nc5IGqP";
     pan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/SSCGsV61hZy5NVzjeA07PufZIHufUIeCD6id9orKF";
   };

@@ -18,7 +18,6 @@ in
           boot = {
             size = "512M";
             type = "EF00";
-            label = "boot";
             content = {
               type = "filesystem";
               format = "vfat";
@@ -27,10 +26,9 @@ in
           };
           nixos = {
             size = "100%";
-            label = "nixos";
             content = {
               type = "luks";
-              name = "cryptroot";
+              name = "crypted";
               settings.allowDiscards = true;
               content = {
                 type = "filesystem";
