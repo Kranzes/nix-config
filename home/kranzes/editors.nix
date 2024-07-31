@@ -64,6 +64,7 @@
 
       vim.cmd.colorscheme "catppuccin"
       vim.g.lightline = { colorscheme = 'catppuccin' }
+      vim.api.nvim_set_hl(0, "FloatBorder", { link = "NormalFloat" })
       vim.api.nvim_set_hl(0, "LspInlayHint", { link = "Comment" })
 
       -- set linebreak and spelling for markdown documents
