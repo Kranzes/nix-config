@@ -2,7 +2,10 @@
 
 {
   # Why is Nano even the default???
-  programs.vim.defaultEditor = true;
+  programs.vim = {
+    enable = true;
+    defaultEditor = true;
+  };
 
   # Home-manager requires it so it can manage GTK.
   programs.dconf.enable = config.services.xserver.enable;

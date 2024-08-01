@@ -4,7 +4,7 @@
 
   home.packages = with pkgs; [
     wget
-    cinnamon.nemo
+    nemo
     virt-manager
     keepassxc
     yt-dlp
@@ -21,7 +21,7 @@
     pulsemixer
     tree
     fzf
-    gnome.gnome-disk-utility
+    gnome-disk-utility
     nextcloud-client
     lm_sensors
     ffmpegthumbnailer
