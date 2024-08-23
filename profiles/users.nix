@@ -14,7 +14,7 @@ in
       ++ lib.optional config.programs.adb.enable "adbusers";
     shell = lib.mkIf config.services.xserver.enable pkgs.zsh; # I only care for ZSH on non-servers
     openssh.authorizedKeys.keys = [
-      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIBF2qWuvMCuJMlc6+ehyU0V/asmfAlT5/GLhUQqbpQ/bAAAABHNzaDo="
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAII2I2zQbQssSudF8DveLSKEhM/EQtReUsO+kxIf/dq5sAAAABHNzaDo="
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEVpaQ0K0Fzz0Hu48pqKiI25lr9ASwXR1yzYbeErBX/2AAAABHNzaDo="
     ];
   };
