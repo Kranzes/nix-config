@@ -44,6 +44,7 @@
       rustfmt # lspconfig
       cargo # lspconfig
       clippy # lspconfig
+      terraform-ls # lspconfig
     ];
     extraConfig = ''
       lua << EOF
@@ -88,6 +89,8 @@
         highlight = { enable = true, },
         indent = { enable = true, }
       }
+
+      vim.cmd 'autocmd FileType terraform set shiftwidth=2'
 
       -- enable colorizer
       require'colorizer'.setup()
@@ -149,6 +152,11 @@
       }
 
       require('lspconfig').bashls.setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+      }
+
+      require('lspconfig').terraformls.setup {
         capabilities = capabilities,
         on_attach = on_attach,
       }
