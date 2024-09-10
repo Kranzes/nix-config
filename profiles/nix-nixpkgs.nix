@@ -1,9 +1,11 @@
 { inputs, ... }:
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
 
 {
+  # Use Lix.
+  imports = [ inputs.lix.nixosModules.default ];
+
   nix = {
-    package = pkgs.nixVersions.latest;
     registry.nixpkgs.flake = inputs.nixpkgs;
     channel.enable = false;
     nixPath = lib.singleton config.nix.settings.nix-path;
