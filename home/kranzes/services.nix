@@ -6,6 +6,11 @@
     nextcloud-client.startInBackground = true;
     network-manager-applet.enable = true;
     gnome-keyring.enable = true;
+    gpg-agent = {
+      enable = true;
+      enableScDaemon = false;
+      pinentryPackage = pkgs.pinentry-gnome3;
+    };
   };
 
   systemd.user.sockets.yubikey-touch-detector = {

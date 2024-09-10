@@ -16,5 +16,10 @@
     };
 
     nheko.enable = true;
+
+    gpg = {
+      enable = true;
+      scdaemonSettings.disable-ccid = true;
+    };
   };
 }
