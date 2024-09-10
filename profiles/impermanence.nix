@@ -12,6 +12,7 @@ in
       environment.persistence."/nix/persistent" = {
         hideMounts = true;
         directories = [
+          "/var/lib/nixos"
           "/var/log"
           "/var/lib/systemd/coredump"
           "/tmp" # Make builds not crash by running them on disk instead of RAM (We still clean /tmp on boot)
