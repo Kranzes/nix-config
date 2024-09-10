@@ -12,4 +12,6 @@
       Option "Coolbits" "28"
     '';
   };
+
+  hardware.nvidia.open = false; # Older GPUs are not supported in the open drivers.
 }
