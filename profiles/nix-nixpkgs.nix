@@ -36,5 +36,9 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    # Needed for nheko
+    permittedInsecurePackages = [ "olm-3.2.16" ];
+  };
 }
