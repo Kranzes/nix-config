@@ -3,7 +3,7 @@
 
 {
   # Use Lix.
-  imports = [ inputs.lix.nixosModules.default ];
+  imports = [ inputs.lix-module.nixosModules.default ];
 
   nix = {
     registry.nixpkgs.flake = inputs.nixpkgs;

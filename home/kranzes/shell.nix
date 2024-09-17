@@ -6,14 +6,6 @@
     options = [
       "--cmd cd"
     ];
-    package = pkgs.zoxide.overrideAttrs {
-      patches = [
-        (pkgs.fetchpatch {
-          url = "https://github.com/ajeetdsouza/zoxide/commit/673ff9cf5eff412a024a916d401fc4aea64ae158.patch";
-          hash = "sha256-e3bqvO/QezLND6zmW+tefn5D1lUpl4bL+UH4LAWPkKE=";
-        })
-      ];
-    };
   };
 
 
