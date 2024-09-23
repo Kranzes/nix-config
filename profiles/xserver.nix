@@ -8,19 +8,15 @@
     xkb.options = lib.mkDefault "grp:lalt_lshift_toggle";
   };
 
-  # Disable mouse acceleration.
   services.libinput = {
     enable = true;
     mouse = {
+      # Disable mouse acceleration.
       accelProfile = "flat";
       accelSpeed = "0";
       middleEmulation = false;
     };
-    touchpad = {
-      accelProfile = "flat";
-      accelSpeed = "0";
-      middleEmulation = false;
-    };
+    touchpad.disableWhileTyping = true;
   };
 
   hardware.graphics = {
