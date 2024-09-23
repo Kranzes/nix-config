@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, pkgs, config, lib, ... }:
 let
   device = "/dev/nvme0n1";
 in
@@ -30,7 +30,10 @@ in
             content = {
               type = "luks";
               name = "cryptroot";
-              settings.allowDiscards = true;
+              settings = {
+                allowDiscards = true;
+                bypassWorkqueues = true;
+              };
               content = {
                 type = "filesystem";
                 format = "ext4";
@@ -72,13 +75,21 @@ in
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    initrd.systemd.enable = true;
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
     kernelModules = [ "kvm-amd" "i2c-dev" "i2c_piix4" ];
     kernelParams = [ "amd_iommu=on" ];
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
+    initrd.systemd = {
+      enable = true;
+      additionalUpstreamUnits = [ "systemd-tpm2-setup-early.service" ];
+      storePaths = [
+        "${config.boot.initrd.systemd.package}/lib/systemd/systemd-tpm2-setup"
+        "${config.boot.initrd.systemd.package}/lib/systemd/system-generators/systemd-tpm2-generator"
+      ];
+    };
   };
+
 
   hardware = {
     enableAllFirmware = true;
