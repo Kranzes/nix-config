@@ -5,7 +5,10 @@
     {
       services.tailscale = {
         enable = true;
-        useRoutingFeatures = "client";
+        useRoutingFeatures = lib.mkDefault "client";
+        extraSetFlags = lib.mkIf (lib.elem config.services.tailscale.useRoutingFeatures [ "both" "server" ]) [
+          "--advertise-exit-node"
+        ];
         authKeyFile = lib.mkDefault config.age.secrets.tailscale-auth-key.path;
       };
 

@@ -12,5 +12,7 @@
     profiles-xserver
   ]);
 
+  services.tailscale.useRoutingFeatures = "both";
+
   system.stateVersion = "23.11";
 }
