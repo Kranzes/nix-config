@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, lib, ... }:
+{ inputs, pkgs, lib, ... }:
 let
   device = "/dev/nvme0n1";
 in
@@ -80,14 +80,7 @@ in
     kernelParams = [ "amd_iommu=on" ];
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
-    initrd.systemd = {
-      enable = true;
-      additionalUpstreamUnits = [ "systemd-tpm2-setup-early.service" ];
-      storePaths = [
-        "${config.boot.initrd.systemd.package}/lib/systemd/systemd-tpm2-setup"
-        "${config.boot.initrd.systemd.package}/lib/systemd/system-generators/systemd-tpm2-generator"
-      ];
-    };
+    initrd.systemd.enable = true;
   };
 
 
