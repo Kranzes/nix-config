@@ -36,7 +36,7 @@
     extraPackages = with pkgs; [
       ripgrep # telescope
       git # gitsigns
-      nil # lspconfig
+      nixd # lspconfig
       nixpkgs-fmt # lspconfig
       pyright # lspconfig
       nodePackages.bash-language-server # lspconfig
@@ -66,7 +66,6 @@
       vim.cmd.colorscheme "catppuccin"
       vim.g.lightline = { colorscheme = 'catppuccin' }
       vim.api.nvim_set_hl(0, "FloatBorder", { link = "NormalFloat" })
-      vim.api.nvim_set_hl(0, "LspInlayHint", { link = "Comment" })
 
       -- set linebreak and spelling for markdown documents
       vim.cmd 'autocmd FileType markdown set linebreak'
@@ -127,23 +126,17 @@
         })
       end
 
-      require('lspconfig').nil_ls.setup {
+      require('lspconfig').nixd.setup {
         capabilities = capabilities,
         on_attach = on_attach,
+        cmd = { "nixd", "--semantic-tokens=false" },
         settings = {
-          ['nil'] = {
-            nix = {
-              maxMemoryMB = 8192,
-              flake = {
-                autoArchive = true,
-                autoEvalInputs = true,
-              },
-            },
+          nixd = {
             formatting = {
-              command = { "nixpkgs-fmt" },
-            },
-          },
-        },
+              command = { "nixpkgs-fmt" }
+            }
+          }
+        }
       }
 
       require('lspconfig').pyright.setup {
