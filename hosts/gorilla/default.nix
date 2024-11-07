@@ -12,5 +12,7 @@
     profiles-xserver
   ]);
 
+  time.timeZone = null; # Set manually, because I travel often.
+
   system.stateVersion = "23.11";
 }
