@@ -1,15 +1,12 @@
 { inputs, pkgs, lib, ... }:
-let
-  device = "/dev/nvme0n1";
-in
 {
   imports = [
     inputs.disko.nixosModules.disko
   ];
 
   disko.devices = {
-    disk.${baseNameOf device} = {
-      inherit device;
+    disk.main = {
+      device = "/dev/disk/by-id/nvme-WDS100T3X0C-00SJG0_214242460714";
       type = "disk";
       content = {
         type = "gpt";
