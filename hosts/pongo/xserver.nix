@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   services.xserver = {
@@ -14,4 +14,5 @@
   };
 
   hardware.nvidia.open = false; # Older GPUs are not supported in the open drivers.
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 }
