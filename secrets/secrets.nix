@@ -17,8 +17,6 @@ in
   "all-tailscale-auth-key.age".publicKeys = allUsers ++ allSystems;
   # Pongo
   "pongo-nextcloud-admin-root-pass.age".publicKeys = allUsers ++ [ systems.pongo ];
-  "pongo-grafana-oauth2.age".publicKeys = allUsers ++ [ systems.pongo ];
-  "pongo-grafana-signing-key.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-kranzes-hercules-cluster-join-token.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-kranzes-hercules-secrets.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-kranzes-hercules-binary-caches.age".publicKeys = allUsers ++ [ systems.pongo ];

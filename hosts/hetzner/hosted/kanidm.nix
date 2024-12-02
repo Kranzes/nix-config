@@ -26,8 +26,6 @@ in
         "nextcloud_users"
         "jellyfin_users"
         "jellyfin_admins"
-        "grafana_users"
-        "grafana_admins"
       ]
         (_: { });
 
@@ -64,14 +62,6 @@ in
           originLanding = "https://jellyfin.ilanjoselevich.com";
           preferShortUsername = true;
           scopeMaps."jellyfin_users" = [ "openid" "profile" "groups" ];
-        };
-        "grafana" = {
-          displayName = "Grafana";
-          originUrl = "https://monitoring.ilanjoselevich.com/login/generic_oauth";
-          originLanding = "https://monitoring.ilanjoselevich.com";
-          preferShortUsername = true;
-          scopeMaps."grafana_users" = [ "openid" "profile" "email" ];
-          supplementaryScopeMaps."grafana_admins" = [ "admin" ];
         };
       };
     };
