@@ -70,7 +70,10 @@
   zramSwap.enable = true;
 
   boot = {
-    loader.systemd-boot.enable = true;
+    loader.systemd-boot = {
+      enable = true;
+      windows."11".efiDeviceHandle = "HD0b";
+    };
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
     kernelModules = [ "kvm-amd" "i2c-dev" "i2c_piix4" ];
