@@ -5,12 +5,6 @@
 
   gtk = {
     enable = true;
-    catppuccin = {
-      enable = true;
-      size = "compact";
-      tweaks = [ "rimless" ];
-      icon.enable = true;
-    };
     font = {
       name = "Roboto";
       size = 10;
@@ -43,5 +37,12 @@
       gtk-enable-event-sounds=0
       gtk-enable-input-feedback-sounds=0
     '';
+  };
+
+  catppuccin.gtk = {
+    enable = true;
+    size = "compact";
+    tweaks = [ "rimless" ];
+    icon.enable = true;
   };
 }

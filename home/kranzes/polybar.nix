@@ -9,7 +9,6 @@
       polybar leftbar &
       polybar rightbar &
     '';
-    catppuccin.enable = true;
     config = {
       "section/base" = {
         height = 20;

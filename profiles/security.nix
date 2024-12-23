@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   # Used by some programs.
@@ -9,6 +9,7 @@
   services.pcscd.enable = config.services.xserver.enable;
 
   services.kanidm = {
+    package = pkgs.kanidm_1_4;
     enableClient = true;
     clientSettings = {
       uri = "https://idm.ilanjoselevich.com";

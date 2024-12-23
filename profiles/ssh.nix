@@ -7,6 +7,6 @@
 
   services.openssh = {
     enable = true;
-    settings.permitRootLogin = "no";
+    settings.PermitRootLogin = "no";
   };
 }

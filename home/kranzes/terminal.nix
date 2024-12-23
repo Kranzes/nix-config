@@ -8,6 +8,5 @@
         size = 9;
       };
     };
-    catppuccin.enable = true;
   };
 }

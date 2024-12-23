@@ -1,10 +1,11 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 let
   domain = "idm.ilanjoselevich.com";
   certDir = config.security.acme.certs.${domain}.directory;
 in
 {
   services.kanidm = {
+    package = lib.mkForce pkgs.kanidm_1_4;
     enableServer = true;
     serverSettings = {
       inherit domain;

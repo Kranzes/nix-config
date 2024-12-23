@@ -40,4 +40,6 @@
         };
       };
   };
+
+  catppuccin.rofi.enable = false;
 }

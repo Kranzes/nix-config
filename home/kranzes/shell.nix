@@ -52,4 +52,6 @@
       ssh = "TERM=xterm-256color ssh";
     };
   };
+
+  catppuccin.zsh-syntax-highlighting.enable = false;
 }

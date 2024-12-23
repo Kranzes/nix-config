@@ -4,6 +4,7 @@
   home.stateVersion = "22.05";
 
   catppuccin = {
+    enable = true;
     flavor = lib.mkDefault "macchiato";
     accent = lib.mkDefault "lavender";
   };
