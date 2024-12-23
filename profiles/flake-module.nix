@@ -1,18 +1,18 @@
-{ inputs, ... }:
+{ lib, inputs, ... }:
 
 {
   flake.nixosModules = {
-    profiles-agenix = import ./agenix.nix { inherit inputs; };
+    profiles-agenix = lib.modules.importApply ./agenix.nix { inherit inputs; };
     profiles-android = ./android.nix;
     profiles-audio = ./audio.nix;
     profiles-cachix-deploy = ./cachix-deploy.nix;
     profiles-docs = ./docs.nix;
-    profiles-impermanence = import ./impermanence.nix { inherit inputs; };
+    profiles-impermanence = lib.modules.importApply ./impermanence.nix { inherit inputs; };
     profiles-laptop = ./laptop.nix;
     profiles-misc = ./misc.nix;
-    profiles-nix-nixpkgs = import ./nix-nixpkgs.nix { inherit inputs; };
+    profiles-nix-nixpkgs = lib.modules.importApply ./nix-nixpkgs.nix { inherit inputs; };
     profiles-security = ./security.nix;
-    profiles-ssh = ./ssh.nix;
+    profiles-ssh = lib.modules.importApply ./ssh.nix { inherit inputs; };
     profiles-tailscale = ./tailscale.nix;
     profiles-users = ./users.nix;
     profiles-xserver = ./xserver.nix;

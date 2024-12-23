@@ -8,6 +8,7 @@
     home-manager = { url = "github:nix-community/home-manager"; inputs.nixpkgs.follows = "nixpkgs"; };
     lix = { url = "git+https://git.lix.systems/lix-project/lix.git"; inputs.nixpkgs.follows = "nixpkgs"; };
     lix-module = { url = "git+https://git.lix.systems/lix-project/nixos-module.git"; inputs.nixpkgs.follows = "nixpkgs"; inputs.lix.follows = "lix"; };
+    srvos = { url = "github:nix-community/srvos"; inputs.nixpkgs.follows = "nixpkgs"; };
     catppuccin.url = "github:catppuccin/nix";
     agenix = { url = "github:ryantm/agenix"; inputs.nixpkgs.follows = "nixpkgs"; };
     disko = { url = "github:nix-community/disko"; inputs.nixpkgs.follows = "nixpkgs"; };

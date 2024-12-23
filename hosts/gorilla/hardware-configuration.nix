@@ -6,6 +6,7 @@ in
   imports = [
     inputs.disko.nixosModules.disko
     inputs.lanzaboote.nixosModules.lanzaboote
+    inputs.srvos.nixosModules.mixins-systemd-boot
   ];
 
   disko.devices = {
@@ -48,7 +49,6 @@ in
     lanzaboote.enable = true;
     lanzaboote.pkiBundle = "/etc/secureboot";
     loader.systemd-boot.enable = lib.mkForce (!config.boot.lanzaboote.enable);
-    loader.efi.canTouchEfiVariables = true;
     initrd.systemd.enable = true;
     initrd.availableKernelModules = [ "nvme" "ehci_pci" "xhci_pci" "rtsx_pci_sdmmc" ];
     kernelModules = [ "kvm-amd" ];

@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.disko.nixosModules.disko
+    inputs.srvos.nixosModules.mixins-systemd-boot
   ];
 
   disko.devices = {
@@ -70,17 +71,13 @@
   zramSwap.enable = true;
 
   boot = {
-    loader.systemd-boot = {
-      enable = true;
-      windows."11".efiDeviceHandle = "HD0b";
-    };
-    loader.efi.canTouchEfiVariables = true;
+    initrd.systemd.enable = true;
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
     kernelModules = [ "kvm-amd" "i2c-dev" "i2c_piix4" ];
     kernelParams = [ "amd_iommu=on" ];
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
-    initrd.systemd.enable = true;
+    loader.systemd-boot.windows."11".efiDeviceHandle = "HD0b";
   };
 
 

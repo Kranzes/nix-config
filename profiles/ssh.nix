@@ -1,10 +1,12 @@
+{ inputs, ... }:
+
 {
+  imports = [
+    (inputs.srvos.nixosModules.common + "/openssh.nix")
+  ];
+
   services.openssh = {
     enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-      PermitRootLogin = "no";
-    };
+    settings.permitRootLogin = "no";
   };
 }

@@ -1,5 +1,7 @@
+{ inputs, lib, ... }:
+
 {
   flake.nixosModules = {
-    hosted-nginx = ./nginx.nix;
+    hosted-nginx = lib.modules.importApply ./nginx.nix { inherit inputs; };
   };
 } 

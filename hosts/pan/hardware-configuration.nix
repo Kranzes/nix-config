@@ -6,6 +6,7 @@ in
 {
   imports = [
     inputs.disko.nixosModules.disko
+    inputs.srvos.nixosModules.mixins-systemd-boot
   ];
 
   disko.devices = {
@@ -45,8 +46,6 @@ in
   zramSwap.enable = true;
 
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
     initrd.systemd.enable = true;
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
     initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "sd_mod" "sdhci_pci" ];
