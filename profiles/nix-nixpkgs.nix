@@ -41,4 +41,6 @@
     # Needed for nheko
     permittedInsecurePackages = [ "olm-3.2.16" ];
   };
+
+  system.rebuild.enableNg = true;
 }
