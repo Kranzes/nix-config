@@ -25,6 +25,8 @@ in
   "gorilla-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.gorilla ];
   # Hetzner
   "hetzner-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-oauth2-grafana-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-grafana-signing-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
   # Pan
   "pan-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.pan ];
 }

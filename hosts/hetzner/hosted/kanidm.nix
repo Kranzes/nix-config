@@ -5,7 +5,7 @@ let
 in
 {
   services.kanidm = {
-    package = lib.mkForce pkgs.kanidm_1_4;
+    package = lib.mkForce pkgs.kanidm_1_4.withSecretProvisioning;
     enableServer = true;
     serverSettings = {
       inherit domain;
@@ -27,6 +27,8 @@ in
         "nextcloud_users"
         "jellyfin_users"
         "jellyfin_admins"
+        "grafana_users"
+        "grafana_admins"
       ]
         (_: { });
 
@@ -64,6 +66,14 @@ in
           preferShortUsername = true;
           scopeMaps."jellyfin_users" = [ "openid" "profile" "groups" ];
         };
+        "grafana" = {
+          displayName = "Grafana";
+          originUrl = "https://monitoring.ilanjoselevich.com/login/generic_oauth";
+          originLanding = "https://monitoring.ilanjoselevich.com";
+          preferShortUsername = true;
+          scopeMaps."grafana_users" = [ "openid" "profile" "email" "groups" ];
+          basicSecretFile = config.age.secrets.oauth2-grafana-basic-secret.path;
+        };
       };
     };
   };
@@ -80,7 +90,12 @@ in
   };
 
   environment.persistence."/nix/persistent".directories = [
-    "/var/lib/acme"
     "/var/lib/kanidm"
   ];
+
+  age.secrets.oauth2-grafana-basic-secret = {
+    file = ../../../secrets/${config.networking.hostName}-oauth2-grafana-basic-secret.age;
+    owner = "grafana";
+    group = "grafana";
+  };
 }
