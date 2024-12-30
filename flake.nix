@@ -9,7 +9,6 @@
     lix = { url = "git+https://git.lix.systems/lix-project/lix.git"; inputs.nixpkgs.follows = "nixpkgs"; };
     lix-module = { url = "git+https://git.lix.systems/lix-project/nixos-module.git"; inputs.nixpkgs.follows = "nixpkgs"; inputs.lix.follows = "lix"; };
     srvos = { url = "github:nix-community/srvos"; inputs.nixpkgs.follows = "nixpkgs"; };
-    catppuccin.url = "github:catppuccin/nix";
     agenix = { url = "github:ryantm/agenix"; inputs.nixpkgs.follows = "nixpkgs"; };
     disko = { url = "github:nix-community/disko"; inputs.nixpkgs.follows = "nixpkgs"; };
     impermanence.url = "github:nix-community/impermanence";
@@ -18,6 +17,18 @@
     hercules-ci-effects = { url = "github:hercules-ci/hercules-ci-effects"; inputs.nixpkgs.follows = "nixpkgs"; inputs.flake-parts.follows = "flake-parts"; };
     treefmt-nix = { url = "github:numtide/treefmt-nix"; inputs.nixpkgs.follows = "nixpkgs"; };
     firefox-addons = { url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"; inputs.nixpkgs.follows = "nixpkgs"; };
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "";
+        home-manager.follows = "";
+        home-manager-stable.follows = "";
+        nuscht-search.follows = "";
+        catppuccin-v1_1.follows = "";
+        catppuccin-v1_2.follows = "";
+      };
+    };
   };
 
   outputs = inputs:
