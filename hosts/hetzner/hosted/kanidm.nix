@@ -95,7 +95,7 @@ in
 
   age.secrets.oauth2-grafana-basic-secret = {
     file = ../../../secrets/${config.networking.hostName}-oauth2-grafana-basic-secret.age;
-    owner = "grafana";
-    group = "grafana";
+    owner = "kanidm";
+    group = "kanidm";
   };
 }

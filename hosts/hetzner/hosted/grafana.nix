@@ -18,7 +18,7 @@ in
       };
       log.mode = "syslog";
       security = {
-        secret_key = "$__file{${config.age.secrets.grafana-signing-key.path}}";
+        secret_key = "$__file{/run/credentials/grafana.service/grafana_signing_key}";
         cookie_secure = true;
         disable_gravatar = true;
         disable_initial_admin_creation = true;
@@ -32,7 +32,7 @@ in
         enabled = true;
         name = "Kanidm";
         client_id = "grafana";
-        client_secret = "$__file{${config.services.kanidm.provision.systems.oauth2.grafana.basicSecretFile}}";
+        client_secret = "$__file{/run/credentials/grafana.service/kanidm_client_secret}";
         scopes = "openid profile email groups";
         auth_url = "https://idm.ilanjoselevich.com/ui/oauth2";
         token_url = "https://idm.ilanjoselevich.com/oauth2/token";
@@ -52,6 +52,13 @@ in
       };
     };
   };
+
+  age.secrets.grafana-signing-key.file = ../../../secrets/${config.networking.hostName}-grafana-signing-key.age;
+
+  systemd.services.grafana.serviceConfig.LoadCredential = [
+    "grafana_signing_key:${config.age.secrets.grafana-signing-key.path}"
+    "kanidm_client_secret:${config.services.kanidm.provision.systems.oauth2.grafana.basicSecretFile}"
+  ];
 
   services.postgresql = {
     enable = true;
@@ -73,12 +80,6 @@ in
       proxyPass = "http://unix:${config.services.grafana.settings.server.socket}";
       proxyWebsockets = true;
     };
-  };
-
-  age.secrets.grafana-signing-key = {
-    file = ../../../secrets/${config.networking.hostName}-grafana-signing-key.age;
-    group = "grafana";
-    owner = "grafana";
   };
 
   environment.persistence."/nix/persistent".directories = [
