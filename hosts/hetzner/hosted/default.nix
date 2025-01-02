@@ -5,6 +5,7 @@
     ./kanidm.nix
     ./grafana.nix
     ./prometheus.nix
+    ./homer.nix
     inputs.self.nixosModules.hosted-nginx
     inputs.self.nixosModules.hosted-node-exporter
   ];
