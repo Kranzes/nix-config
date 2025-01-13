@@ -36,7 +36,7 @@
     ripgrep
     fd
     sd
-    discord
+    (discord.override { withOpenASAR = true; withVencord = true; })
   ];
 }
 
