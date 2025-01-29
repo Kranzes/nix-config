@@ -1,25 +1,26 @@
-{ pkgs, lib, ... }:
-let
-  env = {
-    MOZ_WEBRENDER = 1;
-    MOZ_USE_XINPUT2 = 1;
-    # Required for hardware video decoding.
-    # See https://github.com/elFarto/nvidia-vaapi-driver?tab=readme-ov-file#firefox
-    MOZ_DISABLE_RDD_SANDBOX = 1;
-    LIBVA_DRIVER_NAME = "nvidia";
-    NVD_BACKEND = "direct";
-  };
-  envStr = lib.concatStringsSep " " (lib.mapAttrsToList (n: v: "${n}=${lib.escapeShellArg v}") env);
-in
+{ pkgs, ... }:
 {
   programs.firefox = {
     package = pkgs.firefox.overrideAttrs (old: {
-      buildCommand =
-        old.buildCommand
-        + ''
-          substituteInPlace $out/bin/firefox \
-            --replace "exec -a" ${lib.escapeShellArg envStr}" exec -a"
-        '';
+      makeWrapperArgs = old.makeWrapperArgs ++ [
+        "--set"
+        "MOZ_USE_XINPUT2"
+        "1"
+        "--set"
+        "MOZ_WEBRENDER"
+        "1"
+        # Required for hardware video decoding.
+        # See https://github.com/elFarto/nvidia-vaapi-driver?tab=readme-ov-file#firefox
+        "--set"
+        "MOZ_DISABLE_RDD_SANDBOX"
+        "1"
+        "--set"
+        "LIBVA_DRIVER_NAME"
+        "nvidia"
+        "--set"
+        "NVD_BACKEND"
+        "direct"
+      ];
     });
     profiles."kranzes".settings = {
       # Hardware acceleration
