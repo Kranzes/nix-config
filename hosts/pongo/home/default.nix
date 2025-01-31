@@ -5,7 +5,6 @@
     imports = [
       ./music.nix
       ./gaming.nix
-      ./browser.nix
     ];
 
     # Overrides.
