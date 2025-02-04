@@ -6,11 +6,8 @@
     ./grafana.nix
     ./prometheus.nix
     ./homer.nix
+    ./ntfy.nix
     inputs.self.nixosModules.hosted-nginx
     inputs.self.nixosModules.hosted-node-exporter
-  ];
-
-  environment.persistence."/nix/persistent".directories = [
-    "/var/lib/acme"
   ];
 }

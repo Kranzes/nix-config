@@ -7,7 +7,6 @@
     profiles-audio = ./audio.nix;
     profiles-cachix-deploy = ./cachix-deploy.nix;
     profiles-docs = ./docs.nix;
-    profiles-impermanence = lib.modules.importApply ./impermanence.nix { inherit inputs; };
     profiles-laptop = ./laptop.nix;
     profiles-misc = ./misc.nix;
     profiles-nix-nixpkgs = lib.modules.importApply ./nix-nixpkgs.nix { inherit inputs; };

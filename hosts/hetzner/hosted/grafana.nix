@@ -81,17 +81,4 @@ in
       proxyWebsockets = true;
     };
   };
-
-  environment.persistence."/nix/persistent".directories = [
-    {
-      directory = config.services.grafana.dataDir;
-      user = "grafana";
-      group = "grafana";
-    }
-    {
-      directory = builtins.dirOf config.services.postgresql.dataDir;
-      user = "postgresql";
-      group = "postgresql";
-    }
-  ];
 }

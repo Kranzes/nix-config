@@ -2,7 +2,7 @@ let
   systems = {
     pongo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq0cqSiwsTj1ktlr70ToobLXD9JIRQynTuOpmwpYilB";
     gorilla = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDTblFcEmy7kyJRgZ43BWmNk22TE4N+xyTDeJC7jpwc";
-    hetzner = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICd6HBMr+HEX0i8ZVN7QLeLo1+z+OkDjESDw1nc5IGqP";
+    hetzner = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrnR6feQwB8GCASDES3hujWI4fZBtbBbwWf7Hrq8Aon";
     pan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/SSCGsV61hZy5NVzjeA07PufZIHufUIeCD6id9orKF";
   };
   users = {
@@ -25,8 +25,14 @@ in
   "gorilla-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.gorilla ];
   # Hetzner
   "hetzner-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-oauth2-grafana-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-kanidm-oauth2-tailscale-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-kanidm-oauth2-nextcloud-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-kanidm-oauth2-jellyfin-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-kanidm-oauth2-grafana-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-grafana-signing-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-ntfy-sh-firebase-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-grafana-to-ntfy-ntfy-pass.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-grafana-to-ntfy-pass.age".publicKeys = allUsers ++ [ systems.hetzner ];
   # Pan
   "pan-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.pan ];
 }

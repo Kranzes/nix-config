@@ -1,12 +1,7 @@
 { inputs, ... }:
-
-{ config, options, ... }:
-
-let
-  sshHostKeys = builtins.catAttrs "path" config.services.openssh.hostKeys;
-in
+{ config, ... }:
 {
   imports = [ inputs.agenix.nixosModules.age ];
 
-  age.identityPaths = if (options ? environment.persistence) then (map (x: "/nix/persistent" + x) sshHostKeys) else sshHostKeys;
+  age.identityPaths = builtins.catAttrs "path" config.services.openssh.hostKeys;
 }

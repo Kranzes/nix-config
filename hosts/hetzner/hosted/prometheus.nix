@@ -36,10 +36,4 @@
       orgId = 1;
     }];
   };
-
-  environment.persistence."/nix/persistent".directories = [{
-    directory = "/var/lib/${config.services.prometheus.stateDir}";
-    user = "prometheus";
-    group = "prometheus";
-  }];
 }

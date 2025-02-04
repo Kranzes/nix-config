@@ -1,13 +1,15 @@
-{ inputs, ... }:
-
+{ lib, inputs, modulesPath, ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ./hosted
-    inputs.self.nixosModules.profiles-impermanence
+    inputs.srvos.nixosModules.server
+    "${modulesPath}/profiles/minimal.nix"
   ];
 
-  security.sudo.wheelNeedsPassword = false;
+  time.timeZone = "UTC";
 
-  system.stateVersion = "23.11";
+  networking.useDHCP = lib.mkForce true;
+
+  system.stateVersion = "25.05";
 }

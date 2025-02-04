@@ -48,6 +48,7 @@ in
           preferShortUsername = true;
           allowInsecureClientDisablePkce = true;
           scopeMaps."tailscale_users" = [ "openid" "profile" "email" ];
+          basicSecretFile = config.age.secrets.kanidm-oauth2-tailscale-basic-secret.path;
         };
         "nextcloud" = {
           displayName = "Nextcloud";
@@ -55,6 +56,7 @@ in
           originLanding = "https://cloud.ilanjoselevich.com";
           preferShortUsername = true;
           scopeMaps."nextcloud_users" = [ "openid" ];
+          basicSecretFile = config.age.secrets.kanidm-oauth2-nextcloud-basic-secret.path;
         };
         "jellyfin" = {
           displayName = "Jellyfin";
@@ -65,6 +67,7 @@ in
           originLanding = "https://jellyfin.ilanjoselevich.com";
           preferShortUsername = true;
           scopeMaps."jellyfin_users" = [ "openid" "profile" "groups" ];
+          basicSecretFile = config.age.secrets.kanidm-oauth2-jellyfin-basic-secret.path;
         };
         "grafana" = {
           displayName = "Grafana";
@@ -72,7 +75,7 @@ in
           originLanding = "https://monitoring.ilanjoselevich.com";
           preferShortUsername = true;
           scopeMaps."grafana_users" = [ "openid" "profile" "email" "groups" ];
-          basicSecretFile = config.age.secrets.oauth2-grafana-basic-secret.path;
+          basicSecretFile = config.age.secrets.kanidm-oauth2-grafana-basic-secret.path;
         };
       };
     };
@@ -89,13 +92,15 @@ in
     locations."/".proxyPass = "https://${config.services.kanidm.serverSettings.bindaddress}";
   };
 
-  environment.persistence."/nix/persistent".directories = [
-    "/var/lib/kanidm"
-  ];
-
-  age.secrets.oauth2-grafana-basic-secret = {
-    file = ../../../secrets/${config.networking.hostName}-oauth2-grafana-basic-secret.age;
-    owner = "kanidm";
-    group = "kanidm";
-  };
+  age.secrets = lib.genAttrs [
+    "kanidm-oauth2-tailscale-basic-secret"
+    "kanidm-oauth2-nextcloud-basic-secret"
+    "kanidm-oauth2-jellyfin-basic-secret"
+    "kanidm-oauth2-grafana-basic-secret"
+  ]
+    (secretName: {
+      file = ../../../secrets/${config.networking.hostName}-${secretName}.age;
+      owner = "kanidm";
+      group = "kanidm";
+    });
 }
