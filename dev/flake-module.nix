@@ -33,7 +33,7 @@
               "--log-format"
               "multiline-with-logs"
               "-s"
-              "--fast"
+              "--no-reexec"
               "--flake"
               "${inputs.self}#${host}"
               "--sudo"
