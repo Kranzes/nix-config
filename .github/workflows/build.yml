@@ -1,0 +1,11 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  build:
+    uses: ./.github/workflows/reusable-build.yml
+    with:
+      runs-on: ubuntu-latest

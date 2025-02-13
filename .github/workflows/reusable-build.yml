@@ -1,0 +1,70 @@
+on:
+  workflow_call:
+    inputs:
+      runs-on:
+        description: 'The runs-on value to pass on to the created jobs'
+        type: string
+        required: true
+
+      install-nix:
+        description: 'Whether to install Nix if it is not already available'
+        type: boolean
+        default: true
+
+      outputs:
+        description: 'The output types to build'
+        type: string
+        default: '["packages" "checks" "devShells"]'
+
+jobs:
+  nix-eval:
+    runs-on: ${{ inputs.runs-on }}
+    outputs:
+      matrix: ${{ steps.nix-eval.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: cachix/install-nix-action@v30
+        if: ${{ inputs.install-nix }}
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/cachix-action@v15
+        with:
+          name: kranzes
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - id: nix-eval
+        name: Evaluate and create matrix
+        run: |
+          set -Eeu -o pipefail
+          matrix="$(nix run --inputs-from . nixpkgs#nix-eval-jobs -- \
+            --check-cache-status \
+            --force-recurse \
+            --expr '
+          let
+            flake = builtins.getFlake "git+file://${toString ./.}";
+            inherit (flake.inputs.nixpkgs) lib;
+          in
+          lib.filterAttrs (n: _: lib.elem n ${{ inputs.outputs }}) flake
+          ' | nix run --inputs-from . nixpkgs#jq -- -s '{ output: ., exclude: [ .[] | select(.cacheStatus == "cached") ] }' )"
+          echo $matrix
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  nix-build:
+    needs: nix-eval
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJSON(needs.nix-eval.outputs.matrix)}}
+    runs-on: ${{ inputs.runs-on }}
+    name: ${{ matrix.output.attr }}
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: cachix/install-nix-action@v30
+        if: ${{ inputs.install-nix }}
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/cachix-action@v15
+        with:
+          name: kranzes
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - id: nix-build
+        name: Run nix build
+        run: nix build --no-link -L .#${{ matrix.output.attr }}
