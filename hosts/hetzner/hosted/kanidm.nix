@@ -103,4 +103,6 @@ in
       owner = "kanidm";
       group = "kanidm";
     });
+
+  services.restic.backups.default.paths = [ config.services.kanidm.serverSettings.online_backup.path ];
 }

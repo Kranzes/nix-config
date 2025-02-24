@@ -33,6 +33,8 @@ in
     };
   };
 
+  services.restic.backups.default.paths = [ (dirOf config.services.ntfy-sh.settings.auth-file) ];
+
   services.grafana-to-ntfy = {
     enable = true;
     settings = {
