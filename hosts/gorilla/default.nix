@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ./xserver.nix
     ./home
+    ./hosted
   ] ++ (with inputs.self.nixosModules; [
     profiles-android
     profiles-audio
