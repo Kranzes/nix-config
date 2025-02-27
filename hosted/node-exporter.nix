@@ -6,6 +6,8 @@
   };
 
   networking.firewall.interfaces = lib.mkIf config.services.tailscale.enable {
-    ${config.services.tailscale.interfaceName}.allowedTCPPorts = [ config.services.prometheus.exporters.node.port ];
+    ${config.services.tailscale.interfaceName}.allowedTCPPorts = [
+      config.services.prometheus.exporters.node.port
+    ];
   };
 }

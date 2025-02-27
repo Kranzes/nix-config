@@ -1,4 +1,10 @@
-{ inputs, pkgs, config, lib, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   device = "/dev/nvme0n1";
 in
@@ -50,13 +56,20 @@ in
     lanzaboote.pkiBundle = "/etc/secureboot";
     loader.systemd-boot.enable = lib.mkForce (!config.boot.lanzaboote.enable);
     initrd.systemd.enable = true;
-    initrd.availableKernelModules = [ "nvme" "ehci_pci" "xhci_pci" "rtsx_pci_sdmmc" ];
+    initrd.availableKernelModules = [
+      "nvme"
+      "ehci_pci"
+      "xhci_pci"
+      "rtsx_pci_sdmmc"
+    ];
     kernelModules = [ "kvm-amd" ];
-    kernelParams = [ "acpi_backlight=native" "mem_sleep_default=deep" ];
+    kernelParams = [
+      "acpi_backlight=native"
+      "mem_sleep_default=deep"
+    ];
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
   };
-
 
   hardware = {
     enableAllFirmware = true;

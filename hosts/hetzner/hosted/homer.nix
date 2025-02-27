@@ -15,52 +15,56 @@ let
       colorTheme = "dark";
       layout = "list";
     };
-    links = [{
-      name = "nix-config";
-      icon = "fab fa-github";
-      url = "https://github.com/Kranzes/nix-config";
-      target = "_top";
-    }];
-    services = [{
-      items = [
-        {
-          name = "Kanidm";
-          subtitle = "idm.ilanjoselevich.com";
-          logo = "https://github.com/kanidm/kanidm/raw/refs/heads/master/artwork/logo-square.svg";
-          url = "https://idm.ilanjoselevich.com";
-          endpoint = "https://idm.ilanjoselevich.com/status";
-          type = "Ping";
-          target = "_top";
-        }
-        {
-          name = "Grafana";
-          subtitle = "monitoring.ilanjoselevich.com";
-          logo = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/grafana.svg";
-          url = "https://monitoring.ilanjoselevich.com";
-          endpoint = "https://monitoring.ilanjoselevich.com/healthz";
-          type = "Ping";
-          target = "_top";
-        }
-        {
-          name = "Nextcloud";
-          subtitle = "cloud.ilanjoselevich.com";
-          logo = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/nextcloud.svg";
-          url = "https://cloud.ilanjoselevich.com";
-          endpoint = "https://cloud.ilanjoselevich.com/status.php";
-          type = "Ping";
-          target = "_top";
-        }
-        {
-          name = "Jellyfin";
-          subtitle = "jellyfin.ilanjoselevich.com";
-          logo = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/jellyfin.svg";
-          url = "https://jellyfin.ilanjoselevich.com";
-          endpoint = "https://jellyfin.ilanjoselevich.com/health";
-          type = "Ping";
-          target = "_top";
-        }
-      ];
-    }];
+    links = [
+      {
+        name = "nix-config";
+        icon = "fab fa-github";
+        url = "https://github.com/Kranzes/nix-config";
+        target = "_top";
+      }
+    ];
+    services = [
+      {
+        items = [
+          {
+            name = "Kanidm";
+            subtitle = "idm.ilanjoselevich.com";
+            logo = "https://github.com/kanidm/kanidm/raw/refs/heads/master/artwork/logo-square.svg";
+            url = "https://idm.ilanjoselevich.com";
+            endpoint = "https://idm.ilanjoselevich.com/status";
+            type = "Ping";
+            target = "_top";
+          }
+          {
+            name = "Grafana";
+            subtitle = "monitoring.ilanjoselevich.com";
+            logo = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/grafana.svg";
+            url = "https://monitoring.ilanjoselevich.com";
+            endpoint = "https://monitoring.ilanjoselevich.com/healthz";
+            type = "Ping";
+            target = "_top";
+          }
+          {
+            name = "Nextcloud";
+            subtitle = "cloud.ilanjoselevich.com";
+            logo = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/nextcloud.svg";
+            url = "https://cloud.ilanjoselevich.com";
+            endpoint = "https://cloud.ilanjoselevich.com/status.php";
+            type = "Ping";
+            target = "_top";
+          }
+          {
+            name = "Jellyfin";
+            subtitle = "jellyfin.ilanjoselevich.com";
+            logo = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/jellyfin.svg";
+            url = "https://jellyfin.ilanjoselevich.com";
+            endpoint = "https://jellyfin.ilanjoselevich.com/health";
+            type = "Ping";
+            target = "_top";
+          }
+        ];
+      }
+    ];
   };
 in
 {

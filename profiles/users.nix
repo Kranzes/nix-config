@@ -1,13 +1,21 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
-  isZshSetForUsers = lib.elem "zsh" (lib.mapAttrsToList (_: p: lib.getName p.shell) config.users.users);
+  isZshSetForUsers = lib.elem "zsh" (
+    lib.mapAttrsToList (_: p: lib.getName p.shell) config.users.users
+  );
 in
 {
   users.users.kranzes = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "wheel" ]
+    extraGroups =
+      [ "wheel" ]
       ++ lib.optional config.virtualisation.libvirtd.enable "libvirtd"
       ++ lib.optional config.networking.networkmanager.enable "networkmanager"
       ++ lib.optional config.programs.light.enable "video"

@@ -23,13 +23,23 @@ let
       };
     }
   ];
-  nixosSystemWithDefaults = args: (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args [ "hostName" ]) // {
-    specialArgs = { inherit inputs; } // args.specialArgs or { };
-    modules = [
-      ./${args.hostName}
-      { networking = { inherit (args) hostName; }; }
-    ] ++ commonProfiles ++ (args.modules or [ ]);
-  }));
+  nixosSystemWithDefaults =
+    args:
+    (inputs.nixpkgs.lib.nixosSystem (
+      (builtins.removeAttrs args [ "hostName" ])
+      // {
+        specialArgs = {
+          inherit inputs;
+        } // args.specialArgs or { };
+        modules =
+          [
+            ./${args.hostName}
+            { networking = { inherit (args) hostName; }; }
+          ]
+          ++ commonProfiles
+          ++ (args.modules or [ ]);
+      }
+    ));
 in
 
 {

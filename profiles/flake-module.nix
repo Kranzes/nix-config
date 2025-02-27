@@ -16,4 +16,4 @@
     profiles-users = ./users.nix;
     profiles-xserver = ./xserver.nix;
   };
-} 
+}

@@ -1,4 +1,9 @@
-{ pkgs, lib, inputs, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 let
   betterfox = pkgs.fetchFromGitHub {
     owner = "yokoffing";
@@ -11,7 +16,11 @@ in
   programs.firefox = {
     enable = true;
     package = pkgs.firefox.overrideAttrs (old: {
-      makeWrapperArgs = old.makeWrapperArgs ++ [ "--set" "MOZ_USE_XINPUT2" "1" ];
+      makeWrapperArgs = old.makeWrapperArgs ++ [
+        "--set"
+        "MOZ_USE_XINPUT2"
+        "1"
+      ];
     });
     profiles.default = {
       extensions = with inputs.firefox-addons.packages.${pkgs.system}; [

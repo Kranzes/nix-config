@@ -29,14 +29,16 @@
     piper
     thunderbird-bin
     ookla-speedtest
-    nixpkgs-fmt
+    nixfmt-rfc-style
     nixpkgs-review
     nix-update
     acpi
     ripgrep
     fd
     sd
-    (discord.override { withOpenASAR = true; withVencord = true; })
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
   ];
 }
-

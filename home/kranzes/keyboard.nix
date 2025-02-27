@@ -92,10 +92,11 @@
       # Brightness control
       "XF86MonBrightness{Up,Down}" = "light -{A,U} 10";
 
-      # Screenshoting 
+      # Screenshoting
       "ctrl + Print" = "maim -s | xclip -selection clipboard -t image/png";
 
-      "Print" = "maim | xclip -selection clipboard -t image/png && notify-send 'maim' 'Screenshot captured'";
+      "Print" =
+        "maim | xclip -selection clipboard -t image/png && notify-send 'maim' 'Screenshot captured'";
 
     };
     extraConfig = ''
@@ -107,4 +108,3 @@
     '';
   };
 }
-

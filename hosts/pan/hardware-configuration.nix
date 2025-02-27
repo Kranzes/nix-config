@@ -1,4 +1,9 @@
-{ inputs, pkgs, config, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 
 let
   device = "/dev/sda";
@@ -48,8 +53,17 @@ in
   boot = {
     initrd.systemd.enable = true;
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
-    initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "sd_mod" "sdhci_pci" ];
-    kernelModules = [ "kvm-intel" "acpi_call" ];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "ehci_pci"
+      "ahci"
+      "sd_mod"
+      "sdhci_pci"
+    ];
+    kernelModules = [
+      "kvm-intel"
+      "acpi_call"
+    ];
     kernelParams = [ "i915.fastboot=1" ];
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;

@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   domain = "idm.ilanjoselevich.com";
   certDir = config.security.acme.certs.${domain}.directory;
@@ -29,8 +34,7 @@ in
         "jellyfin_admins"
         "grafana_users"
         "grafana_admins"
-      ]
-        (_: { });
+      ] (_: { });
 
       persons."kranzes" = {
         displayName = "Kranzes";
@@ -47,7 +51,11 @@ in
           originLanding = "https://login.tailscale.com";
           preferShortUsername = true;
           allowInsecureClientDisablePkce = true;
-          scopeMaps."tailscale_users" = [ "openid" "profile" "email" ];
+          scopeMaps."tailscale_users" = [
+            "openid"
+            "profile"
+            "email"
+          ];
           basicSecretFile = config.age.secrets.kanidm-oauth2-tailscale-basic-secret.path;
         };
         "nextcloud" = {
@@ -66,7 +74,11 @@ in
           ];
           originLanding = "https://jellyfin.ilanjoselevich.com";
           preferShortUsername = true;
-          scopeMaps."jellyfin_users" = [ "openid" "profile" "groups" ];
+          scopeMaps."jellyfin_users" = [
+            "openid"
+            "profile"
+            "groups"
+          ];
           basicSecretFile = config.age.secrets.kanidm-oauth2-jellyfin-basic-secret.path;
         };
         "grafana" = {
@@ -74,7 +86,12 @@ in
           originUrl = "https://monitoring.ilanjoselevich.com/login/generic_oauth";
           originLanding = "https://monitoring.ilanjoselevich.com";
           preferShortUsername = true;
-          scopeMaps."grafana_users" = [ "openid" "profile" "email" "groups" ];
+          scopeMaps."grafana_users" = [
+            "openid"
+            "profile"
+            "email"
+            "groups"
+          ];
           basicSecretFile = config.age.secrets.kanidm-oauth2-grafana-basic-secret.path;
         };
       };
@@ -92,17 +109,21 @@ in
     locations."/".proxyPass = "https://${config.services.kanidm.serverSettings.bindaddress}";
   };
 
-  age.secrets = lib.genAttrs [
-    "kanidm-oauth2-tailscale-basic-secret"
-    "kanidm-oauth2-nextcloud-basic-secret"
-    "kanidm-oauth2-jellyfin-basic-secret"
-    "kanidm-oauth2-grafana-basic-secret"
-  ]
-    (secretName: {
-      file = ../../../secrets/${config.networking.hostName}-${secretName}.age;
-      owner = "kanidm";
-      group = "kanidm";
-    });
+  age.secrets =
+    lib.genAttrs
+      [
+        "kanidm-oauth2-tailscale-basic-secret"
+        "kanidm-oauth2-nextcloud-basic-secret"
+        "kanidm-oauth2-jellyfin-basic-secret"
+        "kanidm-oauth2-grafana-basic-secret"
+      ]
+      (secretName: {
+        file = ../../../secrets/${config.networking.hostName}-${secretName}.age;
+        owner = "kanidm";
+        group = "kanidm";
+      });
 
-  services.restic.backups.default.paths = [ config.services.kanidm.serverSettings.online_backup.path ];
+  services.restic.backups.default.paths = [
+    config.services.kanidm.serverSettings.online_backup.path
+  ];
 }

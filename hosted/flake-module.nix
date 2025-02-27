@@ -7,4 +7,4 @@
     hosted-restic = ./restic.nix;
     hosted-libvirt = ./libvirt.nix;
   };
-} 
+}

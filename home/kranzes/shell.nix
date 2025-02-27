@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
   programs.zoxide = {
@@ -7,7 +12,6 @@
       "--cmd cd"
     ];
   };
-
 
   programs.zsh = {
     enable = true;

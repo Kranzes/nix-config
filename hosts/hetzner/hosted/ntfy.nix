@@ -9,7 +9,9 @@ in
     grafana-to-ntfy-pass.file = ../../../secrets/hetzner-grafana-to-ntfy-pass.age;
   };
 
-  systemd.services.ntfy-sh.serviceConfig.LoadCredential = [ "firebase-key:${config.age.secrets.ntfy-sh-firebase-key.path}" ];
+  systemd.services.ntfy-sh.serviceConfig.LoadCredential = [
+    "firebase-key:${config.age.secrets.ntfy-sh-firebase-key.path}"
+  ];
 
   services.ntfy-sh = {
     enable = true;
@@ -45,28 +47,36 @@ in
     };
   };
 
-  systemd.services.grafana.serviceConfig.LoadCredential = [ "ntfy_password:${config.services.grafana-to-ntfy.settings.bauthPass}" ];
+  systemd.services.grafana.serviceConfig.LoadCredential = [
+    "ntfy_password:${config.services.grafana-to-ntfy.settings.bauthPass}"
+  ];
 
   services.grafana.provision.alerting.contactPoints.settings = {
     apiVersion = 1;
-    contactPoints = [{
-      orgId = 1;
-      name = "ntfy";
-      receivers = [{
+    contactPoints = [
+      {
+        orgId = 1;
+        name = "ntfy";
+        receivers = [
+          {
+            uid = "ntfy";
+            type = "webhook";
+            disableResolveMessage = false;
+            settings = {
+              url = "http://127.0.0.1:8000";
+              httpMethod = "POST";
+              username = config.services.grafana-to-ntfy.settings.bauthUser;
+              password = "$__file{/run/credentials/grafana.service/ntfy_password}";
+            };
+          }
+        ];
+      }
+    ];
+    deleteContactPoints = [
+      {
+        orgId = 1;
         uid = "ntfy";
-        type = "webhook";
-        disableResolveMessage = false;
-        settings = {
-          url = "http://127.0.0.1:8000";
-          httpMethod = "POST";
-          username = config.services.grafana-to-ntfy.settings.bauthUser;
-          password = "$__file{/run/credentials/grafana.service/ntfy_password}";
-        };
-      }];
-    }];
-    deleteContactPoints = [{
-      orgId = 1;
-      uid = "ntfy";
-    }];
+      }
+    ];
   };
 }

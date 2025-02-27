@@ -5,7 +5,10 @@
     enable = true;
     userName = "Ilan Joselevich";
     userEmail = "personal@ilanjoselevich.com";
-    ignores = [ "*.swp" "result" ];
+    ignores = [
+      "*.swp"
+      "result"
+    ];
     extraConfig = {
       init.defaultBranch = "master";
       commit.gpgSign = true;

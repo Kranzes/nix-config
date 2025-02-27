@@ -37,7 +37,7 @@
       ripgrep # telescope
       git # gitsigns
       nixd # lspconfig
-      nixpkgs-fmt # lspconfig
+      nixfmt-rfc-style # lspconfig
       pyright # lspconfig
       nodePackages.bash-language-server # lspconfig
       rust-analyzer # rustaceanvim
@@ -133,7 +133,7 @@
         settings = {
           nixd = {
             formatting = {
-              command = { "nixpkgs-fmt" }
+              command = { "nixfmt" }
             }
           }
         }

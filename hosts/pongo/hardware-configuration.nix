@@ -1,4 +1,9 @@
-{ inputs, pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -58,13 +63,19 @@
     "/mnt/nextcloud/Music" = {
       device = "/home/4TB-HDD/Media/Music";
       fsType = "none";
-      options = [ "bind" "ro" ];
+      options = [
+        "bind"
+        "ro"
+      ];
     };
 
     "/mnt/nextcloud/yael" = {
       device = "/home/1TB-HDD/yael";
       fsType = "none";
-      options = [ "bind" "rw" ];
+      options = [
+        "bind"
+        "rw"
+      ];
     };
   };
 
@@ -72,14 +83,23 @@
 
   boot = {
     initrd.systemd.enable = true;
-    initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
-    kernelModules = [ "kvm-amd" "i2c-dev" "i2c_piix4" ];
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usbhid"
+      "sd_mod"
+    ];
+    kernelModules = [
+      "kvm-amd"
+      "i2c-dev"
+      "i2c_piix4"
+    ];
     kernelParams = [ "amd_iommu=on" ];
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
     loader.systemd-boot.windows."11".efiDeviceHandle = "HD0b";
   };
-
 
   hardware = {
     enableAllFirmware = true;
@@ -111,14 +131,14 @@
     script = ''
       echo "Initializing NZXT devices..."
       ${lib.getExe pkgs.liquidctl} initialize all > /dev/null
-     
+
       echo "Configuring pump and fan speed for the AIO..."
       ${lib.getExe pkgs.liquidctl} --match "kraken" set pump speed 100
       ${lib.getExe pkgs.liquidctl} --match "kraken" set fan speed 70
-    
+
       echo "Setting fan speed for the case fans..."
       ${lib.getExe pkgs.liquidctl} --match "smart device" set sync speed 100
-    
+
       echo "Turning off all the LEDs..."
       ${lib.getExe pkgs.openrgb} --noautoconnect --mode off > /dev/null
     '';
