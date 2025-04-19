@@ -67,9 +67,8 @@
       vim.g.lightline = { colorscheme = 'catppuccin' }
       vim.api.nvim_set_hl(0, "FloatBorder", { link = "NormalFloat" })
 
-      -- set linebreak and spelling for markdown documents
+      -- set linebreak for markdown documents
       vim.cmd 'autocmd FileType markdown set linebreak'
-      vim.cmd 'autocmd FileType markdown set spell'
 
       -- copy to system clipboard
       local opts = { noremap=true, silent=true }
@@ -112,7 +111,7 @@
       local on_attach = function(client, bufnr)
         local bufopts = { noremap=true, silent=true, buffer=bufnr }
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+        vim.keymap.set('n', 'K', function() vim.lsp.buf.hover({ border = "rounded"}) end, bufopts)
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
         vim.keymap.set('n', '<space>ih', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, bufopts)
@@ -170,16 +169,6 @@
           capabilities = capabilities,
         },
       }
-
-      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-        vim.lsp.handlers.hover,
-        {border = 'rounded'}
-      )
-
-      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-        vim.lsp.handlers.signature_help,
-        {border = 'rounded'}
-      )
 
       vim.diagnostic.config({
         float = {border = 'rounded'},
