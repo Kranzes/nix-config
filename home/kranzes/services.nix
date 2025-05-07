@@ -9,7 +9,7 @@
     gpg-agent = {
       enable = true;
       enableScDaemon = false;
-      pinentryPackage = pkgs.pinentry-gnome3;
+      pinentry.package = pkgs.pinentry-gnome3;
     };
   };
 

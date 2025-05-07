@@ -51,7 +51,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin = {
-      url = "github:catppuccin/nix";
+      # https://github.com/catppuccin/nix/pull/553/
+      url = "github:MisileLab/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
