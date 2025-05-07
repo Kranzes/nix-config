@@ -34,6 +34,8 @@ in
         "jellyfin_admins"
         "grafana_users"
         "grafana_admins"
+        "home-assistant_users"
+        "home-assistant_admins"
       ] (_: { });
 
       persons."kranzes" = {
@@ -94,6 +96,18 @@ in
           ];
           basicSecretFile = config.age.secrets.kanidm-oauth2-grafana-basic-secret.path;
         };
+        "home-assistant" = {
+          displayName = "Home Assistant";
+          originUrl = "https://home.ilanjoselevich.com/auth/oidc/callback";
+          originLanding = "https://home.ilanjoselevich.com/auth/oidc/redirect";
+          preferShortUsername = true;
+          scopeMaps."home-assistant_users" = [
+            "openid"
+            "profile"
+            "groups"
+          ];
+          basicSecretFile = config.age.secrets.kanidm-oauth2-home-assistant-basic-secret.path;
+        };
       };
     };
   };
@@ -116,6 +130,7 @@ in
         "kanidm-oauth2-nextcloud-basic-secret"
         "kanidm-oauth2-jellyfin-basic-secret"
         "kanidm-oauth2-grafana-basic-secret"
+        "kanidm-oauth2-home-assistant-basic-secret"
       ]
       (secretName: {
         file = ../../../secrets/${config.networking.hostName}-${secretName}.age;

@@ -62,6 +62,16 @@ let
             type = "Ping";
             target = "_top";
           }
+          {
+            name = "Home Assistant";
+            subtitle = "home.ilanjoselevich.com";
+            logo = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/home-assistant.svg";
+            url = "https://home.ilanjoselevich.com";
+            endpoint = "https://home.ilanjoselevich.com/manifest.json";
+            method = "get";
+            type = "Ping";
+            target = "_top";
+          }
         ];
       }
     ];

@@ -21,6 +21,7 @@ in
   "pongo-kranzes-hercules-secrets.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-kranzes-hercules-binary-caches.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.pongo ];
+  "pongo-home-assistant-secrets.age".publicKeys = allUsers ++ [ systems.pongo ];
   # Gorilla
   "gorilla-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.gorilla ];
   # Hetzner
@@ -29,6 +30,9 @@ in
   "hetzner-kanidm-oauth2-nextcloud-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-kanidm-oauth2-jellyfin-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-kanidm-oauth2-grafana-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-kanidm-oauth2-home-assistant-basic-secret.age".publicKeys = allUsers ++ [
+    systems.hetzner
+  ];
   "hetzner-grafana-signing-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-ntfy-sh-firebase-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-grafana-to-ntfy-ntfy-pass.age".publicKeys = allUsers ++ [ systems.hetzner ];
