@@ -9,6 +9,7 @@
     profiles-docs = ./docs.nix;
     profiles-laptop = ./laptop.nix;
     profiles-misc = ./misc.nix;
+    profiles-networking = lib.modules.importApply ./networking.nix { inherit inputs; };
     profiles-nix-nixpkgs = lib.modules.importApply ./nix-nixpkgs.nix { inherit inputs; };
     profiles-security = ./security.nix;
     profiles-ssh = lib.modules.importApply ./ssh.nix { inherit inputs; };

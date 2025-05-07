@@ -6,6 +6,7 @@ let
     profiles-cachix-deploy
     profiles-docs
     profiles-misc
+    profiles-networking
     profiles-nix-nixpkgs
     profiles-security
     profiles-ssh
