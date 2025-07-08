@@ -8,8 +8,8 @@ let
   hassCfg = config.services.home-assistant.config;
   catppuccin-theme = pkgs.fetchurl {
     name = "catppuccin.yaml";
-    url = "https://github.com/catppuccin/home-assistant/raw/0277ab8a42751bcf97c49082e4b743ec32304571/themes/catppuccin.yaml";
-    hash = "sha256-MkMegPaZIsTVtP6an9dMw7oFQlTlQjHCLg685suyRE4=";
+    url = "https://github.com/catppuccin/home-assistant/raw/4eff587e1e336d6d67f852d789b4f7cabbd1f6d8/themes/catppuccin.yaml";
+    hash = "sha256-iK99h9LV9tyFx2hr9RppHaLScD23dhlRPMYMaJlfEXc=";
   };
 in
 {
@@ -29,9 +29,18 @@ in
       "zeroconf"
       "esphome"
       "met"
+      "smlight"
+      "mqtt"
+      "cloud"
+      "smartthings"
+      "roborock"
+      "matter"
     ];
     customComponents = with pkgs.home-assistant-custom-components; [
       auth_oidc
+      home_connect_alt
+      oref_alert
+      adaptive_lighting
     ];
     config = {
       http = {
@@ -40,7 +49,13 @@ in
         use_x_forwarded_for = true;
         cors_allowed_origins = [ "https://portal.ilanjoselevich.com" ];
       };
-      homeassistant.external_url = "https://${domain}";
+      homeassistant = {
+        external_url = "https://${domain}";
+        latitude = "!secret homeassistant_latitude";
+        longitude = "!secret homeassistant_longitude";
+        elevation = "!secret homeassistant_elevation";
+        radius = "!secret homeassistant_radius";
+      };
       recorder.db_url = "postgresql://@/hass";
       auth_oidc = {
         client_id = "home-assistant";
@@ -54,6 +69,9 @@ in
       logbook = { };
       zeroconf = { };
       mobile_app = { };
+      cloud = { };
+      "automation ui" = "!include automations.yaml";
+      "script ui" = "!include scripts.yaml";
     };
   };
 
@@ -83,4 +101,8 @@ in
     owner = config.systemd.services.home-assistant.serviceConfig.User;
     group = config.systemd.services.home-assistant.serviceConfig.Group;
   };
+
+  services.restic.backups.default.paths = [
+    "${config.services.home-assistant.configDir}/backups"
+  ];
 }

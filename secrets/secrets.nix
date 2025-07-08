@@ -22,10 +22,13 @@ in
   "pongo-kranzes-hercules-binary-caches.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-home-assistant-secrets.age".publicKeys = allUsers ++ [ systems.pongo ];
+  "pongo-restic-default-env-file.age".publicKeys = allUsers ++ [ systems.pongo ];
+  "pongo-restic-default-repo-password.age".publicKeys = allUsers ++ [ systems.pongo ];
   # Gorilla
   "gorilla-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.gorilla ];
   # Hetzner
   "hetzner-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-kanidm-provision-extra-json.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-kanidm-oauth2-tailscale-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-kanidm-oauth2-nextcloud-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-kanidm-oauth2-jellyfin-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];

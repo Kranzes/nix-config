@@ -53,7 +53,7 @@ in
 
   boot = {
     lanzaboote.enable = true;
-    lanzaboote.pkiBundle = "/etc/secureboot";
+    lanzaboote.pkiBundle = "/var/lib/sbctl";
     loader.systemd-boot.enable = lib.mkForce (!config.boot.lanzaboote.enable);
     initrd.systemd.enable = true;
     initrd.availableKernelModules = [

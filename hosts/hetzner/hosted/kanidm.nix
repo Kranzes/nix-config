@@ -10,7 +10,7 @@ let
 in
 {
   services.kanidm = {
-    package = lib.mkForce pkgs.kanidm_1_5.withSecretProvisioning;
+    package = lib.mkForce pkgs.kanidm_1_6.withSecretProvisioning;
     enableServer = true;
     serverSettings = {
       inherit domain;
@@ -26,6 +26,7 @@ in
     };
     provision = {
       enable = true;
+      extraJsonFile = config.age.secrets.kanidm-provision-extra-json.path;
 
       groups = lib.genAttrs [
         "tailscale_users"
@@ -126,6 +127,7 @@ in
   age.secrets =
     lib.genAttrs
       [
+        "kanidm-provision-extra-json"
         "kanidm-oauth2-tailscale-basic-secret"
         "kanidm-oauth2-nextcloud-basic-secret"
         "kanidm-oauth2-jellyfin-basic-secret"

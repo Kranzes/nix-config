@@ -24,7 +24,7 @@
       inputs.lix.follows = "lix";
     };
     srvos = {
-      url = "github:nix-community/srvos";
+      url = "github:kranzes/srvos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
@@ -51,8 +51,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin = {
-      # https://github.com/catppuccin/nix/pull/553/
-      url = "github:MisileLab/nix";
+      url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
