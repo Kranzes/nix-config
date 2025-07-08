@@ -37,9 +37,6 @@ in
     systems.hetzner
   ];
   "hetzner-grafana-signing-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-ntfy-sh-firebase-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-grafana-to-ntfy-ntfy-pass.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-grafana-to-ntfy-pass.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-restic-default-env-file.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-restic-default-repo-password.age".publicKeys = allUsers ++ [ systems.hetzner ];
   # Pan
