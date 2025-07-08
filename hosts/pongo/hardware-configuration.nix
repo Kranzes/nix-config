@@ -59,24 +59,6 @@
       device = "/dev/disk/by-uuid/28bb79bc-ffb5-4e2b-8a1b-7cde40eeec9e";
       fsType = "ext4";
     };
-
-    "/mnt/nextcloud/Music" = {
-      device = "/home/4TB-HDD/Media/Music";
-      fsType = "none";
-      options = [
-        "bind"
-        "ro"
-      ];
-    };
-
-    "/mnt/nextcloud/yael" = {
-      device = "/home/1TB-HDD/yael";
-      fsType = "none";
-      options = [
-        "bind"
-        "rw"
-      ];
-    };
   };
 
   zramSwap.enable = true;
