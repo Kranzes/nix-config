@@ -56,4 +56,6 @@ in
       };
     };
   };
+
+  catppuccin.firefox.profiles.default.enable = false;
 }
