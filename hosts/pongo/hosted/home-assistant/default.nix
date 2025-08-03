@@ -33,14 +33,13 @@ in
       "mqtt"
       "cloud"
       "smartthings"
-      "roborock"
       "matter"
+      "energy"
     ];
     customComponents = with pkgs.home-assistant-custom-components; [
       auth_oidc
       home_connect_alt
       oref_alert
-      adaptive_lighting
     ];
     config = {
       http = {
@@ -70,6 +69,8 @@ in
       zeroconf = { };
       mobile_app = { };
       cloud = { };
+      my = { };
+      energy = { };
       "automation ui" = "!include automations.yaml";
       "script ui" = "!include scripts.yaml";
     };

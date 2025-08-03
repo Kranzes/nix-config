@@ -7,15 +7,8 @@
 {
   services.home-assistant = {
     customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
-      (mushroom.overrideAttrs {
-        patches = [
-          (pkgs.fetchpatch {
-            name = "modernize thermostat auto and heat/cool icon";
-            url = "https://github.com/piitaya/lovelace-mushroom/commit/80301c2d9a029d3b8749b186f8159d8588053247.patch";
-            hash = "sha256-iv/NeVDopap9C205U/ISNs52ed3LLidgU2vMOe0Fj0I=";
-          })
-        ];
-      })
+      custom-sidebar
+      mushroom
     ];
   };
 

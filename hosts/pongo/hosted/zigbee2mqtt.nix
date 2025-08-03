@@ -19,6 +19,7 @@
         user = "zigbee2mqtt";
         password = "Y2kqeJEgHDPHSlPHrsysMotMoYmCyJQSUTMSXi3g"; # Secure enough for me.
       };
+      frontend.enabled = true;
     };
   };
 
