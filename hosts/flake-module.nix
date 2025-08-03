@@ -31,14 +31,14 @@ let
       // {
         specialArgs = {
           inherit inputs;
-        } // args.specialArgs or { };
-        modules =
-          [
-            ./${args.hostName}
-            { networking = { inherit (args) hostName; }; }
-          ]
-          ++ commonProfiles
-          ++ (args.modules or [ ]);
+        }
+        // args.specialArgs or { };
+        modules = [
+          ./${args.hostName}
+          { networking = { inherit (args) hostName; }; }
+        ]
+        ++ commonProfiles
+        ++ (args.modules or [ ]);
       }
     ));
 in

@@ -40,24 +40,23 @@
         name = "deploy-${host}";
         value.program =
           let
-            args =
-              [
-                "-L"
-                "--log-format"
-                "multiline-with-logs"
-                "-s"
-                "--no-reexec"
-                "--flake"
-                "${inputs.self}#${host}"
-                "--sudo"
-                "--target-host"
-                "${cfg.config.networking.hostName}"
-              ]
-              ++ lib.optionals (host == "pongo") [
-                "--build-host"
-                "${cfg.config.networking.hostName}"
-              ]
-              ++ lib.optional cfg.config.security.sudo.wheelNeedsPassword "--ask-sudo-password";
+            args = [
+              "-L"
+              "--log-format"
+              "multiline-with-logs"
+              "-s"
+              "--no-reexec"
+              "--flake"
+              "${inputs.self}#${host}"
+              "--sudo"
+              "--target-host"
+              "${cfg.config.networking.hostName}"
+            ]
+            ++ lib.optionals (host == "pongo") [
+              "--build-host"
+              "${cfg.config.networking.hostName}"
+            ]
+            ++ lib.optional cfg.config.security.sudo.wheelNeedsPassword "--ask-sudo-password";
           in
           toString (
             pkgs.writeShellScript "deploy-${host}" ''
