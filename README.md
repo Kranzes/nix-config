@@ -17,6 +17,7 @@ Name                    | Description
 Name                                        | Description
 ------------------------------------------- | -----------
 [Pongo](./hosts/pongo) 	                    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a GTX 950 
+[Tamarin](./hosts/tamarin)     	            | Framework 13
 [Pan](./hosts/pan)     	                    | My ThinkPad T430
 [Gorilla](./hosts/gorilla)     	            | My ThinkPad T14s AMD G1
 [Hetzner](./hosts/hetzner)     	            | Hetzner Cloud CX32

@@ -5,6 +5,7 @@
     enable = true;
     font = "JetBrains Mono 8";
     extraConfig = {
+      dpi = config.xresources.properties."Xft.dpi";
       modi = [ "drun" ];
       matching = "fuzzy";
     };

@@ -50,6 +50,11 @@ in
       hostName = "pongo";
       modules = commonHome;
     };
+    tamarin = nixosSystemWithDefaults {
+      system = "x86_64-linux";
+      hostName = "tamarin";
+      modules = commonHome;
+    };
     gorilla = nixosSystemWithDefaults {
       system = "x86_64-linux";
       hostName = "gorilla";

@@ -25,4 +25,6 @@
       rules."Zathura".state = "tiled";
     };
   };
+
+  xresources.properties."Xft.dpi" = lib.mkDefault 96; # 100%
 }

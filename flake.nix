@@ -54,6 +54,7 @@
       url = "github:catppuccin/nix/2f0b779c531ac922a3f0e3f817ff4e794865873a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs =

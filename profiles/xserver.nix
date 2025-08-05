@@ -16,7 +16,10 @@
       accelSpeed = "0";
       middleEmulation = false;
     };
-    touchpad.disableWhileTyping = true;
+    touchpad = {
+      disableWhileTyping = true;
+      clickMethod = "clickfinger";
+    };
   };
 
   hardware.graphics = {

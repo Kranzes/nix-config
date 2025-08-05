@@ -1,6 +1,7 @@
 let
   systems = {
     pongo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq0cqSiwsTj1ktlr70ToobLXD9JIRQynTuOpmwpYilB";
+    tamarin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBMnniv4FFVWUhLDU1u3pSvmSQ3NrvdHpP/kOVW7hw6X";
     gorilla = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDTblFcEmy7kyJRgZ43BWmNk22TE4N+xyTDeJC7jpwc";
     hetzner = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrnR6feQwB8GCASDES3hujWI4fZBtbBbwWf7Hrq8Aon";
     pan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/SSCGsV61hZy5NVzjeA07PufZIHufUIeCD6id9orKF";
@@ -24,6 +25,8 @@ in
   "pongo-home-assistant-secrets.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-restic-default-env-file.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-restic-default-repo-password.age".publicKeys = allUsers ++ [ systems.pongo ];
+  # Tamarin
+  "tamarin-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.tamarin ];
   # Gorilla
   "gorilla-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.gorilla ];
   # Hetzner

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   services.polybar = {
@@ -11,8 +11,9 @@
     '';
     config = {
       "section/base" = {
-        height = 20;
-        offset-y = 7;
+        dpi = config.xresources.properties."Xft.dpi";
+        height = "1.85%";
+        offset-y = "0.65%";
         background = "\${colors.base}";
         foreground = "\${colors.text}";
         border-color = "\${colors.mauve}";
@@ -24,8 +25,8 @@
       "bar/leftbar" = {
         "inherit" = "section/base";
         modules-left = "bspwm";
-        offset-x = 10;
-        width = 221;
+        offset-x = "0.52%";
+        width = "12%";
       };
       "module/bspwm" = {
         type = "internal/bspwm";
@@ -46,15 +47,15 @@
       "bar/centerbar" = {
         "inherit" = "section/base";
         modules-center = "mpd";
-        offset-x = "50%:-175";
-        width = 350;
+        offset-x = "40.89%";
+        width = "18.23%";
       };
       "module/mpd".type = "internal/mpd";
       "bar/rightbar" = {
         "inherit" = "section/base";
         modules-right = "xkeyboard cpu memory pulseaudio date";
-        offset-x = "100%:-293";
-        width = 283;
+        offset-x = "84.74%";
+        width = "14.74%";
       };
       "module/xkeyboard" = {
         type = "internal/xkeyboard";
