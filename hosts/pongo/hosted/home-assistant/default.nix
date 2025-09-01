@@ -35,7 +35,7 @@ in
       "smartthings"
       "matter"
       "energy"
-      "roborock"
+      # "roborock"
       "google_generative_ai_conversation"
       "shelly"
     ];
