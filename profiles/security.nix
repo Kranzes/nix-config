@@ -9,7 +9,7 @@
   services.pcscd.enable = config.services.xserver.enable;
 
   services.kanidm = {
-    package = pkgs.kanidm_1_6;
+    package = pkgs.kanidm_1_7;
     enableClient = true;
     clientSettings = {
       uri = "https://idm.ilanjoselevich.com";
