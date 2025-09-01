@@ -62,7 +62,8 @@ in
       "xhci_pci"
       "thunderbolt"
     ];
-    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
+    kernelParams = [ "amdgpu.abmlevel=0" ]; # Don't mess with my colors
     tmp.cleanOnBoot = true;
   };
 
@@ -75,7 +76,16 @@ in
   };
 
   services = {
-    power-profiles-daemon.enable = true;
+    tuned = {
+      enable = true;
+      ppdSettings = {
+        main.default = "power-saver";
+        battery = {
+          inherit (config.services.tuned.ppdSettings.profiles) power-saver;
+        };
+      };
+    };
+    tlp.enable = false;
     upower.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
