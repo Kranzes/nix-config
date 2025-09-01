@@ -26,7 +26,7 @@
         "inherit" = "section/base";
         modules-left = "bspwm";
         offset-x = "0.52%";
-        width = "12%";
+        width = if config.xresources.properties."Xft.dpi" == 144 then "12%" else "11.55%"; # TODO: just fucking use wayland
       };
       "module/bspwm" = {
         type = "internal/bspwm";
