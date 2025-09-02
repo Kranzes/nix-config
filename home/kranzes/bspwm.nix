@@ -23,6 +23,9 @@
         window_gap = 15;
       };
       rules."Zathura".state = "tiled";
+      startupPrograms = [
+        "systemctl reload-or-restart --user polybar.service"
+      ];
     };
   };
 
