@@ -40,5 +40,7 @@
       withOpenASAR = true;
       withVencord = true;
     })
+    signal-desktop
+    yubioath-flutter
   ];
 }
