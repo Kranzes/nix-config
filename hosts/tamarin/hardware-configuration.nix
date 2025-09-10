@@ -53,7 +53,7 @@ in
   zramSwap.enable = true;
 
   boot = {
-    lanzaboote.enable = false;
+    lanzaboote.enable = true;
     lanzaboote.pkiBundle = "/var/lib/sbctl";
     loader.systemd-boot.enable = lib.mkForce (!config.boot.lanzaboote.enable);
     initrd.systemd.enable = true;
