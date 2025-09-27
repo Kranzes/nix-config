@@ -19,7 +19,7 @@
         border-color = "\${colors.mauve}";
         border-size = 2;
         font-0 = "JetBrains Mono:size=9;2";
-        font-1 = "Font Awesome 6 Free Solid:size=9;2";
+        font-1 = "Font Awesome 7 Free Solid:size=9;2";
         wm-restack = "bspwm";
       };
       "bar/leftbar" = {
