@@ -35,9 +35,7 @@ in
       "smartthings"
       "matter"
       "energy"
-      # "roborock"
       "google_generative_ai_conversation"
-      "shelly"
     ];
     customComponents = with pkgs.home-assistant-custom-components; [
       auth_oidc
@@ -76,6 +74,7 @@ in
       energy = { };
       "automation ui" = "!include automations.yaml";
       "script ui" = "!include scripts.yaml";
+      "scene ui" = "!include scenes.yaml";
     };
   };
 
