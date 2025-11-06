@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       font = {
-        normal.family = "JetBrains Mono";
+        normal.family = "JetBrainsMonoNL Nerd Font";
         size = 9;
       };
     };

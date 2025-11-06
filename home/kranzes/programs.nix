@@ -10,7 +10,7 @@
 
     zathura = {
       enable = true;
-      options.font = "JetBrains Mono 8";
+      options.font = "JetBrainsMonoNL Nerd Font 8";
     };
 
     nheko.enable = true;

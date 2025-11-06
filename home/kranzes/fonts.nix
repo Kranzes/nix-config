@@ -4,7 +4,7 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    jetbrains-mono
+    nerd-fonts.jetbrains-mono
     roboto
     font-awesome
     corefonts

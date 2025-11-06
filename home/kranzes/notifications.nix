@@ -3,7 +3,7 @@
 {
   services.dunst = {
     enable = true;
-    settings.global.font = "JetBrains Mono 10";
+    settings.global.font = "JetBrainsMonoNL Nerd Font 10";
   };
 
   home.packages = [ pkgs.libnotify ];

@@ -3,7 +3,7 @@
 {
   programs.rofi = {
     enable = true;
-    font = "JetBrains Mono 8";
+    font = "JetBrainsMonoNL Nerd Font 8";
     extraConfig = {
       dpi = config.xresources.properties."Xft.dpi";
       modi = [ "drun" ];

@@ -1,220 +1,180 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 
 {
-  programs.neovim = {
+  imports = [ inputs.nixvim.homeModules.nixvim ];
+
+  programs.nixvim = {
     enable = true;
-    vimAlias = true;
-    viAlias = true;
+    nixpkgs.useGlobalPackages = true;
+    defaultEditor = true;
     vimdiffAlias = true;
-    withRuby = false;
-    withNodeJs = false;
-    withPython3 = false;
-    plugins = with pkgs.vimPlugins; [
-      catppuccin-nvim
-      lightline-vim
-      vim-nix
-      nvim-colorizer-lua
-      nvim-autopairs
-      nvim-lspconfig
-      telescope-nvim
-      telescope-fzf-native-nvim
-      telescope-manix
-      nvim-treesitter.withAllGrammars
-      nvim-cmp
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      cmp-spell
-      cmp_luasnip
-      luasnip
-      gitsigns-nvim
-      rainbow-delimiters-nvim
-      rustaceanvim
-      floating-input-nvim
-      nvim-treesitter-context
-    ];
+    viAlias = true;
+    vimAlias = true;
     extraPackages = with pkgs; [
-      ripgrep # telescope
-      git # gitsigns
-      nixd # lspconfig
-      nixfmt-rfc-style # lspconfig
-      pyright # lspconfig
-      nodePackages.bash-language-server # lspconfig
-      rust-analyzer # rustaceanvim
-      rustfmt # lspconfig
-      cargo # lspconfig
-      clippy # lspconfig
-      terraform-ls # lspconfig
+      nixfmt
     ];
-    extraConfig = ''
-      lua << EOF
-      -- basic vim settings/keybinds
-      vim.o.number = true
-      vim.o.relativenumber = true
-      vim.o.cursorline = true
-      vim.o.cursorlineopt = 'number'
-      vim.o.mouse = 'a'
-      vim.o.hidden = true
-      vim.cmd 'set noshowmode'
-
-      -- theming
-      require("catppuccin").setup({
-        flavour = "${config.catppuccin.flavor}",
-        custom_highlights = function(colors) return { NormalFloat = { bg = colors.base } } end
-      })
-
-      vim.cmd.colorscheme "catppuccin"
-      vim.g.lightline = { colorscheme = 'catppuccin' }
-      vim.api.nvim_set_hl(0, "FloatBorder", { link = "NormalFloat" })
-
-      -- set linebreak for markdown documents
-      vim.cmd 'autocmd FileType markdown set linebreak'
-
-      -- copy to system clipboard
-      local opts = { noremap=true, silent=true }
-      vim.keymap.set('v', '<F12>', '"+y', opts)
-      vim.keymap.set('n', '<F12>', ':%+y<CR>', opts)
-
-      -- telescope
-      local opts = { noremap=true, silent=true }
-      require('telescope').load_extension('fzf')
-      vim.keymap.set('n', '<space>ff', require('telescope.builtin').find_files, opts)
-      vim.keymap.set('n', '<space>fg', require('telescope.builtin').live_grep, opts)
-      vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
-
-      -- tree sitter
-      require('nvim-treesitter.configs').setup {
-        highlight = { enable = true, },
-        indent = { enable = true, }
+    opts = {
+      number = true;
+      cursorline = true;
+      cursorlineopt = "number";
+      showmode = false;
+      winborder = "rounded";
+    };
+    colorschemes.catppuccin = {
+      enable = true;
+      package = pkgs.vimPlugins.catppuccin-nvim.overrideAttrs {
+        patches = [
+          (pkgs.fetchpatch {
+            url = "https://patch-diff.githubusercontent.com/raw/catppuccin/nvim/pull/941.patch";
+            hash = "sha256-1vdLNr0lCwXdJBIB4xG/1fY3Znli356UgMbfprCuUgQ=";
+          })
+        ];
+      };
+      settings = {
+        flavour = config.catppuccin.flavor;
+        integrations = {
+          telescope.enabled = true;
+          gitsigns = true;
+          treesitter_context = true;
+          rainbow_delimiters = true;
+          blink_cmp.style = "bordered";
+        };
+      };
+    };
+    autoCmd = [
+      {
+        event = "FileType";
+        pattern = "markdown";
+        callback.__raw = "function() vim.opt_local.linebreak = true end";
       }
-
-      vim.cmd 'autocmd FileType terraform set shiftwidth=2'
-
-      -- enable colorizer
-      require'colorizer'.setup()
-
-      -- autopairs
-      require('nvim-autopairs').setup{}
-
-      -- gitsigns
-      require('gitsigns').setup()
-
-      -- LSP & nvim-cmp setup
-      local opts = { noremap=true, silent=true }
-      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-      vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-      local on_attach = function(client, bufnr)
-        local bufopts = { noremap=true, silent=true, buffer=bufnr }
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', 'K', function() vim.lsp.buf.hover({ border = "rounded"}) end, bufopts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-        vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set('n', '<space>ih', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, bufopts)
-
-        -- formatting
+      {
+        event = "FileType";
+        pattern = "terraform";
+        callback.__raw = "function() vim.opt_local.shiftwidth = 2 end ";
+      }
+    ];
+    keymaps = [
+      # Copy to system clipboard
+      {
+        mode = "v";
+        key = "<F12>";
+        action = "\"+y";
+        options.silent = true;
+      }
+      {
+        mode = "n";
+        key = "<F12>";
+        action = ":%+y<CR>";
+        options.silent = true;
+      }
+    ];
+    plugins = {
+      numbertoggle.enable = true;
+      lualine = {
+        enable = true;
+        settings.options.theme = config.programs.nixvim.colorscheme;
+      };
+      web-devicons.enable = true;
+      telescope = {
+        enable = true;
+        keymaps = {
+          "<space>ff".action = "find_files";
+          "<space>fg".action = "live_grep";
+        };
+        extensions.fzf-native.enable = true;
+      };
+      highlight-colors.enable = true;
+      autoclose.enable = true;
+      gitsigns.enable = true;
+      treesitter = {
+        enable = true;
+        settings = {
+          highlight.enable = true;
+          indent.enable = true;
+        };
+      };
+      treesitter-context.enable = true;
+      rainbow-delimiters.enable = true;
+      blink-cmp = {
+        enable = true;
+        settings = {
+          keymap.preset = "enter";
+          completion = {
+            list.selection.preselect = false;
+            documentation.auto_show = true;
+          };
+          appearance.use_nvim_cmp_as_default = true;
+          signature.enabled = true;
+        };
+      };
+      nix.enable = true;
+      lspconfig.enable = true;
+      rustaceanvim.enable = true;
+    };
+    extraPlugins = with pkgs.vimPlugins; [ floating-input-nvim ];
+    dependencies = {
+      ripgrep.enable = true;
+      fd.enable = true;
+    };
+    lsp = {
+      onAttach = ''
         vim.api.nvim_create_autocmd('BufWritePre', {
           pattern = '*',
           callback = function()
             vim.lsp.buf.format()
           end,
         })
-      end
-
-      require('lspconfig').nixd.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        cmd = { "nixd", "--semantic-tokens=false" },
-        settings = {
-          nixd = {
-            formatting = {
-              command = { "nixfmt" }
-            }
-          }
+      '';
+      keymaps = [
+        {
+          key = "gd";
+          lspBufAction = "definition";
         }
-      }
-
-      require('lspconfig').pyright.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-      }
-
-      require('lspconfig').bashls.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-      }
-
-      require('lspconfig').hls.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-      }
-
-      require('lspconfig').terraformls.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-      }
-
-      vim.g.rustaceanvim = {
-        tools = {
-          float_win_config = {
-            border = 'rounded'
-          }
-        },
-        server = {
-          on_attach = on_attach,
-          capabilities = capabilities,
-        },
-      }
-
-      vim.diagnostic.config({
-        float = {border = 'rounded'},
-      })
-
-      local cmp = require 'cmp'
-      cmp.setup {
-        snippet = {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-          end
-        },
-        sources = {
-          { name = "nvim_lsp" },
-          { name = "buffer" },
-          { name = "path" },
-          { name = 'spell' },
-          { name = 'luasnip' },
-        },
-        formatting = {
-          format = function(entry, vim_item)
-            vim_item.menu = ({
-              buffer = "[Buffer]",
-              nvim_lsp = "[LSP]",
-              path = "[Path]",
-              spell = "[Spell]",
-              luasnip = "[Snip]",
-            })[entry.source.name]
-            return vim_item
-          end
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-        mapping = {
-          ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true, })
-        },
-      }
-      EOF
-    '';
+        {
+          key = "gr";
+          action = config.lib.nixvim.mkRaw "require('telescope.builtin').lsp_references";
+        }
+        {
+          key = "gt";
+          lspBufAction = "type_definition";
+        }
+        {
+          key = "gi";
+          lspBufAction = "implementation";
+        }
+        {
+          key = "K";
+          lspBufAction = "hover";
+        }
+        {
+          key = "<space>rn";
+          lspBufAction = "rename";
+        }
+        {
+          key = "<space>ca";
+          lspBufAction = "code_action";
+        }
+        {
+          key = "<space>ih";
+          action = config.lib.nixvim.mkRaw "function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end";
+        }
+        {
+          key = "<space>e";
+          action = config.lib.nixvim.mkRaw "function() vim.diagnostic.open_float() end";
+        }
+      ];
+      servers = {
+        nixd.enable = true;
+        pyright.enable = true;
+        bashls.enable = true;
+        hls.enable = true;
+        terraformls.enable = true;
+      };
+    };
   };
-  home.sessionVariables.EDITOR = "nvim";
 }
