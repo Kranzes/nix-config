@@ -8,7 +8,7 @@
     roboto
     font-awesome
     corefonts
-    vistafonts
+    vista-fonts
     culmus
   ];
 }

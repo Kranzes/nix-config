@@ -1,14 +1,14 @@
 {
   writeShellApplication,
   rofi,
-  mpc_cli,
+  mpc,
 }:
 
 writeShellApplication {
   name = "rofi-mpd";
   runtimeInputs = [
     rofi
-    mpc_cli
+    mpc
   ];
   text = builtins.readFile ./rofi-mpd;
 }

@@ -58,17 +58,19 @@
   };
 
   home.packages = with pkgs; [
-    mpc_cli
+    mpc
     inputs.self.packages."${pkgs.system}".rofi-mpd
   ];
 
   programs.beets = {
     enable = true;
-    package = pkgs.beetsPackages.beets-minimal.override {
-      pluginOverrides = lib.genAttrs config.programs.beets.settings.plugins (_: {
-        enable = true;
-      });
-    };
+    package = pkgs.python3.pkgs.toPythonApplication (
+      pkgs.python3.pkgs.beets-minimal.override {
+        pluginOverrides = lib.genAttrs config.programs.beets.settings.plugins (_: {
+          enable = true;
+        });
+      }
+    );
     settings = {
       plugins = [
         "permissions"

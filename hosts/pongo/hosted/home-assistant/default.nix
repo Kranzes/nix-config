@@ -20,6 +20,14 @@ in
 
   services.home-assistant = {
     enable = true;
+    package = pkgs.home-assistant.overrideAttrs (old: {
+      patches = old.patches ++ [
+        (pkgs.fetchpatch {
+          url = "https://github.com/home-assistant/core/commit/7fd75c7742fc35465bfaef4a30bac13d5590c422.patch";
+          hash = "sha256-XPGNLge6w+gMo6Un+oUThAEPrb2l/ePcqZYzsZS03KU=";
+        })
+      ];
+    });
     extraPackages = ps: with ps; [ psycopg2 ];
     extraComponents = [
       "isal"
@@ -36,6 +44,7 @@ in
       "matter"
       "energy"
       "google_generative_ai_conversation"
+      "roborock"
     ];
     customComponents = with pkgs.home-assistant-custom-components; [
       auth_oidc

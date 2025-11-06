@@ -9,7 +9,6 @@
     keepassxc
     yt-dlp
     p7zip
-    tdesktop
     killall
     xclip
     maim

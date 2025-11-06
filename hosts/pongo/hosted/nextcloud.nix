@@ -5,7 +5,6 @@
     enable = true;
     package = pkgs.nextcloud31;
     hostName = "cloud.ilanjoselevich.com";
-    nginx.recommendedHttpHeaders = true;
     https = true;
     autoUpdateApps.enable = true;
     database.createLocally = true;

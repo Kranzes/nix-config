@@ -8,8 +8,8 @@ let
   betterfox = pkgs.fetchFromGitHub {
     owner = "yokoffing";
     repo = "Betterfox";
-    rev = "140.0";
-    hash = "sha256-gHFA/1PeQ0iNAcjATGwgJOqRlR9YmxD/RJKkYN36QYA=";
+    rev = "144.0";
+    hash = "sha256-sYOjMSFJSq9VWG4S78n3lXExreYXalUAHmEPXP2vnfM=";
   };
 in
 {
@@ -28,7 +28,6 @@ in
         clearurls
         facebook-container
         istilldontcareaboutcookies
-        privacy-badger
         sponsorblock
         translate-web-pages
         (flagfox.overrideAttrs { meta.license.free = true; })
@@ -47,6 +46,7 @@ in
         "browser.uidensity" = 1;
         "dom.security.https_only_mode" = true;
         "permissions.default.desktop-notification" = 0;
+        "privacy.trackingprotection.allow_list.convenience.enabled" = true;
 
         # Graphics
         "gfx.webrender.all" = true;
