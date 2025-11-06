@@ -23,6 +23,7 @@ in
   "pongo-kranzes-hercules-binary-caches.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-home-assistant-secrets.age".publicKeys = allUsers ++ [ systems.pongo ];
+  "pongo-recyclarr-secrets.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-restic-default-env-file.age".publicKeys = allUsers ++ [ systems.pongo ];
   "pongo-restic-default-repo-password.age".publicKeys = allUsers ++ [ systems.pongo ];
   # Tamarin
@@ -39,6 +40,7 @@ in
   "hetzner-kanidm-oauth2-home-assistant-basic-secret.age".publicKeys = allUsers ++ [
     systems.hetzner
   ];
+  "hetzner-kanidm-oauth2-jellyseerr-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-grafana-signing-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-restic-default-env-file.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-restic-default-repo-password.age".publicKeys = allUsers ++ [ systems.hetzner ];

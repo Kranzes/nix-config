@@ -37,6 +37,8 @@ in
         "grafana_admins"
         "home-assistant_users"
         "home-assistant_admins"
+        "jellyseerr_users"
+        "jellyseerr_admins"
       ] (_: { });
 
       persons."kranzes" = {
@@ -71,10 +73,7 @@ in
         };
         "jellyfin" = {
           displayName = "Jellyfin";
-          originUrl = [
-            "https://jellyfin.ilanjoselevich.com/sso/OID/redirect/Kanidm"
-            "https://jellyfin.ilanjoselevich.com/sso/OID/r/Kanidm"
-          ];
+          originUrl = "https://jellyfin.ilanjoselevich.com/sso/OID/redirect/Kanidm";
           originLanding = "https://jellyfin.ilanjoselevich.com";
           preferShortUsername = true;
           scopeMaps."jellyfin_users" = [
@@ -109,6 +108,19 @@ in
           ];
           basicSecretFile = config.age.secrets.kanidm-oauth2-home-assistant-basic-secret.path;
         };
+        "jellyseerr" = {
+          displayName = "Jellyseerr";
+          originUrl = "https://seerr.ilanjoselevich.com/login?provider=kanidm&callback=true";
+          originLanding = "https://seerr.ilanjoselevich.com";
+          preferShortUsername = true;
+          scopeMaps."jellyseerr_users" = [
+            "openid"
+            "profile"
+            "email"
+          ];
+          allowInsecureClientDisablePkce = true; # TODO
+          basicSecretFile = config.age.secrets.kanidm-oauth2-jellyseerr-basic-secret.path;
+        };
       };
     };
   };
@@ -133,6 +145,7 @@ in
         "kanidm-oauth2-jellyfin-basic-secret"
         "kanidm-oauth2-grafana-basic-secret"
         "kanidm-oauth2-home-assistant-basic-secret"
+        "kanidm-oauth2-jellyseerr-basic-secret"
       ]
       (secretName: {
         file = ../../../secrets/${config.networking.hostName}-${secretName}.age;

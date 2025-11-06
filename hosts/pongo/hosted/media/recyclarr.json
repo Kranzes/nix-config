@@ -1,0 +1,244 @@
+{
+  "radarr": {
+    "movies": {
+      "base_url": "http://localhost:7878",
+      "api_key": "!secret radarr_api_key",
+      "media_naming": {
+        "folder": "jellyfin-tmdb",
+        "movie": {
+          "rename": true,
+          "standard": "jellyfin-imdb"
+        }
+      },
+      "delete_old_custom_formats": true,
+      "replace_existing_custom_formats": true,
+      "include": [
+        {
+          "template": "radarr-quality-definition-movie"
+        },
+        {
+          "template": "radarr-quality-profile-remux-web-2160p"
+        },
+        {
+          "template": "radarr-custom-formats-remux-web-2160p"
+        }
+      ],
+      "custom_formats": [
+        {
+          "trash_ids": [
+            "496f355514737f7d83bf7aa4d24f8169",
+            "2f22d89048b01681dde8afe203bf2e95",
+            "417804f7f2c4308c1f4c5d380d4c4475",
+            "1af239278386be2919e1bcee0bde047e",
+            "3cafb66171b47f226146a0770576870f",
+            "dcf3ec6938fa32445f590a4da84256cd",
+            "a570d4a0e56a2874b64e5bfa55202a1b",
+            "e7c2fcae07cbada050a0af3357491d7b",
+            "8e109e50e0a0b83a5098b056e13bf6db",
+            "185f1dd7264c4562b9022d963ac37424",
+            "f9f847ac70a0af62ea4a08280b859636",
+            "1c1a4c5e823891c75bc50380a6866f73",
+            "240770601cc226190c367ef59aba7463",
+            "c2998bd0d90ed5621d8df281e839436e"
+          ],
+          "assign_scores_to": [
+            {
+              "name": "Remux + WEB 2160p"
+            }
+          ]
+        },
+        {
+          "trash_ids": [
+            "0f12c086e289cf966fa5948eac571f44",
+            "570bc9ebecd92723d2d21500f4be314c",
+            "eca37840c13c6ef2dd0262b141a5482f",
+            "e0c07d59beb37348e975a930d5e50319",
+            "9d27d9d2181838f76dee150882bdc58c",
+            "db9b4c4b53d312a3ca5f1378f6440fc9",
+            "957d0f44b592285f26449575e8b1167e",
+            "eecf3a857724171f968a66cb5719e152",
+            "9f6cbff8cfe4ebbc1bde14c7b7bec0de"
+          ],
+          "assign_scores_to": [
+            {
+              "name": "Remux + WEB 2160p"
+            }
+          ]
+        },
+        {
+          "trash_ids": [
+            "b6832f586342ef70d9c128d40c07b872",
+            "cc444569854e9de0b084ab2b8b1532b2",
+            "ae9b7c9ebde1f3bd336a8cbd1ec4c5e5",
+            "5c44f52a8714fdd79bb4d98e2673be1f"
+          ],
+          "assign_scores_to": [
+            {
+              "name": "Remux + WEB 2160p"
+            }
+          ]
+        },
+        {
+          "trash_ids": [
+            "dc98083864ea246d05a42df0d05f81cc"
+          ],
+          "assign_scores_to": [
+            {
+              "name": "Remux + WEB 2160p",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "trash_ids": [
+            "839bea857ed2c0a8e084f3cbdbd65ecb"
+          ],
+          "assign_scores_to": [
+            {
+              "name": "Remux + WEB 2160p"
+            }
+          ]
+        },
+        {
+          "trash_ids": [
+            "923b6abef9b17f937fab56cfcf89e1f1",
+            "b337d6812e06c200ec9a2d3cfa9d20a7",
+            "caa37d0df9c348912df1fb1d88f9273a"
+          ],
+          "assign_scores_to": [
+            {
+              "name": "Remux + WEB 2160p"
+            }
+          ]
+        }
+      ],
+      "quality_profiles": [
+        {
+          "name": "Remux + WEB 2160p",
+          "qualities": [
+            {
+              "name": "Remux-2160p"
+            },
+            {
+              "name": "WEB 2160p",
+              "qualities": [
+                "WEBDL-2160p",
+                "WEBRip-2160p"
+              ]
+            },
+            {
+              "name": "Remux-1080p"
+            },
+            {
+              "name": "WEB 1080p",
+              "qualities": [
+                "WEBDL-1080p",
+                "WEBRip-1080p"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "sonarr": {
+    "series": {
+      "base_url": "http://localhost:8989",
+      "api_key": "!secret sonarr_api_key",
+      "media_naming": {
+        "series": "jellyfin-tvdb",
+        "season": "default",
+        "episodes": {
+          "rename": true,
+          "standard": "default",
+          "daily": "default",
+          "anime": "default"
+        }
+      },
+      "delete_old_custom_formats": true,
+      "replace_existing_custom_formats": true,
+      "include": [
+        {
+          "template": "sonarr-quality-definition-series"
+        },
+        {
+          "template": "sonarr-v4-quality-profile-web-2160p"
+        },
+        {
+          "template": "sonarr-v4-custom-formats-web-2160p"
+        }
+      ],
+      "custom_formats": [
+        {
+          "trash_ids": [
+            "9b27ab6498ec0f31a3353992e19434ca",
+            "0c4b99df9206d2cfac3c05ab897dd62a",
+            "7c3a61a9c6cb04f52f1544be6d44a026"
+          ],
+          "assign_scores_to": [
+            {
+              "name": "WEB-2160p"
+            }
+          ]
+        },
+        {
+          "trash_ids": [
+            "32b367365729d530ca1c124a0b180c64",
+            "82d40da2bc6923f41e14394075dd4b03",
+            "06d66ab109d4d2eddb2794d21526d140"
+          ],
+          "assign_scores_to": [
+            {
+              "name": "WEB-2160p"
+            }
+          ]
+        },
+        {
+          "trash_ids": [
+            "47435ece6b99a0b477caf360e79ba0bb"
+          ],
+          "assign_scores_to": [
+            {
+              "name": "WEB-2160p",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "trash_ids": [
+            "9b64dff695c2115facf1b6ea59c9bd07"
+          ],
+          "assign_scores_to": [
+            {
+              "name": "WEB-2160p"
+            }
+          ]
+        }
+      ],
+      "quality_profiles": [
+        {
+          "name": "WEB-2160p",
+          "qualities": [
+            {
+              "name": "WEB 2160p",
+              "qualities": [
+                "WEBDL-2160p",
+                "WEBRip-2160p"
+              ]
+            },
+            {
+              "name": "WEB 1080p",
+              "qualities": [
+                "WEBDL-1080p",
+                "WEBRip-1080p"
+              ]
+            },
+            {
+              "name": "HDTV-1080p"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
