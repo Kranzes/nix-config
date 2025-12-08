@@ -27,14 +27,6 @@
     };
     colorschemes.catppuccin = {
       enable = true;
-      package = pkgs.vimPlugins.catppuccin-nvim.overrideAttrs {
-        patches = [
-          (pkgs.fetchpatch {
-            url = "https://patch-diff.githubusercontent.com/raw/catppuccin/nvim/pull/941.patch";
-            hash = "sha256-1vdLNr0lCwXdJBIB4xG/1fY3Znli356UgMbfprCuUgQ=";
-          })
-        ];
-      };
       settings = {
         flavour = config.catppuccin.flavor;
         integrations = {
