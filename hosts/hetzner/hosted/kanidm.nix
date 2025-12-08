@@ -10,7 +10,7 @@ let
 in
 {
   services.kanidm = {
-    package = lib.mkForce pkgs.kanidm_1_7.withSecretProvisioning;
+    package = lib.mkForce pkgs.kanidm_1_8.withSecretProvisioning;
     enableServer = true;
     serverSettings = {
       inherit domain;
