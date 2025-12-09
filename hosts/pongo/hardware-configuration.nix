@@ -125,21 +125,4 @@
       ${lib.getExe pkgs.openrgb} --noautoconnect --mode off > /dev/null
     '';
   };
-
-  networking.bridges.br0.interfaces = [
-    "enp11s0"
-    "enp6s0"
-  ];
-
-  systemd.network.networks = {
-    "40-br0".networkConfig.MulticastDNS = true;
-    "40-enp11s0".networkConfig.MulticastDNS = true;
-    "40-enp6s0".networkConfig.MulticastDNS = true;
-  };
-
-  networking.interfaces = {
-    enp11s0.useDHCP = true;
-    enp6s0.useDHCP = true;
-    br0.useDHCP = true;
-  };
 }
