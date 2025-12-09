@@ -3,13 +3,13 @@
 {
   programs.git = {
     enable = true;
-    userName = "Ilan Joselevich";
-    userEmail = "personal@ilanjoselevich.com";
     ignores = [
       "*.swp"
       "result"
     ];
-    extraConfig = {
+    settings = {
+      user.name = "Ilan Joselevich";
+      user.email = "personal@ilanjoselevich.com";
       init.defaultBranch = "master";
       commit.gpgSign = true;
       tag.gpgSign = true;

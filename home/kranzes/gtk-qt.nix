@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   xdg.enable = true;
@@ -9,6 +9,14 @@
       name = "Roboto";
       size = 10;
       package = pkgs.roboto;
+    };
+    theme = {
+      name = "Catppuccin-GTK-Purple-Dark-Compact-Macchiato";
+      package = pkgs.magnetic-catppuccin-gtk.override {
+        size = "compact";
+        accent = [ "purple" ];
+        tweaks = [ config.catppuccin.flavor ];
+      };
     };
 
     gtk4.extraConfig = {
@@ -37,12 +45,5 @@
       gtk-enable-event-sounds=0
       gtk-enable-input-feedback-sounds=0
     '';
-  };
-
-  catppuccin.gtk = {
-    enable = true;
-    size = "compact";
-    tweaks = [ "rimless" ];
-    icon.enable = true;
   };
 }

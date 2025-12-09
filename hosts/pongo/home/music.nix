@@ -59,7 +59,7 @@
 
   home.packages = with pkgs; [
     mpc
-    inputs.self.packages."${pkgs.system}".rofi-mpd
+    inputs.self.packages."${pkgs.stdenv.hostPlatform.system}".rofi-mpd
   ];
 
   programs.beets = {
