@@ -41,12 +41,23 @@ in
         "jellyseerr_admins"
       ] (_: { });
 
-      persons."kranzes" = {
-        displayName = "Kranzes";
-        legalName = "Ilan Joselevich";
-        mailAddresses = [ "personal@ilanjoselevich.com" ];
-        # Add to all groups
-        groups = lib.attrNames config.services.kanidm.provision.groups;
+      persons = {
+        "kranzes" = {
+          displayName = "Kranzes";
+          legalName = "Ilan Joselevich";
+          mailAddresses = [ "personal@ilanjoselevich.com" ];
+          # Add to all groups
+          groups = lib.attrNames config.services.kanidm.provision.groups;
+        };
+        "arianvp" = {
+          displayName = "arianvp";
+          legalName = "Arian van Putten";
+          mailAddresses = [ "jellyfin@arianvp.me" ];
+          groups = [
+            "jellyfin_users"
+            "jellyseerr_users"
+          ];
+        };
       };
 
       systems.oauth2 = {
