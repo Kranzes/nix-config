@@ -1,5 +1,8 @@
 {
-  services.jellyfin.enable = true;
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };
   systemd.services.jellyfin.serviceConfig.SupplementaryGroups = [ "media" ];
 
   services.nginx.virtualHosts."jellyfin.ilanjoselevich.com" = {
