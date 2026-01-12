@@ -12,7 +12,6 @@
   systemd.services.sonarr.serviceConfig.SupplementaryGroups = [ "media" ];
 
   services.postgresql = {
-    enable = true;
     ensureDatabases = [
       "sonarr-main"
       "sonarr-log"

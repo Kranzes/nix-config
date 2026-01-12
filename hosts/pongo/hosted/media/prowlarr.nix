@@ -19,7 +19,6 @@
   systemd.services.prowlarr.serviceConfig.User = "prowlarr";
 
   services.postgresql = {
-    enable = true;
     ensureDatabases = [
       "prowlarr-main"
       "prowlarr-log"

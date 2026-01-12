@@ -80,7 +80,6 @@ in
   };
 
   services.postgresql = {
-    enable = true;
     ensureDatabases = [ (baseNameOf hassCfg.recorder.db_url) ];
     ensureUsers = [
       {

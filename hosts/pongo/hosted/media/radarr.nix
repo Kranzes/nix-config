@@ -12,7 +12,6 @@
   systemd.services.radarr.serviceConfig.SupplementaryGroups = [ "media" ];
 
   services.postgresql = {
-    enable = true;
     ensureDatabases = [
       "radarr-main"
       "radarr-log"

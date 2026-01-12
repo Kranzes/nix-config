@@ -6,5 +6,6 @@
     hosted-node-exporter = ./node-exporter.nix;
     hosted-restic = ./restic.nix;
     hosted-libvirt = ./libvirt.nix;
+    hosted-postgresql = ./postgresql.nix;
   };
 }

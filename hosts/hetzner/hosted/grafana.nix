@@ -61,7 +61,6 @@ in
   ];
 
   services.postgresql = {
-    enable = true;
     ensureDatabases = [ config.services.grafana.settings.database.name ];
     ensureUsers = [
       {
