@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
 
@@ -42,5 +42,6 @@
     signal-desktop
     yubioath-flutter
     jellyfin-desktop
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
   ];
 }
