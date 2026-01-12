@@ -15,6 +15,7 @@
 
   programs.zsh = {
     enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
     enableCompletion = true;
     initContent = lib.mkMerge [
       (lib.mkBefore ''
