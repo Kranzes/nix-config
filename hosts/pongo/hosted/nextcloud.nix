@@ -3,7 +3,7 @@
 {
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud32;
+    package = pkgs.nextcloud33;
     hostName = "cloud.ilanjoselevich.com";
     https = true;
     autoUpdateApps.enable = true;
@@ -15,6 +15,7 @@
       adminuser = "admin-root";
     };
     settings.user_oidc.use_pkce = true;
+    phpOptions."opcache.interned_strings_buffer" = "16";
   };
 
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {

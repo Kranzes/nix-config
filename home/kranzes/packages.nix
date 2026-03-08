@@ -28,7 +28,7 @@
     piper
     thunderbird-bin
     ookla-speedtest
-    nixfmt-rfc-style
+    nixfmt
     nixpkgs-review
     nix-update
     acpi

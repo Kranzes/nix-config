@@ -10,7 +10,7 @@
   services.jellyseerr = {
     enable = true;
     package = pkgs.jellyseerr.overrideAttrs (old: rec {
-      version = "preview-OIDC"; # TODO: https://github.com/seerr-team/seerr/pull/1505
+      version = "preview-OIDC"; # TODO: https://github.com/seerr-team/seerr/discussions/1529
 
       src = pkgs.fetchFromGitHub {
         owner = "fallenbagel";
@@ -19,11 +19,12 @@
         hash = "sha256-EJz1W7ewEczizNRs/X3esjQUwJiTHruo7nkAzyKZbjc=";
       };
 
-      pnpmDeps = (pkgs.pnpm_9.override { nodejs = pkgs.nodejs_22; }).fetchDeps {
+      pnpmDeps = pkgs.fetchPnpmDeps {
         inherit (old) pname;
         inherit version src;
-        fetcherVersion = 1;
-        hash = "sha256-yjrlZfObAMj9WOywlsP51wNrbUNh8m1RxtbkjasnEW4=";
+        pnpm = pkgs.pnpm_9.override { nodejs = pkgs.nodejs_22; };
+        fetcherVersion = 3;
+        hash = "sha256-qv38UGPAqANLr3/MwwF75Vc8x3K5/IyfXnnBhypO7ck=";
       };
     });
   };

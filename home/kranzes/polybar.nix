@@ -92,7 +92,7 @@
         date = "%d";
         date-alt = "%A";
         time = "%H:%M";
-        format-foreground = "$\{colors.yellow}";
+        format-foreground = "\${colors.yellow}";
         format-padding = 1;
         label = "%date% %time%";
       };

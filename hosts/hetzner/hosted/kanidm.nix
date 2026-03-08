@@ -10,18 +10,20 @@ let
 in
 {
   services.kanidm = {
-    package = lib.mkForce pkgs.kanidm_1_8.withSecretProvisioning;
-    enableServer = true;
-    serverSettings = {
-      inherit domain;
-      origin = "https://${domain}";
-      trust_x_forward_for = true;
-      tls_chain = "${certDir}/fullchain.pem";
-      tls_key = "${certDir}/key.pem";
-      online_backup = {
-        path = "/var/lib/kanidm/backups";
-        versions = 7;
-        schedule = "0 0 * * *"; # Every day at midnight.
+    package = lib.mkForce pkgs.kanidm_1_9.withSecretProvisioning;
+    server = {
+      enable = true;
+      settings = {
+        inherit domain;
+        origin = "https://${domain}";
+        http_client_address_info.x-forward-for = [ "127.0.0.1" ];
+        tls_chain = "${certDir}/fullchain.pem";
+        tls_key = "${certDir}/key.pem";
+        online_backup = {
+          path = "/var/lib/kanidm/backups";
+          versions = 7;
+          schedule = "0 0 * * *"; # Every day at midnight.
+        };
       };
     };
     provision = {
@@ -144,7 +146,7 @@ in
   services.nginx.virtualHosts.${domain} = {
     forceSSL = true;
     enableACME = true;
-    locations."/".proxyPass = "https://${config.services.kanidm.serverSettings.bindaddress}";
+    locations."/".proxyPass = "https://${config.services.kanidm.server.settings.bindaddress}";
   };
 
   age.secrets =
@@ -165,6 +167,6 @@ in
       });
 
   services.restic.backups.default.paths = [
-    config.services.kanidm.serverSettings.online_backup.path
+    config.services.kanidm.server.settings.online_backup.path
   ];
 }

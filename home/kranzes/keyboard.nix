@@ -90,7 +90,8 @@
       "super + alt + m" = "rofi-mpd -a";
 
       # Brightness control
-      "XF86MonBrightness{Up,Down}" = "light -{A,U} 10";
+      "XF86MonBrightnessUp" = "brightnessctl set +10%";
+      "XF86MonBrightnessDown" = "brightnessctl set 10%-";
 
       # Screenshoting
       "ctrl + Print" = "maim -s | xclip -selection clipboard -t image/png";

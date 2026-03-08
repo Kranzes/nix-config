@@ -1,6 +1,8 @@
+{ pkgs, ... }:
+
 {
   # For changing display brightness.
-  programs.light.enable = true;
+  environment.systemPackages = [ pkgs.brightnessctl ];
 
   # For WiFi.
   networking.networkmanager.enable = true;
