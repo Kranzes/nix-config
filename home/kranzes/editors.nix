@@ -10,7 +10,17 @@
 
   programs.nixvim = {
     enable = true;
-    nixpkgs.useGlobalPackages = true;
+    nixpkgs.useGlobalPackages = false;
+    nixpkgs.source = pkgs.applyPatches {
+      src = pkgs.path;
+      patches = [
+        (pkgs.fetchpatch {
+          url = "https://github.com/nixos/nixpkgs/commit/da6e66c2df52b76bab43b0b3ff2ef76bb5c5b525.patch";
+          revert = true;
+          hash = "sha256-VdVJyRDrQPfMItQ4o+xrcSOxHpBCeRO+s1OpDcT/zjk=";
+        })
+      ];
+    };
     defaultEditor = true;
     vimdiffAlias = true;
     viAlias = true;
@@ -25,6 +35,7 @@
       showmode = false;
       winborder = "rounded";
     };
+    colorscheme = "catppuccin-nvim";
     colorschemes.catppuccin = {
       enable = true;
       settings = {
