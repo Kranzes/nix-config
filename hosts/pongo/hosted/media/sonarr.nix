@@ -9,7 +9,10 @@
     };
   };
 
-  systemd.services.sonarr.serviceConfig.SupplementaryGroups = [ "media" ];
+  systemd.services.sonarr.serviceConfig = {
+    ProtectHome = lib.mkForce false;
+    SupplementaryGroups = [ "media" ];
+  };
 
   services.postgresql = {
     ensureDatabases = [

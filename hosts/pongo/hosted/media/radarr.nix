@@ -9,7 +9,10 @@
     };
   };
 
-  systemd.services.radarr.serviceConfig.SupplementaryGroups = [ "media" ];
+  systemd.services.radarr.serviceConfig = {
+    ProtectHome = lib.mkForce false;
+    SupplementaryGroups = [ "media" ];
+  };
 
   services.postgresql = {
     ensureDatabases = [
