@@ -41,7 +41,8 @@ in
     customComponents = with pkgs.home-assistant-custom-components; [
       auth_oidc
       home_connect_alt
-      oref_alert
+      (builtins.getFlake "github:nixos/nixpkgs/ff1ed73e0be60f68cb3c816ddec89a41184ffe04")
+      .legacyPackages.${pkgs.stdenv.hostPlatform.system}.home-assistant-custom-components.oref_alert
     ];
     config = {
       http = {
