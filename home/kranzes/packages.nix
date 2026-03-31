@@ -42,5 +42,6 @@
     signal-desktop
     yubioath-flutter
     jellyfin-desktop
+    nixd
   ];
 }
