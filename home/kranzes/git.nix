@@ -3,6 +3,7 @@
 {
   programs.git = {
     enable = true;
+    signing.format = "openpgp";
     ignores = [
       "*.swp"
       "result"

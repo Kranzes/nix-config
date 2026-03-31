@@ -27,7 +27,10 @@ let
   nixosSystemWithDefaults =
     args:
     (inputs.nixpkgs.lib.nixosSystem (
-      (builtins.removeAttrs args [ "hostName" ])
+      (builtins.removeAttrs args [
+        "hostName"
+        "system"
+      ])
       // {
         specialArgs = {
           inherit inputs;
@@ -36,6 +39,7 @@ let
         modules = [
           ./${args.hostName}
           { networking = { inherit (args) hostName; }; }
+          { nixpkgs.hostPlatform = args.system; }
         ]
         ++ commonProfiles
         ++ (args.modules or [ ]);

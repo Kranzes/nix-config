@@ -19,6 +19,7 @@
       };
     };
 
+    gtk4.theme = config.gtk.theme;
     gtk4.extraConfig = {
       gtk-xft-antialias = 1;
       gtk-xft-hinting = 1;

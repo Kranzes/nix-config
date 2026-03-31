@@ -9,6 +9,6 @@
       };
     };
 
-  flake.packages.${inputs.self.nixosConfigurations.pongo.config.nixpkgs.system}.neovim =
+  flake.packages.${inputs.self.nixosConfigurations.pongo.pkgs.stdenv.hostPlatform.system}.neovim =
     inputs.self.nixosConfigurations.pongo.config.home-manager.users.kranzes.programs.nixvim.build.package;
 }
