@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./xserver.nix
+    ./gaming.nix
     ./hosted
     ./home
   ]

@@ -76,9 +76,10 @@
       "kvm-amd"
       "i2c-dev"
       "i2c_piix4"
+      "ntsync"
     ];
     kernelParams = [ "amd_iommu=on" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     tmp.cleanOnBoot = true;
     loader.systemd-boot.windows."11".efiDeviceHandle = "HD0b";
   };

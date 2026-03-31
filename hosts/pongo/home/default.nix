@@ -4,7 +4,6 @@
   home-manager.users.kranzes = {
     imports = [
       ./music.nix
-      ./gaming.nix
     ];
 
     # Overrides.
