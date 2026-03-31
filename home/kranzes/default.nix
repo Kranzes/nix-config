@@ -29,5 +29,6 @@
     ./gtk-qt.nix
     ./devel.nix
     ./browser.nix
+    ./slop.nix
   ];
 }
