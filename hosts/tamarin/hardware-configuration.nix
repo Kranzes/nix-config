@@ -62,7 +62,7 @@ in
       "xhci_pci"
       "thunderbolt"
     ];
-    kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     kernelParams = [ "amdgpu.abmlevel=0" ]; # Don't mess with my colors
     tmp.cleanOnBoot = true;
   };
