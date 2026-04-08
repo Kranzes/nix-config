@@ -9,6 +9,6 @@
     ./sonarr.nix
     ./recyclarr.nix
     ./jellyfin.nix
-    ./jellyseerr.nix
+    ./seerr.nix
   ];
 }

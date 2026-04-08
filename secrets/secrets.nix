@@ -40,7 +40,7 @@ in
   "hetzner-kanidm-oauth2-home-assistant-basic-secret.age".publicKeys = allUsers ++ [
     systems.hetzner
   ];
-  "hetzner-kanidm-oauth2-jellyseerr-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-kanidm-oauth2-seerr-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-grafana-signing-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-restic-default-env-file.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-restic-default-repo-password.age".publicKeys = allUsers ++ [ systems.hetzner ];
