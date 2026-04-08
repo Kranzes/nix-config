@@ -31,12 +31,6 @@ in
         extensionToLanguage.".rs" = "rust";
       };
     };
-    settings = {
-      inherit model;
-      enabledPlugins = {
-        "commit-commands@claude-plugins-official" = true;
-      };
-    };
   };
 
   programs.opencode = {
@@ -54,8 +48,8 @@ in
   };
 
   home.sessionVariables = {
-    OPENCODE_DISABLE_CLAUDE_CODE = "true";
     OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT = "true";
     OPENCODE_EXPERIMENTAL_LSP_TOOL = "true";
+    CLAUDE_CODE_NO_FLICKER = 1;
   };
 }
