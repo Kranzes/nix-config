@@ -8,8 +8,8 @@ let
   hassCfg = config.services.home-assistant.config;
   catppuccin-theme = pkgs.fetchurl {
     name = "catppuccin.yaml";
-    url = "https://github.com/catppuccin/home-assistant/raw/4eff587e1e336d6d67f852d789b4f7cabbd1f6d8/themes/catppuccin.yaml";
-    hash = "sha256-iK99h9LV9tyFx2hr9RppHaLScD23dhlRPMYMaJlfEXc=";
+    url = "https://github.com/catppuccin/home-assistant/raw/b37ada06d011fe02d487719b06e70e98ded76149/themes/catppuccin.yaml";
+    hash = "sha256-UI6g9NsziSze5zUGzl2DjgG68R+z7NtV1bC43p1FIVU=";
   };
 in
 {
@@ -41,8 +41,7 @@ in
     customComponents = with pkgs.home-assistant-custom-components; [
       auth_oidc
       home_connect_alt
-      (builtins.getFlake "github:nixos/nixpkgs/ff1ed73e0be60f68cb3c816ddec89a41184ffe04")
-      .legacyPackages.${pkgs.stdenv.hostPlatform.system}.home-assistant-custom-components.oref_alert
+      oref_alert
     ];
     config = {
       http = {

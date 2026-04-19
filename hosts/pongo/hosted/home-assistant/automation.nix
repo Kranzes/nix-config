@@ -13,15 +13,8 @@
           {
             service = "frontend.set_theme";
             data = {
-              name = "Catppuccin Macchiato";
-              mode = "dark";
-            };
-          }
-          {
-            service = "frontend.set_theme";
-            data = {
-              name = "Catppuccin Latte";
-              mode = "light";
+              name = "Catppuccin Auto Latte Macchiato";
+              mode = "auto";
             };
           }
         ];
