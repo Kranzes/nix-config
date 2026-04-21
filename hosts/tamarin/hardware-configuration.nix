@@ -63,7 +63,7 @@ in
         enable = true;
         pcrs = [
           0
-          1
+          #  1 Flaky, need to report the issue to Framework.
           2
           3
           4
