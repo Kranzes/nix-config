@@ -6,7 +6,7 @@
     font = "JetBrainsMonoNL Nerd Font 8";
     extraConfig = {
       dpi = config.xresources.properties."Xft.dpi";
-      modi = [ "drun" ];
+      modi = "drun";
       matching = "fuzzy";
     };
     theme =

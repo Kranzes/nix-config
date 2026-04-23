@@ -15,8 +15,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "v3DJG6GL";
         repo = "seerr";
-        rev = "2ece4e5b6e95bfad7db7ebb6f71eb19924041d94";
-        hash = "sha256-8kPqk0SWbtfHZid4K77kcVV14v/HLOe2rz3vokQ7YI4=";
+        rev = "f7da77db218179141ed0d919e7564a0d065cb198";
+        hash = "sha256-w7wgTF1xLmx/1Sa3KYuFklma5UpVJyIZfAvGA5uyL+M=";
       };
 
       pnpmDeps = pkgs.fetchPnpmDeps {
@@ -24,7 +24,7 @@
         inherit version src;
         pnpm = pkgs.pnpm_10.override { nodejs = pkgs.nodejs_22; };
         fetcherVersion = 3;
-        hash = "sha256-GzKG6ZbkWA5qa4sGVAS2g4LtnFVUI1JebYImyAVQJyM=";
+        hash = "sha256-88jXwJ4ehrc4OXSAgAcMe+gF+HdwYLFymDye+SWyt5c=";
       };
     });
   };
