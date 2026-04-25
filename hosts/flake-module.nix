@@ -59,11 +59,6 @@ in
       hostName = "tamarin";
       modules = commonHome;
     };
-    gorilla = nixosSystemWithDefaults {
-      system = "x86_64-linux";
-      hostName = "gorilla";
-      modules = commonHome;
-    };
     pan = nixosSystemWithDefaults {
       system = "x86_64-linux";
       hostName = "pan";
