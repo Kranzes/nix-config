@@ -49,8 +49,6 @@ in
     };
   };
 
-  zramSwap.enable = true;
-
   boot = {
     lanzaboote.enable = true;
     lanzaboote.pkiBundle = "/var/lib/sbctl";

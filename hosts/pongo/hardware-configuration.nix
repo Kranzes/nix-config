@@ -61,7 +61,14 @@
     };
   };
 
-  zramSwap.enable = true;
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
+
+  boot.zswap.enable = true;
 
   boot = {
     initrd.systemd.enable = true;

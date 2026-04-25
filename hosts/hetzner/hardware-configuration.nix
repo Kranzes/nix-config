@@ -36,8 +36,6 @@ in
     tmp.cleanOnBoot = true;
   };
 
-  zramSwap.enable = true;
-
   powerManagement.cpuFreqGovernor = "performance";
 
   services.cloud-init.enable = false; # We don't make use of cloud-init at the moment.

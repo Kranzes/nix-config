@@ -50,8 +50,6 @@ in
     };
   };
 
-  zramSwap.enable = true;
-
   boot = {
     lanzaboote = {
       enable = true;

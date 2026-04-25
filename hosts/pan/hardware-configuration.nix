@@ -48,8 +48,6 @@ in
     };
   };
 
-  zramSwap.enable = true;
-
   boot = {
     initrd.systemd.enable = true;
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
