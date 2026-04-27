@@ -3,7 +3,9 @@
 {
   services.polybar = {
     enable = true;
-    package = pkgs.polybarFull;
+    package =
+      (builtins.getFlake "github:NixOS/nixpkgs/bf2f15d2a517ddcdd46544a0d3a5e758da80303e")
+      .legacyPackages.${pkgs.stdenv.hostPlatform.system}.polybarFull;
     script = ''
       polybar centerbar &
       polybar leftbar &
