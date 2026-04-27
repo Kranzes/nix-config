@@ -13,7 +13,7 @@ in
   programs.mcp = {
     enable = true;
     servers = {
-      nixos.command = lib.getExe pkgs.mcp-nixos;
+      nixos.command = lib.getExe inputs.mcp-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
   };
 

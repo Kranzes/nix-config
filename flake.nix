@@ -63,6 +63,7 @@
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mcp-nixos.url = "github:utensils/mcp-nixos";
   };
 
   outputs =
