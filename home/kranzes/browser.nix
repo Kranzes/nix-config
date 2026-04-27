@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   lib,
   inputs,
   ...
@@ -8,13 +9,14 @@ let
   betterfox = pkgs.fetchFromGitHub {
     owner = "yokoffing";
     repo = "Betterfox";
-    rev = "144.0";
-    hash = "sha256-sYOjMSFJSq9VWG4S78n3lXExreYXalUAHmEPXP2vnfM=";
+    rev = "150.0";
+    hash = "sha256-elGsTJu+eSzyS9IAnQuEppyhdDkRQwggUP7aypuXRh8=";
   };
 in
 {
   programs.firefox = {
     enable = true;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     package = pkgs.firefox.overrideAttrs (old: {
       makeWrapperArgs = old.makeWrapperArgs ++ [
         "--set"
