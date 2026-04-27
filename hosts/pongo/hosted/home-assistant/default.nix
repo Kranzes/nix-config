@@ -35,7 +35,6 @@ in
       "smartthings"
       "matter"
       "energy"
-      "google_generative_ai_conversation"
       "roborock"
     ];
     customComponents = with pkgs.home-assistant-custom-components; [
@@ -52,6 +51,7 @@ in
       };
       homeassistant = {
         external_url = "https://${domain}";
+        internal_url = "http://${hassCfg.http.server_host}:${toString hassCfg.http.server_port}";
         latitude = "!secret homeassistant_latitude";
         longitude = "!secret homeassistant_longitude";
         elevation = "!secret homeassistant_elevation";
@@ -93,7 +93,7 @@ in
     forceSSL = true;
     enableACME = true;
     locations."/" = {
-      proxyPass = "http://${hassCfg.http.server_host}:${toString hassCfg.http.server_port}";
+      proxyPass = hassCfg.homeassistant.internal_url;
       proxyWebsockets = true;
     };
   };
