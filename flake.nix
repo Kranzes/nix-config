@@ -64,6 +64,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mcp-nixos.url = "github:utensils/mcp-nixos";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

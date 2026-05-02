@@ -1,14 +1,14 @@
 {
   writeShellApplication,
-  rofi,
+  fuzzel,
   mpc,
 }:
 
 writeShellApplication {
-  name = "rofi-mpd";
+  name = "fuzzel-mpd";
   runtimeInputs = [
-    rofi
+    fuzzel
     mpc
   ];
-  text = builtins.readFile ./rofi-mpd;
+  text = builtins.readFile ./fuzzel-mpd;
 }

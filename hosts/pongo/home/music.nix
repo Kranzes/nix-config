@@ -57,9 +57,11 @@
     };
   };
 
+  services.mpdris2-rs.enable = true;
+
   home.packages = with pkgs; [
     mpc
-    inputs.self.packages."${pkgs.stdenv.hostPlatform.system}".rofi-mpd
+    inputs.self.packages."${pkgs.stdenv.hostPlatform.system}".fuzzel-mpd
   ];
 
   programs.beets = {

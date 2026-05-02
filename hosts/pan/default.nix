@@ -3,14 +3,13 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./xserver.nix
     ./home
   ]
   ++ (with inputs.self.nixosModules; [
     profiles-android
     profiles-audio
     profiles-laptop
-    profiles-xserver
+    profiles-hyprland
   ]);
 
   system.stateVersion = "24.05";

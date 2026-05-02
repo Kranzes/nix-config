@@ -7,6 +7,7 @@
     profiles-audio = ./audio.nix;
     profiles-cachix-deploy = ./cachix-deploy.nix;
     profiles-docs = ./docs.nix;
+    profiles-hyprland = ./hyprland.nix;
     profiles-laptop = ./laptop.nix;
     profiles-misc = ./misc.nix;
     profiles-networking = lib.modules.importApply ./networking.nix { inherit inputs; };
@@ -15,6 +16,5 @@
     profiles-ssh = lib.modules.importApply ./ssh.nix { inherit inputs; };
     profiles-tailscale = ./tailscale.nix;
     profiles-users = ./users.nix;
-    profiles-xserver = ./xserver.nix;
   };
 }

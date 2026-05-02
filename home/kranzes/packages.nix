@@ -10,11 +10,13 @@
     yt-dlp
     p7zip
     killall
-    xclip
-    maim
+    libnotify
+    wl-clipboard
+    grim
+    slurp
     calc
     mpv
-    feh
+    imv
     htop
     ranger
     pulsemixer

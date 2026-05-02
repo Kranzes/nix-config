@@ -5,7 +5,7 @@
     { pkgs, ... }:
     {
       packages = {
-        rofi-mpd = pkgs.callPackage ./rofi-mpd { };
+        fuzzel-mpd = pkgs.callPackage ./fuzzel-mpd { };
       };
     };
 

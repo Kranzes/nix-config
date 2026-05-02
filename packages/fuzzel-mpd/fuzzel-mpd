@@ -1,0 +1,36 @@
+# shellcheck shell=bash
+
+pick() { fuzzel --dmenu --prompt "$1> "; }
+
+pick_artist() { mpc list AlbumArtist | sort -f | pick "Artists"; }
+pick_album_of() { mpc list album albumartist "$1" | sort -f | pick "Albums"; }
+pick_album() { mpc list album | sort -f | pick "Album"; }
+pick_song() { mpc list title | sort -f | pick "Song"; }
+
+play_matches() {
+	mpc clear >/dev/null
+	mpc findadd "$@"
+	mpc play >/dev/null
+}
+
+mode=$(printf "Library\nAlbum\nSong" | pick "Choose mode")
+
+case "$mode" in
+Library)
+	artist=$(pick_artist)
+	[ ! "$artist" ] && exit
+	album=$(pick_album_of "$artist")
+	[ ! "$album" ] && exit
+	play_matches AlbumArtist "$artist" album "$album"
+	;;
+Song)
+	song=$(pick_song)
+	[ ! "$song" ] && exit
+	play_matches title "$song"
+	;;
+Album)
+	album=$(pick_album)
+	[ ! "$album" ] && exit
+	play_matches album "$album"
+	;;
+esac

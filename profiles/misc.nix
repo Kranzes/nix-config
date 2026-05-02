@@ -12,11 +12,8 @@
     defaultEditor = true;
   };
 
-  # Home-manager requires it so it can manage GTK.
-  programs.dconf.enable = config.services.xserver.enable;
-
   # For mounting USB drives from GUI.
-  services.gvfs.enable = config.services.xserver.enable;
+  services.gvfs.enable = config.services.graphical-desktop.enable;
 
   # Packages that shoulds always be available.
   environment.systemPackages = with pkgs; [

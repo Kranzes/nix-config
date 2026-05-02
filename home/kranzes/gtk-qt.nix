@@ -3,6 +3,13 @@
 {
   xdg.enable = true;
 
+  home.pointerCursor = {
+    package = pkgs.adwaita-icon-theme;
+    name = "Adwaita";
+    size = 24;
+    gtk.enable = true;
+  };
+
   gtk = {
     enable = true;
     font = {

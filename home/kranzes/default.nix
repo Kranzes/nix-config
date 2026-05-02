@@ -1,4 +1,9 @@
-{ inputs, lib, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   home.stateVersion = "22.05";
@@ -7,6 +12,11 @@
     enable = true;
     flavor = lib.mkDefault "macchiato";
     accent = lib.mkDefault "lavender";
+  };
+
+  home.file.".face".source = pkgs.fetchurl {
+    url = "https://github.com/Kranzes.png";
+    hash = "sha256-Am+xMAXUU7LlbsL62JyFYiNp30HktjZ5FZcD4ZhWTZU=";
   };
 
   imports = [
@@ -19,12 +29,9 @@
     ./terminal.nix
     ./ssh.nix
     ./git.nix
-    ./launcher.nix
-    ./keyboard.nix
-    ./bspwm.nix
-    ./notifications.nix
-    ./polybar.nix
-    ./screen-lock.nix
+    ./hyprland.nix
+    ./noctalia.nix
+    ./fuzzel.nix
     ./shell.nix
     ./gtk-qt.nix
     ./devel.nix

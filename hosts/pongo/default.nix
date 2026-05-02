@@ -3,7 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./xserver.nix
     ./gaming.nix
     ./hosted
     ./home
@@ -11,7 +10,7 @@
   ++ (with inputs.self.nixosModules; [
     profiles-android
     profiles-audio
-    profiles-xserver
+    profiles-hyprland
   ]);
 
   services.tailscale.useRoutingFeatures = "both";

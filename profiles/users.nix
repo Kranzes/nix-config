@@ -22,7 +22,7 @@ in
     ++ lib.optional config.virtualisation.docker.enable "docker"
     ++ lib.optional config.services.home-assistant.enable "dialout"
     ++ lib.optional config.programs.gamemode.enable "gamemode";
-    shell = lib.mkIf config.services.xserver.enable pkgs.zsh; # I only care for ZSH on non-servers
+    shell = lib.mkIf config.services.graphical-desktop.enable pkgs.zsh; # I only care for ZSH on non-servers
     openssh.authorizedKeys.keys = [
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAII2I2zQbQssSudF8DveLSKEhM/EQtReUsO+kxIf/dq5sAAAABHNzaDo="
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEVpaQ0K0Fzz0Hu48pqKiI25lr9ASwXR1yzYbeErBX/2AAAABHNzaDo="

@@ -4,8 +4,10 @@
   services = {
     nextcloud-client.enable = true;
     nextcloud-client.startInBackground = true;
-    network-manager-applet.enable = true;
-    gnome-keyring.enable = true;
+    gnome-keyring = {
+      enable = true;
+      components = [ "secrets" ];
+    };
     gpg-agent = {
       enable = true;
       enableScDaemon = false;

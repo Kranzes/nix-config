@@ -17,13 +17,6 @@ in
   programs.firefox = {
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
-    package = pkgs.firefox.overrideAttrs (old: {
-      makeWrapperArgs = old.makeWrapperArgs ++ [
-        "--set"
-        "MOZ_USE_XINPUT2"
-        "1"
-      ];
-    });
     profiles.default = {
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
         ublock-origin
@@ -52,7 +45,6 @@ in
 
         # Graphics
         "gfx.webrender.all" = true;
-        "gfx.x11-egl.force-enabled" = true;
         "media.ffmpeg.vaapi.enabled" = true;
         "widget.dmabuf.force-enabled" = true;
       };
