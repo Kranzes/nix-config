@@ -635,6 +635,26 @@
         "type": "github"
       }
     },
+    "mic92-noctalia-plugins": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777195425,
+        "narHash": "sha256-D6lRs2p0u5QeV2Sry+yUsH250qHT50WbWgvVd0Uzm/o=",
+        "owner": "Mic92",
+        "repo": "noctalia-plugins",
+        "rev": "2833f8c094a0bb2663fb7cbace2564082d4c3812",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "noctalia-plugins",
+        "type": "github"
+      }
+    },
     "nix2container": {
       "flake": false,
       "locked": {
@@ -925,6 +945,7 @@
         "lix-module": "lix-module",
         "llm-agents": "llm-agents",
         "mcp-nixos": "mcp-nixos",
+        "mic92-noctalia-plugins": "mic92-noctalia-plugins",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
         "nixvim": "nixvim",
