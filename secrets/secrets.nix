@@ -3,7 +3,6 @@ let
     pongo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq0cqSiwsTj1ktlr70ToobLXD9JIRQynTuOpmwpYilB";
     tamarin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBMnniv4FFVWUhLDU1u3pSvmSQ3NrvdHpP/kOVW7hw6X";
     hetzner = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrnR6feQwB8GCASDES3hujWI4fZBtbBbwWf7Hrq8Aon";
-    pan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/SSCGsV61hZy5NVzjeA07PufZIHufUIeCD6id9orKF";
   };
   users = {
     kranzes-yk5 = "age1yubikey1qgmx6kq5upm2hkzhlpaj5q6yj2d4h02r5f9tdjv9y9yja4xq4wa5k42ae6d";
@@ -41,6 +40,4 @@ in
   "hetzner-grafana-signing-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-restic-default-env-file.age".publicKeys = allUsers ++ [ systems.hetzner ];
   "hetzner-restic-default-repo-password.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  # Pan
-  "pan-cachix-deploy-agent.age".publicKeys = allUsers ++ [ systems.pan ];
 }

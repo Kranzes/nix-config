@@ -59,11 +59,6 @@ in
       hostName = "tamarin";
       modules = commonHome;
     };
-    pan = nixosSystemWithDefaults {
-      system = "x86_64-linux";
-      hostName = "pan";
-      modules = commonHome;
-    };
     hetzner = nixosSystemWithDefaults {
       system = "x86_64-linux";
       hostName = "hetzner";
