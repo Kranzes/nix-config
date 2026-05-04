@@ -9,6 +9,8 @@
   # Needed for some YubiKey functionalities.
   services.pcscd.enable = config.services.graphical-desktop.enable;
 
+  security.tpm2.enable = true;
+
   services.kanidm = {
     package = pkgs.kanidm_1_9;
     client = {
