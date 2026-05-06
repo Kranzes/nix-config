@@ -25,6 +25,7 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
+              mountOptions = [ "umask=0077" ];
             };
           };
           nixos = {
@@ -53,11 +54,21 @@
     "/home/4TB-HDD" = {
       device = "/dev/disk/by-uuid/7c126a7c-e8fd-4268-9cb8-4dba40a1aece";
       fsType = "ext4";
+      options = [
+        "defaults"
+        "nofail"
+        "x-systemd.automount"
+      ];
     };
 
     "/home/1TB-HDD" = {
       device = "/dev/disk/by-uuid/28bb79bc-ffb5-4e2b-8a1b-7cde40eeec9e";
       fsType = "ext4";
+      options = [
+        "defaults"
+        "nofail"
+        "x-systemd.automount"
+      ];
     };
   };
 
@@ -68,19 +79,13 @@
     }
   ];
 
-  boot.zswap.enable = true;
+  hardware = {
+    enableAllFirmware = true;
+    facter.reportPath = ./facter.json;
+  };
 
   boot = {
-    initrd.systemd.enable = true;
-    initrd.availableKernelModules = [
-      "nvme"
-      "xhci_pci"
-      "ahci"
-      "usbhid"
-      "sd_mod"
-    ];
     kernelModules = [
-      "kvm-amd"
       "i2c-dev"
       "i2c_piix4"
       "ntsync"
@@ -88,23 +93,11 @@
     kernelParams = [ "amd_iommu=on" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     tmp.cleanOnBoot = true;
+    zswap.enable = true;
     loader.systemd-boot.windows."11".efiDeviceHandle = "HD0b";
   };
 
-  hardware = {
-    enableAllFirmware = true;
-    enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode = true;
-    logitech.wireless.enable = true;
-    logitech.wireless.enableGraphical = true;
-  };
-
   powerManagement.cpuFreqGovernor = "performance";
-
-  services = {
-    ratbagd.enable = true;
-    fstrim.enable = true;
-  };
 
   systemd.services."cooling-and-rgb-setup" = {
     wantedBy = [ "multi-user.target" ];
