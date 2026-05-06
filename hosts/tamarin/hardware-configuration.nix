@@ -12,7 +12,6 @@ in
   imports = [
     inputs.disko.nixosModules.disko
     inputs.lanzaboote.nixosModules.lanzaboote
-    inputs.srvos.nixosModules.mixins-systemd-boot
     inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
   ];
 
@@ -30,6 +29,7 @@ in
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
+              mountOptions = [ "umask=0077" ];
             };
           };
           nixos = {
@@ -37,7 +37,10 @@ in
             content = {
               type = "luks";
               name = "crypted";
-              settings.allowDiscards = true;
+              settings = {
+                allowDiscards = true;
+                bypassWorkqueues = true;
+              };
               content = {
                 type = "filesystem";
                 format = "ext4";
@@ -70,23 +73,14 @@ in
       };
     };
     loader.systemd-boot.enable = lib.mkForce (!config.boot.lanzaboote.enable);
-    initrd.systemd.enable = true;
-    initrd.availableKernelModules = [
-      "nvme"
-      "xhci_pci"
-      "thunderbolt"
-    ];
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     kernelParams = [ "amdgpu.abmlevel=0" ]; # Don't mess with my colors
     tmp.cleanOnBoot = true;
   };
 
   hardware = {
-    enableAllHardware = true;
     enableAllFirmware = true;
-    enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode = true;
-    amdgpu.initrd.enable = true;
+    facter.reportPath = ./facter.json;
   };
 
   services = {
@@ -100,8 +94,5 @@ in
       };
     };
     tlp.enable = false;
-    upower.enable = true;
-    fstrim.enable = true;
-    fwupd.enable = true;
   };
 }
