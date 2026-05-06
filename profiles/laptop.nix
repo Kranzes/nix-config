@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # For changing display brightness.
@@ -16,5 +16,18 @@
         Experimental = true;
       };
     };
+  };
+
+  services = {
+    tuned = {
+      enable = true;
+      ppdSettings = {
+        main.default = "power-saver";
+        battery = {
+          inherit (config.services.tuned.ppdSettings.profiles) power-saver;
+        };
+      };
+    };
+    tlp.enable = false;
   };
 }

@@ -82,17 +82,4 @@ in
     enableAllFirmware = true;
     facter.reportPath = ./facter.json;
   };
-
-  services = {
-    tuned = {
-      enable = true;
-      ppdSettings = {
-        main.default = "power-saver";
-        battery = {
-          inherit (config.services.tuned.ppdSettings.profiles) power-saver;
-        };
-      };
-    };
-    tlp.enable = false;
-  };
 }
