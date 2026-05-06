@@ -4033,7 +4033,7 @@
         "resources": [
           {
             "type": "phwaddr",
-            "address": 57
+            "address": 52
           }
         ],
         "driver": "ip6tnl",

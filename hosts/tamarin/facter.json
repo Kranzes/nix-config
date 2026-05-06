@@ -1971,7 +1971,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.1 xhci-hcd",
+          "name": "Linux 7.0.3 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1985,7 +1985,7 @@
           "value": 0
         },
         "serial": "0000:c3:00.3",
-        "model": "Linux 7.0.1 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.0.3 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:c3:00.3/usb6/6-0:1.0",
         "sysfs_bus_id": "6-0:1.0",
         "detail": {
@@ -2048,7 +2048,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.1 xhci-hcd",
+          "name": "Linux 7.0.3 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2062,7 +2062,7 @@
           "value": 0
         },
         "serial": "0000:c3:00.0",
-        "model": "Linux 7.0.1 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.0.3 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:c3:00.0/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -2135,7 +2135,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.1 xhci-hcd",
+          "name": "Linux 7.0.3 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2149,7 +2149,7 @@
           "value": 0
         },
         "serial": "0000:c3:00.4",
-        "model": "Linux 7.0.1 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.0.3 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:c3:00.4/usb7/7-0:1.0",
         "sysfs_bus_id": "7-0:1.0",
         "resources": [
@@ -2222,7 +2222,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.1 xhci-hcd",
+          "name": "Linux 7.0.3 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2236,7 +2236,7 @@
           "value": 0
         },
         "serial": "0000:c3:00.0",
-        "model": "Linux 7.0.1 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.0.3 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:c3:00.0/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -2299,7 +2299,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.1 xhci-hcd",
+          "name": "Linux 7.0.3 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2313,7 +2313,7 @@
           "value": 0
         },
         "serial": "0000:c3:00.4",
-        "model": "Linux 7.0.1 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.0.3 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:c3:00.4/usb8/8-0:1.0",
         "sysfs_bus_id": "8-0:1.0",
         "detail": {
@@ -2376,7 +2376,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.1 xhci-hcd",
+          "name": "Linux 7.0.3 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2390,7 +2390,7 @@
           "value": 0
         },
         "serial": "0000:c1:00.4",
-        "model": "Linux 7.0.1 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.0.3 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:c1:00.4/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2463,7 +2463,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.1 xhci-hcd",
+          "name": "Linux 7.0.3 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2477,7 +2477,7 @@
           "value": 0
         },
         "serial": "0000:c3:00.3",
-        "model": "Linux 7.0.1 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.0.3 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:c3:00.3/usb5/5-0:1.0",
         "sysfs_bus_id": "5-0:1.0",
         "resources": [
@@ -2550,7 +2550,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.1 xhci-hcd",
+          "name": "Linux 7.0.3 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2564,7 +2564,7 @@
           "value": 0
         },
         "serial": "0000:c1:00.4",
-        "model": "Linux 7.0.1 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.0.3 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:c1:00.4/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2740,7 +2740,7 @@
     ],
     "mouse": [
       {
-        "index": 87,
+        "index": 88,
         "attached_to": 0,
         "bus_type": {
           "hex": "0081",
@@ -2765,9 +2765,9 @@
           "hex": "0274",
           "value": 628
         },
-        "sysfs_id": "/devices/platform/AMDI0010:03/i2c-2/i2c-PIXA3854:00/0018:093A:0274.0002/input/input9",
+        "sysfs_id": "/devices/platform/AMDI0010:03/i2c-2/i2c-PIXA3854:00/0018:093A:0274.0003/input/input9",
         "unix_device_names": [
-          "/dev/input/event5",
+          "/dev/input/event7",
           "/dev/input/ + handler"
         ]
       }
@@ -3052,6 +3052,38 @@
         "sysfs_id": "/class/net/lo",
         "unix_device_names": [
           "lo"
+        ]
+      },
+      {
+        "index": 86,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0080",
+          "name": "Network Interface",
+          "value": 128
+        },
+        "model": "Network Interface",
+        "sysfs_id": "/class/net/ip6tnl0",
+        "unix_device_names": [
+          "ip6tnl0"
+        ],
+        "resources": [
+          {
+            "type": "phwaddr",
+            "address": 100
+          }
+        ],
+        "driver": "ip6tnl",
+        "drivers": [
+          "ip6tnl"
         ]
       }
     ],
