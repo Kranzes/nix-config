@@ -80,6 +80,9 @@ in
 
   hardware = {
     enableAllFirmware = true;
-    facter.reportPath = ./facter.json;
+    facter = {
+      reportPath = ./facter.json;
+      detected.dhcp.enable = false;
+    };
   };
 }
