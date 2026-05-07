@@ -63,6 +63,7 @@
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = true;
         force_default_wallpaper = 0;
+        focus_on_activate = true;
       };
 
       exec-once = [
@@ -155,6 +156,10 @@
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
+      ];
+
+      windowrule = [
+        "no_screen_share on, match:class ^(org\\.keepassxc\\.KeePassXC)$"
       ];
     };
   };
