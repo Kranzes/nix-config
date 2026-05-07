@@ -12,7 +12,7 @@
   security.tpm2.enable = true;
 
   services.kanidm = {
-    package = pkgs.kanidm_1_9;
+    package = pkgs.kanidm_1_10;
     client = {
       enable = true;
       settings = {

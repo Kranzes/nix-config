@@ -10,7 +10,7 @@ let
 in
 {
   services.kanidm = {
-    package = lib.mkForce pkgs.kanidm_1_9.withSecretProvisioning;
+    package = lib.mkForce pkgs.kanidm_1_10.withSecretProvisioning;
     server = {
       enable = true;
       settings = {
