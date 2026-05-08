@@ -70,7 +70,7 @@
       };
 
       exec-once = [
-        "uwsm-app -- noctalia-shell"
+        "noctalia-shell"
       ];
 
       "$mod" = "SUPER";
