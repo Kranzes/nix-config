@@ -1,7 +1,10 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
   home.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  xdg.configFile."uwsm/env".source =
+    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   wayland.windowManager.hyprland = {
     enable = true;
