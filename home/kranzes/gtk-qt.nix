@@ -12,6 +12,7 @@
 
   gtk = {
     enable = true;
+    colorScheme = "dark";
     font = {
       name = "Roboto";
       size = 10;
