@@ -3,6 +3,11 @@
 {
   xdg.enable = true;
 
+  home.sessionVariables = {
+    GDK_BACKEND = "wayland,x11";
+    QT_QPA_PLATFORM = "wayland;xcb";
+  };
+
   home.pointerCursor = {
     package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
@@ -54,5 +59,11 @@
       gtk-enable-event-sounds=0
       gtk-enable-input-feedback-sounds=0
     '';
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    style.name = "kvantum";
   };
 }
