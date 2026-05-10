@@ -98,6 +98,7 @@
     tmp.cleanOnBoot = true;
     zswap.enable = true;
     loader.systemd-boot.windows."11".efiDeviceHandle = "HD0b";
+    initrd.kernelModules.amdgpu = lib.mkForce false;
   };
 
   powerManagement.cpuFreqGovernor = "performance";
