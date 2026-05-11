@@ -23,7 +23,7 @@ All commands assume the repo root and the `nix` devshell (auto-loaded via `diren
 | Deploy a host | `nix run .#deploy-<host>` (defaults to `switch`; pass another action as `$1`, e.g. `nix run .#deploy-tamarin -- test`) |
 | Edit secrets | `agenix -e <name>.age -i identities/kranzes-yk5.pub` from inside `secrets/` (devshell provides `agenix` and `age-plugin-yubikey`) |
 
-The deploy apps (one per host, generated in `dev/flake-module.nix`) wrap `nixos-rebuild` with `--target-host <hostName>`, `--sudo`, `--no-reexec`, and `--ask-sudo-password` when the host requires it. `pongo` additionally builds on itself (`--build-host`).
+The deploy apps (one per host, generated in `dev/flake-module.nix`) wrap `nixos-rebuild` in a `writeShellApplication` script. Builds happen on the target host for `pongo` and `tamarin` (`--build-host`); only `hetzner` (the small CX32 VPS) builds on the deployer. The script detects "deploying to self" via `$HOSTNAME` and sets `--target-host ""` / `--build-host ""` in that case so activation and build stay local without SSH. Sudo is passed as either `--sudo` or `--ask-sudo-password` depending on `security.sudo.wheelNeedsPassword` — never both, since the latter implies the former. Trailing args after `$1` are forwarded to `nixos-rebuild`.
 
 There is no test suite — `nix build` / `nix flake check` is what's run.
 
@@ -53,7 +53,7 @@ The flake is composed via **flake-parts**. `flake.nix` wires only inputs and imp
 ### Deploy pipeline
 
 - Deploys are run manually with `nix run .#deploy-<host>`. There is no CI-driven deploy.
-- `nix-community.cachix.org` is added as a substituter inside `profiles/nix-nixpkgs.nix`.
+- `nix-community.cachix.org` and `cache.garnix.io` are added as substituters inside `profiles/nix-nixpkgs.nix`.
 
 ## Conventions
 

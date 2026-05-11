@@ -34,33 +34,32 @@
         value.program =
           let
             args = [
-              "-L"
+              "--print-build-logs"
               "--log-format"
               "multiline-with-logs"
-              "-s"
+              "--use-substitutes"
               "--no-reexec"
               "--flake"
               "${inputs.self}#${host}"
-              "--sudo"
-              "--target-host"
-              "${cfg.config.networking.hostName}"
-            ]
-            ++ lib.optionals (host == "pongo") [
-              "--build-host"
-              "${cfg.config.networking.hostName}"
-            ]
-            ++ lib.optional cfg.config.security.sudo.wheelNeedsPassword "--ask-sudo-password";
+              (if cfg.config.security.sudo.wheelNeedsPassword then "--ask-sudo-password" else "--sudo")
+            ];
           in
-          toString (
-            pkgs.writeShellScript "deploy-${host}" ''
-              if [[ -n "$1" ]]; then
-                TASK="$1"
-              else
-                TASK="switch"
-              fi
-              set -x
-              ${lib.getExe cfg.config.system.build.nixos-rebuild} "$TASK" ${lib.escapeShellArgs args}
-            ''
+          lib.getExe (
+            pkgs.writeShellApplication {
+              name = "deploy-${host}";
+              text = ''
+                TASK="''${1:-switch}"
+                shift || true
+                TARGET="${cfg.config.networking.hostName}"
+                if [[ "$HOSTNAME" == "$TARGET" ]]; then
+                  TARGET=""
+                fi
+                set -x
+                ${lib.getExe cfg.config.system.build.nixos-rebuild} "$TASK" ${lib.escapeShellArgs args} --target-host "$TARGET" ${
+                  lib.optionalString (host != "hetzner") ''--build-host "$TARGET"''
+                } "$@"
+              '';
+            }
           );
       }) inputs.self.nixosConfigurations;
     };
