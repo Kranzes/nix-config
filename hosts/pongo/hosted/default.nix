@@ -3,7 +3,6 @@
 {
   imports = [
     ./nextcloud.nix
-    ./hercules-ci.nix
     ./docker.nix
     ./home-assistant
     ./zigbee2mqtt.nix

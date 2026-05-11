@@ -1,9 +1,4 @@
 {
-  nixConfig.extra-substituters = [ "https://kranzes.cachix.org" ];
-  nixConfig.extra-trusted-public-keys = [
-    "kranzes.cachix.org-1:aZ9SqRdirTyygTRMfD95HMvIuzCoDcq2SmvNkaf9cnk="
-  ];
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts = {
@@ -27,12 +22,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote.url = "github:nix-community/lanzaboote";
-    hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent";
-    hercules-ci-effects = {
-      url = "github:hercules-ci/hercules-ci-effects";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";

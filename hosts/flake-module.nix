@@ -3,7 +3,6 @@
 let
   commonProfiles = with inputs.self.nixosModules; [
     profiles-agenix
-    profiles-cachix-deploy
     profiles-docs
     profiles-misc
     profiles-networking
