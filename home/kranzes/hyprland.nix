@@ -169,7 +169,10 @@
 
   programs.hyprlock = {
     enable = true;
-    settings.animations.enabled = false;
+    settings = {
+      animations.enabled = false;
+      auth.fingerprint.enabled = true;
+    };
   };
 
   services.hypridle = {
