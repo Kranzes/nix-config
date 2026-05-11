@@ -76,6 +76,7 @@ in
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     kernelParams = [ "amdgpu.abmlevel=0" ]; # Don't mess with my colors
     tmp.cleanOnBoot = true;
+    initrd.kernelModules.amdgpu = lib.mkForce false;
   };
 
   hardware = {
