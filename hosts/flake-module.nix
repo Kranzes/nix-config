@@ -26,10 +26,7 @@ let
   nixosSystemWithDefaults =
     args:
     (inputs.nixpkgs.lib.nixosSystem (
-      (builtins.removeAttrs args [
-        "hostName"
-        "system"
-      ])
+      (builtins.removeAttrs args [ "hostName" ])
       // {
         specialArgs = {
           inherit inputs;
@@ -38,7 +35,6 @@ let
         modules = [
           ./${args.hostName}
           { networking = { inherit (args) hostName; }; }
-          { nixpkgs.hostPlatform = args.system; }
         ]
         ++ commonProfiles
         ++ (args.modules or [ ]);
@@ -49,12 +45,10 @@ in
 {
   flake.nixosConfigurations = {
     pongo = nixosSystemWithDefaults {
-      system = "x86_64-linux";
       hostName = "pongo";
       modules = commonHome;
     };
     tamarin = nixosSystemWithDefaults {
-      system = "x86_64-linux";
       hostName = "tamarin";
       modules = commonHome;
     };
