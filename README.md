@@ -16,6 +16,6 @@ Name                    | Description
 
 Name                                        | Description
 ------------------------------------------- | -----------
-[Pongo](./hosts/pongo) 	                    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a GTX 950 
+[Pongo](./hosts/pongo) 	                    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a RX 570 
 [Tamarin](./hosts/tamarin)     	            | Framework 13
 [Hetzner](./hosts/hetzner)     	            | Hetzner Cloud CX32

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal NixOS flake configuring three machines:
 
-- `pongo` — desktop (Ryzen 7 2700X / GTX 950); also runs the home-server stack (Nextcloud, Jellyfin/*arr media stack, Home Assistant, Zigbee2MQTT, Docker).
+- `pongo` — desktop (Ryzen 7 2700X / RX 570); also runs the home-server stack (Nextcloud, Jellyfin/*arr media stack, Home Assistant, Zigbee2MQTT, Docker).
 - `tamarin` — Framework 13 laptop.
 - `hetzner` — Hetzner Cloud CX32 VPS hosting public services (Kanidm IDP at `idm.ilanjoselevich.com`, Grafana, Prometheus, Homer).
 
