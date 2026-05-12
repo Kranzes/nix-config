@@ -2,7 +2,8 @@
 
 {
   security.sudo.extraConfig = ''
-    Defaults timestamp_timeout=0
+    # Cache auth for 30s
+    Defaults timestamp_timeout=0.5
   '';
 
   # Used by some programs.
