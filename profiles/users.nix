@@ -27,6 +27,7 @@ in
     openssh.authorizedKeys.keys = [
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAII2I2zQbQssSudF8DveLSKEhM/EQtReUsO+kxIf/dq5sAAAABHNzaDo="
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEVpaQ0K0Fzz0Hu48pqKiI25lr9ASwXR1yzYbeErBX/2AAAABHNzaDo="
+      "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBImkj4Y1nZt4bbFKGMw9p+VFOaOdVwyrDV8zkqN4AtbiNJkNKShG0L9NzgN5uzb1DlWY8vI5TNZeNyy57/O08z0= kranzes@tamarin"
     ];
   };
 

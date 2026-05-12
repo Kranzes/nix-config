@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   programs.git = {
@@ -15,7 +15,8 @@
       commit.gpgSign = true;
       tag.gpgSign = true;
       gpg.format = "ssh";
-      user.signingKey = "~/.ssh/id_ed25519_sk.pub";
+      user.signingKey =
+        if config.services.ssh-tpm-agent.enable then "~/.ssh/id_ecdsa.pub" else "~/.ssh/id_ed25519_sk.pub";
       push.autoSetupRemote = true;
     };
   };
