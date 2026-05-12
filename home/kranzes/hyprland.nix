@@ -163,6 +163,7 @@
 
       windowrule = [
         "no_screen_share on, match:class ^(org\\.keepassxc\\.KeePassXC)$"
+        "content game, match:class ^(gamescope)$"
       ];
     };
   };

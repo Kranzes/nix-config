@@ -20,6 +20,14 @@
     };
   };
 
+  programs.gamescope = {
+    enable = true;
+    args = [
+      "--expose-wayland"
+      "--fullscreen"
+    ];
+  };
+
   programs.gamemode = {
     enable = true;
     settings = {
