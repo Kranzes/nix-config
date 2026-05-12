@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  security.sudo.extraConfig = ''
+    Defaults timestamp_timeout=0
+  '';
+
   # Used by some programs.
   security.pam.services.greetd.enableGnomeKeyring = config.services.greetd.enable;
   services.gnome.gnome-keyring.enable = config.services.greetd.enable;
