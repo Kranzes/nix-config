@@ -5,10 +5,6 @@
   ...
 }:
 
-let
-  model = "claude-opus-4-6";
-  llmPackages = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
-in
 {
   programs.mcp = {
     enable = true;
@@ -19,7 +15,7 @@ in
 
   programs.claude-code = {
     enable = true;
-    package = llmPackages.claude-code;
+    package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
     enableMcpIntegration = true;
     lspServers = {
       nix = {
@@ -31,25 +27,19 @@ in
         extensionToLanguage.".rs" = "rust";
       };
     };
-  };
-
-  programs.opencode = {
-    enable = true;
-    enableMcpIntegration = true;
-    package = llmPackages.opencode;
     settings = {
-      plugin = [
-        "opencode-claude-auth"
-        "cc-safety-net"
-      ];
-      enabled_providers = [ "anthropic" ];
-      inherit model;
+      model = "opus";
+      showThinkingSummaries = true;
+      permissions.defaultMode = "acceptEdits";
+      attribution = {
+        commit = "";
+        pr = "";
+      };
+      enabledPlugins = {
+        "commit-commands@claude-plugins-official" = true;
+      };
     };
   };
 
-  home.sessionVariables = {
-    OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT = "true";
-    OPENCODE_EXPERIMENTAL_LSP_TOOL = "true";
-    CLAUDE_CODE_NO_FLICKER = 1;
-  };
+  home.sessionVariables.CLAUDE_CODE_NO_FLICKER = 1;
 }
