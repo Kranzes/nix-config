@@ -2,6 +2,7 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }:
 
@@ -30,13 +31,23 @@
     settings = {
       model = "opus";
       showThinkingSummaries = true;
+      theme = "custom:catppuccin:catppuccin-${config.catppuccin.flavor}";
       permissions.defaultMode = "acceptEdits";
       attribution = {
         commit = "";
         pr = "";
       };
+      extraKnownMarketplaces = {
+        claude-themes = {
+          source = {
+            source = "github";
+            repo = "matcra587/claude-themes";
+          };
+        };
+      };
       enabledPlugins = {
         "commit-commands@claude-plugins-official" = true;
+        "catppuccin@claude-themes" = true;
       };
     };
   };
