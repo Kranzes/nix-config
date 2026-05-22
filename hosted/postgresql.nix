@@ -1,7 +1,10 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
-  services.postgresql.enable = true;
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_18;
+  };
 
   services.postgresqlBackup = {
     enable = true;
