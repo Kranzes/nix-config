@@ -128,7 +128,6 @@
         "$mod SHIFT, 0, movetoworkspacesilent, 10"
 
         "$mod, F, fullscreen, 0"
-        "$mod, M, fullscreen, 1"
         "$mod, S, setfloating,"
         "$mod, T, settiled,"
 
