@@ -31,6 +31,7 @@
     settings = {
       model = "opus";
       showThinkingSummaries = true;
+      tui = "fullscreen";
       theme = "custom:catppuccin:catppuccin-${config.catppuccin.flavor}";
       permissions.defaultMode = "acceptEdits";
       attribution = {
@@ -51,6 +52,4 @@
       };
     };
   };
-
-  home.sessionVariables.CLAUDE_CODE_NO_FLICKER = 1;
 }
