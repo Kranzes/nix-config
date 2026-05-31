@@ -19,7 +19,7 @@
         "cgroups"
         "auto-allocate-uids"
       ];
-      # extra-deprecated-features = [ "broken-string-escape" ];
+      extra-deprecated-features = [ "broken-string-escape" ]; # Too noisy for now.
       nix-path = "nixpkgs=flake:nixpkgs";
       use-cgroups = true;
       auto-allocate-uids = true;
