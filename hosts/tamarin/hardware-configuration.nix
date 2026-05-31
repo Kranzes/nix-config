@@ -53,6 +53,13 @@ in
     };
   };
 
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 32 * 1024;
+    }
+  ];
+
   boot = {
     lanzaboote = {
       enable = true;
@@ -76,6 +83,7 @@ in
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     kernelParams = [ "amdgpu.abmlevel=0" ]; # Don't mess with my colors
     tmp.cleanOnBoot = true;
+    zswap.enable = true;
     initrd.kernelModules.amdgpu = lib.mkForce false;
   };
 
