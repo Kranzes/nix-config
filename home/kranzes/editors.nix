@@ -11,6 +11,7 @@
   programs.nixvim = {
     enable = true;
     nixpkgs.useGlobalPackages = true;
+    version.enableNixpkgsReleaseCheck = false;
     defaultEditor = true;
     vimdiffAlias = true;
     viAlias = true;
