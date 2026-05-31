@@ -30,6 +30,7 @@
     };
     settings = {
       model = "opus";
+      effortLevel = "xhigh";
       showThinkingSummaries = true;
       tui = "fullscreen";
       theme = "custom:catppuccin:catppuccin-${config.catppuccin.flavor}";
