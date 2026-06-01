@@ -81,10 +81,7 @@
 
   hardware = {
     enableAllFirmware = true;
-    facter = {
-      reportPath = ./facter.json;
-      detected.dhcp.enable = false;
-    };
+    facter.reportPath = ./facter.json;
   };
 
   boot = {
