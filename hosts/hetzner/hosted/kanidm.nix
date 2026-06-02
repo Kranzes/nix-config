@@ -123,7 +123,10 @@ in
         };
         "seerr" = {
           displayName = "Seerr";
-          originUrl = "https://seerr.ilanjoselevich.com/login?provider=kanidm&callback=true";
+          originUrl = [
+            "https://seerr.ilanjoselevich.com/login"
+            "https://seerr.ilanjoselevich.com/profile/settings/linked-accounts"
+          ];
           originLanding = "https://seerr.ilanjoselevich.com";
           preferShortUsername = true;
           scopeMaps."seerr_users" = [
@@ -131,7 +134,6 @@ in
             "profile"
             "email"
           ];
-          allowInsecureClientDisablePkce = true; # TODO
           basicSecretFile = config.age.secrets.kanidm-oauth2-seerr-basic-secret.path;
         };
       };

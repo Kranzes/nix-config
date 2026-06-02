@@ -10,13 +10,13 @@
   services.seerr = {
     enable = true;
     package = pkgs.seerr.overrideAttrs (old: rec {
-      version = "feat-oidc+jellyfin-quickconnect"; # TODO: https://github.com/seerr-team/seerr/discussions/1529
+      version = "preview-new-oidc"; # TODO: https://github.com/seerr-team/seerr/pull/2715
 
       src = pkgs.fetchFromGitHub {
-        owner = "v3DJG6GL";
+        owner = "seerr-team";
         repo = "seerr";
-        rev = "f7da77db218179141ed0d919e7564a0d065cb198";
-        hash = "sha256-w7wgTF1xLmx/1Sa3KYuFklma5UpVJyIZfAvGA5uyL+M=";
+        rev = "0bfd615c0dcd13b30b15bdf0aa98e23669f55cd2";
+        hash = "sha256-YPpicQlArAqWnRbUbtUYlwTJk0AGxcaeQmaYNT0vogo=";
       };
 
       pnpmDeps = pkgs.fetchPnpmDeps {
@@ -24,7 +24,7 @@
         inherit version src;
         pnpm = pkgs.pnpm_10.override { nodejs = pkgs.nodejs_22; };
         fetcherVersion = 3;
-        hash = "sha256-88jXwJ4ehrc4OXSAgAcMe+gF+HdwYLFymDye+SWyt5c=";
+        hash = "sha256-7nBkeXGJfDRSvNesOjOK+Mtzp6SlBvbytyfsQl9eh/Y=";
       };
     });
   };
