@@ -112,7 +112,7 @@ in
         "home-assistant" = {
           displayName = "Home Assistant";
           originUrl = "https://home.ilanjoselevich.com/auth/oidc/callback";
-          originLanding = "https://home.ilanjoselevich.com/auth/oidc/redirect";
+          originLanding = "https://home.ilanjoselevich.com";
           preferShortUsername = true;
           scopeMaps."home-assistant_users" = [
             "openid"

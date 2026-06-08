@@ -52,6 +52,7 @@ in
       homeassistant = {
         external_url = "https://${domain}";
         internal_url = "http://${hassCfg.http.server_host}:${toString hassCfg.http.server_port}";
+        auth_providers = [ ];
         latitude = "!secret homeassistant_latitude";
         longitude = "!secret homeassistant_longitude";
         elevation = "!secret homeassistant_elevation";
@@ -64,6 +65,8 @@ in
         client_secret = "!secret auth_oidc_client_secret";
         id_token_signing_alg = "ES256";
         roles.admin = "home-assistant_admins@idm.ilanjoselevich.com";
+        display_name = "Kanidm";
+        features.force_https = true;
       };
       frontend.themes = "!include ${catppuccin-theme}";
       history = { };
