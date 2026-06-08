@@ -100,6 +100,7 @@ in
             "SUPER + Space" = ''hl.dsp.exec_cmd("fuzzel")'';
             "SUPER + comma" = ''hl.dsp.exec_cmd("noctalia-shell ipc call settings toggle")'';
             "SUPER + W" = "hl.dsp.window.close()";
+            "SUPER + SHIFT + W" = "hl.dsp.window.kill()";
             "SUPER + ALT + Q" = "hl.dsp.exit()";
             "ALT + 1" = ''hl.dsp.exec_cmd("firefox")'';
             "ALT + 2" = ''hl.dsp.exec_cmd("discord")'';
