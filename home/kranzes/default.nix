@@ -13,6 +13,7 @@
 
   catppuccin = {
     enable = true;
+    autoEnable = true;
     flavor = lib.mkDefault "macchiato";
     accent = lib.mkDefault "lavender";
   };

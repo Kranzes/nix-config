@@ -14,11 +14,11 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
-      "*".hashKnownHosts = true;
+    settings = {
+      "*".HashKnownHosts = true;
       "cl.snix.dev" = {
-        identityFile = "~/.ssh/fuckgerrit";
-        port = 29418;
+        IdentityFile = "~/.ssh/fuckgerrit";
+        Port = 29418;
       };
     };
   };
