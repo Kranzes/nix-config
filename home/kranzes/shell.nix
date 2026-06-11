@@ -54,9 +54,6 @@
       mv = "mv -i";
       ls = "ls --group-directories-first --color=auto";
       cat = "bat";
-      ytdl = "yt-dlp";
-      weather = "curl wttr.in/Rehovot";
-      ssh = "TERM=xterm-256color ssh";
     };
   };
 
