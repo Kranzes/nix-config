@@ -42,6 +42,7 @@
       withVencord = true;
     })
     signal-desktop
+    fractal
     yubioath-flutter
     jellyfin-desktop
     nixd

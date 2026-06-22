@@ -13,8 +13,6 @@
       options.font = "JetBrainsMonoNL Nerd Font 8";
     };
 
-    nheko.enable = true;
-
     gpg = {
       enable = true;
       scdaemonSettings.disable-ccid = true;
