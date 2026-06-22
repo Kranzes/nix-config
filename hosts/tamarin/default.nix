@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./home
+    inputs.self.nixosModules.hosted-podman
   ]
   ++ (with inputs.self.nixosModules; [
     profiles-android

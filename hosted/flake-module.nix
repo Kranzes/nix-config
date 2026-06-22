@@ -7,5 +7,6 @@
     hosted-restic = ./restic.nix;
     hosted-libvirt = ./libvirt.nix;
     hosted-postgresql = ./postgresql.nix;
+    hosted-podman = ./podman.nix;
   };
 }

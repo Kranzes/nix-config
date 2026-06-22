@@ -1,7 +1,8 @@
 {
-  virtualisation.docker = {
+  virtualisation.podman = {
     enable = true;
-    enableOnBoot = false;
+    dockerSocket.enable = true;
+    dockerCompat = true;
     autoPrune = {
       enable = true;
       flags = [ "--all" ];

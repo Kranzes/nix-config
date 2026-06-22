@@ -19,7 +19,7 @@ in
     ]
     ++ lib.optional config.virtualisation.libvirtd.enable "libvirtd"
     ++ lib.optional config.networking.networkmanager.enable "networkmanager"
-    ++ lib.optional config.virtualisation.docker.enable "docker"
+    ++ lib.optional config.virtualisation.podman.enable "podman"
     ++ lib.optional config.services.home-assistant.enable "dialout"
     ++ lib.optional config.programs.gamemode.enable "gamemode"
     ++ lib.optional config.security.tpm2.enable config.security.tpm2.tssGroup;
