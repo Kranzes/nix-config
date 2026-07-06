@@ -5,8 +5,8 @@
   programs.noctalia-shell = {
     enable = true;
     package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-        calendarSupport = true;
-      };
+      calendarSupport = true;
+    };
   };
 
   xdg.configFile."noctalia/plugins/ssh-askpass".source =
