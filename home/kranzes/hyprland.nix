@@ -73,8 +73,6 @@ in
           key_press_enables_dpms = true;
           force_default_wallpaper = 0;
           focus_on_activate = true;
-          enable_swallow = true;
-          swallow_regex = "Alacritty";
         };
       };
 
