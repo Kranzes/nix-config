@@ -29,6 +29,7 @@
       };
     };
     settings = {
+      model = "best";
       effortLevel = "xhigh";
       showThinkingSummaries = true;
       tui = "fullscreen";
