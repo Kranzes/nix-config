@@ -9,8 +9,8 @@ let
   betterfox = pkgs.fetchFromGitHub {
     owner = "yokoffing";
     repo = "Betterfox";
-    rev = "150.0";
-    hash = "sha256-elGsTJu+eSzyS9IAnQuEppyhdDkRQwggUP7aypuXRh8=";
+    rev = "152.0";
+    hash = "sha256-QfisBzeoc8nUrgk/+PTvG9JATsVRWo7RDbohlxkNc+A=";
   };
 in
 {
@@ -20,7 +20,6 @@ in
     profiles.default = {
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
         ublock-origin
-        clearurls
         facebook-container
         istilldontcareaboutcookies
         sponsorblock
