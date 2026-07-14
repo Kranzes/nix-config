@@ -120,8 +120,8 @@ in
             "SUPER + F" = ''hl.dsp.window.fullscreen({ mode = "fullscreen" })'';
             "SUPER + S" = ''hl.dsp.window.float({ action = "set" })'';
             "SUPER + T" = ''hl.dsp.window.float({ action = "unset" })'';
-            "SUPER + V" = ''hl.dsp.layout("togglesplit")'';
-            "SUPER + SHIFT + V" = ''hl.dsp.layout("swapsplit")'';
+            "SUPER + V" = ''hl.dsp.layout("swapsplit")'';
+            "SUPER + SHIFT + V" = ''hl.dsp.layout("togglesplit")'';
             "Print" = ''hl.dsp.exec_cmd("grim - | wl-copy && notify-send 'screenshot' 'captured'")'';
             "CTRL + Print" =
               ''hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy && notify-send 'screenshot' 'captured'")'';
