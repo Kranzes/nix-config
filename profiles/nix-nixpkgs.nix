@@ -8,7 +8,7 @@
 
 {
   nix = {
-    package = pkgs.lixPackageSets.git.lix;
+    package = pkgs.nixVersions.latest;
     registry.nixpkgs.flake = inputs.nixpkgs;
     channel.enable = false;
     nixPath = lib.singleton config.nix.settings.nix-path;
@@ -18,13 +18,6 @@
         "flakes"
         "cgroups"
         "auto-allocate-uids"
-      ];
-      extra-deprecated-features = [
-        # Too noisy for now.
-        "broken-string-escape"
-        "broken-string-indentation"
-        "rec-set-dynamic-attrs"
-        "or-as-identifier"
       ];
       nix-path = "nixpkgs=flake:nixpkgs";
       use-cgroups = true;

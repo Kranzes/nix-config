@@ -41,7 +41,6 @@ The flake is composed via **flake-parts**. `flake.nix` wires only inputs and imp
 
 - Profiles and hosted modules referenced through `inputs.self.nixosModules.<name>` — never imported by relative path from outside their own directory. `commonProfiles` in `hosts/flake-module.nix` is the central include list.
 - When a module needs `inputs` it is wrapped with `lib.modules.importApply` in the corresponding `flake-module.nix` and the inner module then takes the standard `{ config, pkgs, lib, ... }` arguments.
-- `nix.package` is **Lix** (`pkgs.lixPackageSets.git.lix`) — set in `profiles/nix-nixpkgs.nix`. Do not reintroduce a `lix-module` flake input.
 - `home/kranzes/default.nix` is loaded by every desktop host through `commonHome`; per-host home overlays live in `hosts/<host>/home/` and are imported from the host's own `default.nix`.
 
 ### Secrets (agenix)
