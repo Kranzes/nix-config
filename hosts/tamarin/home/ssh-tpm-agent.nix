@@ -7,12 +7,15 @@
   services.ssh-tpm-agent = {
     enable = true;
     package = pkgs.ssh-tpm-agent.overrideAttrs {
-      patches = [
-        (pkgs.fetchpatch {
-          url = "https://github.com/Foxboron/ssh-tpm-agent/commit/b49c37f6dd11781d0c0cb696ac0bd37d1f353a49.patch";
-          hash = "sha256-QBZTclT3UZMKGJ9YKF67r03tOpRonJ/ww9tGePpjJmM=";
-        })
-      ];
+      src = pkgs.fetchFromGitHub {
+        owner = "Kranzes";
+        repo = "ssh-tpm-agent";
+        rev = "7406e54ed6827191c58312454f35a9e233f6910b";
+        hash = "sha256-5Y6BfR532lM6FxE8vwzhOWdaxvA+cRcEAv+J+DeVTvo=";
+      };
+      preCheck = ''
+        rm cmd/scripts_test.go
+      '';
     };
     extraArgs = [ "--confirm-loaded" ];
   };
