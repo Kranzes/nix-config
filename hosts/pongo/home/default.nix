@@ -6,7 +6,7 @@
       ./music.nix
     ];
 
-    programs.alacritty.settings.font.size = lib.mkForce 8;
+    programs.ghostty.settings.font-size = lib.mkForce 8;
 
     wayland.windowManager.hyprland.settings = {
       monitor = [

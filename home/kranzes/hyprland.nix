@@ -94,7 +94,7 @@ in
             ];
           })
           {
-            "SUPER + Return" = ''hl.dsp.exec_cmd("alacritty")'';
+            "SUPER + Return" = ''hl.dsp.exec_cmd("ghostty +new-window")'';
             "SUPER + Space" = ''hl.dsp.exec_cmd("fuzzel")'';
             "SUPER + comma" = ''hl.dsp.exec_cmd("noctalia-shell ipc call settings toggle")'';
             "SUPER + W" = "hl.dsp.window.close()";
@@ -103,7 +103,7 @@ in
             "ALT + 1" = ''hl.dsp.exec_cmd("firefox")'';
             "ALT + 2" = ''hl.dsp.exec_cmd("discord")'';
             "ALT + 3" = ''hl.dsp.exec_cmd("nemo")'';
-            "ALT + 4" = ''hl.dsp.exec_cmd("alacritty -e ncmpcpp")'';
+            "ALT + 4" = ''hl.dsp.exec_cmd("ghostty +new-window -e ncmpcpp")'';
             "XF86AudioPlay" = ''hl.dsp.exec_cmd("noctalia-shell ipc call media playPause")'';
             "XF86AudioPrev" = ''hl.dsp.exec_cmd("noctalia-shell ipc call media previous")'';
             "XF86AudioNext" = ''hl.dsp.exec_cmd("noctalia-shell ipc call media next")'';
