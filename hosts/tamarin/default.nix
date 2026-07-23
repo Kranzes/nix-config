@@ -13,6 +13,8 @@
     profiles-hyprland
   ]);
 
+  system.etc.overlay.enable = true;
+
   time.timeZone = null; # Set manually, because I travel often.
 
   system.stateVersion = "25.11";
