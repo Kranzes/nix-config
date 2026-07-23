@@ -52,7 +52,6 @@ The flake is composed via **flake-parts**. `flake.nix` wires only inputs and imp
 ### Deploy pipeline
 
 - Deploys are run manually with `nix run .#deploy-<host>`. There is no CI-driven deploy.
-- `nix-community.cachix.org` and `cache.garnix.io` are added as substituters inside `profiles/nix-nixpkgs.nix`.
 
 ## Conventions
 
