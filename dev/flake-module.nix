@@ -41,8 +41,9 @@
               "--no-reexec"
               "--flake"
               "${inputs.self}#${host}"
-              (if cfg.config.security.sudo.wheelNeedsPassword then "--ask-sudo-password" else "--sudo")
-            ];
+              "--elevate=run0"
+            ]
+            ++ lib.optional cfg.config.security.run0.wheelNeedsPassword "--ask-elevate-password";
           in
           lib.getExe (
             pkgs.writeShellApplication {
