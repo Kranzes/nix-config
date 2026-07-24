@@ -31,6 +31,7 @@
 
       apps = lib.mapAttrs' (host: cfg: {
         name = "deploy-${host}";
+        value.meta.description = "Deploy the ${host} NixOS configuration with nixos-rebuild";
         value.program =
           let
             args = [
