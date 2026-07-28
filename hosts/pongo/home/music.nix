@@ -20,17 +20,13 @@
     '';
   };
 
-  systemd.user.services.yams = {
-    Unit = {
-      Description = "Last.FM scrobbler for MPD";
-      After = [ "mpd.service" ];
+  services.rescrobbled = {
+    enable = true;
+    settings = {
+      lastfm-key-file = "${config.xdg.configHome}/rescrobbled/lastfm-key";
+      lastfm-secret-file = "${config.xdg.configHome}/rescrobbled/lastfm-token";
+      player-whitelist = [ "^mpd$" ];
     };
-    Service = {
-      ExecStart = "${pkgs.yams}/bin/yams -N";
-      Environment = "NON_INTERACTIVE=1";
-      Restart = "always";
-    };
-    Install.WantedBy = [ "default.target" ];
   };
 
   programs.ncmpcpp = {
