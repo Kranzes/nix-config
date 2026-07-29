@@ -27,6 +27,10 @@
         command = "rust-analyzer";
         extensionToLanguage.".rs" = "rust";
       };
+      go = {
+        command = "gopls";
+        extensionToLanguage.".go" = "go";
+      };
     };
     settings = {
       model = "best";
