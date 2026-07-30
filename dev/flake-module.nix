@@ -36,8 +36,6 @@
           let
             args = [
               "--print-build-logs"
-              "--log-format"
-              "multiline-with-logs"
               "--use-substitutes"
               "--no-reexec"
               "--flake"
