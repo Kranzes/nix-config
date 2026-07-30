@@ -6,6 +6,7 @@
     ./grafana.nix
     ./prometheus.nix
     ./homer.nix
+    ./openbao.nix
     inputs.self.nixosModules.hosted-postgresql
     inputs.self.nixosModules.hosted-nginx
     inputs.self.nixosModules.hosted-node-exporter
