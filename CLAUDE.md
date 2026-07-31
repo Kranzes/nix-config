@@ -8,7 +8,7 @@ Personal NixOS flake configuring three machines:
 
 - `pongo` — desktop (Ryzen 7 2700X / RX 570); also runs the home-server stack (Nextcloud, Jellyfin/*arr media stack, Home Assistant, Zigbee2MQTT, Docker).
 - `tamarin` — Framework 13 laptop.
-- `hetzner` — Hetzner Cloud CX32 VPS hosting public services (Kanidm IDP at `idm.ilanjoselevich.com`, Grafana, Prometheus, Homer).
+- `hetzner` — Hetzner Cloud CX32 VPS hosting public services (Kanidm IDP at `idm.ilanjoselevich.com`, OpenBao at `secret.ilanjoselevich.com`, Grafana, Prometheus, Homer).
 
 ## Common commands
 
@@ -21,7 +21,8 @@ All commands assume the repo root and the `nix` devshell (auto-loaded via `diren
 | Evaluate config | `nix eval .#nixosConfigurations.<host>.config.<path>` |
 | Flake-wide check | `nix flake check` |
 | Deploy a host | `nix run .#deploy-<host>` (defaults to `switch`; pass another action as `$1`, e.g. `nix run .#deploy-tamarin -- test`) |
-| Edit secrets | `agenix -e <name>.age -i identities/kranzes-yk5.pub` from inside `secrets/` (devshell provides `agenix` and `age-plugin-yubikey`) |
+| Read/write a service secret | `bao kv get`/`bao kv put kv/<host>/systemd/<unit>` (devshell provides `bao`; set `BAO_ADDR=https://secret.ilanjoselevich.com`) |
+| Edit the AppRole secret ID | `agenix -e <host>-openbao-secret-id.age -i identities/kranzes-yk5.pub` from inside `secrets/` (devshell provides `agenix` and `age-plugin-yubikey`) |
 
 The deploy apps (one per host, generated in `dev/flake-module.nix`) wrap `nixos-rebuild` in a `writeShellApplication` script. Builds happen on the target host for `pongo` and `tamarin` (`--build-host`); only `hetzner` (the small CX32 VPS) builds on the deployer. The script detects "deploying to self" via `$HOSTNAME` and sets `--target-host ""` / `--build-host ""` in that case so activation and build stay local without SSH. Privilege elevation uses `--elevate=run0` (sudo is disabled in favor of run0 + its sudo shim), with `--ask-elevate-password` added when `security.run0.wheelNeedsPassword` is set. Trailing args after `$1` are forwarded to `nixos-rebuild`.
 
@@ -31,9 +32,9 @@ There is no test suite — `nix build` / `nix flake check` is what's run.
 
 The flake is composed via **flake-parts**. `flake.nix` wires only inputs and imports five sub-`flake-module.nix` files; each is responsible for a piece of the public flake interface:
 
-- `hosts/flake-module.nix` — defines `flake.nixosConfigurations` (`pongo`, `tamarin`, `hetzner`) through a local `nixosSystemWithDefaults` helper. Every host automatically imports the `commonProfiles` set (agenix, docs, misc, networking, nix-nixpkgs, security, ssh, tailscale, users) plus `./<hostName>` and `networking.hostName` / `nixpkgs.hostPlatform`. Desktop hosts (`pongo`, `tamarin`) additionally import `commonHome` which loads `home-manager.nixosModules.default` and points `users.kranzes` at `home/kranzes`.
+- `hosts/flake-module.nix` — defines `flake.nixosConfigurations` (`pongo`, `tamarin`, `hetzner`) through a local `nixosSystemWithDefaults` helper. Every host automatically imports the `commonProfiles` set (agenix, docs, misc, networking, nix-nixpkgs, security, ssh, systemd-creds-openbao, tailscale, users) plus `./<hostName>` and `networking.hostName` / `nixpkgs.hostPlatform`. Desktop hosts (`pongo`, `tamarin`) additionally import `commonHome` which loads `home-manager.nixosModules.default` and points `users.kranzes` at `home/kranzes`.
 - `profiles/flake-module.nix` — exposes `flake.nixosModules.profiles-*`. Modules that need `inputs` are wired with `lib.modules.importApply ./X.nix { inherit inputs; }`; pure modules are referenced as plain paths. Hosts opt into non-common profiles (e.g. `profiles-hyprland`, `profiles-laptop`, `profiles-android`, `profiles-audio`) from their own `default.nix`.
-- `hosted/flake-module.nix` — exposes `flake.nixosModules.hosted-*` for self-hosted services (`nginx`, `postgresql`, `restic`, `node-exporter`, `libvirt`). These are imported by each host's `hosts/<host>/hosted/default.nix`, which then layers per-host services next to them (e.g. `hosts/pongo/hosted/{nextcloud,docker,home-assistant,zigbee2mqtt,media}.nix`, `hosts/hetzner/hosted/{kanidm,grafana,prometheus,homer}.nix`).
+- `hosted/flake-module.nix` — exposes `flake.nixosModules.hosted-*` for self-hosted services (`nginx`, `postgresql`, `restic`, `node-exporter`, `libvirt`). These are imported by each host's `hosts/<host>/hosted/default.nix`, which then layers per-host services next to them (e.g. `hosts/pongo/hosted/{nextcloud,docker,home-assistant,zigbee2mqtt,media}.nix`, `hosts/hetzner/hosted/{kanidm,openbao,grafana,prometheus,homer}.nix`).
 - `packages/flake-module.nix` — builds the custom `fuzzel-mpd` shell wrapper and re-exports `neovim` from pongo's nixvim build (so `nix build .#neovim` produces the same editor used on that host).
 - `dev/flake-module.nix` — devshell, `treefmt`, and the `deploy-<host>` apps.
 
@@ -43,11 +44,25 @@ The flake is composed via **flake-parts**. `flake.nix` wires only inputs and imp
 - When a module needs `inputs` it is wrapped with `lib.modules.importApply` in the corresponding `flake-module.nix` and the inner module then takes the standard `{ config, pkgs, lib, ... }` arguments.
 - `home/kranzes/default.nix` is loaded by every desktop host through `commonHome`; per-host home overlays live in `hosts/<host>/home/` and are imported from the host's own `default.nix`.
 
-### Secrets (agenix)
+### Secrets (systemd-creds-openbao)
 
-- `secrets/secrets.nix` is the source of truth for which keys can decrypt each `.age` file. Each host has an SSH host key (`systems.<host>`) and the user has two YubiKey age identities (`kranzes-yk5`, `kranzes-yk5c`). When adding a new secret, list it there with the right `publicKeys` and rekey via `agenix`.
+Secrets live in OpenBao (`secret.ilanjoselevich.com`, self-hosted on `hetzner`) and reach services as [systemd credentials](https://systemd.io/CREDENTIALS/). `profiles/systemd-creds-openbao.nix` runs the daemon on every host; it authenticates with AppRole (`role_id` is the hostname) and defines the catch-all rule: a unit may read `kv/<hostName>/systemd/<unit name without the .service suffix>`, taking the credential ID as the field name.
+
+Other modules append more specific rules to `services.systemd-creds-openbao.settings.credentials` — `profiles/tailscale.nix` uses a `raw`-backend rule to mint an OIDC ID token from `identity/oidc/token/tailscale`, so tailscale authenticates by workload identity instead of a pre-shared auth key. Rules are **first-match-wins**, so anything more specific must land before the catch-all; nothing enforces that ordering today beyond module evaluation order.
+
+Wiring a consumer takes one of three shapes, depending on what the upstream module offers:
+
+- The module already emits `LoadCredential=` itself — point its option straight at the socket (`services.nextcloud.config.adminpassFile`).
+- The option is a path read at runtime — add `LoadCredential` to the unit and point the option at `/run/credentials/<unit>.service/<id>` (kanidm, grafana, restic `passwordFile`, tailscale's `--id-token`).
+- The app insists on a fixed filename — add the credential and symlink it in with a `systemd.tmpfiles` `L+` entry (recyclarr `secrets.yml`, home-assistant `secrets.yaml`).
+
+Adding a secret is `bao kv put kv/<host>/systemd/<unit> <credential>=…` plus the wiring above — no repo-side key management. After changing rules, regenerate the daemon's OpenBao policy from `nixosConfigurations.<host>.config.services.systemd-creds-openbao.policyFile` and `bao policy write` it.
+
+A refused or failed fetch surfaces as an **empty** credential rather than an error, and it stays that way for the unit's whole invocation, so a service that started while OpenBao was down or sealed needs restarting. `journalctl -u systemd-creds-openbao` names the credential, path and unit on every request.
+
+- agenix survives for exactly one secret per host: `<host>-openbao-secret-id.age`, the AppRole secret ID the daemon logs in with, which cannot come from OpenBao itself. `secrets/secrets.nix` lists those three files and is the source of truth for which keys decrypt them — each host's SSH host key (`systems.<host>`) plus two YubiKey age identities (`kranzes-yk5`, `kranzes-yk5c`).
 - `profiles/agenix.nix` sets `age.identityPaths` to the host's SSH host keys, so decryption at boot uses the same keys advertised in `secrets.nix`.
-- File-name convention: `<host>-<purpose>.age` (or `all-…age` for cross-host secrets). `hosted/restic.nix` resolves secret paths from `${config.networking.hostName}-…age`, so renaming a host requires renaming its secret files in lockstep.
+- The filename is derived from `config.networking.hostName`, so renaming a host requires renaming its secret file in lockstep.
 
 ### Deploy pipeline
 

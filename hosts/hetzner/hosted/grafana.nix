@@ -53,11 +53,9 @@ in
     };
   };
 
-  age.secrets.grafana-signing-key.file = ../../../secrets/${config.networking.hostName}-grafana-signing-key.age;
-
   systemd.services.grafana.serviceConfig.LoadCredential = [
-    "grafana_signing_key:${config.age.secrets.grafana-signing-key.path}"
-    "kanidm_client_secret:${config.services.kanidm.provision.systems.oauth2.grafana.basicSecretFile}"
+    "grafana_signing_key:${config.services.systemd-creds-openbao.socketPath}"
+    "kanidm_client_secret:${config.services.systemd-creds-openbao.socketPath}"
   ];
 
   services.postgresql = {

@@ -9,28 +9,12 @@ let
     kranzes-yk5c = "age1yubikey1qfejptxfycw5ft2lt388y9eqrjxsk0eqqz3ud4ad87rtvq5qzrzljjruft2";
   };
   allUsers = builtins.attrValues users;
-  allSystems = builtins.attrValues systems;
 in
 {
-  # All
-  "all-tailscale-auth-key.age".publicKeys = allUsers ++ allSystems;
   # Pongo
-  "pongo-nextcloud-admin-root-pass.age".publicKeys = allUsers ++ [ systems.pongo ];
-  "pongo-home-assistant-secrets.age".publicKeys = allUsers ++ [ systems.pongo ];
-  "pongo-recyclarr-secrets.age".publicKeys = allUsers ++ [ systems.pongo ];
-  "pongo-restic-default-env-file.age".publicKeys = allUsers ++ [ systems.pongo ];
-  "pongo-restic-default-repo-password.age".publicKeys = allUsers ++ [ systems.pongo ];
+  "pongo-openbao-secret-id.age".publicKeys = allUsers ++ [ systems.pongo ];
+  # Tamarin
+  "tamarin-openbao-secret-id.age".publicKeys = allUsers ++ [ systems.tamarin ];
   # Hetzner
-  "hetzner-kanidm-provision-extra-json.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-kanidm-oauth2-tailscale-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-kanidm-oauth2-nextcloud-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-kanidm-oauth2-jellyfin-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-kanidm-oauth2-grafana-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-kanidm-oauth2-home-assistant-basic-secret.age".publicKeys = allUsers ++ [
-    systems.hetzner
-  ];
-  "hetzner-kanidm-oauth2-seerr-basic-secret.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-grafana-signing-key.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-restic-default-env-file.age".publicKeys = allUsers ++ [ systems.hetzner ];
-  "hetzner-restic-default-repo-password.age".publicKeys = allUsers ++ [ systems.hetzner ];
+  "hetzner-openbao-secret-id.age".publicKeys = allUsers ++ [ systems.hetzner ];
 }

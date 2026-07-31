@@ -1,15 +1,17 @@
 { config, ... }:
 
 {
-  age.secrets = {
-    restic-default-env-file.file = ../secrets/${config.networking.hostName}-restic-default-env-file.age;
-    restic-default-repo-password.file = ../secrets/${config.networking.hostName}-restic-default-repo-password.age;
-  };
-
   services.restic.backups.default = {
     repository = "s3:https://s3.eu-central-003.backblazeb2.com/kranzes-backups/${config.networking.hostName}";
     initialize = true;
-    environmentFile = config.age.secrets.restic-default-env-file.path;
-    passwordFile = config.age.secrets.restic-default-repo-password.path;
+    passwordFile = "/run/credentials/restic-backups-default.service/password";
+  };
+
+  systemd.services.restic-backups-default = {
+    environment.AWS_SHARED_CREDENTIALS_FILE = "/run/credentials/restic-backups-default.service/aws-credentials";
+    serviceConfig.LoadCredential = [
+      "password:${config.services.systemd-creds-openbao.socketPath}"
+      "aws-credentials:${config.services.systemd-creds-openbao.socketPath}"
+    ];
   };
 }

@@ -51,6 +51,12 @@
       url = "github:noctalia-dev/noctalia-shell/legacy-v4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    systemd-creds-openbao = {
+      url = "github:Kranzes/systemd-creds-openbao";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
     mic92-noctalia-plugins = {
       url = "github:Mic92/noctalia-plugins";
       inputs.nixpkgs.follows = "nixpkgs";

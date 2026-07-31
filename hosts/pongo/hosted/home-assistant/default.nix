@@ -101,12 +101,12 @@ in
     };
   };
 
-  age.secrets.home-assistant-secrets = {
-    file = ../../../../secrets/pongo-home-assistant-secrets.age;
-    path = "${config.services.home-assistant.configDir}/secrets.yaml";
-    owner = config.systemd.services.home-assistant.serviceConfig.User;
-    group = config.systemd.services.home-assistant.serviceConfig.Group;
-  };
+  systemd.services.home-assistant.serviceConfig.LoadCredential = [
+    "secrets.yaml:${config.services.systemd-creds-openbao.socketPath}"
+  ];
+
+  systemd.tmpfiles.settings.home-assistant."${config.services.home-assistant.configDir}/secrets.yaml"."L+".argument =
+    "/run/credentials/home-assistant.service/secrets.yaml";
 
   services.restic.backups.default.paths = [
     "${config.services.home-assistant.configDir}/backups"

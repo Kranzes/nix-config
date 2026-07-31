@@ -9,6 +9,7 @@ let
     profiles-nix-nixpkgs
     profiles-security
     profiles-ssh
+    profiles-systemd-creds-openbao
     profiles-tailscale
     profiles-users
   ];

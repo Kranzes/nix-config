@@ -1,21 +1,42 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
+let
+  tag = "tag:infra";
+  clientId = "Tp1tNzmaRH11CNTRL-kvM56SjamK11CNTRL";
+in
 {
 
   services.tailscale = {
     enable = true;
     useRoutingFeatures = lib.mkDefault "client";
-    extraUpFlags =
-      lib.mkIf
-        (lib.elem config.services.tailscale.useRoutingFeatures [
-          "both"
-          "server"
-        ])
-        [
-          "--advertise-exit-node"
-        ];
-    authKeyFile = lib.mkDefault config.age.secrets.tailscale-auth-key.path;
+    extraUpFlags = [
+      "--advertise-tags=${tag}"
+      "--client-id=${clientId}"
+      "--id-token=file:/run/credentials/tailscaled-autoconnect.service/id-token"
+    ]
+    ++ lib.optional (lib.elem config.services.tailscale.useRoutingFeatures [
+      "both"
+      "server"
+    ]) "--advertise-exit-node";
+    authKeyFile = pkgs.emptyFile; # This option has to be set, even though we don't actually use it.
   };
 
-  age.secrets.tailscale-auth-key.file = lib.mkDefault ../secrets/all-tailscale-auth-key.age;
+  services.systemd-creds-openbao.settings.credentials = [
+    {
+      unit = "tailscaled-autoconnect.service";
+      credential = "id-token";
+      backend = "raw";
+      path = "identity/oidc/token/tailscale";
+      field = "token";
+    }
+  ];
+
+  systemd.services.tailscaled-autoconnect.serviceConfig.LoadCredential = [
+    "id-token:${config.services.systemd-creds-openbao.socketPath}"
+  ];
 }

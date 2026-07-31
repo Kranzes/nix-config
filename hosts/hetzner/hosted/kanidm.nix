@@ -7,6 +7,7 @@
 let
   domain = "idm.ilanjoselevich.com";
   certDir = config.security.acme.certs.${domain}.directory;
+  credential = name: "/run/credentials/kanidm.service/${name}";
 in
 {
   services.kanidm = {
@@ -28,7 +29,7 @@ in
     };
     provision = {
       enable = true;
-      extraJsonFile = config.age.secrets.kanidm-provision-extra-json.path;
+      extraJsonFile = credential "extra-json";
 
       groups = lib.genAttrs [
         "tailscale_users"
@@ -41,6 +42,7 @@ in
         "home-assistant_admins"
         "seerr_users"
         "seerr_admins"
+        "openbao_admins"
       ] (_: { });
 
       persons = {
@@ -74,7 +76,7 @@ in
             "profile"
             "email"
           ];
-          basicSecretFile = config.age.secrets.kanidm-oauth2-tailscale-basic-secret.path;
+          basicSecretFile = credential "oauth2-tailscale";
         };
         "nextcloud" = {
           displayName = "Nextcloud";
@@ -82,7 +84,7 @@ in
           originLanding = "https://cloud.ilanjoselevich.com";
           preferShortUsername = true;
           scopeMaps."nextcloud_users" = [ "openid" ];
-          basicSecretFile = config.age.secrets.kanidm-oauth2-nextcloud-basic-secret.path;
+          basicSecretFile = credential "oauth2-nextcloud";
         };
         "jellyfin" = {
           displayName = "Jellyfin";
@@ -94,7 +96,7 @@ in
             "profile"
             "groups"
           ];
-          basicSecretFile = config.age.secrets.kanidm-oauth2-jellyfin-basic-secret.path;
+          basicSecretFile = credential "oauth2-jellyfin";
         };
         "grafana" = {
           displayName = "Grafana";
@@ -107,7 +109,7 @@ in
             "email"
             "groups"
           ];
-          basicSecretFile = config.age.secrets.kanidm-oauth2-grafana-basic-secret.path;
+          basicSecretFile = credential "oauth2-grafana";
         };
         "home-assistant" = {
           displayName = "Home Assistant";
@@ -119,7 +121,7 @@ in
             "profile"
             "groups"
           ];
-          basicSecretFile = config.age.secrets.kanidm-oauth2-home-assistant-basic-secret.path;
+          basicSecretFile = credential "oauth2-home-assistant";
         };
         "seerr" = {
           displayName = "Seerr";
@@ -134,7 +136,22 @@ in
             "profile"
             "email"
           ];
-          basicSecretFile = config.age.secrets.kanidm-oauth2-seerr-basic-secret.path;
+          basicSecretFile = credential "oauth2-seerr";
+        };
+        "openbao" = {
+          displayName = "OpenBao";
+          originUrl = [
+            "https://secret.ilanjoselevich.com/ui/vault/auth/oidc/oidc/callback"
+            "http://localhost:8250/oidc/callback"
+          ];
+          originLanding = "https://secret.ilanjoselevich.com";
+          preferShortUsername = true;
+          scopeMaps."openbao_admins" = [
+            "openid"
+            "profile"
+            "groups"
+          ];
+          basicSecretFile = credential "oauth2-openbao";
         };
       };
     };
@@ -142,7 +159,19 @@ in
 
   systemd.services.kanidm = {
     after = [ "acme-selfsigned-internal.${domain}.target" ];
-    serviceConfig.SupplementaryGroups = [ config.security.acme.certs.${domain}.group ];
+    serviceConfig = {
+      SupplementaryGroups = [ config.security.acme.certs.${domain}.group ];
+      LoadCredential = map (name: "${name}:${config.services.systemd-creds-openbao.socketPath}") [
+        "extra-json"
+        "oauth2-tailscale"
+        "oauth2-nextcloud"
+        "oauth2-jellyfin"
+        "oauth2-grafana"
+        "oauth2-home-assistant"
+        "oauth2-seerr"
+        "oauth2-openbao"
+      ];
+    };
   };
 
   services.nginx.virtualHosts.${domain} = {
@@ -150,23 +179,6 @@ in
     enableACME = true;
     locations."/".proxyPass = "https://${config.services.kanidm.server.settings.bindaddress}";
   };
-
-  age.secrets =
-    lib.genAttrs
-      [
-        "kanidm-provision-extra-json"
-        "kanidm-oauth2-tailscale-basic-secret"
-        "kanidm-oauth2-nextcloud-basic-secret"
-        "kanidm-oauth2-jellyfin-basic-secret"
-        "kanidm-oauth2-grafana-basic-secret"
-        "kanidm-oauth2-home-assistant-basic-secret"
-        "kanidm-oauth2-seerr-basic-secret"
-      ]
-      (secretName: {
-        file = ../../../secrets/${config.networking.hostName}-${secretName}.age;
-        owner = "kanidm";
-        group = "kanidm";
-      });
 
   services.restic.backups.default.paths = [
     config.services.kanidm.server.settings.online_backup.path

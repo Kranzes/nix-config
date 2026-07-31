@@ -452,6 +452,7 @@
         "nixvim": "nixvim",
         "noctalia": "noctalia",
         "srvos": "srvos",
+        "systemd-creds-openbao": "systemd-creds-openbao",
         "treefmt-nix": "treefmt-nix_2"
       }
     },
@@ -493,6 +494,32 @@
       "original": {
         "owner": "nix-community",
         "repo": "srvos",
+        "type": "github"
+      }
+    },
+    "systemd-creds-openbao": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": [
+          "treefmt-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785542742,
+        "narHash": "sha256-L4iczvZY39znbZTPumfapAP72gvem931jTu0dM/o8WY=",
+        "owner": "Kranzes",
+        "repo": "systemd-creds-openbao",
+        "rev": "9eaa38521c273cf8ef96af375d34cacfd9d4bfa7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kranzes",
+        "repo": "systemd-creds-openbao",
         "type": "github"
       }
     },

@@ -17,7 +17,9 @@
         packages = [
           inputs'.agenix.packages.agenix
           pkgs.age-plugin-yubikey
+          pkgs.openbao
         ];
+        env.BAO_ADDR = "https://secret.ilanjoselevich.com";
       };
 
       treefmt = {

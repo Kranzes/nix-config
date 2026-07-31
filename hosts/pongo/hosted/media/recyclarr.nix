@@ -12,7 +12,12 @@
   };
 
   # TODO: Upstream at some point
-  systemd.services.recyclarr.preStart = lib.mkForce "";
+  systemd.services.recyclarr = {
+    preStart = lib.mkForce "";
+    serviceConfig.LoadCredential = [
+      "secrets.yml:${config.services.systemd-creds-openbao.socketPath}"
+    ];
+  };
   systemd.tmpfiles.settings.recyclarr = {
     "/var/lib/recyclarr/config.json"."L+".argument = toString (
       pkgs.runCommand "config.json" { } ''
@@ -20,12 +25,6 @@
         sed -i -e "s/'\!\([a-z_]\+\) \(.*\)'/\!\1 \2/;s/^\!\!/\!/;" $out
       ''
     );
-  };
-
-  age.secrets.recyclarr-secrets = {
-    file = ../../../../secrets/pongo-recyclarr-secrets.age;
-    path = "/var/lib/recyclarr/secrets.yml";
-    owner = config.services.recyclarr.user;
-    inherit (config.services.recyclarr) group;
+    "/var/lib/recyclarr/secrets.yml"."L+".argument = "/run/credentials/recyclarr.service/secrets.yml";
   };
 }
