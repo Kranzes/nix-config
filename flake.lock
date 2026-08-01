@@ -510,11 +510,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785542742,
-        "narHash": "sha256-L4iczvZY39znbZTPumfapAP72gvem931jTu0dM/o8WY=",
+        "lastModified": 1785619663,
+        "narHash": "sha256-JJFnJutcS2iYRIslNQEIf284BdfpeKR4Pd6G5JH6ZIY=",
         "owner": "Kranzes",
         "repo": "systemd-creds-openbao",
-        "rev": "9eaa38521c273cf8ef96af375d34cacfd9d4bfa7",
+        "rev": "0ec33f3622650a309ef75692a318ef0473745ada",
         "type": "github"
       },
       "original": {

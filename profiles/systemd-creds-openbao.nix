@@ -8,10 +8,13 @@
     environment.BAO_ADDR = "https://secret.ilanjoselevich.com";
     credentials.openbao-secret-id = config.age.secrets.openbao-secret-id.path;
     settings = {
-      openbao.auth = {
-        method = "approle";
-        role_id = config.networking.hostName;
-        secret_id_file = "\${CREDENTIALS_DIRECTORY}/openbao-secret-id";
+      openbao = {
+        serve_stale_for = "1h";
+        auth = {
+          method = "approle";
+          role_id = config.networking.hostName;
+          secret_id_file = "\${CREDENTIALS_DIRECTORY}/openbao-secret-id";
+        };
       };
       # Ordering matters.
       credentials = lib.mkAfter [
