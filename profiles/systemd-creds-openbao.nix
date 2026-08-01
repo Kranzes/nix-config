@@ -6,7 +6,6 @@
   services.systemd-creds-openbao = {
     enable = true;
     environment.BAO_ADDR = "https://secret.ilanjoselevich.com";
-    credentials.openbao-secret-id = config.age.secrets.openbao-secret-id.path;
     settings = {
       openbao = {
         serve_stale_for = "1h";
@@ -26,5 +25,7 @@
     };
   };
 
-  age.secrets.openbao-secret-id.file = ../secrets/${config.networking.hostName}-openbao-secret-id.age;
+  systemd.services.systemd-creds-openbao.serviceConfig.ImportCredential = [
+    "openbao-secret-id"
+  ];
 }

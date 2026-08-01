@@ -22,7 +22,7 @@ All commands assume the repo root and the `nix` devshell (auto-loaded via `diren
 | Flake-wide check | `nix flake check` |
 | Deploy a host | `nix run .#deploy-<host>` (defaults to `switch`; pass another action as `$1`, e.g. `nix run .#deploy-tamarin -- test`) |
 | Read/write a service secret | `bao kv get`/`bao kv put kv/<host>/systemd/<unit>` (devshell provides `bao`; set `BAO_ADDR=https://secret.ilanjoselevich.com`) |
-| Edit the AppRole secret ID | `agenix -e <host>-openbao-secret-id.age -i identities/kranzes-yk5.pub` from inside `secrets/` (devshell provides `agenix` and `age-plugin-yubikey`) |
+| Mint/rotate the AppRole secret ID | `systemd-creds encrypt --name=openbao-secret-id - /etc/credstore.encrypted/openbao-secret-id` as root on the host (see Secrets below) |
 
 The deploy apps (one per host, generated in `dev/flake-module.nix`) wrap `nixos-rebuild` in a `writeShellApplication` script. Builds happen on the target host for `pongo` and `tamarin` (`--build-host`); only `hetzner` (the small CX32 VPS) builds on the deployer. The script detects "deploying to self" via `$HOSTNAME` and sets `--target-host ""` / `--build-host ""` in that case so activation and build stay local without SSH. Privilege elevation uses `--elevate=run0` (sudo is disabled in favor of run0 + its sudo shim), with `--ask-elevate-password` added when `security.run0.wheelNeedsPassword` is set. Trailing args after `$1` are forwarded to `nixos-rebuild`.
 
@@ -32,7 +32,7 @@ There is no test suite — `nix build` / `nix flake check` is what's run.
 
 The flake is composed via **flake-parts**. `flake.nix` wires only inputs and imports five sub-`flake-module.nix` files; each is responsible for a piece of the public flake interface:
 
-- `hosts/flake-module.nix` — defines `flake.nixosConfigurations` (`pongo`, `tamarin`, `hetzner`) through a local `nixosSystemWithDefaults` helper. Every host automatically imports the `commonProfiles` set (agenix, docs, misc, networking, nix-nixpkgs, security, ssh, systemd-creds-openbao, tailscale, users) plus `./<hostName>` and `networking.hostName` / `nixpkgs.hostPlatform`. Desktop hosts (`pongo`, `tamarin`) additionally import `commonHome` which loads `home-manager.nixosModules.default` and points `users.kranzes` at `home/kranzes`.
+- `hosts/flake-module.nix` — defines `flake.nixosConfigurations` (`pongo`, `tamarin`, `hetzner`) through a local `nixosSystemWithDefaults` helper. Every host automatically imports the `commonProfiles` set (docs, misc, networking, nix-nixpkgs, security, ssh, systemd-creds-openbao, tailscale, users) plus `./<hostName>` and `networking.hostName` / `nixpkgs.hostPlatform`. Desktop hosts (`pongo`, `tamarin`) additionally import `commonHome` which loads `home-manager.nixosModules.default` and points `users.kranzes` at `home/kranzes`.
 - `profiles/flake-module.nix` — exposes `flake.nixosModules.profiles-*`. Modules that need `inputs` are wired with `lib.modules.importApply ./X.nix { inherit inputs; }`; pure modules are referenced as plain paths. Hosts opt into non-common profiles (e.g. `profiles-hyprland`, `profiles-laptop`, `profiles-android`, `profiles-audio`) from their own `default.nix`.
 - `hosted/flake-module.nix` — exposes `flake.nixosModules.hosted-*` for self-hosted services (`nginx`, `postgresql`, `restic`, `node-exporter`, `libvirt`). These are imported by each host's `hosts/<host>/hosted/default.nix`, which then layers per-host services next to them (e.g. `hosts/pongo/hosted/{nextcloud,docker,home-assistant,zigbee2mqtt,media}.nix`, `hosts/hetzner/hosted/{kanidm,openbao,grafana,prometheus,homer}.nix`).
 - `packages/flake-module.nix` — builds the custom `fuzzel-mpd` shell wrapper and re-exports `neovim` from pongo's nixvim build (so `nix build .#neovim` produces the same editor used on that host).
@@ -60,9 +60,10 @@ Adding a secret is `bao kv put kv/<host>/systemd/<unit> <credential>=…` plus t
 
 A refused or failed fetch surfaces as an **empty** credential rather than an error, and it stays that way for the unit's whole invocation, so a service that started while OpenBao was down or sealed needs restarting. `journalctl -u systemd-creds-openbao` names the credential, path and unit on every request.
 
-- agenix survives for exactly one secret per host: `<host>-openbao-secret-id.age`, the AppRole secret ID the daemon logs in with, which cannot come from OpenBao itself. `secrets/secrets.nix` lists those three files and is the source of truth for which keys decrypt them — each host's SSH host key (`systems.<host>`) plus two YubiKey age identities (`kranzes-yk5`, `kranzes-yk5c`).
-- `profiles/agenix.nix` sets `age.identityPaths` to the host's SSH host keys, so decryption at boot uses the same keys advertised in `secrets.nix`.
-- The filename is derived from `config.networking.hostName`, so renaming a host requires renaming its secret file in lockstep.
+- The daemon's own AppRole secret ID is the one credential that cannot come from OpenBao. It lives on each host as a `systemd-creds`-encrypted blob at `/etc/credstore.encrypted/openbao-secret-id`, pulled into the unit with `ImportCredential=`. It is host-local state and deliberately not in the repo — the blob only decrypts on the machine that produced it.
+- Mint or rotate it as root on the host, which also rotates the secret ID: `bao write -f -field=secret_id auth/approle/role/<host>/secret-id | systemd-creds encrypt --name=openbao-secret-id - /etc/credstore.encrypted/openbao-secret-id`. `--name=` must match the filename; systemd validates it at import, and a mismatch fails the unit at start.
+- `--with-key` defaults to `auto`, binding to the TPM when one is present and to `/var/lib/systemd/credential.secret` when `/var/lib/systemd` is on persistent media — so `host+tpm2` on `pongo`/`tamarin` and `host` alone on `hetzner`, which has no TPM. There is no break-glass recipient: reinstalling the OS or clearing the TPM means minting a fresh secret ID.
+- `role_id` is `config.networking.hostName`, so renaming a host requires renaming its AppRole role in OpenBao in lockstep.
 
 ### Deploy pipeline
 

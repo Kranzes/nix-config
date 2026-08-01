@@ -2,7 +2,6 @@
 
 {
   flake.nixosModules = {
-    profiles-agenix = lib.modules.importApply ./agenix.nix { inherit inputs; };
     profiles-android = ./android.nix;
     profiles-audio = ./audio.nix;
     profiles-docs = ./docs.nix;
