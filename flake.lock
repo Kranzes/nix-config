@@ -450,23 +450,13 @@
       }
     },
     "systemd-creds-openbao": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "treefmt-nix": [
-          "treefmt-nix"
-        ]
-      },
+      "flake": false,
       "locked": {
-        "lastModified": 1785619663,
-        "narHash": "sha256-JJFnJutcS2iYRIslNQEIf284BdfpeKR4Pd6G5JH6ZIY=",
+        "lastModified": 1785770511,
+        "narHash": "sha256-/XJxzLMyNn/cqLlqCD1OYoTHjrG+sse/0nKv9N2hLME=",
         "owner": "Kranzes",
         "repo": "systemd-creds-openbao",
-        "rev": "0ec33f3622650a309ef75692a318ef0473745ada",
+        "rev": "ef71084c7ff63c508e5c92b12d008d2437e3d154",
         "type": "github"
       },
       "original": {

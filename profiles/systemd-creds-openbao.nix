@@ -1,7 +1,15 @@
 { inputs, ... }:
-{ config, lib, ... }:
 {
-  imports = [ inputs.systemd-creds-openbao.nixosModules.default ];
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+
+{
+  imports = [
+    (import inputs.systemd-creds-openbao { inherit pkgs; }).nixosModules.systemd-creds-openbao
+  ];
 
   services.systemd-creds-openbao = {
     enable = true;
