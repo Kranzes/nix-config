@@ -25,11 +25,12 @@
       package = pkgs.roboto;
     };
     theme = {
-      name = "Catppuccin-GTK-Lavender-Dark-Compact-Macchiato";
-      package = pkgs.magnetic-catppuccin-gtk.override {
-        size = "compact";
-        accent = [ config.catppuccin.accent ];
-        tweaks = [ config.catppuccin.flavor ];
+      name = "Colloid-Purple-Dark-Compact-Catppuccin";
+      package = pkgs.colloid-gtk-theme.override {
+        themeVariants = [ "purple" ];
+        colorVariants = [ "dark" ];
+        sizeVariants = [ "compact" ];
+        tweaks = [ "catppuccin" ];
       };
     };
 
