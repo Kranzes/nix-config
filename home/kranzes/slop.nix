@@ -53,6 +53,7 @@
       };
       enabledPlugins = {
         "commit-commands@claude-plugins-official" = true;
+        "claude-security@claude-plugins-official" = true;
         "catppuccin@claude-themes" = true;
       };
     };
