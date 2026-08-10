@@ -40,7 +40,9 @@ in
     customComponents = with pkgs.home-assistant-custom-components; [
       auth_oidc
       home_connect_alt
-      oref_alert
+      # TODO: Remove once https://github.com/NixOS/nixpkgs/pull/551252 is in the pin.
+      (builtins.getFlake "github:NixOS/nixpkgs/c88d2fb7aec96b5ec5a83b529f86553f829dcb82")
+      .legacyPackages.x86_64-linux.home-assistant-custom-components.oref_alert
     ];
     config = {
       homeassistant = {
