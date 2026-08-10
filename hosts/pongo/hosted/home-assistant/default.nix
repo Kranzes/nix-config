@@ -43,15 +43,9 @@ in
       oref_alert
     ];
     config = {
-      http = {
-        server_host = "127.0.0.1";
-        trusted_proxies = [ hassCfg.http.server_host ];
-        use_x_forwarded_for = true;
-        cors_allowed_origins = [ "https://portal.ilanjoselevich.com" ];
-      };
       homeassistant = {
         external_url = "https://${domain}";
-        internal_url = "http://${hassCfg.http.server_host}:${toString hassCfg.http.server_port}";
+        internal_url = "http://127.0.0.1:8123";
         auth_providers = [ ];
         latitude = "!secret homeassistant_latitude";
         longitude = "!secret homeassistant_longitude";
