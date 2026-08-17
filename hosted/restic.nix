@@ -8,6 +8,10 @@
   };
 
   systemd.services.restic-backups-default = {
+    # Not generally needed, only for the host of OpenBao.
+    requires = [ "systemd-creds-openbao.service" ];
+    after = [ "systemd-creds-openbao.service" ];
+
     environment.AWS_SHARED_CREDENTIALS_FILE = "/run/credentials/restic-backups-default.service/aws-credentials";
     serviceConfig.LoadCredential = [
       "password:${config.services.systemd-creds-openbao.socketPath}"

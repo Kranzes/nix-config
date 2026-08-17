@@ -158,7 +158,12 @@ in
   };
 
   systemd.services.kanidm = {
-    after = [ "acme-selfsigned-internal.${domain}.target" ];
+    requires = [ "systemd-creds-openbao.service" ];
+    after = [
+      "acme-selfsigned-internal.${domain}.target"
+      "systemd-creds-openbao.service"
+    ];
+
     serviceConfig = {
       SupplementaryGroups = [ config.security.acme.certs.${domain}.group ];
       LoadCredential = map (name: "${name}:${config.services.systemd-creds-openbao.socketPath}") [

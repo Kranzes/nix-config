@@ -36,7 +36,13 @@ in
     }
   ];
 
-  systemd.services.tailscaled-autoconnect.serviceConfig.LoadCredential = [
-    "id-token:${config.services.systemd-creds-openbao.socketPath}"
-  ];
+  systemd.services.tailscaled-autoconnect = {
+    # Not generally needed, only for the host of OpenBao.
+    requires = [ "systemd-creds-openbao.service" ];
+    after = [ "systemd-creds-openbao.service" ];
+
+    serviceConfig.LoadCredential = [
+      "id-token:${config.services.systemd-creds-openbao.socketPath}"
+    ];
+  };
 }

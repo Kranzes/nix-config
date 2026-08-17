@@ -452,11 +452,11 @@
     "systemd-creds-openbao": {
       "flake": false,
       "locked": {
-        "lastModified": 1786726546,
-        "narHash": "sha256-K0hBkO4WI0DWfpJMwjDPQSuKHB44vrOGPb5X1M6lVk0=",
+        "lastModified": 1787073517,
+        "narHash": "sha256-DGMFXjdDcK0+0mDFvpm6PUbiSSvSYeN69deyABzwsxU=",
         "owner": "Kranzes",
         "repo": "systemd-creds-openbao",
-        "rev": "c5e67848f9dc52fb22e1b33db10946ca154f4577",
+        "rev": "714feed0def07416de36396f712f25678c7e0acd",
         "type": "github"
       },
       "original": {

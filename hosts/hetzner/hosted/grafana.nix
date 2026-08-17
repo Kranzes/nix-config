@@ -53,10 +53,15 @@ in
     };
   };
 
-  systemd.services.grafana.serviceConfig.LoadCredential = [
-    "grafana_signing_key:${config.services.systemd-creds-openbao.socketPath}"
-    "kanidm_client_secret:${config.services.systemd-creds-openbao.socketPath}"
-  ];
+  systemd.services.grafana = {
+    requires = [ "systemd-creds-openbao.service" ];
+    after = [ "systemd-creds-openbao.service" ];
+
+    serviceConfig.LoadCredential = [
+      "grafana_signing_key:${config.services.systemd-creds-openbao.socketPath}"
+      "kanidm_client_secret:${config.services.systemd-creds-openbao.socketPath}"
+    ];
+  };
 
   services.postgresql = {
     ensureDatabases = [ config.services.grafana.settings.database.name ];
