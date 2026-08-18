@@ -51,6 +51,24 @@
         pattern = "terraform";
         callback.__raw = "function() vim.opt_local.shiftwidth = 2 end ";
       }
+      {
+        event = "BufWritePre";
+        pattern = "*.go";
+        callback.__raw = ''
+          function(args)
+            for _, client in ipairs(vim.lsp.get_clients({ bufnr = args.buf, name = "gopls" })) do
+              local params = vim.lsp.util.make_range_params(0, client.offset_encoding)
+              params.context = { only = { "source.organizeImports" } }
+              local result = client:request_sync("textDocument/codeAction", params, 1000, args.buf)
+              for _, action in pairs(result and result.result or {}) do
+                if action.edit then
+                  vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+                end
+              end
+            end
+          end
+        '';
+      }
     ];
     keymaps = [
       # Copy to system clipboard
@@ -168,6 +186,21 @@
         bashls.enable = true;
         hls.enable = true;
         terraformls.enable = true;
+        gopls = {
+          enable = true;
+          packageFallback = true;
+          config.settings.gopls = {
+            gofumpt = true;
+            staticcheck = true;
+            hints = {
+              parameterNames = true;
+              assignVariableTypes = true;
+              rangeVariableTypes = true;
+              compositeLiteralFields = true;
+              ignoredError = true;
+            };
+          };
+        };
       };
     };
   };
