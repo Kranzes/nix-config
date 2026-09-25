@@ -1,10 +1,11 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   domain = "secret.ilanjoselevich.com";
 in
 {
   services.openbao = {
     enable = true;
+    plugins = [ pkgs.openbaoPlugins.secrets-oauthapp ];
     settings = {
       ui = true;
 
