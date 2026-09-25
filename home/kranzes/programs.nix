@@ -17,5 +17,7 @@
       enable = true;
       scdaemonSettings.disable-ccid = true;
     };
+
+    k9s.enable = true;
   };
 }
