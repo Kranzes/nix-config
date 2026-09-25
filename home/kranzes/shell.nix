@@ -17,6 +17,13 @@
     enable = true;
     dotDir = "${config.xdg.configHome}/zsh";
     enableCompletion = true;
+    plugins = [
+      {
+        name = "zsh-completion-sync";
+        src = pkgs.zsh-completion-sync;
+        file = "share/zsh-completion-sync/zsh-completion-sync.plugin.zsh";
+      }
+    ];
     initContent = lib.mkMerge [
       (lib.mkBefore ''
         setopt PROMPT_SUBST
