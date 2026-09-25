@@ -33,8 +33,8 @@
       };
     };
     settings = {
-      model = "best";
-      effortLevel = "xhigh";
+      model = "opus";
+      effortLevel = "high";
       showThinkingSummaries = true;
       tui = "fullscreen";
       theme = "custom:catppuccin:catppuccin-${config.catppuccin.flavor}";
@@ -53,7 +53,6 @@
       };
       enabledPlugins = {
         "commit-commands@claude-plugins-official" = true;
-        "claude-security@claude-plugins-official" = true;
         "catppuccin@claude-themes" = true;
       };
     };
