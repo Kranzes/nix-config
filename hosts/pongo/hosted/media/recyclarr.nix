@@ -14,6 +14,8 @@
   # TODO: Upstream at some point
   systemd.services.recyclarr = {
     preStart = lib.mkForce "";
+    wants = [ "systemd-creds-openbao.service" ];
+    after = [ "systemd-creds-openbao.service" ];
     serviceConfig.LoadCredential = [
       "secrets.yml:${config.services.systemd-creds-openbao.socketPath}"
     ];

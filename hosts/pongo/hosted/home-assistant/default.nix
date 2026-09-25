@@ -95,9 +95,13 @@ in
     };
   };
 
-  systemd.services.home-assistant.serviceConfig.LoadCredential = [
-    "secrets.yaml:${config.services.systemd-creds-openbao.socketPath}"
-  ];
+  systemd.services.home-assistant = {
+    wants = [ "systemd-creds-openbao.service" ];
+    after = [ "systemd-creds-openbao.service" ];
+    serviceConfig.LoadCredential = [
+      "secrets.yaml:${config.services.systemd-creds-openbao.socketPath}"
+    ];
+  };
 
   systemd.tmpfiles.settings.home-assistant."${config.services.home-assistant.configDir}/secrets.yaml"."L+".argument =
     "/run/credentials/home-assistant.service/secrets.yaml";

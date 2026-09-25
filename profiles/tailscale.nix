@@ -37,8 +37,8 @@ in
   ];
 
   systemd.services.tailscaled-autoconnect = {
-    # Not generally needed, only for the host of OpenBao.
-    requires = [ "systemd-creds-openbao.service" ];
+    wantedBy = lib.mkForce [ "tailscaled.service" ];
+    wants = [ "systemd-creds-openbao.service" ];
     after = [ "systemd-creds-openbao.service" ];
 
     serviceConfig.LoadCredential = [

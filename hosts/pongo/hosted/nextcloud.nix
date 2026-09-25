@@ -18,6 +18,11 @@
     phpOptions."opcache.interned_strings_buffer" = "16";
   };
 
+  systemd.services.nextcloud-setup = {
+    wants = [ "systemd-creds-openbao.service" ];
+    after = [ "systemd-creds-openbao.service" ];
+  };
+
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;

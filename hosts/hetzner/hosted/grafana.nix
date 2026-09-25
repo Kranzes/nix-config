@@ -54,7 +54,7 @@ in
   };
 
   systemd.services.grafana = {
-    requires = [ "systemd-creds-openbao.service" ];
+    wants = [ "systemd-creds-openbao.service" ];
     after = [ "systemd-creds-openbao.service" ];
 
     serviceConfig.LoadCredential = [

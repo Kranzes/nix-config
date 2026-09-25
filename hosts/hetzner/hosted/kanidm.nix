@@ -158,7 +158,7 @@ in
   };
 
   systemd.services.kanidm = {
-    requires = [ "systemd-creds-openbao.service" ];
+    wants = [ "systemd-creds-openbao.service" ];
     after = [
       "acme-selfsigned-internal.${domain}.target"
       "systemd-creds-openbao.service"
