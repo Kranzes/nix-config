@@ -5,7 +5,7 @@
     withUWSM = true;
   };
 
-  programs.regreet = {
+  services.displayManager.regreet = {
     enable = true;
     font = {
       package = pkgs.roboto;
