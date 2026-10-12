@@ -39,6 +39,7 @@
       tui = "fullscreen";
       theme = "custom:catppuccin:catppuccin-${config.catppuccin.flavor}";
       permissions.defaultMode = "auto";
+      env.FORCE_AUTOUPDATE_PLUGINS = "1";
       attribution = {
         commit = "";
         pr = "";
@@ -49,10 +50,12 @@
             source = "github";
             repo = "matcra587/claude-themes";
           };
+          autoUpdate = true;
         };
       };
       enabledPlugins = {
         "commit-commands@claude-plugins-official" = true;
+        "exa@claude-plugins-official" = true;
         "catppuccin@claude-themes" = true;
       };
     };
