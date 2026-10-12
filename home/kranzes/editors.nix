@@ -128,7 +128,22 @@
       lspconfig.enable = true;
       rustaceanvim.enable = true;
     };
-    extraPlugins = with pkgs.vimPlugins; [ floating-input-nvim ];
+    extraPlugins = with pkgs.vimPlugins; [
+      floating-input-nvim
+      (pkgs.vimUtils.buildVimPlugin {
+        pname = "yaml-companion.nvim";
+        version = "0-unstable-2026-08-28";
+        src = pkgs.fetchFromGitHub {
+          owner = "mosheavni";
+          repo = "yaml-companion.nvim";
+          rev = "fc8dc139ab8f410ae830d5cf48f9558f47c701f8";
+          hash = "sha256-wSJntNdb01t6ptu4GWFC+zJOVtrZ03X8nAOcbGWHTlw=";
+        };
+        postPatch = ''
+          echo 'return "v${pkgs.lib.versions.majorMinor pkgs.kubectl.version}.0"' > lua/yaml-companion/builtin/kubernetes/version.lua
+        '';
+      })
+    ];
     dependencies = {
       ripgrep.enable = true;
       fd.enable = true;
@@ -186,6 +201,10 @@
         bashls.enable = true;
         hls.enable = true;
         terraformls.enable = true;
+        yamlls = {
+          enable = true;
+          config.__raw = "require('yaml-companion').setup({})";
+        };
         gopls = {
           enable = true;
           packageFallback = true;
