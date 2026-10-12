@@ -46,5 +46,6 @@
     yubioath-flutter
     jellyfin-desktop
     nixd
+    kubectl
   ];
 }
