@@ -81,7 +81,10 @@ in
     };
     loader.systemd-boot.enable = lib.mkForce (!config.boot.lanzaboote.enable);
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-    kernelParams = [ "amdgpu.abmlevel=0" ]; # Don't mess with my colors
+    kernelParams = [
+      "amdgpu.abmlevel=0" # Don't mess with my colors
+      "fuse.enable_uring=1" # Allow FUSE-over-io_uring
+    ];
     tmp.cleanOnBoot = true;
     zswap.enable = true;
     initrd.kernelModules.amdgpu = lib.mkForce false;
