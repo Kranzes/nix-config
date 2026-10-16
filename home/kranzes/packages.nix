@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     wget
     nemo
+    budslink
     virt-manager
     keepassxc
     yt-dlp
