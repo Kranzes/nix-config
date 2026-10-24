@@ -7,6 +7,7 @@
       packages = {
         btd700ctl = pkgs.callPackage ./btd700ctl { };
         fuzzel-mpd = pkgs.callPackage ./fuzzel-mpd { };
+        maiao = pkgs.callPackage ./maiao { };
       };
     };
 
