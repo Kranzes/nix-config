@@ -32,7 +32,12 @@
         extensionToLanguage.".go" = "go";
       };
     };
-    skills.herdr = "${config.programs.herdr.package}/share/skills/herdr/herdr";
+    skills = {
+      herdr = "${config.programs.herdr.package}/share/skills/herdr/herdr";
+      git-review = "${
+        inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.maiao
+      }/share/skills/maiao/git-review";
+    };
     settings = {
       model = "opus";
       effortLevel = "xhigh";
