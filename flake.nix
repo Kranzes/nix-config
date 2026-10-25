@@ -51,7 +51,7 @@
       flake = false;
     };
     mic92-noctalia-plugins = {
-      url = "github:Mic92/noctalia-plugins";
+      url = "github:Mic92/noctalia-plugins/228af6bdacba987d962c72d8b2fb35e4549bb09f";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
