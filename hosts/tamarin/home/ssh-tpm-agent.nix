@@ -23,4 +23,16 @@
   systemd.user.services.ssh-tpm-agent.Service.Environment = [
     "SSH_ASKPASS=${config.home.sessionVariables.SSH_ASKPASS}"
   ];
+
+  systemd.user.services.ssh-tpm-agent-session = {
+    Unit = {
+      Description = "Restart ssh-tpm-agent with the graphical session environment";
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${config.systemd.user.systemctlPath} --user try-restart ssh-tpm-agent.service";
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
 }
