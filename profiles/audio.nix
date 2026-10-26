@@ -1,4 +1,24 @@
+{ inputs, ... }:
+{ pkgs, ... }:
+
+let
+  inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) btd700-control btd700ctl;
+in
+
 {
+  environment.systemPackages = [ btd700-control ];
+  services.udev.packages = [
+    btd700-control
+    btd700ctl
+  ];
+
+  systemd.packages = [ btd700ctl ];
+  systemd.user.services.btd700d = {
+    wantedBy = [ "default.target" ];
+    bindsTo = [ "dev-btd700.device" ];
+    after = [ "dev-btd700.device" ];
+  };
+
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -13,7 +33,7 @@
     wireplumber.extraConfig."50-btd700-latency"."monitor.alsa.rules" = [
       {
         matches = [ { "node.name" = "~alsa_output.usb-Sennheiser_BTD_700_.*"; } ];
-        actions.update-props."latency.internal.ns" = 200000000;
+        actions.update-props."latency.internal.ns" = 250000000;
       }
     ];
   };

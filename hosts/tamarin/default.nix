@@ -1,8 +1,4 @@
-{ inputs, pkgs, ... }:
-
-let
-  btd700ctl = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.btd700ctl;
-in
+{ inputs, ... }:
 
 {
   imports = [
@@ -16,15 +12,6 @@ in
     profiles-laptop
     profiles-hyprland
   ]);
-
-  services.udev.packages = [ btd700ctl ];
-
-  systemd.packages = [ btd700ctl ];
-  systemd.user.services.btd700d = {
-    wantedBy = [ "default.target" ];
-    bindsTo = [ "dev-btd700.device" ];
-    after = [ "dev-btd700.device" ];
-  };
 
   system.etc.overlay.enable = true;
 

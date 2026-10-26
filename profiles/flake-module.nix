@@ -3,7 +3,7 @@
 {
   flake.nixosModules = {
     profiles-android = ./android.nix;
-    profiles-audio = ./audio.nix;
+    profiles-audio = lib.modules.importApply ./audio.nix { inherit inputs; };
     profiles-docs = ./docs.nix;
     profiles-hyprland = ./hyprland.nix;
     profiles-laptop = ./laptop.nix;
