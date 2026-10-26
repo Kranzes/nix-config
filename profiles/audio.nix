@@ -28,14 +28,14 @@ in
 
   systemd.packages = [ btd700ctl ];
   systemd.user.services.btd700d = {
-    wantedBy = [ "default.target" ];
+    wantedBy = [ "dev-btd700.device" ];
     bindsTo = [ "dev-btd700.device" ];
     after = [ "dev-btd700.device" ];
   };
 
   systemd.user.services.btd700-latency = {
     description = "Match BTD 700 latency compensation to its audio mode";
-    wantedBy = [ "default.target" ];
+    wantedBy = [ "dev-btd700.device" ];
     bindsTo = [ "dev-btd700.device" ];
     partOf = [ "wireplumber.service" ];
     after = [
