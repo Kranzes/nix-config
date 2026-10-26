@@ -31,6 +31,9 @@ python3Packages.buildPythonApplication (finalAttrs: {
       --replace-fail "else sys.executable)" "else 'btd700-control')" \
       --replace-fail "else ' -m btd700'" "else '''" \
       --replace-fail "else 'audio-headphones')" "else 'btd700-control')"
+    substituteInPlace btd700/tray.py \
+      --replace-fail "'IconName': ('s', 'audio-headphones-symbolic')" "'IconName': ('s', 'btd700-control')" \
+      --replace-fail "'ItemIsMenu': ('b', True)" "'ItemIsMenu': ('b', False)"
   '';
 
   build-system = [ python3Packages.setuptools ];

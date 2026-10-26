@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   services = {
@@ -13,6 +18,21 @@
       enableScDaemon = false;
       pinentry.package = pkgs.pinentry-gnome3;
     };
+  };
+
+  systemd.user.services.btd700-control = {
+    Unit = {
+      Description = "BTD 700 Control tray";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${
+        lib.getExe inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.btd700-control
+      } --background";
+      Restart = "on-failure";
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   systemd.user.sockets.yubikey-touch-detector = {

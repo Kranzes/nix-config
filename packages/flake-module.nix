@@ -6,6 +6,7 @@
     {
       packages = {
         btd700-control = pkgs.callPackage ./btd700-control { };
+        btd700-latency = pkgs.callPackage ./btd700-latency { };
         btd700ctl = pkgs.callPackage ./btd700ctl { };
         fuzzel-mpd = pkgs.callPackage ./fuzzel-mpd { };
         maiao = pkgs.callPackage ./maiao { };

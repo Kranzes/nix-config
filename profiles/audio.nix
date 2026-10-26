@@ -1,8 +1,22 @@
 { inputs, ... }:
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) btd700-control btd700ctl;
+  inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system})
+    btd700-control
+    btd700-latency
+    btd700ctl
+    ;
+
+  btd700Latency = {
+    standard = 200000000;
+    gaming = 80000000;
+  };
 in
 
 {
@@ -19,6 +33,22 @@ in
     after = [ "dev-btd700.device" ];
   };
 
+  systemd.user.services.btd700-latency = {
+    description = "Match BTD 700 latency compensation to its audio mode";
+    wantedBy = [ "default.target" ];
+    bindsTo = [ "dev-btd700.device" ];
+    partOf = [ "wireplumber.service" ];
+    after = [
+      "dev-btd700.device"
+      "wireplumber.service"
+    ];
+    path = [ config.services.pipewire.package ];
+    serviceConfig = {
+      ExecStart = "${lib.getExe btd700-latency} ${toString btd700Latency.standard} ${toString btd700Latency.gaming}";
+      Restart = "on-failure";
+    };
+  };
+
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -33,7 +63,7 @@ in
     wireplumber.extraConfig."50-btd700-latency"."monitor.alsa.rules" = [
       {
         matches = [ { "node.name" = "~alsa_output.usb-Sennheiser_BTD_700_.*"; } ];
-        actions.update-props."latency.internal.ns" = 250000000;
+        actions.update-props."latency.internal.ns" = btd700Latency.standard;
       }
     ];
   };
