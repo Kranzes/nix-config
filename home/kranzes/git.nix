@@ -41,6 +41,11 @@
 
   home.packages = [
     pkgs.git-open
+    pkgs.tuicr
     inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.maiao
   ];
+
+  xdg.configFile."tuicr/config.toml".source = (pkgs.formats.toml { }).generate "tuicr-config.toml" {
+    theme = "catppuccin-${config.catppuccin.flavor}";
+  };
 }
