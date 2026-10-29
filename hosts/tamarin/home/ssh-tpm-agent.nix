@@ -8,10 +8,10 @@
     enable = true;
     package = pkgs.ssh-tpm-agent.overrideAttrs {
       src = pkgs.fetchFromGitHub {
-        owner = "Kranzes";
+        owner = "Foxboron";
         repo = "ssh-tpm-agent";
-        rev = "7406e54ed6827191c58312454f35a9e233f6910b";
-        hash = "sha256-5Y6BfR532lM6FxE8vwzhOWdaxvA+cRcEAv+J+DeVTvo=";
+        rev = "43795283993ef79015729399bdecf413fb7705d8";
+        hash = "sha256-l6KNW3jgCcIniolyHx1Ijf3cQ0K6iFPdBqbsjcUpjfk=";
       };
       preCheck = ''
         rm cmd/scripts_test.go
