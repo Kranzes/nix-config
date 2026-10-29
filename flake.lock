@@ -97,11 +97,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1793160255,
-        "narHash": "sha256-F1waPip2dUnsWIHveBjgacmUVmSJZChnhShWGNmSoYo=",
+        "lastModified": 1793246567,
+        "narHash": "sha256-ywLMKXURakXhU4yf1PUJubyi05ezGCRImicR71BaaIE=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "ed9233d15254387c12c5c53939ce2162712cf5fb",
+        "rev": "1c6b0fda2940b5bbfda0bf110590c06a97cacc4f",
         "type": "gitlab"
       },
       "original": {
@@ -203,11 +203,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793229026,
-        "narHash": "sha256-p8tFaj+rWseSrRIVUmbDEnVATzIPEHibiUxpT5+Ardw=",
+        "lastModified": 1793267696,
+        "narHash": "sha256-pU0HWLzBuoGIYLMIjoZNqiALCAUl9JwV6ujIyOZO3i4=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "63656bb90d9f156962ac0ff87580f173b7285487",
+        "rev": "e452052b9efb54fd59f8a06cbc09978fb542a3c2",
         "type": "github"
       },
       "original": {
@@ -242,11 +242,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1793054847,
-        "narHash": "sha256-mhud3nRH8RoP0h9MydfkJ8mISpj+QE/S//wOt9bNgC0=",
+        "lastModified": 1793236063,
+        "narHash": "sha256-jGFe4xdrCw6xpgH2zgKwslACyt/NGuPwGILPEMFxmcQ=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "8ba09466dc929acf5c8bb3e0cc40f472a7df3630",
+        "rev": "b6754c901c21478fd8450d62101e712b2a4f0d75",
         "type": "github"
       },
       "original": {
@@ -438,11 +438,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793098712,
-        "narHash": "sha256-TAU/3BpoFPr9xYBOD3GOoUBgoF6TA0jY9jM+mXF6zrc=",
+        "lastModified": 1793241018,
+        "narHash": "sha256-gu/ctomCxRP0x4fSxjkC1AMFPjUBekRIe8pT/Jpb8yo=",
         "owner": "nix-community",
         "repo": "srvos",
-        "rev": "a18860a99444f43e074e636c5921dffe2c0c6fd8",
+        "rev": "824ecec2a0a5a504a5f73d8e7a259c8d09d117b6",
         "type": "github"
       },
       "original": {
@@ -454,11 +454,11 @@
     "systemd-creds-openbao": {
       "flake": false,
       "locked": {
-        "lastModified": 1793021595,
-        "narHash": "sha256-pB61/0dAXkMdwVzvDeujjDgYOUdAEMy1PyagAM/NexQ=",
+        "lastModified": 1793311164,
+        "narHash": "sha256-46e3cPDn0b+c/1WjihYSUwK7Yqv94yzcigav8ROibjI=",
         "owner": "Kranzes",
         "repo": "systemd-creds-openbao",
-        "rev": "851dda41d792124cf8acdd7949e4541927517c82",
+        "rev": "90b5c822e5515a42c386c815ac2eda86e5d254c3",
         "type": "github"
       },
       "original": {
