@@ -44,7 +44,7 @@
     };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell/legacy-v4";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.url = "github:NixOS/nixpkgs/55bfb4d7437bd4e09ab7cba58a43bd68eb310044";
     };
     systemd-creds-openbao = {
       url = "github:Kranzes/systemd-creds-openbao";
