@@ -14,8 +14,10 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
+    includes = [ "config.local" ];
     settings = {
       "*".HashKnownHosts = true;
+      devbox.ForwardAgent = true;
       "cl.snix.dev" = {
         IdentityFile = "~/.ssh/fuckgerrit";
         Port = 29418;
