@@ -22,7 +22,6 @@
     ranger
     pulsemixer
     tree
-    fzf
     gnome-disk-utility
     nextcloud-client
     lm_sensors
@@ -31,13 +30,9 @@
     piper
     thunderbird-bin
     ookla-speedtest
-    nixfmt
     nixpkgs-review
     nix-update
     acpi
-    ripgrep
-    fd
-    sd
     (discord.override {
       withOpenASAR = true;
       withVencord = true;
@@ -46,7 +41,6 @@
     fractal
     yubioath-flutter
     jellyfin-desktop
-    nixd
     kubectl
   ];
 }
