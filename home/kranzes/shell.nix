@@ -6,6 +6,14 @@
 }:
 
 {
+  programs.bat = {
+    enable = true;
+    config = {
+      paging = "never";
+      style = "numbers";
+    };
+  };
+
   programs.zoxide = {
     enable = true;
     options = [
