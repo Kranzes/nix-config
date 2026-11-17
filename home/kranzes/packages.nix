@@ -42,5 +42,6 @@
     yubioath-flutter
     jellyfin-desktop
     kubectl
+    git-open
   ];
 }

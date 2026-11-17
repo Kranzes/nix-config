@@ -40,7 +40,6 @@
   };
 
   home.packages = [
-    pkgs.git-open
     pkgs.tuicr
     inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.maiao
   ];
