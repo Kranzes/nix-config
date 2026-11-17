@@ -13,6 +13,7 @@
     nixpkgs.useGlobalPackages = true;
     version.enableNixpkgsReleaseCheck = false;
     defaultEditor = true;
+    waylandSupport = config.wayland.windowManager.hyprland.enable;
     vimdiffAlias = true;
     viAlias = true;
     vimAlias = true;

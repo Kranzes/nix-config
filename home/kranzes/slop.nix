@@ -106,8 +106,8 @@
     };
   };
 
-  home.packages = [
-    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
-    pkgs.python3
-  ];
+  home.packages =
+    lib.optional config.wayland.windowManager.hyprland.enable
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
+    ++ [ pkgs.python3 ];
 }

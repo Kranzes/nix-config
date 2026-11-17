@@ -1,7 +1,7 @@
 {
   inputs,
   lib,
-  pkgs,
+  osConfig,
   ...
 }:
 
@@ -18,28 +18,25 @@
     accent = lib.mkDefault "lavender";
   };
 
-  home.file.".face".source = pkgs.fetchurl {
-    url = "https://github.com/Kranzes.png";
-    hash = "sha256-Am+xMAXUU7LlbsL62JyFYiNp30HktjZ5FZcD4ZhWTZU=";
-  };
-
   imports = [
     inputs.catppuccin.homeModules.catppuccin
+    ./editors.nix
+    ./git.nix
+    ./shell.nix
+    ./devel.nix
+    ./slop.nix
+  ]
+  ++ lib.optionals osConfig.services.graphical-desktop.enable [
     ./packages.nix
     ./programs.nix
     ./fonts.nix
     ./services.nix
-    ./editors.nix
     ./terminal.nix
     ./ssh.nix
-    ./git.nix
     ./hyprland.nix
     ./noctalia.nix
     ./fuzzel.nix
-    ./shell.nix
     ./gtk-qt.nix
-    ./devel.nix
     ./browser.nix
-    ./slop.nix
   ];
 }
