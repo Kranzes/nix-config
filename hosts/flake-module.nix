@@ -8,9 +8,12 @@ let
     profiles-nix-nixpkgs
     profiles-security
     profiles-ssh
+    profiles-users
+  ];
+
+  infraProfiles = with inputs.self.nixosModules; [
     profiles-systemd-creds-openbao
     profiles-tailscale
-    profiles-users
   ];
 
   commonHome = [
@@ -46,15 +49,16 @@ in
   flake.nixosConfigurations = {
     pongo = nixosSystemWithDefaults {
       hostName = "pongo";
-      modules = commonHome;
+      modules = commonHome ++ infraProfiles;
     };
     tamarin = nixosSystemWithDefaults {
       hostName = "tamarin";
-      modules = commonHome;
+      modules = commonHome ++ infraProfiles;
     };
     hetzner = nixosSystemWithDefaults {
       system = "x86_64-linux";
       hostName = "hetzner";
+      modules = infraProfiles;
     };
   };
 }
