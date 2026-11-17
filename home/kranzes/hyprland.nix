@@ -124,7 +124,7 @@ in
             "SUPER + SHIFT + V" = ''hl.dsp.layout("togglesplit")'';
             "Print" = ''hl.dsp.exec_cmd("grim - | wl-copy && notify-send 'screenshot' 'captured'")'';
             "CTRL + Print" =
-              ''hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy && notify-send 'screenshot' 'captured'")'';
+              ''hl.dsp.exec_cmd("g=$(slurp); hyprctl dispatch 'hl.dsp.focus({ window = \"active\" })'; grim -g \"$g\" - | wl-copy && notify-send 'screenshot' 'captured'")'';
             "SUPER + 1" = "hl.dsp.focus({ workspace = 1 })";
             "SUPER + 2" = "hl.dsp.focus({ workspace = 2 })";
             "SUPER + 3" = "hl.dsp.focus({ workspace = 3 })";
