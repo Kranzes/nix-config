@@ -147,6 +147,7 @@
     dependencies = {
       ripgrep.enable = true;
       fd.enable = true;
+      git.package = config.programs.git.package;
     };
     lsp = {
       onAttach = ''

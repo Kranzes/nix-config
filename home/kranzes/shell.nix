@@ -27,7 +27,7 @@
     initContent = lib.mkMerge [
       (lib.mkBefore ''
         setopt PROMPT_SUBST
-        source ${pkgs.git}/share/bash-completion/completions/git-prompt.sh
+        source ${config.programs.git.package}/share/bash-completion/completions/git-prompt.sh
         PROMPT='[%n@%m %~]%(!.#.$)$(__git_ps1) '
         RPROMPT=
       '')
