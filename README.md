@@ -19,3 +19,4 @@ Name                                        | Description
 [Pongo](./hosts/pongo) 	                    | My desktop running a Ryzen 7 2700X, 16GB of RAM and a RX 570 
 [Tamarin](./hosts/tamarin)     	            | Framework 13
 [Hetzner](./hosts/hetzner)     	            | Hetzner Cloud CX32
+[Devbox](./hosts/devbox)     	            | Headless dev box on AWS EC2 bare metal

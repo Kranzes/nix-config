@@ -60,5 +60,10 @@ in
       hostName = "hetzner";
       modules = infraProfiles;
     };
+    devbox = nixosSystemWithDefaults {
+      system = "x86_64-linux";
+      hostName = "devbox";
+      modules = commonHome;
+    };
   };
 }
