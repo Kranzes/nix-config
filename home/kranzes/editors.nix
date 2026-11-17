@@ -199,7 +199,6 @@
         nixd.enable = true;
         pyright.enable = true;
         bashls.enable = true;
-        hls.enable = true;
         terraformls.enable = true;
         yamlls = {
           enable = true;
